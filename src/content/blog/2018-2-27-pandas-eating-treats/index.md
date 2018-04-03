@@ -1,6 +1,9 @@
 ---
-title: "Sweet Pandas Eating Sweets"
+title: "Using a Framework to Simplify Email Design"
 date: "2017-08-10"
+section: blog
+cover_image: "./foundation-emails-guide@1x.jpg"
+tags: [ 'design', 'development' ]
 ---
 
 Pandas are really sweet.

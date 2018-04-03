@@ -1,30 +1,27 @@
-# gatsby-starter-default
-The default Gatsby starter.
+# Personal Portfolio and Blog of Ryosuke
 
-For an overview of the project structure please refer to the [Gatsby documentation - Building with Components](https://www.gatsbyjs.org/docs/building-with-components/).
 
-## Install
+## Structure
 
-Make sure that you have the Gatsby CLI program installed:
-```sh
-npm install --global gatsby-cli
-```
+* Home
+* Projects
+* * Pagination Archive
+* Blog
+* * Pagination Archive
+* Tags
+* * Tag Archives
+* About
 
-And run from your CLI:
-```sh
-gatsby new gatsby-example-site
-```
+## Development
 
-Then you can run it by:
-```sh
-cd gatsby-example-site
-npm run develop
-```
+Running on GatsbyJS, an SSG that creates static React apps.
 
-## Deploy
+1. `npm install`
+2. `npm run develop`
 
-Deploy to Github Pages:
+
+## Deployment
+
+We locally build the files, then deploy using an NPM script that updates a specific Git repo branch called `gh-pages`.
 
 `npm run deploy`
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)

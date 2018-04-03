@@ -1,5 +1,13 @@
+/* -------------- Fonts ---------------- */
+
+@import url('https://fonts.googleapis.com/css?family=Heebo:400,800');
+
+/* -------------- Resets / Normalization ---------------- */
+
 html {
-  font-family: sans-serif;
+  font: 112.5%/1.45em 'Heebo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  overflow-y: scroll;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -40,10 +48,14 @@ template {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
+  text-decoration:none;
+  border-bottom:1px solid;
 }
 a:active,
 a:hover {
+  color: #005CDD;
   outline-width: 0;
+  border-color:#005CDD;
 }
 abbr[title] {
   border-bottom: none;
@@ -58,6 +70,15 @@ strong {
 dfn {
   font-style: italic;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+  font-weight: 800;
+}
 h1 {
   font-size: 2em;
   margin: .67em 0;
@@ -67,7 +88,15 @@ mark {
   color: #000;
 }
 small {
-  font-size: 80%;
+  font-size: 70%;
+}
+small.normal
+{
+  font-weight:normal;
+}
+small.smaller
+{
+  font-size: 50%;
 }
 sub,
 sup {
@@ -182,11 +211,6 @@ textarea {
   -webkit-appearance: button;
   font: inherit;
 }
-html {
-  font: 112.5%/1.45em georgia, serif;
-  box-sizing: border-box;
-  overflow-y: scroll;
-}
 * {
   box-sizing: inherit;
 }
@@ -198,7 +222,7 @@ html {
 }
 body {
   color: hsla(0, 0%, 0%, 0.8);
-  font-family: georgia, serif;
+  font-family: 'Heebo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -230,7 +254,6 @@ h1 {
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 2.25rem;
   line-height: 1.1;
@@ -247,7 +270,6 @@ h2 {
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.62671rem;
   line-height: 1.1;
@@ -264,7 +286,6 @@ h3 {
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1.38316rem;
   line-height: 1.1;
@@ -281,7 +302,6 @@ h4 {
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 1rem;
   line-height: 1.1;
@@ -298,7 +318,6 @@ h5 {
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.85028rem;
   line-height: 1.1;
@@ -315,7 +334,6 @@ h6 {
   color: inherit;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-weight: bold;
   text-rendering: optimizeLegibility;
   font-size: 0.78405rem;
   line-height: 1.1;
@@ -375,6 +393,7 @@ dd {
   margin-bottom: 1.45rem;
 }
 p {
+  color:#374A54;
   margin-left: 0;
   margin-right: 0;
   margin-top: 0;
@@ -383,6 +402,11 @@ p {
   padding-right: 0;
   padding-top: 0;
   margin-bottom: 1.45rem;
+}
+p.header
+{
+  font-size:1.75rem;
+  line-height:3rem;
 }
 figure {
   margin-left: 0;
@@ -402,10 +426,11 @@ pre {
   padding-left: 0;
   padding-right: 0;
   padding-top: 0;
-  margin-bottom: 1.45rem;
+  margin-bottom: 3.45rem;
   font-size: 0.85rem;
   line-height: 1.42;
-  background: hsla(0, 0%, 0%, 0.04);
+  /* background: hsla(0, 0%, 0%, 0.04); */
+  background:#272822;
   border-radius: 3px;
   overflow: auto;
   word-wrap: normal;
@@ -541,6 +566,9 @@ p *:last-child {
 li > p {
   margin-bottom: calc(1.45rem / 2);
 }
+:not(pre) > code[class*="language-"] {
+  padding: .6em !important;
+}
 code {
   font-size: 0.85rem;
   line-height: 1.45rem;
@@ -621,4 +649,1066 @@ pre tt:after {
   html {
     font-size: 100%;
   }
+}
+
+/* -------------- Animation Keyframes ---------------- */
+
+@keyframes slideDownCover {
+  0% {
+    /* transform-origin: top center;
+    transform: scaleY(0); */
+    transform: translateY(-100%);
+  }
+  100% {
+    /* transform-origin: top center;
+    transform: scaleY(1); */
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity:0;
+    transform: translateY(20%);
+  }
+  100% {
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+/* -------------- Icons ---------------- */
+
+.icon,
+.icon svg
+{
+  width:16px;
+  height:16px;
+  margin-bottom:0;
+  border:0;
+  transition: fill 2s;
+}
+
+.tumblr:hover #tumblrColor
+{
+  fill:#32506d;
+}
+
+.twitter:hover #twitterColor
+{
+  fill:#00aced;
+}
+
+.github:hover #githubColor
+{
+  fill:#171516;
+}
+
+.flickr:hover #flickrColor
+{
+  fill:#ff0084;
+}
+
+.hashnode:hover #hashnodeColor
+{
+  fill: #2196F3;
+}
+
+.behance:hover #behanceColorOne,
+.behance:hover #behanceColorTwo,
+.behance:hover #behanceColorThree
+{
+  fill:#1769FF;
+}
+
+.instagram:hover #instagramColor
+{
+  fill:  rgb(195, 60, 190);
+}
+
+
+
+/* -------------- Grid ---------------- */
+
+.row
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.col
+{
+  flex: 1;
+  display: flex;
+  max-width: 50%;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 640px) {
+  .col
+  {
+    max-width: 100%;
+  }
+}
+
+/* Container for limited width */
+.container
+{
+  max-width:1080px;
+  margin:0 auto;
+  clear: both;
+}
+
+/* Full width container for CTAs */
+.cta
+{
+  width:100%;
+}
+
+.cta.padded
+{
+  padding:1rem;
+}
+
+.cta.very.padded
+{
+  padding:5rem 3rem;
+}
+
+.cta .content
+{
+  padding:2rem;
+}
+
+.cta.gray 
+{
+  background-color:#F0F0F0;
+}
+
+.cta.light.blue
+{
+  background-image: radial-gradient(23% 72%, #EFF1F4 11%, #E5E9EF 98%);
+}
+
+
+/* -------------- Shared Classes ---------------- */
+
+/* Default card background */
+.Featured figcaption,
+.Card,
+.ArticlePage .content,
+.Segment
+{
+  background: #FFFFFF;
+  box-shadow: 6px 2px 44px 10px rgba(0,0,0,0.08);
+  border-radius: 9px;
+  overflow:hidden;
+  transition: box-shadow 2s ease-in-out;
+}
+
+.Featured:hover figcaption,
+.Card:hover,
+.Segment.hover:hover
+{
+  box-shadow: 3px 0px 22px 5px rgba(0,0,0,0.12);
+  opacity: 1;
+}
+
+/* Black border on right side headers */
+.Title
+{
+  color:#051923;
+  padding-left: 1rem;
+  border-left:3px solid #051923;
+}
+
+a .Title:hover,
+a.Title:hover,
+.Title.blue
+{
+  border-color:#005CDD;
+}
+
+.Title__sub
+{
+  text-transform:uppercase;
+  color:#909090;
+}
+
+
+/* Small links with icon on right side */
+.Link
+{
+  font-size:0.7rem;
+  font-weight:800;
+  color:#051923;
+  border-bottom:0;
+  text-transform: uppercase;
+  display:inline-block;
+}
+
+.Link .icon
+{
+  width:13px;
+  height:13px;
+  margin-bottom:-0.05rem;
+  margin-left:0.25rem;
+}
+
+.Link:hover .icon #arrowRightFill
+{
+  fill:#005CDD;
+}
+
+/* Buttons */
+
+.btn
+{
+  color:#FFF;
+  background:#005CDD;
+  font-size:0.9rem;
+  padding:0.5rem 1.25rem;
+  list-style-type:none;
+  display:inline-block;
+  border-radius:2rem;
+  border:0;
+  box-shadow: 3px 4px 22px 5px rgba(0,0,0,0.08);
+  transform: scale(1);
+  transition: background 400ms ease-in, transform 200ms ease-in, box-shadow 200ms ease-in;
+}
+
+.btn:hover
+{
+  color: #FFF;
+  cursor:pointer;
+  box-shadow: 3px 0px 11px 5px rgba(0,0,0,0.15);
+  transform: translateY(-0.1rem);
+  transition: background 400ms ease-in, transform 200ms ease-in, box-shadow 200ms ease-in;
+}
+
+.btn.disabled:hover
+{
+  cursor:default;
+  transform: translateY(0);
+  box-shadow: 3px 4px 22px 5px rgba(0,0,0,0.08);
+}
+
+
+.hover
+{
+  transition: color 400ms ease-out;
+}
+
+.hover:hover
+{
+  color:#005CDD;
+  transition: color 400ms ease-out;
+}
+
+
+/* -------------- Header ---------------- */
+
+.App
+{
+  margin-top:3.5rem;
+}
+
+.Header 
+{
+  width:100%;
+  height:3.5rem;
+  padding:0.75rem;
+  position:relative;
+  background: #FFFFFF;
+  box-shadow: 6px 2px 24px 8px rgba(0,0,0,0.08);
+  position:fixed;
+  top:0;
+  z-index:710;
+  animation: 1s ease-out 0s 1 slideDownCover;
+}
+
+.Header .logo
+{
+  margin-left:1rem;
+}
+
+.Header .logo svg,
+.Header .logo,
+.Header .Navigation
+{
+  width: auto;
+  height:30px;
+}
+
+.Header .Navigation
+{
+  margin-top:0.3rem;
+  font-size:0.75rem;
+  float:right;
+}
+
+.Header .Navigation ul 
+{
+  list-style-type:none;
+}
+
+.Header .Navigation li 
+{
+  display: inline;
+  text-transform: uppercase;
+  margin: 0 1rem;
+  font-weight:800;
+}
+
+.Header .logo,
+.Header .Navigation a 
+{
+  color:#A0A0A0;
+  border-bottom:0;
+  transition: color 400ms ease-in;
+}
+
+.Header .Navigation a:hover,
+a .Title:hover,
+a.Title:hover
+{
+  color:#005CDD;
+  transition: color 400ms ease-out;  
+}
+
+.Header .logo svg path
+{
+  fill:#A0A0A0;
+  transition: fill 400ms ease-in;  
+}
+
+.Header .logo:hover svg path
+{
+  fill: #005CDD;
+  transition: fill 400ms ease-out;
+}
+
+/* -------------- Footer ---------------- */
+
+.Footer
+{
+  width:100%;
+  padding:1rem;
+  clear:both;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Footer .copyright p
+{
+  color:#A0A0A0;
+  font-size:0.7rem;
+  opacity:0.7;
+  text-transform:uppercase;
+}
+
+.Footer .social
+{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Footer .Navigation li
+{
+  list-style-type: none;
+  display:inline-block;
+  margin:0 0.5rem;
+}
+
+
+/* -------------- Featured block ---------------- */
+
+.Featured
+{
+  position:relative;
+}
+
+.Featured .image .gatsby-image-wrapper,
+.Featured .image
+{
+  height:400px;
+  overflow: hidden;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size:cover;
+}
+
+.Featured figcaption
+{
+  width: 45%;
+  position:absolute;
+  bottom:-3rem;
+  right:1rem;
+  padding:2rem 2rem 1.5rem 2rem;
+}
+
+.Featured .Link
+{
+  padding-top:1rem;  
+}
+
+@media (max-width: 800px) {
+  .Featured figcaption
+  {
+    width: 90%;    
+  }
+}
+
+/* -------------- Card ---------------- */
+
+.Featured,
+.Card
+{
+  position:relative;
+  transition:transform 400ms, box-shadow 500ms;
+  animation: 1s ease-out 0s 1 slideUpFade;
+}
+
+.Featured:hover,
+.Card:hover
+{
+  transform:translateY(-0.5rem);
+}
+
+.Card .gatsby-image-wrapper,
+.Card figure
+{
+  width:100%;
+  height:200px;
+  overflow:hidden;
+  background-size:cover;
+  background-position:50% 50%;
+  background-repeat:no-repeat;
+}
+
+.Card .content
+{
+  padding:1rem;
+}
+
+.Card .excerpt
+{
+  margin-top:1rem;  
+  margin-bottom:2.5rem;
+}
+
+.Card .date
+{
+  font-size:0.6rem;
+  color:#A0A0A0;
+  float:right;
+}
+
+.Card .meta
+{
+  width:90%;
+  position: absolute;
+  bottom:1rem;
+}
+
+@media (min-width: 400px) {
+  .Card.small {
+      min-width: 320px;
+      max-width: 100%;
+      width: 100%;
+      margin: 30px;
+  }
+}
+
+/* -------------- Tag Cloud ---------------- */
+
+
+.TagCloud li
+{
+  color:#FFF;
+  background:#A0A0A0;
+  font-size:0.9rem;
+  padding:0.5rem 1.25rem;
+  list-style-type:none;
+  display:inline-block;
+  border-radius:2rem;
+  margin-right:0.75rem;
+  transform: scale(1);
+  transition: background 400ms ease-in, transform 200ms ease-in;
+}
+
+.TagCloud li a 
+{
+  color:#FFF;
+  border-bottom:0;
+}
+
+.TagCloud li:hover
+{
+  cursor: default;
+  background:#005CDD;
+  transform: scale(1.2);
+  transition: background 400ms ease-out, transform 200ms ease-out;
+}
+
+.TagCloud li a:hover
+{
+  color:#FFF;
+}
+
+.TagCloud.large li
+{
+  font-size:2rem;
+  padding:1.5rem 2.5rem;
+}
+
+.TagCloud.small li
+{
+  font-size:0.7rem;
+  padding: 0.25rem 0.75rem;
+  margin-right: 0.5rem;
+}
+
+
+/* -------------- ArticlePage ---------------- */
+
+.Cover .gatsby-image-wrapper,
+.ArticlePage .Cover
+{
+  width:100%;
+  min-height:400px;
+  overflow:hidden;
+  background-size:cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  z-index:10;
+  animation: 400ms ease-in 0s 1 fadeIn;  
+}
+
+.ArticlePage .date
+{
+  color:#A0A0A0;
+  font-size:0.9rem;
+  font-weight:normal;
+  margin-left:0.5rem;
+}
+
+.ArticlePage .container
+{
+  animation: 1s ease-out 0s 1 slideUpFade;  
+}
+
+.ArticlePage .content
+{
+  margin-top:-10rem;
+  position: relative;
+  z-index:100;
+}
+
+.ArticlePage .content,
+.ArticlePage .meta,
+.Blog .Comments .content
+{
+  width:80%;
+  float:right;
+  padding:2rem;
+}
+
+.ArticlePage .meta
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.ArticlePage .author
+{
+  min-width:50%;
+  float:left;
+}
+
+.ArticlePage .meta figure h5
+{
+  padding-top: 0.35rem;
+}
+
+.ArticlePage .meta figure img
+{
+  width:32px;
+  float:left;
+  margin-right:0.5rem;
+  border-radius:4px;
+}
+
+.ArticlePage .share a 
+{
+  font-size:0.7rem;
+  border:0;
+  margin-left:0.25rem;
+  color:#FFF;
+  padding:0.3rem 1rem;
+  display: inline-block;
+  text-transform: uppercase;
+  border-radius:4px;
+  box-shadow:none;
+  transition:transform 300ms, box-shadow 400ms;
+}
+
+.ArticlePage .share a:hover
+{
+  box-shadow: 2px 4px 7px 2px rgba(0,0,0,0.12);
+  transform:translateY(-0.1rem)
+}
+
+.ArticlePage .share a.tumblr
+{
+  background:#32506d;
+}
+
+.ArticlePage .share a.twitter
+{
+  background:#00aced;
+}
+
+.ArticlePage .share svg
+{
+  width:auto;
+  height:12px;
+  margin-left:0.5rem;
+}
+
+.ArticlePage .share #twitterColor,
+.ArticlePage .share #tumblrColor
+{
+  fill:#FFF;
+}
+
+.RelatedPosts {
+  padding:5rem 0 3rem 0;
+}
+
+.ArticlePage .TagCloud ul {
+  margin:0;
+}
+
+.ArticlePage .TagCloud li {
+  font-size:0.7rem;
+}
+
+@media (max-width: 800px) {
+  .ArticlePage .content,
+  .ArticlePage .meta
+  {
+    width:100%;
+  }
+  
+  .ArticlePage .content
+  {
+    margin-top:-4rem;
+  }
+}
+
+/* -------------- Component specific ---------------- */
+
+/* ------- Newsletter ------- */
+
+.Newsletter .container div
+{
+  width:80%;
+  position:relative;
+  margin:0 auto;
+}
+
+.Newsletter input[type='email']
+{
+  width:90%;
+  padding:0.75rem 1rem;
+  background: #FFFFFF;
+  box-shadow: 6px 2px 24px 10px rgba(0,0,0,0.06);
+  border-radius: 9px;
+  border:0;
+  position: relative;
+  top:0;
+  transition: box-shadow 400ms, top 300ms;
+}
+
+.Newsletter input[type='email']:focus
+{
+  top:-0.1rem;
+  box-shadow: 3px 0 2px 3px rgba(0,0,0,0.06);  
+  outline-color: rgba(0,0,0,0.2);
+  outline-style: dotted;
+  outline-width: 2px;
+}
+
+.Newsletter input[type='submit'],
+.Newsletter button
+{
+  padding:0.5rem 2rem;
+  background: #006494;
+  box-shadow: 6px 2px 24px 10px rgba(0,0,0,0.06);
+  border-radius: 9px;
+  color:#FFF;
+  font-weight:bold;
+  position:absolute;
+  right:0;
+  bottom:-1rem;
+  cursor:pointer;
+  transition:bottom 300ms;
+}
+
+.Newsletter input[type='submit']:hover,
+.Newsletter button:hover
+{
+  bottom:-0.8rem;
+}
+
+.Newsletter .message {
+  width:50%;
+  padding:1rem;
+  position:absolute;
+  top:10%;
+  left:30%;
+  text-align:center;
+  color:#FFF;
+  animation: 1s ease-out 0s 1 slideUpFade;
+}
+
+.Newsletter .message.success {
+  background:#006494;
+}
+
+.Newsletter .message.error {
+  background:darkred;
+}
+
+.Newsletter .message.sending {
+  background:green;
+}
+
+.Newsletter .success input,
+.Newsletter .success button
+{
+  opacity:0.4;
+  transition: opacity 1s;
+}
+
+/* -------------- Page specific ---------------- */
+/* ------- Frontpage ------- */
+
+.Frontpage .row
+{
+  margin-top:4rem;
+}
+
+/* --- Frontpage Hero --- */
+
+.Frontpage__hero,
+.Frontpage__about
+{
+  padding:3rem 1rem 3rem 6rem;
+  animation: 1s ease-out 0s 1 slideUpFade;
+}
+
+.Frontpage__hero h1
+{
+  font-size:3rem;
+  line-height:4.5rem;
+}
+
+.Frontpage__hero img {
+  width:auto;
+  max-height:3rem;
+  margin-bottom:0;
+}
+
+/* --- Frontpage About--- */
+
+.Frontpage__about
+{
+
+  margin-top: 3rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.Frontpage__about p 
+{
+  width:60%;
+  margin-left:10%;
+  margin-right:10%;
+  font-size:1.25rem;
+  line-height:3rem;
+}
+
+.Frontpage__about figure
+{
+  width:18%;
+  height:auto;
+}
+
+.Frontpage__about img
+{
+  width:100%;
+  height:auto;
+}
+
+/* --- Frontpage Skills --- */
+
+
+.Frontpage__skills
+{
+  padding:1rem;
+  text-align:center;
+  position: relative;
+  margin-bottom:4rem;
+}
+
+
+.Frontpage__skills p
+{
+  font-size:1.25rem;
+  line-height:3rem;
+}
+
+.Frontpage__skills li.photoshop:hover
+{
+  background:#4FCCFE;
+}
+
+.Frontpage__skills li.php:hover
+{
+  background:#4F5D95;
+}
+
+.Frontpage__skills li.css3:hover
+{
+  background:#563d7c;
+}
+
+.Frontpage__skills li.sketch:hover
+{
+  background:#f06e00;
+}
+
+.Frontpage__skills .more
+{
+  position:absolute;
+  bottom:0;
+  display:none;
+}
+
+/* --- Frontpage Services --- */
+
+
+.Frontpage__services 
+{
+  padding:4rem 0;
+}
+
+.Frontpage__services .col {
+  width:50%;
+  display:inline-block;
+  margin-bottom:1rem;
+}
+
+.Frontpage__services .services 
+{
+  padding:3rem;
+}
+
+.Frontpage__services .services img
+{
+  height:4rem;
+}
+
+/* --- Frontpage Contact --- */
+
+.Frontpage__contact h2 img
+{
+  height:2rem;
+  margin-left:0.25rem;
+}
+
+.Frontpage__contact p img
+{
+  width:auto;
+  height:1.3rem;
+  margin-right:0.75rem;
+}
+
+.Frontpage__contact h2 img,
+.Frontpage__contact p img
+{
+  margin-bottom:0;
+  vertical-align: bottom;
+}
+
+.underline 
+{
+  border-bottom:0.1rem solid;
+}
+
+@media only screen and (max-width: 480px) {
+  .Frontpage__hero,
+  .Frontpage__about
+  {
+    padding:1rem 1rem 1rem 3rem;
+  }
+  .Frontpage__hero h1
+  {
+    font-size:2rem;
+    line-height:3.75rem;
+  }
+
+  .Frontpage__about 
+  {
+    display:block;
+  }
+  
+  .Frontpage__about p 
+  {
+    width:100%;
+    margin-left:0;
+  }
+
+  .Frontpage__about figure
+  {
+    width:100%;
+    height:auto;
+  }
+
+  .Frontpage__skills .skills
+  {
+    max-height:200px;
+    transition: max-height 400ms ease-in;
+  }
+
+  .Frontpage__skills .skills.show
+  {
+    max-height:40rem;
+    transition: max-height 400ms ease-in;
+  }
+
+  .Frontpage__skills .skills.hide
+  {
+    max-height:200px;
+    overflow:hidden;
+    transition: max-height 400ms ease-in;
+  }
+
+  .Frontpage__skills .more
+  {
+    display:block;
+  }
+
+  .Frontpage__services,
+  .Frontpage__services .services 
+  {
+    padding:1rem;
+  }
+  
+  .Frontpage__services .col 
+  {
+    width:100%;
+    max-width:100%;
+  }
+}
+
+/* ------- Blog Archive ------- */
+
+.container.Title
+{
+  margin-top:5rem;
+}
+
+/* ------- Blog Post ------- */
+
+.gatsby-highlight
+{
+  margin-bottom:2rem;
+}
+
+/* ------- Tag List ------- */
+
+.TagList .TagCloud
+{
+  margin:3rem auto;
+}
+
+/* -------------- Pagination ---------------- */
+
+.Pagination 
+{
+  margin:2rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.Pagination span
+{
+  opacity:0.3;
+  cursor: default;
+}
+
+
+/* -------------- Atomic ---------------- */
+
+.centered
+{
+  text-align:center;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.pt2
+{
+  padding-top:2rem;
+}
+
+.mt2
+{
+  margin-top:2rem;
+}
+
+.text.blue
+{
+  color:#005CDD;
+}
+
+.btn.blue
+{
+  background-color:#005CDD;
+}
+
+.btn.gray
+{
+  background-color:#A0A0A0;
 }

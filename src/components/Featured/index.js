@@ -1,0 +1,38 @@
+import React from "react";
+import Link from "gatsby-link";
+import Img from "gatsby-image";
+
+import arrowRight from '../../assets/img/icon-arrow-right.svg';
+
+export default (props) => {
+    const links = {
+        blog: 'Read post',
+        portfolio: 'View project',
+    };
+    let featured = props.post;
+    console.log(featured);
+    return (
+        <figure className="Featured container">
+            <div className="image">
+                <Img sizes={featured.frontmatter.cover_image.childImageSharp.sizes} />
+            </div>
+            <figcaption>
+                <Link
+                    to={featured.fields.slug}
+                    css={{ textDecoration: `none`, color: `inherit` }}
+                >
+                    <h2 className="Title">
+                        {featured.frontmatter.title}
+                    </h2>
+                </Link>
+                <Link
+                    to={featured.fields.slug}
+                    className="Link"
+                >
+                    {featured.frontmatter.section ? links[featured.frontmatter.section] : 'See post'}
+                    <img src={arrowRight} className="icon arrow right" />
+                </Link>
+            </figcaption>
+        </figure>
+    );
+};

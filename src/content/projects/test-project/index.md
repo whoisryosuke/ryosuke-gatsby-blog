@@ -1,6 +1,9 @@
 ---
-title: Pandas and Bananas
-date: "2017-08-21"
+title: Headstash Case Study
+date: "2018-01-21"
+section: project
+cover_image: "./laravel-and-aws-s3-copy@0.4x.jpg"
+tags: [ 'design', 'development' ]
 ---
 
 Do Pandas eat bananas? Check out this short video that shows that yes! pandas do
