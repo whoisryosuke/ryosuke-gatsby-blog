@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//projects</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//blog/2018-2-27-pandas-eating-treats/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//blog/2018-2-28-pandas-and-bananas/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//blog/2018-3-1-laravel-react-example/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//projects/test-project/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/react/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/gatsbyjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/ssg/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/static-site-generator/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//page-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//projects2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
-<url> <loc>https://whoisryosuke.github.io/ryosuke-gatsby-blog//tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//projects</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018-2-27-pandas-eating-treats/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018-3-1-laravel-react-example/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018-2-28-pandas-and-bananas/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//projects/test-project/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/react/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/gatsbyjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/ssg/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/static-site-generator/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//page-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//projects2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 </urlset>
