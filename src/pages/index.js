@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Link from "gatsby-link";
 
+import config from '../config';
+
 import ServicesGrid from '../components/ServicesGrid';
 import Newsletter from '../components/Newsletter';
 import Featured from '../components/Featured';
@@ -25,9 +27,6 @@ export default class Frontpage extends Component {
     const skip = true;
 
     const { blog, projects } = data;
-
-    console.log('the data');
-    console.log(data);
 
     return (
       <div className="Frontpage pt2">

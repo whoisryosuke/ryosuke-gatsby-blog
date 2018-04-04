@@ -1,4 +1,14 @@
-## v1.0.3 - April 2, 2018
+## v1.0.4 - April 4, 2018
+
+* Fixed header links
+* Created `<SEO />` component that wraps React Helmet and accepts blog post data + image to generate a meta tags, Open Graph data, and Twitter tags.
+* Added `<SEO />` component to the `blog-post.js` component.
+* Added favicons to the root layout file `layouts/index.js`.
+* Created a config file with basic site details (`/config/index.js`)
+* Created `CNAME` file for Github Pages. Deploying to GP was causing the custom domain to break, adding the CNAME file is apparently the solution [#7538](https://github.com/travis-ci/travis-ci/issues/7538#issuecomment-290148354)
+
+
+## v1.0.3 - April 3, 2018
 
 * Installed `gatsby-plugin-feed`, google-analytics,manifest, twitter, sitemap, prismjs.
 * * Syntax highliting with `prismjs`

@@ -17,9 +17,6 @@ const IndexPage = ({ data, pathContext }) => {
     const { group, index, first, last, pageCount, pathPrefix } = pathContext;
     const previousUrl = index - 1 == 1 ? "" : (index - 1).toString();
     const nextUrl = (index + 1).toString();
-    console.log(group);
-    console.log(pathContext);
-    console.log(data);
 
     return (
         <div className="BlogArchive">

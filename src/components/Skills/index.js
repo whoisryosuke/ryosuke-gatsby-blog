@@ -17,7 +17,6 @@ export default class Skills extends Component {
         this.setState({
             more: !this.state.more
         });
-        console.log(this.state.more);
     }
 
     render() {
@@ -67,7 +66,7 @@ export default class Skills extends Component {
         ));
 
         return(
-            <div className="container row Frontpage__skills">
+            <div className="container row Skills">
                 <p>I've got the <strong>skills</strong> to the pay the <strong>bills</strong> <img src={MoneyBagEmoji} alt="Money bag emoji" height="36" /></p>
                 <section className={'TagCloud skills ' + seeMore}>
                     <ul>

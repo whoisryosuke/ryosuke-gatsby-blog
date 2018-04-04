@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Ryosuke`,
     description: `The portfolio and blog of Ryosuke`,
-    siteUrl: `https://ryosuke.design`,
+    siteUrl: `http://whoisryosuke.com/`,
   },
   pathPrefix: "/ryosuke-gatsby-blog",
   plugins: [
@@ -113,7 +113,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
+        trackingId: "UA-116899380-1",
         // Puts tracking script in the head instead of the body
         head: false,
         // Setting this parameter is optional

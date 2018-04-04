@@ -1420,7 +1420,53 @@ a.Title:hover
   transition: opacity 1s;
 }
 
+
+/* ------- Skills ------- */
+
+.Skills
+{
+  padding:1rem;
+  text-align:center;
+  position: relative;
+  margin-bottom:4rem;
+}
+
+
+.Skills p
+{
+  font-size:1.25rem;
+  line-height:3rem;
+}
+
+.Skills li.photoshop:hover
+{
+  background:#4FCCFE;
+}
+
+.Skills li.php:hover
+{
+  background:#4F5D95;
+}
+
+.Skills li.css3:hover
+{
+  background:#563d7c;
+}
+
+.Skills li.sketch:hover
+{
+  background:#f06e00;
+}
+
+.Skills .more
+{
+  position:absolute;
+  bottom:0;
+  display:none;
+}
+
 /* -------------- Page specific ---------------- */
+
 /* ------- Frontpage ------- */
 
 .Frontpage .row
@@ -1459,6 +1505,7 @@ a.Title:hover
   justify-content: flex-end;
 }
 
+
 .Frontpage__about p 
 {
   width:60%;
@@ -1474,56 +1521,13 @@ a.Title:hover
   height:auto;
 }
 
-.Frontpage__about img
+.Frontpage__about img,
+.About__bio img
 {
   width:100%;
   height:auto;
 }
 
-/* --- Frontpage Skills --- */
-
-
-.Frontpage__skills
-{
-  padding:1rem;
-  text-align:center;
-  position: relative;
-  margin-bottom:4rem;
-}
-
-
-.Frontpage__skills p
-{
-  font-size:1.25rem;
-  line-height:3rem;
-}
-
-.Frontpage__skills li.photoshop:hover
-{
-  background:#4FCCFE;
-}
-
-.Frontpage__skills li.php:hover
-{
-  background:#4F5D95;
-}
-
-.Frontpage__skills li.css3:hover
-{
-  background:#563d7c;
-}
-
-.Frontpage__skills li.sketch:hover
-{
-  background:#f06e00;
-}
-
-.Frontpage__skills .more
-{
-  position:absolute;
-  bottom:0;
-  display:none;
-}
 
 /* --- Frontpage Services --- */
 
@@ -1605,26 +1609,26 @@ a.Title:hover
     height:auto;
   }
 
-  .Frontpage__skills .skills
+  .Skills .skills
   {
     max-height:200px;
     transition: max-height 400ms ease-in;
   }
 
-  .Frontpage__skills .skills.show
+  .Skills .skills.show
   {
     max-height:40rem;
     transition: max-height 400ms ease-in;
   }
 
-  .Frontpage__skills .skills.hide
+  .Skills .skills.hide
   {
     max-height:200px;
     overflow:hidden;
     transition: max-height 400ms ease-in;
   }
 
-  .Frontpage__skills .more
+  .Skills .more
   {
     display:block;
   }
@@ -1640,6 +1644,72 @@ a.Title:hover
     width:100%;
     max-width:100%;
   }
+}
+
+/* ------- About Page ------- */
+
+.About .Frontpage__hero h1
+{
+  font-size:2.75rem;
+}
+
+.About .Title img
+{
+  width: auto;
+  max-height: 1.75rem;
+  margin-left:0.5rem;
+  margin-bottom: 0;
+}
+
+.About>.container
+{
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+
+.About__bio
+{
+  padding:3rem 1rem 1rem 6rem;
+  animation: 1s ease-out 0s 1 slideUpFade;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.About__bio aside
+{
+  width:50%;
+  margin-left:10%;
+  margin-right:10%;
+  font-size:1.25rem;
+  line-height:3rem;
+}
+
+.About .Speaking,
+.About .Skills
+{
+  margin-top:6rem;
+  margin-bottom:6rem;
+}
+
+.About .Speaking p
+{
+  font-size:1.25rem;
+  line-height:2rem;
+}
+
+
+.About__bio img
+{
+  border-radius:100%;
+  overflow:hidden;
+}
+
+.About__bio figure
+{
+  width:25%;
+  height:auto;
+  opacity:0.85;
 }
 
 /* ------- Blog Archive ------- */
@@ -1711,4 +1781,9 @@ a.Title:hover
 .btn.gray
 {
   background-color:#A0A0A0;
+}
+
+.clear
+{
+  opacity:0.5;
 }

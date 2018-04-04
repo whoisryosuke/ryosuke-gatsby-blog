@@ -10,7 +10,6 @@ export default (props) => {
         portfolio: 'View project',
     };
     let featured = props.post;
-    console.log(featured);
     return (
         <figure className="Featured container">
             <div className="image">

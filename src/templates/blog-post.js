@@ -7,13 +7,13 @@ import Disqus from 'disqus-react';
 import kebabCase from "lodash/kebabCase";
 import 'prismjs/themes/prism-okaidia.css';
 
+import SEO from '../components/SEO';
 import PostLoop from '../components/PostLoop';
 import Twitter from '../components/icons/Twitter'
 import Tumblr from '../components/icons/Tumblr'
 import ryosukeAvatar from '../assets/img/ryosuke-avatar-128.png'
 
 export default ({ data }) => {
-    console.log( data );
     const skip = false;
     const post = data.blog;
     let related;
@@ -23,6 +23,8 @@ export default ({ data }) => {
     const tags = post.frontmatter.tags.map((tag) => (
       <li key={tag}><Link to={'/tags/' + kebabCase(tag) }>#{ tag }</Link></li>
     ));
+
+    const postImage = post.frontmatter.cover_image.childImageSharp && post.frontmatter.cover_image.childImageSharp.sizes && post.frontmatter.cover_image.childImageSharp.sizes.src;
 
 
     const disqusShortname = 'ryosuke';
@@ -34,6 +36,12 @@ export default ({ data }) => {
 
     return (
         <div className="Blog">
+          <SEO 
+            key={`seo-${post.fields.slug}`}
+            postImage={postImage}
+            postData={post}
+            isBlogPost
+          />
           <article className="ArticlePage">
             {/*----- Cover image -----*/}
             <figure className="Cover">
