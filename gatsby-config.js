@@ -4,7 +4,6 @@ module.exports = {
     description: `The portfolio and blog of Ryosuke`,
     siteUrl: `http://whoisryosuke.com/`,
   },
-  pathPrefix: "/ryosuke-gatsby-blog",
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-remark`,
