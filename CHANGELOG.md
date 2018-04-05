@@ -1,3 +1,9 @@
+## v1.0.5 - April 5, 2018
+
+* Fixed plugins in `package-json`. Some plugins are meant to be nested inside others. Images inside markdown files should now work, as well as SVG trace on image loading.
+* Added `border-radius` to Featured component image.
+
+
 ## v1.0.4 - April 4, 2018
 
 * Fixed header links

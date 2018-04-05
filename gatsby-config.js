@@ -6,19 +6,11 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    `gatsby-transformer-remark`,
-    `gatsby-remark-copy-linked-files`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-twitter`,
     {
       resolve: `gatsby-plugin-feed`
-    },
-    {
-      resolve: `gatsby-remark-images`,
-      options: {
-        maxWidth: 1080,
-      },
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -31,6 +23,13 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          "gatsby-remark-copy-linked-files",
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1080,
+            },
+          },
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
