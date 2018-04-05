@@ -1,4 +1,199 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 04 Apr 2018 21:52:10 GMT</lastBuildDate><item><title><![CDATA[Deploy a Static React Blog using GatsbyJS and Github]]></title><description><![CDATA[We'll be creating a blog using  GatsbyJS , a static site generator for  React . GatsbyJS takes your content, either static files or external…]]></description><link>http://whoisryosuke.com//blog/2018-3-1-laravel-react-example/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018-3-1-laravel-react-example/</guid><pubDate>Wed, 21 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We&apos;ll be creating a blog using &lt;a href=&quot;https://www.gatsbyjs.org&quot;&gt;GatsbyJS&lt;/a&gt;, a static site generator for &lt;a href=&quot;https://reactjs.org/&quot;&gt;React&lt;/a&gt;. GatsbyJS takes your content, either static files or external data from an API, and generates pages that are hardcoded with the data. Rather than calling the API for your latest blog posts for each request, all your posts are pre-cached into separate HTML files. This allows you to serve your entire website over a CDN. And without any external API calls or even server-side rendering, the website loads lightning fast -- and is offline-friendly.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 05 Apr 2018 23:37:21 GMT</lastBuildDate><item><title><![CDATA[New blog, new brand, new stack]]></title><description><![CDATA[My new personal blog and portfolio is now online. And it's a static ReactJS progressive web application made with GatsbyJS! Let me break it…]]></description><link>http://whoisryosuke.com//blog/2018-4-5-new-brand/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018-4-5-new-brand/</guid><pubDate>Thu, 05 Apr 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;My new personal blog and portfolio is now online. And it&apos;s a static ReactJS progressive web application made with GatsbyJS! Let me break it down for you.&lt;/p&gt;
+&lt;h2&gt;But wait, who are you?&lt;/h2&gt;
+&lt;p&gt;I&apos;m Ryosuke, or some of you might recognize me as Oscar, the owner of WeedPornDaily, Stay Regular, and Kushy. &lt;/p&gt;
+&lt;p&gt;I&apos;ve been developing websites for over 15 years now, and I&apos;ve been alive on this planet for nearly 28 now. I&apos;ve created dozens of &lt;a href=&quot;http://be.net/oscardiaz&quot;&gt;brands and products from scratch&lt;/a&gt;, but the one brand I&apos;ve never been fully happy with is my own. Designers and developers are expected to create a personal brand to promote themselves, and I&apos;ve never cared to stand by my name. I&apos;ve always tried operating under a studio or agency, or working with another brand, never really promoting my own name. I never liked my name, never liked hearing it, and never understood why I was called it. My parents would tell you that it was my great grandfathers name, who was no one of particular note, and that&apos;s the reason. And I&apos;d say that&apos;s &lt;strong&gt;some weak branding.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;So for years I&apos;ve wrestled with the mission of discovering my own personal brand. I know what I like, and I know what I don&apos;t. But one of the most difficult things to do is branding. For companies and products, it can be nearly &lt;em&gt;disposable&lt;/em&gt;, with certain brands having short lifespans. But this brand was of the more literal sense, like a veritable tattoo on my existence, or a mark of ink I had to make sure I was confident with. I&apos;ll dig into the entire process of personal branding &lt;em&gt;another time&lt;/em&gt;, but I wanted to preface this blog with some pretext on the present. &lt;/p&gt;
+&lt;p&gt;From now on, Ryosuke was Oscar, Oscar became Ryosuke, and now only &lt;strong&gt;Ryosuke&lt;/strong&gt; is all that&apos;s left looking forward.&lt;/p&gt;
+&lt;h2&gt;But why design a new website?&lt;/h2&gt;
+&lt;p&gt;New personal brand = new website showing it off.&lt;/p&gt;
+&lt;p&gt;And I wanted to wrap my head around the GatsbyJS framework. I had minimal experience with it a few months ago when I was looking for static solutions for my &lt;a href=&quot;http://stayregular.net&quot;&gt;Stay Regular&lt;/a&gt; studio and &lt;a href=&quot;http://weedporndaily.com&quot;&gt;WeedPornDaily&lt;/a&gt; blog. I ended up using it for the &lt;a href=&quot;http://kushy.net&quot;&gt;Kushy&lt;/a&gt; documentation before switching to Slate (although I may switch back, as I prefer the JS backend over Ruby). They&apos;ve come a long way since I first used it -- from much improved documentation to a trove of plugins I was dying to explore.&lt;/p&gt;
+&lt;h2&gt;PWA or Bust&lt;/h2&gt;
+&lt;p&gt;My goal was to create a website that was &lt;em&gt;(mostly)&lt;/em&gt; &lt;strong&gt;static&lt;/strong&gt;, classified as a &lt;a href=&quot;https://developers.google.com/web/progressive-web-apps/&quot;&gt;&lt;strong&gt;progressive web app&lt;/strong&gt; or PWA&lt;/a&gt;, deployed from a &lt;a href=&quot;https://github.com/whoisryosuke/ryosuke-gatsby-blog/&quot;&gt;Git repository&lt;/a&gt;, and &lt;strong&gt;served only by CDN&lt;/strong&gt;. All of my content is preloaded from the API during the build process, and hard-coded into the HTML. Only things like comments are loaded from remote APIs, since the system would require a server-side application to handle authenticated requests (and I&apos;m saving my cycles on Heroku).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;When compiled, this website is purely HTML, CSS, and JS. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I&apos;m able to accomplish all of this thanks to the magic of the GatsbyJS framework. It acts as a sort of &lt;strong&gt;static site generator&lt;/strong&gt; that builds static sites from &lt;a href=&quot;http://reactjs.org&quot;&gt;ReactJS&lt;/a&gt; components and a &lt;a href=&quot;http://graphql.org/&quot;&gt;GraphQL&lt;/a&gt; API. Rather than fuss with something like &lt;a href=&quot;https://github.com/zeit/next.js/&quot;&gt;next.js&lt;/a&gt; to handle SSR &lt;em&gt;(and still not have route splitting or Webpack setup)&lt;/em&gt;, GatsbyJS makes it simple to package a complete server-side rendered static React application.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The GatsbyJS framework handles everything from webpack bundling, to route splitting, to server-side rendering. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;The Featured&lt;/h2&gt;
+&lt;p&gt;I come from the world of &lt;a href=&quot;http://wordpress.org&quot;&gt;Wordpress&lt;/a&gt;, so I tried to make this blog as full featured as possible. The GatsbyJS framework provides you with a boilerplate &lt;em&gt;Hello World&lt;/em&gt; style app with 2 pages, and that&apos;s it. Everything else requires a plugin or custom code. All these features are added on top of the base GatsbyJS features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;One-click deploy&lt;/strong&gt; - I simply run &lt;code class=&quot;language-text&quot;&gt;npm run deploy&lt;/code&gt; and the website is built and uploaded to Github Pages from my local machine.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markdown&lt;/strong&gt; - All my content is written in Markdown with small bits of HTML sprinkled in when necessary. &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Syntax Highlighting&lt;/strong&gt; - Code is colored by PrismJS, and integrated using a Gatsby Prism plugin.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Responsive Images&lt;/strong&gt; - All the images on the website respond the user&apos;s browser size, serving smaller files for smaller viewports, making the site super data efficient.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Tags&lt;/strong&gt; - I have a &lt;a href=&quot;http://whoisryosuke.com/tags&quot;&gt;tag page&lt;/a&gt; where you can browse all the tags from every post, and clicking each tag takes you to the tag archive (more SEO points!).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Paginated Archives&lt;/strong&gt; - You can&apos;t have proper SEO without a way for users and robots to browse your entire content library. I was able to pull this off with a plugin and some magic.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Comments&lt;/strong&gt; - These are handled by Disqus and their React component.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RSS Feed&lt;/strong&gt; - You can&apos;t have a blog without an RSS feed for someone to feed directly into their brain as opposed to using the interface you toiled over for weeks. This was made dead simple with a plugin too.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SEO Optimized&lt;/strong&gt; - From being server-side rendered, to pumping out Structured Data using &lt;code class=&quot;language-text&quot;&gt;react-helmet&lt;/code&gt;, to a sitemap I installed -- this website is ready for Google.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;The only thing missing is a CMS&lt;/strong&gt;, but I wouldn&apos;t be able to use Github Pages, I&apos;d have to use a service like &lt;a href=&quot;http://netlify.com&quot;&gt;Netlify&lt;/a&gt; to handle automated builds.&lt;/p&gt;
+&lt;h2&gt;The Design&lt;/h2&gt;
+&lt;p&gt;I set stylistic standards for the brand by picking things like font and colors. I wanted something light, modern, and graphic -- with inspiration from Japanese design. Blue was the most dominant color, since it represented me. I then experimented with creating components to exemplify the direction of the design system. Heavy use of white space, rounded edges, and subtle gradients to create a soft space. And bold graphic images and colors would break up the monotony of a white wall.&lt;/p&gt;
+&lt;p&gt;Here&apos;s what I ended up with after a few rounds in Sketch:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;./ryosuke-blog-page.png&quot; alt=&quot;Ryosuke page mockup in Sketch&quot;&gt;
+&lt;img src=&quot;./ryosuke-blog-posts.png&quot; alt=&quot;Ryosuke blog mockup in Sketch&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;The Development&lt;/h2&gt;
+&lt;p&gt;The GatsbyJS docs are fantastic. Most of what I was able to do was outlined pretty well in there. Although there were a few techniques that I had to really search to find in Github issues or StackOverflow answers.&lt;/p&gt;
+&lt;p&gt;I couldn&apos;t find it anywhere in the docs how to accomplish multiple GraphQL queries on a page. GatsbyJS only allows for GraphQL queries in main layout templates, not inside individual components. Everyone kept pointing to the GraphQL docs and saying to use fragments, but the GraphQL docs only describe fragments as a way to fetch fields for queries -- not entire queries. Finally I found someone on Github having a similar issue, and someone showed how to define multiple GraphQL queries on a single page:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; query &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; graphql&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`
+  query IndexQuery {
+    blog: allMarkdownRemark(
+      sort: {fields: [frontmatter___date], order: DESC}, 
+      limit: 3
+      filter:{frontmatter:{section:{eq: &quot;blog&quot;}}}
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: &quot;DD MMMM, YYYY&quot;)
+            cover_image {
+              publicURL
+              childImageSharp {
+                sizes(maxWidth: 1240 ) {
+                  srcSet
+                }
+              }
+            }
+            section
+          }
+          fields {
+            slug
+          }
+          excerpt
+        }
+      }
+    },
+    projects: allMarkdownRemark(
+      sort: {fields: [frontmatter___date], order: DESC}, 
+      limit: 3
+      filter:{frontmatter:{section:{eq: &quot;project&quot;}}}
+    ) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: &quot;DD MMMM, YYYY&quot;)
+            cover_image {
+              publicURL
+              childImageSharp {
+                sizes(maxWidth: 1240 ) {
+                  srcSet
+                }
+              }
+            }
+            section
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;I also had an issue figuring out the GatsbyJS &lt;code class=&quot;language-text&quot;&gt;createPage&lt;/code&gt; method for generating static pages for nodes in the &lt;code class=&quot;language-text&quot;&gt;gatsby-node.js&lt;/code&gt; file. In the docs, they describe using the function by calling a promise that queries the GraphQL for data, that then gets converted into static pages (like individual blog posts). However, I needed to run multiple queries on different endpoints, such as blogs AND projects. I figured this one out by observing someone&apos;s GatsbyJS website on Github. I ended up using callback functions inside the &lt;code class=&quot;language-text&quot;&gt;createPage&lt;/code&gt; method and passed the callbacks the necessary variables to query GraphQL:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
+ *  Pagination for /blog/ page
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;createBlogPagination&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;graphql&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; createPage&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; resolve&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; reject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;graphql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`
+      {
+        allMarkdownRemark(
+        filter:{frontmatter:{section:{eq: &quot;blog&quot;}}}
+        ) {
+            totalCount
+            edges {
+                node {
+                id
+                }
+            }
+        }
+      }
+    `&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+                &lt;span class=&quot;token function&quot;&gt;createPaginatedPages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                    edges&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;allMarkdownRemark&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;edges&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    createPage&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; createPage&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    pageTemplate&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;src/templates/blog-archive.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    pageLength&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    pathPrefix&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;blog&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    buildPath&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;index&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; pathPrefix&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; index &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;pathPrefix&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;index&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`/&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;pathPrefix&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// This is optional and this is the default&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;/**
+ *  Create slug pages for markdown files
+ *  Create pages for each tag
+ */&lt;/span&gt;
+exports&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;createPages&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; graphql&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; boundActionCreators &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; createPage &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; boundActionCreators
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;resolve&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; reject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;graphql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`
+      {
+        allMarkdownRemark {
+          edges {
+            node {
+                excerpt
+                }
+          }
+        }
+      }
+    `&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;token comment&quot;&gt;/**
+                 * Create blog posts based on slugs
+                 */&lt;/span&gt;
+                result&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;allMarkdownRemark&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;edges&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; node &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+                    &lt;span class=&quot;token comment&quot;&gt;// Grab random tag to do related posts&lt;/span&gt;
+                    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; tag &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;frontmatter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tags&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;floor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Math&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;frontmatter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tags&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                    
+                    &lt;span class=&quot;token function&quot;&gt;createPage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                        path&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;slug&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                        component&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; path&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`./src/templates/blog-post.js`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                        context&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                            &lt;span class=&quot;token comment&quot;&gt;// Data passed to context is available in page queries as GraphQL variables.&lt;/span&gt;
+                            tag&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; tag&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                            slug&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; node&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;fields&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;slug&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+                &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+                
+                &lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;createBlogPagination&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;graphql&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; createPage&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; resolve&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; reject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;createProjectsPagination&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;graphql&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; createPage&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; resolve&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; reject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;JAMstacks are the future&lt;/h2&gt;
+&lt;p&gt;As I observe trends in full-stack web development, I&apos;m finding &lt;a href=&quot;https://www.youtube.com/watch?v=9-VuJTiVsCo&quot;&gt;more companies talking about switching to a microservice based architecture&lt;/a&gt; where the client-side application talks to several different APIs for different functions. And depending on the application, it becomes easier to push more data into the CDN, preloaded from the APIs, allowing for a more efficient global stream of content. And it&apos;s even been proven by companies like &lt;a href=&quot;http://smashingmagazine.com&quot;&gt;Smashing Magazine&lt;/a&gt; that &lt;a href=&quot;https://www.youtube.com/watch?v=_3zYAMkaMf8&quot;&gt;it&apos;s possible to create static websites with authentication, or e-commerce shopping carts.&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&apos;m excited to explore the world of JAMstacks and push the capabilities of frameworks like GatsbyJS.&lt;/p&gt;
+&lt;h2&gt;Thanks for all the fish&lt;/h2&gt;
+&lt;p&gt;Thanks to GatsbyJS for creating awesome framework, and thanks for Github for hosting my repo and website for free (including a custom domain!). &lt;/p&gt;
+&lt;p&gt;Cheers,
+Oscar&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;Keep Reading:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://gatsbyjs.org&quot;&gt;GatsbyJS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=_3zYAMkaMf8&quot;&gt;The JAM Stack: The New Front-End Stack For Web Development&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://gatsbyjs.org&quot;&gt;GatsbyJS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Deploy a Static React Blog using GatsbyJS and Github]]></title><description><![CDATA[We'll be creating a blog using  GatsbyJS , a static site generator for  React . GatsbyJS takes your content, either static files or external…]]></description><link>http://whoisryosuke.com//blog/2018-3-1-laravel-react-example/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018-3-1-laravel-react-example/</guid><pubDate>Wed, 21 Mar 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We&apos;ll be creating a blog using &lt;a href=&quot;https://www.gatsbyjs.org&quot;&gt;GatsbyJS&lt;/a&gt;, a static site generator for &lt;a href=&quot;https://reactjs.org/&quot;&gt;React&lt;/a&gt;. GatsbyJS takes your content, either static files or external data from an API, and generates pages that are hardcoded with the data. Rather than calling the API for your latest blog posts for each request, all your posts are pre-cached into separate HTML files. This allows you to serve your entire website over a CDN. And without any external API calls or even server-side rendering, the website loads lightning fast -- and is offline-friendly.&lt;/p&gt;
 &lt;p&gt;Today we&apos;ll be creating a static blog generated by GatsbyJS, written in Markdown, and we&apos;ll deploy on Github Pages to host the website. &lt;/p&gt;
 &lt;h2&gt;But first, what is GatsbyJS?&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;GatsbyJS&lt;/strong&gt; is a generator that allows you to code React apps that get compiled into static assets (HTML + JS). Each &lt;strong&gt;page&lt;/strong&gt; is a technically React &lt;strong&gt;component&lt;/strong&gt; that gets converted into an HTML and JS file when it&apos;s time to build the production site. If you&apos;ve ever worked with a generator like &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, which converts code like &lt;em&gt;Liquid&lt;/em&gt; and &lt;em&gt;Markdown&lt;/em&gt; into HTML, you&apos;ll be familiar with this kind of concept.&lt;/p&gt;

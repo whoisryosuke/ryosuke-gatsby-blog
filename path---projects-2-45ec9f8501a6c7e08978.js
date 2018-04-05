@@ -1,0 +1,2 @@
+webpackJsonp([21088068424507],{446:function(t,e){t.exports={data:{site:{siteMetadata:{title:"Ryosuke"}},allMarkdownRemark:{group:[{fieldValue:"design",totalCount:5},{fieldValue:"development",totalCount:5},{fieldValue:"gatsbyjs",totalCount:2},{fieldValue:"github",totalCount:2},{fieldValue:"react",totalCount:2},{fieldValue:"ssg",totalCount:2},{fieldValue:"static site generator",totalCount:2}]}},pathContext:{}}}});
+//# sourceMappingURL=path---projects-2-45ec9f8501a6c7e08978.js.map

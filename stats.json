@@ -1,60 +1,60 @@
 {
   "assetsByChunkName": {
     "path---blog-2018-2-28-pandas-and-bananas": [
-      "path---blog-2018-2-28-pandas-and-bananas-370faff1071ff9bc2ee7.js",
-      "path---blog-2018-2-28-pandas-and-bananas-370faff1071ff9bc2ee7.js.map"
+      "path---blog-2018-2-28-pandas-and-bananas-ef3c93b3c5a5b6774d83.js",
+      "path---blog-2018-2-28-pandas-and-bananas-ef3c93b3c5a5b6774d83.js.map"
     ],
     "path---projects-2": [
-      "path---projects-2-c24cb7f78cab3f5dc6e5.js",
-      "path---projects-2-c24cb7f78cab3f5dc6e5.js.map"
+      "path---projects-2-45ec9f8501a6c7e08978.js",
+      "path---projects-2-45ec9f8501a6c7e08978.js.map"
     ],
     "path---tags-static-site-generator": [
-      "path---tags-static-site-generator-dda8f36392b81cebfc29.js",
-      "path---tags-static-site-generator-dda8f36392b81cebfc29.js.map"
+      "path---tags-static-site-generator-a6abb4cafa69a075edc1.js",
+      "path---tags-static-site-generator-a6abb4cafa69a075edc1.js.map"
     ],
     "component---src-pages-index-js": [
-      "component---src-pages-index-js-12d1f339632de297b45c.js",
-      "component---src-pages-index-js-12d1f339632de297b45c.js.map"
+      "component---src-pages-index-js-ced918db948e5a5be3c1.js",
+      "component---src-pages-index-js-ced918db948e5a5be3c1.js.map"
     ],
     "component---src-pages-projects-2-js": [
       "component---src-pages-projects-2-js-8de000a7ad45a4e941dd.js",
       "component---src-pages-projects-2-js-8de000a7ad45a4e941dd.js.map"
     ],
     "path---blog": [
-      "path---blog-1536d5f339532a9c76f4.js",
-      "path---blog-1536d5f339532a9c76f4.js.map"
+      "path---blog-e2ddf000806aeb4b5dc7.js",
+      "path---blog-e2ddf000806aeb4b5dc7.js.map"
     ],
     "component---src-templates-tags-js": [
       "component---src-templates-tags-js-fa645e6eaf373f8c89eb.js",
       "component---src-templates-tags-js-fa645e6eaf373f8c89eb.js.map"
     ],
     "path---tags-development": [
-      "path---tags-development-ed0f6ed177f6ad541ffd.js",
-      "path---tags-development-ed0f6ed177f6ad541ffd.js.map"
+      "path---tags-development-327209eddcddc1f850be.js",
+      "path---tags-development-327209eddcddc1f850be.js.map"
     ],
     "path---tags": [
-      "path---tags-c24cb7f78cab3f5dc6e5.js",
-      "path---tags-c24cb7f78cab3f5dc6e5.js.map"
+      "path---tags-45ec9f8501a6c7e08978.js",
+      "path---tags-45ec9f8501a6c7e08978.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
     ],
     "path---projects-test-project": [
-      "path---projects-test-project-a567756c825b76ad31dd.js",
-      "path---projects-test-project-a567756c825b76ad31dd.js.map"
+      "path---projects-test-project-9bb54a288c87f201697e.js",
+      "path---projects-test-project-9bb54a288c87f201697e.js.map"
     ],
     "path---tags-design": [
-      "path---tags-design-400f9f3d66877221d2de.js",
-      "path---tags-design-400f9f3d66877221d2de.js.map"
+      "path---tags-design-9d7b7688d85170d609a0.js",
+      "path---tags-design-9d7b7688d85170d609a0.js.map"
     ],
     "path---tags-react": [
-      "path---tags-react-80bca22b1b2a832f726e.js",
-      "path---tags-react-80bca22b1b2a832f726e.js.map"
+      "path---tags-react-1373e62cefe484ad4dbd.js",
+      "path---tags-react-1373e62cefe484ad4dbd.js.map"
     ],
     "path---blog-2018-2-27-pandas-eating-treats": [
-      "path---blog-2018-2-27-pandas-eating-treats-673ae3a552a89aff82c8.js",
-      "path---blog-2018-2-27-pandas-eating-treats-673ae3a552a89aff82c8.js.map"
+      "path---blog-2018-2-27-pandas-eating-treats-10b2f5d8886c9befd95a.js",
+      "path---blog-2018-2-27-pandas-eating-treats-10b2f5d8886c9befd95a.js.map"
     ],
     "path---projects": [
       "path---projects-0923565dd653007d2285.js",
@@ -69,8 +69,8 @@
       "component---src-templates-blog-archive-js-32b03a748e7737adabf3.js.map"
     ],
     "path---tags-gatsbyjs": [
-      "path---tags-gatsbyjs-66f9dd77e04fc014624f.js",
-      "path---tags-gatsbyjs-66f9dd77e04fc014624f.js.map"
+      "path---tags-gatsbyjs-4692ab07ce5c20fededd.js",
+      "path---tags-gatsbyjs-4692ab07ce5c20fededd.js.map"
     ],
     "component---src-layouts-index-js": [
       "component---src-layouts-index-js-c616c6fb16d49e6f7500.js",
@@ -81,8 +81,8 @@
       "path---page-2-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---index": [
-      "path---index-48b49315e3bfdbe88c3f.js",
-      "path---index-48b49315e3bfdbe88c3f.js.map"
+      "path---index-779ff25b74755625ac82.js",
+      "path---index-779ff25b74755625ac82.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -95,16 +95,20 @@
       "build-js-styles.css.map"
     ],
     "path---blog-2018-3-1-laravel-react-example": [
-      "path---blog-2018-3-1-laravel-react-example-650243a11956dbb4612a.js",
-      "path---blog-2018-3-1-laravel-react-example-650243a11956dbb4612a.js.map"
+      "path---blog-2018-3-1-laravel-react-example-fced1dacf45bd9991aa8.js",
+      "path---blog-2018-3-1-laravel-react-example-fced1dacf45bd9991aa8.js.map"
     ],
     "path---404-html": [
       "path---404-html-a0e39f21c11f6a62c5ab.js",
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---tags-ssg": [
-      "path---tags-ssg-0971de5ed43e016990c4.js",
-      "path---tags-ssg-0971de5ed43e016990c4.js.map"
+      "path---tags-ssg-56f0490daf3e7a1d7b68.js",
+      "path---tags-ssg-56f0490daf3e7a1d7b68.js.map"
+    ],
+    "path---blog-2018-4-5-new-brand": [
+      "path---blog-2018-4-5-new-brand-a0885b2ac02a589ed764.js",
+      "path---blog-2018-4-5-new-brand-a0885b2ac02a589ed764.js.map"
     ],
     "component---src-pages-tags-js": [
       "component---src-pages-tags-js-308460c729f316c100a5.js",
@@ -115,9 +119,9 @@
       "component---src-pages-page-2-js-075954cd9c4544c7dcd8.js.map"
     ],
     "app": [
-      "app-707db9b519e99b39af29.js",
+      "app-e4f32ff2bf4f1b003790.js",
       "build-js-styles.css",
-      "app-707db9b519e99b39af29.js.map",
+      "app-e4f32ff2bf4f1b003790.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
@@ -125,8 +129,8 @@
       "path---404-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---tags-github": [
-      "path---tags-github-363fa8a70c6340150a4d.js",
-      "path---tags-github-363fa8a70c6340150a4d.js.map"
+      "path---tags-github-4eb5d268e344b93eb435.js",
+      "path---tags-github-4eb5d268e344b93eb435.js.map"
     ],
     "component---src-pages-about-js": [
       "component---src-pages-about-js-ade8ef275da2c9d6f770.js",
