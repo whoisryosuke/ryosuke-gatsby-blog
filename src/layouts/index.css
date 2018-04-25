@@ -772,6 +772,16 @@ pre tt:after {
   justify-content: center;
 }
 
+.col.padded
+{
+  padding:2rem;
+}
+
+.col div
+{
+  display:block;
+}
+
 @media only screen and (max-width: 640px) {
   .col
   {
@@ -818,13 +828,16 @@ pre tt:after {
   background-image: radial-gradient(23% 72%, #EFF1F4 11%, #E5E9EF 98%);
 }
 
+.gatsby-resp-image-link {
+  border:0;
+}
 
 /* -------------- Shared Classes ---------------- */
 
 /* Default card background */
 .Featured figcaption,
 .Card,
-.ArticlePage .content,
+.ArticlePage.blog .content,
 .Segment
 {
   background: #FFFFFF;
@@ -1115,6 +1128,11 @@ a.Title:hover
   background-repeat:no-repeat;
 }
 
+.Card figure img
+{
+  width:100%; 
+}
+
 .Card .content
 {
   padding:1rem;
@@ -1202,6 +1220,7 @@ a.Title:hover
 /* -------------- ArticlePage ---------------- */
 
 .Cover .gatsby-image-wrapper,
+.Cover .static-image,
 .ArticlePage .Cover
 {
   width:100%;
@@ -1210,8 +1229,14 @@ a.Title:hover
   background-size:cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  z-index:10;
   animation: 400ms ease-in 0s 1 fadeIn;  
+}
+
+
+.ArticlePage .Cover
+{
+  max-height:400px;
+  z-index:10;
 }
 
 .ArticlePage .date
@@ -1229,13 +1254,41 @@ a.Title:hover
 
 .ArticlePage .content
 {
-  margin-top:-10rem;
   position: relative;
   z-index:100;
 }
 
-.ArticlePage .content,
-.ArticlePage .meta,
+.ArticlePage.blog .content
+{
+  margin-top:-10rem;  
+}
+
+.ArticlePage.project .meta
+{
+  margin-top:12rem;  
+  width:15%;
+  float:left;
+}
+
+
+.ArticlePage.project .meta .date
+{
+  display:block;
+  margin-top:0.25rem;
+}
+
+.ArticlePage.project .content
+{
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:6rem;  
+  padding:2rem;
+  float:right;
+}
+
+.ArticlePage.blog .content,
+.ArticlePage.blog .meta,
 .Blog .Comments .content
 {
   width:80%;
@@ -1243,7 +1296,7 @@ a.Title:hover
   padding:2rem;
 }
 
-.ArticlePage .meta
+.ArticlePage.blog .meta
 {
   display: flex;
   justify-content: space-between;
@@ -1253,6 +1306,12 @@ a.Title:hover
 {
   min-width:50%;
   float:left;
+}
+
+.ArticlePage.project .author
+{
+  min-width:100%;
+  float:none;
 }
 
 .ArticlePage .meta figure h5
@@ -1282,6 +1341,12 @@ a.Title:hover
   transition:transform 300ms, box-shadow 400ms;
 }
 
+.ArticlePage.project .share a 
+{
+  width:100%;
+  margin-bottom:0.5rem;
+}
+
 .ArticlePage .share a:hover
 {
   box-shadow: 2px 4px 7px 2px rgba(0,0,0,0.12);
@@ -1305,6 +1370,12 @@ a.Title:hover
   margin-left:0.5rem;
 }
 
+.ArticlePage.project .share svg
+{
+  margin-top:0.35rem;
+  float:right;
+}
+
 .ArticlePage .share #twitterColor,
 .ArticlePage .share #tumblrColor
 {
@@ -1321,6 +1392,11 @@ a.Title:hover
 
 .ArticlePage .TagCloud li {
   font-size:0.7rem;
+}
+
+.ArticlePage .content iframe.youtube {
+  width:100%;
+  height:auto;
 }
 
 @media (max-width: 800px) {
@@ -1422,6 +1498,31 @@ a.Title:hover
 }
 
 
+/* ---- Progress Bar  ---- */
+
+progress
+{
+  position: fixed;
+  display: block;
+  top: 3.1rem;
+  width: 100vw;
+  height: 0.4rem;
+  border: 0;
+  background-color: transparent;
+  color:#005CDD;
+  z-index: 810;
+}
+progress::-webkit-progress-bar {
+    background: #FFF;
+}
+progress::-webkit-progress-value {
+  background: #005CDD;
+}
+progress::-moz-progress-bar {
+  background-color: #005CDD;
+}
+
+
 /* ------- Skills ------- */
 
 .Skills
@@ -1472,7 +1573,13 @@ a.Title:hover
 
 .Frontpage .row
 {
-  margin-top:4rem;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+
+.Featured + .container
+{
+  margin-top: 5rem;
 }
 
 /* --- Frontpage Hero --- */
@@ -1764,10 +1871,31 @@ a.Title:hover
   padding-top:2rem;
 }
 
+.pt3
+{
+  padding-top:3rem;
+}
+
+.pt4
+{
+  padding-top:4rem;
+}
+
+.pb2
+{
+  padding-bottom:2rem;
+}
+
 .mt2
 {
   margin-top:2rem;
 }
+
+.mb2
+{
+  margin-bottom:2rem;
+}
+
 
 .text.blue
 {

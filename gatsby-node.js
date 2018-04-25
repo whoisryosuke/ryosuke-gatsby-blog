@@ -29,7 +29,8 @@ function createBlogPagination(graphql, createPage, resolve, reject) {
         graphql(`
       {
         allMarkdownRemark(
-        filter:{frontmatter:{section:{eq: "blog"}}}
+            sort: {fields: [frontmatter___date], order: DESC}, 
+            filter:{frontmatter:{section:{eq: "blog"}}}
         ) {
             totalCount
             edges {
@@ -77,7 +78,8 @@ function createProjectsPagination(graphql, createPage, resolve, reject) {
     graphql(`
       {
         allMarkdownRemark(
-        filter:{frontmatter:{section:{eq: "project"}}}
+            sort: {fields: [frontmatter___date], order: DESC}, 
+            filter:{frontmatter:{section:{eq: "project"}}}
         ) {
             totalCount
             edges {
@@ -208,7 +210,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
 
                 resolve()
             })
-        createBlogPagination(graphql, createPage, resolve, reject);
-        createProjectsPagination(graphql, createPage, resolve, reject);
+        createBlogPagination(graphql, createPage);
+        createProjectsPagination(graphql, createPage);
     })
 };

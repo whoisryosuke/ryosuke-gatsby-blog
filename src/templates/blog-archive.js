@@ -15,14 +15,14 @@ const NavLink = props => {
 
 const IndexPage = ({ data, pathContext }) => {
     const { group, index, first, last, pageCount, pathPrefix } = pathContext;
-    const previousUrl = index - 1 == 1 ? "" : (index - 1).toString();
-    const nextUrl = (index + 1).toString();
+    const previousUrl = index - 1 == 1 ? '/' + pathPrefix + '/' : '/' + pathPrefix + '/' + (index - 1).toString();
+    const nextUrl = '/' + pathPrefix + '/' + (index + 1).toString();
 
     return (
         <div className="BlogArchive">
             <header className="container Title">
                 <h1>{ capitalizeFirstLetter(pathPrefix) } archive</h1>
-                <h4 className="Title__sub">Page {pageCount}</h4>
+                <h4 className="Title__sub">Page {index}</h4>
             </header>
 
             <PostLoop loop={group} />

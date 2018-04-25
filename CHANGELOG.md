@@ -1,3 +1,25 @@
+## v1.0.8 - April 25, 2018
+
+* Changed format for blog posts from `blog/date-post-title-here/` to `blog/year/post-title`.
+* Fixed archive pagination ordering, now orders DESC by date.
+* Changed time on blog archive card to a `nicetime()`
+* Changed `nicetime()` helper function to remove 'approximately'.
+* Added support for Instagram blockquotes in blog posts and project pages. `templates/blog-post.js` converted to component, added an IG script initialization to the lifecycle.
+
+## v1.0.7 - April 13, 2018
+
+* Adding a reading progress bar `<ReadingProgress targetEl="#Article" />` to single blog post template (`blog-post.js`)
+* Fixed page number on archive pages (was referencing total page count)
+* Refactored Disqus comments into `<Comments post={post} />` components. Accepts post as props (entire post, easier for all the reqs)
+* Refactored the single blog post cover image into a `<Cover image={image} />` component that accepts the cover_image from the GrapQL as image props.
+* Card images in the <PostLoop /> now link to the post (UX)
+* Projects now display differently from blog posts using the same component template and slight CSS changes (`.ArticlePage.blog` vs `.ArticlePage.project`).
+* Comments and cover image conditionally hidden from `blog-post.js` template when projects are queried.
+
+## v1.0.6 - April 10, 2018
+
+* Fixed pagination links between pages. They linked to just page numbers, instead of section/number, which actually works.
+
 ## v1.0.5 - April 5, 2018
 
 * Fixed plugins in `package-json`. Some plugins are meant to be nested inside others. Images inside markdown files should now work, as well as SVG trace on image loading.

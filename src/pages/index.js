@@ -54,12 +54,18 @@ export default class Frontpage extends Component {
 
         {/*------- Posts loop -------*/}
         <PostLoop loop={blog.edges} skip={skip} />
+        <div className="container centered">
+          <Link to={'blog'} className="btn">Find more reading material</Link>
+        </div>
 
         {/*------- Projects loop -------*/}
-        <div className="container">
+        <div className="container pt4">
           <h2 className="Title text blue">Latest projects</h2>
         </div>
         <PostLoop loop={projects.edges} skip={!skip} />
+        <div className="container centered">
+          <Link to={'projects'} className="btn">See more eye candy</Link>
+        </div>
         
         <Newsletter />
 
@@ -103,7 +109,7 @@ export const query = graphql`
     },
     projects: allMarkdownRemark(
       sort: {fields: [frontmatter___date], order: DESC}, 
-      limit: 3
+      limit: 2
       filter:{frontmatter:{section:{eq: "project"}}}
     ) {
       totalCount
