@@ -12,6 +12,7 @@
 <url> <loc>http://whoisryosuke.com//projects/weedporndaily-gifs-vol-2/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/wehavemunchies-videos/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/new-brand/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018/create-ticketing-service-using-laravel-nextjs-part-1/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/deploy-a-static-react-blog-using-gatsbyjs-and-github/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/photography/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -30,6 +31,14 @@
 <url> <loc>http://whoisryosuke.com//tags/gatsbyjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/ssg/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/static-site-generator/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/api/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/laravel/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/nextjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/material-ui/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/ssr/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/full-stack/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/backend/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/frontend/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

@@ -1,5 +1,9 @@
 {
   "assetsByChunkName": {
+    "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1": [
+      "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1-3ddc315bef438a39c922.js",
+      "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1-3ddc315bef438a39c922.js.map"
+    ],
     "path---tags-graphic-design": [
       "path---tags-graphic-design-51e9c36c17640e244641.js",
       "path---tags-graphic-design-51e9c36c17640e244641.js.map"
@@ -7,6 +11,10 @@
     "path---projects-2": [
       "path---projects-2-572b16b791571111ed3b.js",
       "path---projects-2-572b16b791571111ed3b.js.map"
+    ],
+    "path---tags-full-stack": [
+      "path---tags-full-stack-85af99ed85810c482517.js",
+      "path---tags-full-stack-85af99ed85810c482517.js.map"
     ],
     "path---tags-static-site-generator": [
       "path---tags-static-site-generator-3308e439e7d1259943c9.js",
@@ -17,8 +25,8 @@
       "component---src-pages-index-js-4650979f55e803eb5109.js.map"
     ],
     "path---blog": [
-      "path---blog-3c5266540dba6a0c669d.js",
-      "path---blog-3c5266540dba6a0c669d.js.map"
+      "path---blog-a5af056f149855d364b9.js",
+      "path---blog-a5af056f149855d364b9.js.map"
     ],
     "path---projects-weedporndaily-gifs-vol-2": [
       "path---projects-weedporndaily-gifs-vol-2-9cc722bb5e2dbb71274f.js",
@@ -33,12 +41,12 @@
       "path---tags-development-fff7866098e54a07398b.js.map"
     ],
     "path---tags": [
-      "path---tags-25ae8ad2cd1bbd091ee1.js",
-      "path---tags-25ae8ad2cd1bbd091ee1.js.map"
+      "path---tags-423b7611a501691d5549.js",
+      "path---tags-423b7611a501691d5549.js.map"
     ],
     "path---projects-weedporndaily-gifs-vol-1": [
-      "path---projects-weedporndaily-gifs-vol-1-2597e5ea3a34bcc8889f.js",
-      "path---projects-weedporndaily-gifs-vol-1-2597e5ea3a34bcc8889f.js.map"
+      "path---projects-weedporndaily-gifs-vol-1-a8dd6cf682a987341ada.js",
+      "path---projects-weedporndaily-gifs-vol-1-a8dd6cf682a987341ada.js.map"
     ],
     "path---tags-photography": [
       "path---tags-photography-b93ba102829dc6b6439c.js",
@@ -57,8 +65,8 @@
       "path---tags-css-3-c48174e6e32355fe8ea5.js.map"
     ],
     "path---tags-react": [
-      "path---tags-react-c874083b9d70323f8ceb.js",
-      "path---tags-react-c874083b9d70323f8ceb.js.map"
+      "path---tags-react-d573051d18921be02d67.js",
+      "path---tags-react-d573051d18921be02d67.js.map"
     ],
     "path---projects": [
       "path---projects-6d1d6ee08661d5884959.js",
@@ -69,12 +77,12 @@
       "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js.map"
     ],
     "component---src-templates-blog-post-js": [
-      "component---src-templates-blog-post-js-a74ff9eefbc4f2c6000f.js",
-      "component---src-templates-blog-post-js-a74ff9eefbc4f2c6000f.js.map"
+      "component---src-templates-blog-post-js-50e3bda75f32bb5ec3d2.js",
+      "component---src-templates-blog-post-js-50e3bda75f32bb5ec3d2.js.map"
     ],
     "component---src-templates-blog-archive-js": [
-      "component---src-templates-blog-archive-js-950fec845a6d381367e7.js",
-      "component---src-templates-blog-archive-js-950fec845a6d381367e7.js.map"
+      "component---src-templates-blog-archive-js-ec81ffda4c4fb7c67e73.js",
+      "component---src-templates-blog-archive-js-ec81ffda4c4fb7c67e73.js.map"
     ],
     "path---tags-gatsbyjs": [
       "path---tags-gatsbyjs-e48773faab913374428c.js",
@@ -85,36 +93,52 @@
       "component---src-layouts-index-js-9feae809281c539c0083.js.map"
     ],
     "path---projects-weedporndaily-event-coverage-2017": [
-      "path---projects-weedporndaily-event-coverage-2017-70388bdd085cb7b2895c.js",
-      "path---projects-weedporndaily-event-coverage-2017-70388bdd085cb7b2895c.js.map"
+      "path---projects-weedporndaily-event-coverage-2017-6cbd6ac1b5169c039e0b.js",
+      "path---projects-weedporndaily-event-coverage-2017-6cbd6ac1b5169c039e0b.js.map"
+    ],
+    "path---tags-backend": [
+      "path---tags-backend-afb2b6aafead39215a84.js",
+      "path---tags-backend-afb2b6aafead39215a84.js.map"
+    ],
+    "path---tags-laravel": [
+      "path---tags-laravel-c8103ababb30f7a42108.js",
+      "path---tags-laravel-c8103ababb30f7a42108.js.map"
+    ],
+    "path---tags-nextjs": [
+      "path---tags-nextjs-638e7efacbd523773e47.js",
+      "path---tags-nextjs-638e7efacbd523773e47.js.map"
     ],
     "path---tags-php": [
       "path---tags-php-026dd54b3b43ccef63ac.js",
       "path---tags-php-026dd54b3b43ccef63ac.js.map"
     ],
     "path---projects-wallydrops-brochure": [
-      "path---projects-wallydrops-brochure-7378e796b742eebc5761.js",
-      "path---projects-wallydrops-brochure-7378e796b742eebc5761.js.map"
+      "path---projects-wallydrops-brochure-7989ae4c0b084ee4e4e4.js",
+      "path---projects-wallydrops-brochure-7989ae4c0b084ee4e4e4.js.map"
+    ],
+    "path---tags-material-ui": [
+      "path---tags-material-ui-58ffd2c73ce5e65507ba.js",
+      "path---tags-material-ui-58ffd2c73ce5e65507ba.js.map"
     ],
     "path---blog-2018-new-brand": [
-      "path---blog-2018-new-brand-305dad2390520a90d1dd.js",
-      "path---blog-2018-new-brand-305dad2390520a90d1dd.js.map"
+      "path---blog-2018-new-brand-80ca28ec5107df6d3ecc.js",
+      "path---blog-2018-new-brand-80ca28ec5107df6d3ecc.js.map"
     ],
     "path---tags-web-design": [
       "path---tags-web-design-e5aeadfaf06ff72217af.js",
       "path---tags-web-design-e5aeadfaf06ff72217af.js.map"
     ],
     "path---index": [
-      "path---index-125bc365438ada02cd89.js",
-      "path---index-125bc365438ada02cd89.js.map"
+      "path---index-a3d95ceee1ecfa71ee64.js",
+      "path---index-a3d95ceee1ecfa71ee64.js.map"
     ],
     "path---projects-stayregular-v-3": [
       "path---projects-stayregular-v-3-b9526aa90631401ac029.js",
       "path---projects-stayregular-v-3-b9526aa90631401ac029.js.map"
     ],
     "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github": [
-      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-49b39d84274d3e531b03.js",
-      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-49b39d84274d3e531b03.js.map"
+      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-4f718d034af8ca551e61.js",
+      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-4f718d034af8ca551e61.js.map"
     ],
     "path---tags-jquery": [
       "path---tags-jquery-512a9d0c5f23e261a803.js",
@@ -123,6 +147,10 @@
     "path---tags-html-5": [
       "path---tags-html-5-aea4dea0bf745314a5ba.js",
       "path---tags-html-5-aea4dea0bf745314a5ba.js.map"
+    ],
+    "path---tags-api": [
+      "path---tags-api-a71e47a3c2bfb01d1c4a.js",
+      "path---tags-api-a71e47a3c2bfb01d1c4a.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -137,9 +165,9 @@
       "path---projects-doja-photography-9099b67bc5f8a4f2d594.js.map"
     ],
     "commons": [
-      "commons-59b7c5a6ee923ee6f8bc.js",
+      "commons-a2df04eccea7462210e7.js",
       "build-js-styles.css",
-      "commons-59b7c5a6ee923ee6f8bc.js.map",
+      "commons-a2df04eccea7462210e7.js.map",
       "build-js-styles.css.map"
     ],
     "path---404-html": [
@@ -149,6 +177,14 @@
     "path---tags-ssg": [
       "path---tags-ssg-cc6c31aa3ac93210c49e.js",
       "path---tags-ssg-cc6c31aa3ac93210c49e.js.map"
+    ],
+    "path---tags-frontend": [
+      "path---tags-frontend-601543baa105da166e13.js",
+      "path---tags-frontend-601543baa105da166e13.js.map"
+    ],
+    "path---tags-ssr": [
+      "path---tags-ssr-b63b437f396dbea183d0.js",
+      "path---tags-ssr-b63b437f396dbea183d0.js.map"
     ],
     "component---src-pages-tags-js": [
       "component---src-pages-tags-js-308460c729f316c100a5.js",
@@ -163,9 +199,9 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "app": [
-      "app-fa3c09fe53255f70abe7.js",
+      "app-cd45554e55ef2422765d.js",
       "build-js-styles.css",
-      "app-fa3c09fe53255f70abe7.js.map",
+      "app-cd45554e55ef2422765d.js.map",
       "build-js-styles.css.map"
     ],
     "path---tags-videography": [
@@ -193,8 +229,8 @@
       "path---about-a5e60245857179c131fa.js.map"
     ],
     "path---projects-doja-website": [
-      "path---projects-doja-website-ced4595f1197f414558c.js",
-      "path---projects-doja-website-ced4595f1197f414558c.js.map"
+      "path---projects-doja-website-0ad772910484e649634e.js",
+      "path---projects-doja-website-0ad772910484e649634e.js.map"
     ]
   }
 }

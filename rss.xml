@@ -1,4 +1,407 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 26 Apr 2018 18:12:31 GMT</lastBuildDate><item><title><![CDATA[Deploy a Static React Blog using GatsbyJS and Github]]></title><description><![CDATA[We'll be creating a blog using  GatsbyJS , a static site generator for  React . GatsbyJS takes your content, either static files or external…]]></description><link>http://whoisryosuke.com//blog/2018/deploy-a-static-react-blog-using-gatsbyjs-and-github/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/deploy-a-static-react-blog-using-gatsbyjs-and-github/</guid><pubDate>Mon, 16 Apr 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We&apos;ll be creating a blog using &lt;a href=&quot;https://www.gatsbyjs.org&quot;&gt;GatsbyJS&lt;/a&gt;, a static site generator for &lt;a href=&quot;https://reactjs.org/&quot;&gt;React&lt;/a&gt;. GatsbyJS takes your content, either static files or external data from an API, and generates pages that are hardcoded with the data. Rather than calling the API for your latest blog posts for each request, all your posts are pre-cached into separate HTML files. This allows you to serve your entire website over a CDN. And without any external API calls or even server-side rendering, the website loads lightning fast -- and is offline-friendly.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 02 Jul 2018 18:39:59 GMT</lastBuildDate><item><title><![CDATA[Creating an event ticketing service (Laravel API + ReactJS + NextJS + Material UI)]]></title><description><![CDATA[Laravel makes it incredibly easy to quickly create powerful backend application and APIs. Today we'll be creating an API for an event…]]></description><link>http://whoisryosuke.com//blog/2018/create-ticketing-service-using-laravel-nextjs-part-1/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/create-ticketing-service-using-laravel-nextjs-part-1/</guid><pubDate>Sat, 02 Jun 2018 07:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Laravel makes it incredibly easy to quickly create powerful backend application and APIs. Today we&apos;ll be creating an API for an event directory and ticketing platform (like Eventbrite). This API could be used by any frontend or backend application, and in the next part of the tutorial, we&apos;ll be creating a ReactJS based admin dashboard that uses this API to browse, create, edit, and delete posts.&lt;/p&gt;
+&lt;p&gt;This project will be based off a brand I work, &lt;a href=&quot;http://seshsource.com&quot;&gt;SeshSource&lt;/a&gt;, which is an event ticketing platform for specifically cannabis-centric events. We&apos;ll be creating essentially a mirror of the current architecture of SeshSource, just in Laravel, instead of Wordpress + plugins.&lt;/p&gt;
+&lt;h2&gt;Necessary Features (MVP)&lt;/h2&gt;
+&lt;p&gt;I started by outlining features we&apos;d want for the MVP - or minimum viable product, like browsing events to purchasing tickets:&lt;/p&gt;
+&lt;h3&gt;Directory&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Events searchable by date&lt;/li&gt;
+&lt;li&gt;Events shown by location or category&lt;/li&gt;
+&lt;li&gt;User profiles for event organizers&lt;/li&gt;
+&lt;li&gt;Calendar view with events&lt;/li&gt;
+&lt;li&gt;List/card view&lt;/li&gt;
+&lt;li&gt;List of all cities, states, etc + archive pages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;E-Commerce&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Buy free or paid tickets&lt;/li&gt;
+&lt;li&gt;Generate PDF of ticket&lt;/li&gt;
+&lt;li&gt;Email PDF to user&lt;/li&gt;
+&lt;li&gt;Email business about new purchase&lt;/li&gt;
+&lt;li&gt;Mobile-friendly web-app to scan tickets at event&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Organizer Tools&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Dashboard for managing events&lt;/li&gt;
+&lt;li&gt;Create events&lt;/li&gt;
+&lt;li&gt;Edit event&lt;/li&gt;
+&lt;li&gt;Delete event&lt;/li&gt;
+&lt;li&gt;Create ticket types for specific events (free, VIP, etc)&lt;/li&gt;
+&lt;li&gt;See (+ print) list of event attendeees&lt;/li&gt;
+&lt;li&gt;See (+ print) list of orders&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now that we know what we want out of our API, let&apos;s start coding it!&lt;/p&gt;
+&lt;h2&gt;Setup a Laravel project with Docker&lt;/h2&gt;
+&lt;p&gt;Here&apos;s how I spin up a new Laravel project and use Docker for local development -- &lt;em&gt;without pulling all my hair out&lt;/em&gt;:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;composer create-project --prefer-dist laravel/laravel seshsource-api&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;git clone https://github.com/Laradock/laradock.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;cd laradock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Copy the example environment file into a real one: &lt;code class=&quot;language-text&quot;&gt;cp env-example .env&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Change the Laravel root ENV to use Laradock as host (&lt;em&gt;Laravel uses localhost, but Laradock accesses each service inside the Docker container using the service name&lt;/em&gt;):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;DB_HOST=mysql
+DB_DATABASE=default
+DB_USERNAME=default
+REDIS_HOST=redis
+QUEUE_HOST=beanstalkd&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose up -d nginx mysql phpmyadmin redis workspace&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;You should have your Laravel project deployed locally on a Docker development server! &lt;em&gt;Pretty simple right? 😁&lt;/em&gt;&lt;/p&gt;
+&lt;h2&gt;OAuth2.0 Server in 4 steps or less&lt;/h2&gt;
+&lt;p&gt;Let&apos;s setup Laravel with authentication and add OAuth2.0 support using the Passport package:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;composer require laravel/passport&lt;/code&gt; inside the project root&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose exec workspace php artisan migrate&lt;/code&gt; inside the laradock folder (&lt;code class=&quot;language-text&quot;&gt;cd laradock&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose exec workspace php artisan passport:install&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Follow &lt;a href=&quot;https://laravel.com/docs/5.6/passport&quot;&gt;the guide in Laravel docs for adding traits to User class&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose exec workspace php artisan make:auth&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose exec workspace php artisan app:name SeshSource&lt;/code&gt; - Here is where you&apos;d set your application&apos;s name. It&apos;ll be used across the entire app&apos;s &apos;namespace&apos;, so referencing models will look like: &lt;code class=&quot;language-text&quot;&gt;use SeshSource\Events&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;UUIDs&lt;/h2&gt;
+&lt;p&gt;I like using UUIDs as opposed to direct IDs. If you&apos;re using anything before Laravel 5.6, install this library. Otherwise, Laravel 5.6 and beyond come pre-installed with a &lt;code class=&quot;language-text&quot;&gt;uuid()&lt;/code&gt; &lt;a href=&quot;https://laravel.com/docs/5.6/helpers#method-str-uuid&quot;&gt;helper method&lt;/a&gt;. You&apos;ll still need to create a trait, but you won&apos;t need the dependency.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;composer require webpatser/laravel-uuid&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add this to config/app.php file where the aliases array resides: &lt;code class=&quot;language-text&quot;&gt;&amp;#39;Uuid&amp;#39; =&amp;gt; Webpatser\Uuid\Uuid::class,&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Now we just use &lt;code class=&quot;language-text&quot;&gt;$table-&amp;gt;uuid(&amp;#39;id&amp;#39;); $table-&amp;gt;primary(&amp;#39;id&amp;#39;);&lt;/code&gt; in the migrations instead of &lt;code class=&quot;language-text&quot;&gt;$table-&amp;gt;increments(&amp;#39;id&amp;#39;);&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Make sure to remove auto-increment from any model using UUIDs:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
+ * Indicates if the IDs are auto-incrementing.
+ *
+ * @var bool
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$incrementing&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Create a new Trait to handle generating the UUID when we need to create new posts (app/Traits/Uuid.php):&lt;/p&gt;
+&lt;h3&gt;Dependency version&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;SeshSource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Webpatser&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Uuid&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Uuid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;trait&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Uuids&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Boot function from laravel.
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;creating&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$model&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$model&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$model&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getKeyName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Uuid&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;generate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token delimiter important&quot;&gt;?&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h3&gt;Laravel 5.6 UUID&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;SeshSource&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Traits&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Support&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Str&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;trait&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Uuids&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Boot function from laravel.
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;boot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+        &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;creating&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$model&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$model&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$model&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getKeyName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;string&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; Str&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;uuid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token delimiter important&quot;&gt;?&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Inside all UUID models add the trait:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;SeshSource&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Traits&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Uuids&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;User&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Authenticatable&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Uuids&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Migrations and Models&lt;/h2&gt;
+&lt;p&gt;Laravel makes it simple in a single command to create &lt;strong&gt;models&lt;/strong&gt;, which help us interact with data, as well as the &lt;strong&gt;migrations&lt;/strong&gt; - PHP statements that create the database tables for us (no SQL required!). We&apos;ll create 10 models and DB tables that will store all our website&apos;s data.&lt;/p&gt;
+&lt;p&gt;I won&apos;t go into too much detail about the decision making of the structure, but it&apos;s essentially based off the Wordpress DB structure -- combined with the WooCommerce and Tickera plugin&apos;s DB structure. Events are stored in a table, and any extra &quot;meta&quot; data is stored in a pivot table. It&apos;s similar with the shopping cart &quot;orders&quot;. We have a table dedicated to Orders, and a pivot table for each individual line item (with price and quantities). We use the a pivot table instead of storing an entire shopping cart in a single column (serialized in JSON, comma separated IDs, etc) - this allows us to leverage Laravel&apos;s relationships to efficiently eager load any related data.&lt;/p&gt;
+&lt;p&gt;Run these commands in your project root to create the models and migrations:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;php artisan make:model Events -m
+php artisan make:model EventMeta -m
+php artisan make:model TicketTypes -m
+php artisan make:model TicketTemplates -m
+php artisan make:model Tickets -m
+php artisan make:model UserMeta -m
+php artisan make:model Orders -m
+php artisan make:model OrderItems -m
+php artisan make:model CheckIns -m
+php artisan make:model Reviews -m&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Add the UUIDs to all the models and migrations. You can opt out for the meta tables, but things like Orders and Events should have UUIDs for security purposes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Example model:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;SeshSource&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;SeshSource&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Traits&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Uuids&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Database&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Eloquent&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Model&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;EventMeta&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Model&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Uuids&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$incrementing&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Example migration:&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CreateEventMetaTable&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Migration&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Run the migrations.
+     *
+     * @return void
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;up&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        Schema&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;event_meta&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Blueprint &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;uuid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; 
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;primary&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;timestamps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Reset the database and migrate the new structure:&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose exec workspace php artisan migrate:fresh&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you have any issues with &quot;foreign IDs&quot;, it probably means a migration with relationships was run before the related table was created. Rename your migrations to make sure any tables that are related are created before any pivot tables.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Authentication using the User Model&lt;/h2&gt;
+&lt;p&gt;If you noticed in the migrations we added a &apos;type&apos; to the user table (&lt;code class=&quot;language-text&quot;&gt;database/migrations/2014_10_12_000000_create_users_table.php&lt;/code&gt;). That&apos;s where we can tell if a logged in user is a customer, event organizer, or admin. To make it easier to determine if the user has access to admin or organizer-level features, we add a check to the User model for each:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;   &lt;span class=&quot;token comment&quot;&gt;/**
+     * Determines if user is admin or not (true or false)
+     *
+     * @return boolean
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;isAdmin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;admin&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Determines if user is organizer or not (true or false)
+     *
+     * @return boolean
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;isOrganizer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token property&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;organizer&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Creating API controllers&lt;/h2&gt;
+&lt;p&gt;Now that we have our models in place, we can handle the controller part of our application. For now we&apos;ll need 5 controllers, and we&apos;ll use Laravel&apos;s artisan CLI to make &lt;a href=&quot;https://laravel.com/docs/5.6/controllers#resource-controllers&quot;&gt;API resource controllers&lt;/a&gt;. This bootstraps a controller for us with all the necessary methods we need for an standard API (index, store, update, delete).&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;php artisan make:controller &amp;#39;Api/EventsController&amp;#39; --api
+php artisan make:controller &amp;#39;Api/UsersController&amp;#39; --api
+php artisan make:controller &amp;#39;Api/ReviewsController&amp;#39; --api
+php artisan make:controller &amp;#39;Api/OrdersController&amp;#39; --api
+php artisan make:controller &amp;#39;Api/CheckInsController&amp;#39; --api&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;For the index methods, we just use the appropriate model and use the paginate method (&lt;code class=&quot;language-text&quot;&gt;Events::paginate(10)&lt;/code&gt;). Later we&apos;ll add filtering using query params (changing order, specifying categories, etc).&lt;/p&gt;
+&lt;p&gt;For the show methods, we use the appropriate model again, and use the &lt;code class=&quot;language-text&quot;&gt;findOrFail()&lt;/code&gt; method to grab the &lt;code class=&quot;language-text&quot;&gt;$id&lt;/code&gt;: &lt;code class=&quot;language-text&quot;&gt;$event = Events::findOrFail($id);&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;To &lt;a href=&quot;https://laravel.com/docs/5.6/responses#json-responses&quot;&gt;return a JSON response using Laravel&lt;/a&gt;, just use the &lt;code class=&quot;language-text&quot;&gt;json()&lt;/code&gt; method on the &lt;code class=&quot;language-text&quot;&gt;response()&lt;/code&gt; object: &lt;code class=&quot;language-text&quot;&gt;return response()-&amp;gt;json($events);&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;For the &lt;code class=&quot;language-text&quot;&gt;store()&lt;/code&gt; methods, we create a validator for each one (&lt;code class=&quot;language-text&quot;&gt;php artisan make:request StoreEvents&lt;/code&gt;). The validator checks the POST request, and also authenticates the user in the &lt;code class=&quot;language-text&quot;&gt;authorize()&lt;/code&gt; method using the &lt;code class=&quot;language-text&quot;&gt;isAdmin()&lt;/code&gt; method on the User model.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;SeshSource&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Http&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Requests&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Foundation&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Http&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;FormRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;StoreEvents&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;FormRequest&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;authorize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;isAdmin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rules&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;title&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;required|unique:events|max:255&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;start_date&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;required|date&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;end_date&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;required|date&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;street_address&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;required&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;city&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;required&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;state&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;required&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;email&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;email&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;event_logo&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;image&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;featured_img&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;image&apos;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Passport doesn&apos;t support UUID user IDs&lt;/h2&gt;
+&lt;p&gt;Here&apos;s a quick fix if you have any issues with creating Client IDs for OAuth2.0 authenticated apps using Passport. &lt;/p&gt;
+&lt;p&gt;Since we swapped the user ID for a UUID instead of incrementing integer, Passport creates a table called &lt;code class=&quot;language-text&quot;&gt;oauth_access_tokens&lt;/code&gt; that references an incrementing ID, instead of UUID. To get it working, we have to create a new migration that drops the column and creates a new column.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Normally we&apos;d just update the column, but the &lt;code class=&quot;language-text&quot;&gt;doctrine\dbal&lt;/code&gt; library used by Laravel doesn&apos;t support UUIDs. &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol&gt;
+&lt;li&gt;Drop the user id column (since Laravel&apos;s dbal dependency doesn&apos;t support changing columns to uuid) &lt;code class=&quot;language-text&quot;&gt;php artisan make:migration drop_user_id_on_oauth_access_tokens&lt;/code&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Support&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Facades&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Schema&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Database&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Schema&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Blueprint&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Database&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Migrations&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Migration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DropUserIdOnOauthAccessTokens&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Migration&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Run the migrations.
+     *
+     * @return void
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;up&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        Schema&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;oauth_access_tokens&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Blueprint &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;dropColumn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;user_id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Reverse the migrations.
+     *
+     * @return void
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;down&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        Schema&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;oauth_access_tokens&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Blueprint &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;dropColumn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;user_id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;Add migration to insert the user ID column as UUID &lt;code class=&quot;language-text&quot;&gt;php artisan make:migration update_oauth_access_tokens_with_uuids&lt;/code&gt;:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-php&quot;&gt;&lt;code class=&quot;language-php&quot;&gt;&lt;span class=&quot;token delimiter important&quot;&gt;&amp;lt;?php&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Support&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Facades&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Schema&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Database&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Schema&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Blueprint&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;token package&quot;&gt;Illuminate&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Database&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Migrations&lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;Migration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;UpdateOauthAccessTokensWithUuids&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Migration&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Run the migrations.
+     *
+     * @return void
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;up&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        Schema&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;oauth_access_tokens&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Blueprint &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;uuid&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;user_id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;change&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;primary&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;user_id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;change&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;/**
+     * Reverse the migrations.
+     *
+     * @return void
+     */&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;down&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        Schema&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;oauth_access_tokens&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Blueprint &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token variable&quot;&gt;$table&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;integer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token single-quoted-string string&quot;&gt;&apos;user_id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;change&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Reset the database (again) and migrate the new structure:&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose exec workspace php artisan migrate:fresh&lt;/code&gt;&lt;/p&gt;
+&lt;h2&gt;&lt;a href=&quot;https://github.com/barryvdh/laravel-cors&quot;&gt;Enable CORS&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Install CORS dependency and add to Kernel.php. This will allow you to create an app on the same server and enable communication to the API. When we run this API, it&apos;ll deploy to &lt;code class=&quot;language-text&quot;&gt;http://localhost/&lt;/code&gt;. And when we create a React app for the frontend (to display data), it&apos;ll deploy to &lt;code class=&quot;language-text&quot;&gt;http://localhost:3000&lt;/code&gt;. Since it&apos;s on the same server, but different ports, you&apos;ll receive a cross-domain reference error. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Enabling CORS on the API endpoints allows us anyone to access the API on any server. So if you&apos;re going to deploy to production, make sure to limit the hosts to servers you trust (unless your API is public).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;API in a day&lt;/h2&gt;
+&lt;p&gt;And that&apos;s about it, your API is ready for consumption by another application! &lt;/p&gt;
+&lt;p&gt;In the next part of this series we&apos;ll explore how to create a server-side rendered ReactJS admin dashboard using NextJS, styled with Material UI, and authenticated using our OAuth2 API. That&apos;s a lot of words and tech in one sentence, and the article itself be more than a mouthful to swallow, but I&apos;ll try my best to make it as simple as possible! 👍&lt;/p&gt;
+&lt;p&gt;Stay tuned! 🙈
+Ryo&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://laravel.com/docs/5.6/installation&quot;&gt;Laravel installation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://laradock.io/documentation/&quot;&gt;http://laradock.io/documentation/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/@steveazz/setting-up-uuids-in-laravel-5-552412db2088&quot;&gt;https://medium.com/@steveazz/setting-up-uuids-in-laravel-5-552412db2088&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/webpatser/laravel-uuid&quot;&gt;https://github.com/webpatser/laravel-uuid&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://laravel.com/docs/5.0/configuration#after-installation&quot;&gt;Naming your Laravel application&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/41376928/laravel-5-3-passport-jwt-authentication&quot;&gt;Quickly creating JWT tokens using Laravel Passport&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://laracasts.com/discuss/channels/eloquent/uuid-type-change-to-nullable-through-migrations-not-working&quot;&gt;Doctrine doesn&apos;t support changing MySQL columns to UUID&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/barryvdh/laravel-cors&quot;&gt;Enable CORS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/zeit/next.js/issues/153#issuecomment-257924301&quot;&gt;NextJS login with protected routes example&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Deploy a Static React Blog using GatsbyJS and Github]]></title><description><![CDATA[We'll be creating a blog using  GatsbyJS , a static site generator for  React . GatsbyJS takes your content, either static files or external…]]></description><link>http://whoisryosuke.com//blog/2018/deploy-a-static-react-blog-using-gatsbyjs-and-github/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/deploy-a-static-react-blog-using-gatsbyjs-and-github/</guid><pubDate>Mon, 16 Apr 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;We&apos;ll be creating a blog using &lt;a href=&quot;https://www.gatsbyjs.org&quot;&gt;GatsbyJS&lt;/a&gt;, a static site generator for &lt;a href=&quot;https://reactjs.org/&quot;&gt;React&lt;/a&gt;. GatsbyJS takes your content, either static files or external data from an API, and generates pages that are hardcoded with the data. Rather than calling the API for your latest blog posts for each request, all your posts are pre-cached into separate HTML files. This allows you to serve your entire website over a CDN. And without any external API calls or even server-side rendering, the website loads lightning fast -- and is offline-friendly.&lt;/p&gt;
 &lt;p&gt;Today we&apos;ll be developing a static blog generated by GatsbyJS, written in Markdown, and we&apos;ll deploy on Github Pages to host the blog. &lt;/p&gt;
 &lt;h2&gt;But first, what is GatsbyJS?&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;GatsbyJS&lt;/strong&gt; is a generator that allows you to code React apps that get compiled into static assets (HTML + JS). Each &lt;strong&gt;page&lt;/strong&gt; is a technically React &lt;strong&gt;component&lt;/strong&gt; that gets converted into an HTML and JS file when it&apos;s time to build the production site. If you&apos;ve ever worked with a generator like &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;, which converts code like &lt;em&gt;Liquid&lt;/em&gt; and &lt;em&gt;Markdown&lt;/em&gt; into HTML, you&apos;ll be familiar with this kind of concept.&lt;/p&gt;
@@ -88,7 +491,6 @@ Do you enjoy Gabe the Dog? He is the immortal lead singer of Bork, a European ba
   &lt;span class=&quot;token comment&quot;&gt;// displays an object of the query data in console&lt;/span&gt;
   &lt;span class=&quot;token comment&quot;&gt;// simply access what you need using a map function&lt;/span&gt;
   &lt;span class=&quot;token comment&quot;&gt;// data.allFile.edges.map()&lt;/span&gt;
-  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;Hello world&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
@@ -197,7 +599,6 @@ exports&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 &lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Link &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;gatsby-link&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 
 &lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; data &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
       &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;h1 style&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; display&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;inline-block&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; borderBottom&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;1px solid&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
