@@ -4,6 +4,7 @@
 <url> <loc>http://whoisryosuke.com//projects/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/doja-photography/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/doja-website/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/stayregular-v3/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -24,6 +25,7 @@
 <url> <loc>http://whoisryosuke.com//blog/2018/shortcode-reorder-content-with-css-flexbox/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/shortcode-laravel-change-api-resource-fields/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/shortcode-semantic-ui-lightbox/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018/lorem-ipsum-generator-for-sketch/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/photography/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -57,6 +59,10 @@
 <url> <loc>http://whoisryosuke.com//tags/code-snippet/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/wordpress/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/sql/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/sketch/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/resources/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/free/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/download/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

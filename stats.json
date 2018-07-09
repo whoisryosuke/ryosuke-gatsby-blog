@@ -1,12 +1,20 @@
 {
   "assetsByChunkName": {
+    "path---tags-download": [
+      "path---tags-download-4b7ccc60ab7e94d7b6a1.js",
+      "path---tags-download-4b7ccc60ab7e94d7b6a1.js.map"
+    ],
     "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1": [
-      "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1-f133f75901b2e251dfb7.js",
-      "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1-f133f75901b2e251dfb7.js.map"
+      "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1-8f34c191bcd8f562b38d.js",
+      "path---blog-2018-create-ticketing-service-using-laravel-nextjs-part-1-8f34c191bcd8f562b38d.js.map"
     ],
     "path---tags-graphic-design": [
       "path---tags-graphic-design-51e9c36c17640e244641.js",
       "path---tags-graphic-design-51e9c36c17640e244641.js.map"
+    ],
+    "path---tags-sketch": [
+      "path---tags-sketch-f43539d5a7ad0087aa0b.js",
+      "path---tags-sketch-f43539d5a7ad0087aa0b.js.map"
     ],
     "path---projects-2": [
       "path---projects-2-572b16b791571111ed3b.js",
@@ -25,12 +33,12 @@
       "component---src-pages-index-js-4650979f55e803eb5109.js.map"
     ],
     "path---blog-2018-shortcode-semantic-ui-lightbox": [
-      "path---blog-2018-shortcode-semantic-ui-lightbox-0545aa9989b2855084e8.js",
-      "path---blog-2018-shortcode-semantic-ui-lightbox-0545aa9989b2855084e8.js.map"
+      "path---blog-2018-shortcode-semantic-ui-lightbox-88aaebf8b629c159dcc6.js",
+      "path---blog-2018-shortcode-semantic-ui-lightbox-88aaebf8b629c159dcc6.js.map"
     ],
     "path---blog": [
-      "path---blog-263a54e756c146bd4361.js",
-      "path---blog-263a54e756c146bd4361.js.map"
+      "path---blog-fbeac645f8da592bae0c.js",
+      "path---blog-fbeac645f8da592bae0c.js.map"
     ],
     "path---projects-weedporndaily-gifs-vol-2": [
       "path---projects-weedporndaily-gifs-vol-2-c512f554d469eef76ea2.js",
@@ -45,8 +53,8 @@
       "path---tags-development-fff7866098e54a07398b.js.map"
     ],
     "path---tags": [
-      "path---tags-2ae1ec78ea9a251962af.js",
-      "path---tags-2ae1ec78ea9a251962af.js.map"
+      "path---tags-e4e3d187c6e4c418d3d1.js",
+      "path---tags-e4e3d187c6e4c418d3d1.js.map"
     ],
     "path---projects-weedporndaily-gifs-vol-1": [
       "path---projects-weedporndaily-gifs-vol-1-381984ac41c7aee37774.js",
@@ -77,12 +85,16 @@
       "path---tags-react-52f020612f93405abae0.js.map"
     ],
     "path---blog-2018-shortcode-nextjs-auth-hoc": [
-      "path---blog-2018-shortcode-nextjs-auth-hoc-3466d510abc39b4e7595.js",
-      "path---blog-2018-shortcode-nextjs-auth-hoc-3466d510abc39b4e7595.js.map"
+      "path---blog-2018-shortcode-nextjs-auth-hoc-bffe4e31e9827889b68c.js",
+      "path---blog-2018-shortcode-nextjs-auth-hoc-bffe4e31e9827889b68c.js.map"
     ],
     "path---tags-wordpress": [
       "path---tags-wordpress-a132a2e32cfb796004a2.js",
       "path---tags-wordpress-a132a2e32cfb796004a2.js.map"
+    ],
+    "path---tags-resources": [
+      "path---tags-resources-ee58728477104c31bf12.js",
+      "path---tags-resources-ee58728477104c31bf12.js.map"
     ],
     "path---projects": [
       "path---projects-6d1d6ee08661d5884959.js",
@@ -129,24 +141,24 @@
       "path---tags-php-9da5392cb6f3043ab9d6.js.map"
     ],
     "path---projects-wallydrops-brochure": [
-      "path---projects-wallydrops-brochure-7989ae4c0b084ee4e4e4.js",
-      "path---projects-wallydrops-brochure-7989ae4c0b084ee4e4e4.js.map"
+      "path---projects-wallydrops-brochure-7378e796b742eebc5761.js",
+      "path---projects-wallydrops-brochure-7378e796b742eebc5761.js.map"
     ],
     "path---tags-material-ui": [
       "path---tags-material-ui-925281334f39f9c704be.js",
       "path---tags-material-ui-925281334f39f9c704be.js.map"
     ],
     "path---blog-2018-new-brand": [
-      "path---blog-2018-new-brand-80ca28ec5107df6d3ecc.js",
-      "path---blog-2018-new-brand-80ca28ec5107df6d3ecc.js.map"
+      "path---blog-2018-new-brand-b8edaa36466bbf715d10.js",
+      "path---blog-2018-new-brand-b8edaa36466bbf715d10.js.map"
     ],
     "path---tags-web-design": [
       "path---tags-web-design-e5aeadfaf06ff72217af.js",
       "path---tags-web-design-e5aeadfaf06ff72217af.js.map"
     ],
     "path---index": [
-      "path---index-05ecde989c323f92deda.js",
-      "path---index-05ecde989c323f92deda.js.map"
+      "path---index-f0950daf02a4cf572c2f.js",
+      "path---index-f0950daf02a4cf572c2f.js.map"
     ],
     "path---projects-stayregular-v-3": [
       "path---projects-stayregular-v-3-fe945d4a027d1b77ee39.js",
@@ -173,12 +185,12 @@
       "path---tags-api-1f9ee2580eb26b412711.js.map"
     ],
     "path---blog-2018-shortcode-docker-for-wordpress-made-easy": [
-      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-42db95663dea01c325e8.js",
-      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-42db95663dea01c325e8.js.map"
+      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-c64185d62828992874df.js",
+      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-c64185d62828992874df.js.map"
     ],
     "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql": [
-      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-4b4ade67dda57724cd08.js",
-      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-4b4ade67dda57724cd08.js.map"
+      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-28600e66ac621cd52c32.js",
+      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-28600e66ac621cd52c32.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -203,8 +215,12 @@
       "build-js-styles.css.map"
     ],
     "path---blog-2018-nextjs-tip-using-media-in-css": [
-      "path---blog-2018-nextjs-tip-using-media-in-css-ad038ab9797a4d0fe18c.js",
-      "path---blog-2018-nextjs-tip-using-media-in-css-ad038ab9797a4d0fe18c.js.map"
+      "path---blog-2018-nextjs-tip-using-media-in-css-a984e0dbff130b46e47b.js",
+      "path---blog-2018-nextjs-tip-using-media-in-css-a984e0dbff130b46e47b.js.map"
+    ],
+    "path---blog-3": [
+      "path---blog-3-c9e28ce5b7433aa42131.js",
+      "path---blog-3-c9e28ce5b7433aa42131.js.map"
     ],
     "path---404-html": [
       "path---404-html-a0e39f21c11f6a62c5ab.js",
@@ -227,8 +243,8 @@
       "component---src-pages-tags-js-308460c729f316c100a5.js.map"
     ],
     "path---blog-2018-shortcode-reorder-content-with-css-flexbox": [
-      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-c41e36a27db4cefbe1dd.js",
-      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-c41e36a27db4cefbe1dd.js.map"
+      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-d5f3717b3f98dabc594c.js",
+      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-d5f3717b3f98dabc594c.js.map"
     ],
     "path---tags-sql": [
       "path---tags-sql-f53941a21d9d449fce26.js",
@@ -247,22 +263,30 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---blog-2018-nextjs-authentication-using-oauth-2-jwt": [
-      "path---blog-2018-nextjs-authentication-using-oauth-2-jwt-32273f1f2d43b9e9d90c.js",
-      "path---blog-2018-nextjs-authentication-using-oauth-2-jwt-32273f1f2d43b9e9d90c.js.map"
+      "path---blog-2018-nextjs-authentication-using-oauth-2-jwt-58b642ff5843dd88893e.js",
+      "path---blog-2018-nextjs-authentication-using-oauth-2-jwt-58b642ff5843dd88893e.js.map"
+    ],
+    "path---blog-2018-lorem-ipsum-generator-for-sketch": [
+      "path---blog-2018-lorem-ipsum-generator-for-sketch-1260c050a94caba30dbf.js",
+      "path---blog-2018-lorem-ipsum-generator-for-sketch-1260c050a94caba30dbf.js.map"
     ],
     "path---blog-2": [
-      "path---blog-2-f50f4a2e44d7d72c7835.js",
-      "path---blog-2-f50f4a2e44d7d72c7835.js.map"
+      "path---blog-2-b51554fb619671c2666a.js",
+      "path---blog-2-b51554fb619671c2666a.js.map"
     ],
     "app": [
-      "app-dd5c311f5c7b3561c2c0.js",
+      "app-1cdb3d0f0acf390bb93f.js",
       "build-js-styles.css",
-      "app-dd5c311f5c7b3561c2c0.js.map",
+      "app-1cdb3d0f0acf390bb93f.js.map",
       "build-js-styles.css.map"
     ],
     "path---tags-code-snippet": [
       "path---tags-code-snippet-527fae6a3c42e29e2e87.js",
       "path---tags-code-snippet-527fae6a3c42e29e2e87.js.map"
+    ],
+    "path---tags-free": [
+      "path---tags-free-cc0676cc217e81354320.js",
+      "path---tags-free-cc0676cc217e81354320.js.map"
     ],
     "path---tags-videography": [
       "path---tags-videography-8a7316e26ac4e4cd8548.js",
