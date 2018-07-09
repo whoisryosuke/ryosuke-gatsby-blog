@@ -135,7 +135,6 @@ export default ({ data }) => {
   // displays an object of the query data in console
   // simply access what you need using a map function
   // data.allFile.edges.map()
-  console.log(data)
   return <div>Hello world</div>
 }
 
@@ -259,7 +258,6 @@ import React from "react";
 import Link from "gatsby-link";
 
 export default ({ data }) => {
-  console.log(data);
   return (
     <div>
       <h1 style={{ display: 'inline-block', borderBottom: '1px solid' }}>

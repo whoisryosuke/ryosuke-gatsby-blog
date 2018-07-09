@@ -20,6 +20,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `img`,
+        path: `${__dirname}/src/assets/img/`,
+      },
+    },
+    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
@@ -120,5 +127,6 @@ module.exports = {
         respectDNT: true,
       },
     },
+    `gatsby-plugin-offline`,    
   ],
 };

@@ -21,11 +21,13 @@ export default class BlogPost extends Component {
     super(props);
     
     this.state = {
-      'instagram': false
+      'instagram': false,
+      'codepen': false
     };
   }
 
   componentDidMount() {
+    // Check for Instagram script
     if (window.instgrm || document.getElementById('react-instagram-embed-script')) {
       if(this.state.instagram == false)
       {
@@ -52,6 +54,28 @@ export default class BlogPost extends Component {
       this.setState({
         'instagram': true
       });
+    }
+
+    // Add Codepen script to <body> if we detect a Codepen embed
+    const codepen = document.getElementsByClassName('codepen');
+    if (codepen.length > 0) {
+      // Check if we've already embedded the script
+      if (!document.getElementById('codepen-script') || !this.state.codepen) {
+        // Create script element with Codepen embed JS lib
+        const s = document.createElement('script')
+        s.async = s.defer = true
+        s.src = `//static.codepen.io/assets/embed/ei.js`
+        s.id = 'codepen-script'
+        const body: HTMLElement | null = document.body
+        if (body) {
+          body.appendChild(s)
+        }
+
+        // Set state to true so the process doesn't run again
+        this.setState({
+          'codepen': true
+        });
+      }
     }
   }
 

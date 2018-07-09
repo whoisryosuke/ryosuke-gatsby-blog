@@ -1,0 +1,41 @@
+---
+title: shortcode - 🐋 Docker for Wordpress made easy
+date: "2018-06-11"
+section: blog
+cover_image: "../../../../assets/img/categories/shortcode-code-snippets.jpg"
+tags: [ 'laravel', 'php', 'api', 'shortcode', 'code snippet', 'tips' ]
+---
+
+Just copy this into a `docker-compose.yml` in your project root, and then run `docker-compose up -d` 🚀 
+
+```yml
+version: "2"
+services:
+  my-wpdb:
+    image: mariadb
+    ports:
+      - "8081:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+  my-wp:
+    image: wordpress
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+    links:
+      - my-wpdb:mysql
+    environment:
+      WORDPRESS_DB_PASSWORD: root
+```
+
+
+Hope that helps,
+Ryo
+
+***
+
+**References**
+
+* [Original tweet](https://twitter.com/whoisryosuke/status/1006325273900380160)
+* [See the code gist](https://gist.github.com/whoisryosuke/77da2fbe1c5ce782a0908cb1e8d17fe7)

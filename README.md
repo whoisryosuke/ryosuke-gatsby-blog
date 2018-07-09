@@ -35,6 +35,10 @@ Your post here
 
 ## Plugins
 
+### Codepen
+
+To embed Codepen modules, just copy the embed code and remove the JS script that gets imported.
+
 ### [Twitter](https://www.gatsbyjs.org/packages/gatsby-plugin-twitter/?=)
 
 Seamlessly embed Tweets into posts by copying the blockquote portion of the embed code to your Markdown file. Don't copy the linked JS file, the plugin handles that automatically.

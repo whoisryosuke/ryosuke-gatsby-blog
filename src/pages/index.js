@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Link from "gatsby-link";
+import Img from "gatsby-image";
 
 import config from '../config';
 
@@ -8,10 +9,6 @@ import Newsletter from '../components/Newsletter';
 import Featured from '../components/Featured';
 import PostLoop from '../components/PostLoop';
 import FrontpageContact from '../components/Frontpage/Contact';
-
-import PeaceEmoji from '../assets/img/emoji/peace.png';
-import ThoughtCloudEmoji from '../assets/img/emoji/thought-cloud.png';
-import RyosukeAvatar from '../assets/img/ryosuke-avatar-128.png';
 
 export default class Frontpage extends Component {
   constructor(props) {
@@ -26,20 +23,27 @@ export default class Frontpage extends Component {
     let { data } = this.state;
     const skip = true;
 
-    const { blog, projects } = data;
-
+    const { 
+      blog, 
+      projects, 
+      PeaceEmoji, 
+      ThoughtCloudEmoji, 
+      CoffeeEmoji, 
+      RyosukeAvatar
+    } = data;
+    
     return (
       <div className="Frontpage pt2">
         <div className="container Frontpage__hero">
           <h1>
-            Hey I'm <span className="text blue">Ryosuke</span> <img src={PeaceEmoji} alt="Peace sign emoji" />
+            Hey I'm <span className="text blue">Ryosuke</span> <Img resolutions={PeaceEmoji.resolutions} alt="Peace sign emoji" />
             <br />Designer, developer,
-            <br /> &amp; influencer <img src={ThoughtCloudEmoji} alt="Peace sign emoji" />
+            <br /> &amp; influencer <Img resolutions={ThoughtCloudEmoji.resolutions} alt="Thought cloud emoji" />
           </h1>
         </div>
         <div className="container Frontpage__about">
           <figure>
-            <img src={RyosukeAvatar} />
+            <Img resolutions={RyosukeAvatar.resolutions} alt="Ryosuke in white Japanese font on blue background" />
           </figure>
           <p>I'm a <strong>designer</strong> and <strong>full stack engineer</strong> currently residing in Los Angeles. I live for <strong>stunning design</strong>, <strong>accessible UX</strong>, and <strong>inspiring others</strong> through my work.</p>
         </div>
@@ -69,7 +73,7 @@ export default class Frontpage extends Component {
         
         <Newsletter />
 
-        <FrontpageContact />
+        <FrontpageContact CoffeeEmoji={ CoffeeEmoji } />
 
       </div>
     );
@@ -89,7 +93,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date
             cover_image {
               publicURL
               childImageSharp {
@@ -118,7 +122,7 @@ export const query = graphql`
           id
           frontmatter {
             title
-            date(formatString: "DD MMMM, YYYY")
+            date
             cover_image {
               publicURL
               childImageSharp {
@@ -134,6 +138,28 @@ export const query = graphql`
           }
         }
       }
+    },
+    PeaceEmoji: imageSharp (id: { regex: "/peace.png/" }) {
+          ...emojiImageFields
+    },
+    ThoughtCloudEmoji: imageSharp (id: { regex: "/thought-cloud.png/" }) {
+          ...emojiImageFields
+    },
+    CoffeeEmoji: imageSharp (id: { regex: "/coffee.png/" }) {
+      resolutions(width: 36, height: 36) {
+        ...GatsbyImageSharpResolutions
+      }
+    },
+    RyosukeAvatar: imageSharp (id: { regex: "/ryosuke-avatar-128.png/" }) {
+      resolutions(width: 170, height: 170) {
+        ...GatsbyImageSharpResolutions
+      }
+    },
+  }
+
+  fragment emojiImageFields on ImageSharp {
+    resolutions(width: 54, height: 54) {
+      ...GatsbyImageSharpResolutions
     }
   }
 `;

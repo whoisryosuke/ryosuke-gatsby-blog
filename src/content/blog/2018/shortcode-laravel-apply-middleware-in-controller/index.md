@@ -1,0 +1,39 @@
+---
+title: shortcode - Apply middleware to Laravel controller methods
+date: "2018-05-30"
+section: blog
+cover_image: "../../../../assets/img/categories/shortcode-code-snippets.jpg"
+tags: [ 'laravel', 'php', 'api', 'shortcode', 'code snippet', 'tips' ]
+---
+
+Ever needed to apply middleware to specific controller methods? Just use the `middleware()` method in the controller's constructor and feed it a middleware and array of method names.
+
+> Protip: You can stack middleware as much as you want (just don't lock yourself out!). If you need to apply different middleware, or complex 'only' and 'except' situations, call the middleware method as much as you need.
+
+```php
+<?php
+//... the class
+public function __construct() 
+{
+    // Apply middleware to only certain routes
+    $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'delete']]);
+    // Or apply middleware to all routes except these
+    $this->middleware('auth', ['except' => ['index', 'show']]);
+}
+```
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">✅ <a href="https://twitter.com/hashtag/Laravel?src=hash&amp;ref_src=twsrc%5Etfw">#Laravel</a> <a href="https://twitter.com/hashtag/ProTip?src=hash&amp;ref_src=twsrc%5Etfw">#ProTip</a> You can apply your middleware to specific routes in the controller&#39;s construct method 👌 <a href="https://t.co/BU7taP0ksv">https://t.co/BU7taP0ksv</a> <a href="https://t.co/6UQc2gYMU4">pic.twitter.com/6UQc2gYMU4</a></p>&mdash; Ryosuke (@whoisryosuke) <a href="https://twitter.com/whoisryosuke/status/1001976417826017280?ref_src=twsrc%5Etfw">May 30, 2018</a></blockquote>
+
+Before writing this post, this wasn't in the Laravel docs. I could have swore I've seen it since, but just in case, I've archived it here.
+
+Hope that helps,
+Ryo
+
+***
+
+**References**
+
+* [Original tweet](https://twitter.com/whoisryosuke/status/1001976417826017280)
+* [See the code gist](https://gist.github.com/whoisryosuke/902f2ebd3b1e0c232b85b0c6ac255105)
+* [Laravel docs - Resource Collections](https://laravel.com/docs/5.6/eloquent-resources#concept-overview)
+* [Laracasts middleware thread](https://laracasts.com/discuss/channels/general-discussion/apply-middleware-for-certain-methods?page=0)

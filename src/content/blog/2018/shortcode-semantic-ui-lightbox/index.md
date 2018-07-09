@@ -1,0 +1,73 @@
+---
+title: shortcode - Lightbox using Semantic UI + JQuery 🖼🔍
+date: "2018-05-16"
+section: blog
+cover_image: "../../../../assets/img/categories/shortcode-code-snippets.jpg"
+tags: [ 'wordpress', 'sql', 'shortcode', 'code snippet', 'tips' ]
+---
+
+Using just a few lines of jQuery, combined with the Semantic UI Modal component, you can create a pretty simple and effective Lightbox:
+
+```html
+<link rel="stylesheet" src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.css" />
+
+<section id="photos" class="ui basic segment show">
+	<h2 class="ui header">Semantic UI Lightbox Example</h2>
+	<p>Click any of the cards below to activate the modal-based lightbox. It's based off the <a href="https://semantic-ui.com/modules/modal.html#basic">"basic modal"</a> in Semantic UI.</p>
+	<section class="ui four stackable cards">
+		<article class="PhotoCard ui card">
+			<img src="http://via.placeholder.com/300x250" class="ui fluid image">
+			<div class="content">
+				Cool pics
+			</div>
+		</article>
+		<article class="PhotoCard ui card">
+			<img src="http://via.placeholder.com/300x250" class="ui fluid image">
+			<div class="content">
+				Cool pics
+			</div>
+		</article>
+		<article class="PhotoCard ui card">
+			<img src="http://via.placeholder.com/300x250" class="ui fluid image">
+			<div class="content">
+				Cool pics
+			</div>
+		</article>
+		<article class="PhotoCard ui card">
+			<img src="http://via.placeholder.com/300x250" class="ui fluid image">
+			<div class="content">
+				Cool pics
+			</div>
+		</article>
+	</section>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" />
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.1/dist/semantic.min.js" />
+<script>
+// Lightbox for photos using Semantic UI
+
+$('.PhotoCard').click(function() {
+		var image = $(this).children('img').attr('src');
+		$('body').append('<div class="ui basic modal"><div class="content"><img src="'+image+'" width="100%" /></div></div>');        
+		$('.ui.basic.modal')
+			.remove()
+			.modal('show');
+})
+</script>
+```
+
+<p data-height="265" data-theme-id="light" data-slug-hash="NMEYPO" data-default-tab="html,result" data-user="whoisryosuke" data-embed-version="2" data-pen-title="Semantic UI Lightbox Example" id="codepen" class="codepen">See the Pen <a href="https://codepen.io/whoisryosuke/pen/NMEYPO/">Semantic UI Lightbox Example</a> by Ryosuke (<a href="https://codepen.io/whoisryosuke">@whoisryosuke</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">🖼🔍 Using <a href="https://twitter.com/semanticui?ref_src=twsrc%5Etfw">@semanticui</a> to create a simple image &quot;Lightbox&quot; popup using their basic modal and a little <a href="https://twitter.com/hashtag/jQuery?src=hash&amp;ref_src=twsrc%5Etfw">#jQuery</a> <a href="https://t.co/Fd5dvMmIkS">https://t.co/Fd5dvMmIkS</a> <a href="https://twitter.com/hashtag/SemanticUI?src=hash&amp;ref_src=twsrc%5Etfw">#SemanticUI</a> <a href="https://twitter.com/hashtag/CSS?src=hash&amp;ref_src=twsrc%5Etfw">#CSS</a> <a href="https://twitter.com/hashtag/Javascript?src=hash&amp;ref_src=twsrc%5Etfw">#Javascript</a> <a href="https://twitter.com/hashtag/CodeSnippets?src=hash&amp;ref_src=twsrc%5Etfw">#CodeSnippets</a> <a href="https://t.co/OIdLWSidzN">pic.twitter.com/OIdLWSidzN</a></p>&mdash; Ryosuke (@whoisryosuke) <a href="https://twitter.com/whoisryosuke/status/997245663195742208?ref_src=twsrc%5Etfw">May 17, 2018</a></blockquote>
+
+Hope that helps,
+Ryo
+
+***
+
+**References**
+
+* [Original tweet](https://twitter.com/whoisryosuke/status/1013615808948285441)
+* [See the code gist](https://gist.github.com/whoisryosuke/9c49aed1a0b759731f0bc019ec903975)
+* [Add admin via SQL](https://www.inmotionhosting.com/support/edu/wordpress/333-add-admin-via-mysql)

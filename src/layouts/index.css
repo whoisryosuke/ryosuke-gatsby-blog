@@ -436,6 +436,14 @@ pre {
   word-wrap: normal;
   padding: 1.45rem;
 }
+:not(pre)>code[class*=language-]
+{
+  margin-top:-0.2rem;
+}
+code a,
+code a:visited {
+  color:#FFF;
+}
 table {
   margin-left: 0;
   margin-right: 0;
@@ -631,13 +639,6 @@ code {
 pre code {
   background: none;
   line-height: 1.42;
-}
-code:before,
-code:after,
-tt:before,
-tt:after {
-  letter-spacing: -0.2em;
-  content: " ";
 }
 pre code:before,
 pre code:after,
@@ -1258,6 +1259,10 @@ a.Title:hover
   z-index:100;
 }
 
+.ArticlePage .content p {
+  line-height: 2.1rem;
+}
+
 .ArticlePage.blog .content
 {
   margin-top:-10rem;  
@@ -1603,6 +1608,12 @@ progress::-moz-progress-bar {
   margin-bottom:0;
 }
 
+.Frontpage__hero .gatsby-image-outer-wrapper,
+.Frontpage__contact .gatsby-image-outer-wrapper
+{
+    display: inline-block;
+}
+
 /* --- Frontpage About--- */
 
 .Frontpage__about
@@ -1663,7 +1674,7 @@ progress::-moz-progress-bar {
 
 /* --- Frontpage Contact --- */
 
-.Frontpage__contact h2 img
+.Frontpage__contact h2 .gatsby-image-outer-wrapper
 {
   height:2rem;
   margin-left:0.25rem;
@@ -1676,7 +1687,11 @@ progress::-moz-progress-bar {
   margin-right:0.75rem;
 }
 
-.Frontpage__contact h2 img,
+.Frontpage__contact h2 .gatsby-image-outer-wrapper
+{
+  vertical-align: top;
+}
+
 .Frontpage__contact p img
 {
   margin-bottom:0;

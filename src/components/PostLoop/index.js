@@ -10,7 +10,6 @@ export default (props) => {
         blog: 'Read post',
         project: 'View project',
     };
-    console.log(props.loop);
     let postLoop;
     const currentDate = new Date();    
     
@@ -52,7 +51,7 @@ export default (props) => {
                                         className="Link"
                                     >
                                         {node.frontmatter.section ? links[node.frontmatter.section] : 'See post'}
-                                        <img src={arrowRight} className="icon arrow right" />
+                                        <img src={arrowRight} className="icon arrow right" alt="Arrow pointing right" />
                                     </Link>
                                     <span className="date">{ nicetime(currentDate, postDate) }</span>
                                 </aside>

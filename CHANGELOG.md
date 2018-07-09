@@ -1,3 +1,15 @@
+## v1.0.10 - July 9, 2018
+
+* Added `<title>` to `<SEO />` component using react-helmet.
+* Added Codepen script to blog post component (similar implementation to Instagram). Checks if Codepen embed exists before adding the script.
+
+## v1.0.9 - June 2, 2018
+
+* Added new blog post
+* Removed all leftover console logging
+
+> @Protip: Clear cache if you get stuck on createPages method during build process.
+
 ## v1.0.8 - April 25, 2018
 
 * Changed format for blog posts from `blog/date-post-title-here/` to `blog/year/post-title`.

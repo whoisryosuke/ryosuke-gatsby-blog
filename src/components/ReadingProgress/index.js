@@ -62,10 +62,6 @@ export default class ReadingProgress extends React.Component {
     this.targetHeight = this.targetEl.clientHeight;
     this.viewportH = this.measureViewportHeight()
     this.max = this.viewportH - ( this.targetHeight + this.targetEl.offsetTop );
-    console.log(this.targetHeight);
-    console.log(this.targetEl.offsetTop);
-    console.log(this.viewportH);
-    console.log(this.max);
   }
 
   handleResize = () => {
