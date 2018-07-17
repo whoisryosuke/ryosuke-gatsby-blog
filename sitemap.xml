@@ -27,6 +27,7 @@
 <url> <loc>http://whoisryosuke.com//blog/2018/shortcode-semantic-ui-lightbox/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/shortcode-reorder-content-with-css-flexbox/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/nextjs-tip-relative-es6-modules/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018/kushy-frontend-in-nextjs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/photography/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -65,6 +66,7 @@
 <url> <loc>http://whoisryosuke.com//tags/wordpress/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/sql/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/es6/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/kushy/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
