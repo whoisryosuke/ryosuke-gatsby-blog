@@ -41,28 +41,32 @@
       "component---src-pages-index-js-4650979f55e803eb5109.js.map"
     ],
     "path---blog-2018-shortcode-semantic-ui-lightbox": [
-      "path---blog-2018-shortcode-semantic-ui-lightbox-88aaebf8b629c159dcc6.js",
-      "path---blog-2018-shortcode-semantic-ui-lightbox-88aaebf8b629c159dcc6.js.map"
+      "path---blog-2018-shortcode-semantic-ui-lightbox-e357b4bcca17bd0b37d1.js",
+      "path---blog-2018-shortcode-semantic-ui-lightbox-e357b4bcca17bd0b37d1.js.map"
     ],
     "path---blog": [
-      "path---blog-359eb32d6824362ce91d.js",
-      "path---blog-359eb32d6824362ce91d.js.map"
+      "path---blog-9b76c20277ca9b727452.js",
+      "path---blog-9b76c20277ca9b727452.js.map"
     ],
     "path---projects-weedporndaily-gifs-vol-2": [
-      "path---projects-weedporndaily-gifs-vol-2-ae4bc6b1a65804545c04.js",
-      "path---projects-weedporndaily-gifs-vol-2-ae4bc6b1a65804545c04.js.map"
+      "path---projects-weedporndaily-gifs-vol-2-c512f554d469eef76ea2.js",
+      "path---projects-weedporndaily-gifs-vol-2-c512f554d469eef76ea2.js.map"
     ],
     "component---src-templates-tags-js": [
       "component---src-templates-tags-js-fa645e6eaf373f8c89eb.js",
       "component---src-templates-tags-js-fa645e6eaf373f8c89eb.js.map"
+    ],
+    "path---tags-open-source": [
+      "path---tags-open-source-b1fa62997c7f1d79f2c6.js",
+      "path---tags-open-source-b1fa62997c7f1d79f2c6.js.map"
     ],
     "path---tags-development": [
       "path---tags-development-fff7866098e54a07398b.js",
       "path---tags-development-fff7866098e54a07398b.js.map"
     ],
     "path---tags": [
-      "path---tags-748f364b21188781555f.js",
-      "path---tags-748f364b21188781555f.js.map"
+      "path---tags-96e975313b87fef84c8e.js",
+      "path---tags-96e975313b87fef84c8e.js.map"
     ],
     "path---projects-weedporndaily-gifs-vol-1": [
       "path---projects-weedporndaily-gifs-vol-1-381984ac41c7aee37774.js",
@@ -77,8 +81,8 @@
       "path----557518bd178906f8d58a.js.map"
     ],
     "path---blog-2018-shortcode-laravel-apply-middleware-in-controller": [
-      "path---blog-2018-shortcode-laravel-apply-middleware-in-controller-54a8ae9b03233ec6bf5f.js",
-      "path---blog-2018-shortcode-laravel-apply-middleware-in-controller-54a8ae9b03233ec6bf5f.js.map"
+      "path---blog-2018-shortcode-laravel-apply-middleware-in-controller-418d27d6b33d64971099.js",
+      "path---blog-2018-shortcode-laravel-apply-middleware-in-controller-418d27d6b33d64971099.js.map"
     ],
     "path---tags-design": [
       "path---tags-design-96adfe4242116cb348f9.js",
@@ -93,8 +97,8 @@
       "path---tags-react-de9ac002e566293f8e8c.js.map"
     ],
     "path---blog-2018-shortcode-nextjs-auth-hoc": [
-      "path---blog-2018-shortcode-nextjs-auth-hoc-5628fe0e2e2b6448054f.js",
-      "path---blog-2018-shortcode-nextjs-auth-hoc-5628fe0e2e2b6448054f.js.map"
+      "path---blog-2018-shortcode-nextjs-auth-hoc-56a16ec678803672a7a2.js",
+      "path---blog-2018-shortcode-nextjs-auth-hoc-56a16ec678803672a7a2.js.map"
     ],
     "path---tags-wordpress": [
       "path---tags-wordpress-a132a2e32cfb796004a2.js",
@@ -129,8 +133,8 @@
       "component---src-layouts-index-js-9feae809281c539c0083.js.map"
     ],
     "path---projects-weedporndaily-event-coverage-2017": [
-      "path---projects-weedporndaily-event-coverage-2017-7ab1d5d17b9be0b4c228.js",
-      "path---projects-weedporndaily-event-coverage-2017-7ab1d5d17b9be0b4c228.js.map"
+      "path---projects-weedporndaily-event-coverage-2017-6cbd6ac1b5169c039e0b.js",
+      "path---projects-weedporndaily-event-coverage-2017-6cbd6ac1b5169c039e0b.js.map"
     ],
     "path---tags-backend": [
       "path---tags-backend-5bff44435e90a66576ec.js",
@@ -145,12 +149,12 @@
       "path---tags-nextjs-53a5f8caf58df4da10b5.js.map"
     ],
     "path---tags-php": [
-      "path---tags-php-9da5392cb6f3043ab9d6.js",
-      "path---tags-php-9da5392cb6f3043ab9d6.js.map"
+      "path---tags-php-c8ab6ceda4601a16e1ff.js",
+      "path---tags-php-c8ab6ceda4601a16e1ff.js.map"
     ],
     "path---projects-wallydrops-brochure": [
-      "path---projects-wallydrops-brochure-7378e796b742eebc5761.js",
-      "path---projects-wallydrops-brochure-7378e796b742eebc5761.js.map"
+      "path---projects-wallydrops-brochure-7989ae4c0b084ee4e4e4.js",
+      "path---projects-wallydrops-brochure-7989ae4c0b084ee4e4e4.js.map"
     ],
     "path---tags-material-ui": [
       "path---tags-material-ui-925281334f39f9c704be.js",
@@ -165,16 +169,16 @@
       "path---tags-web-design-e5aeadfaf06ff72217af.js.map"
     ],
     "path---index": [
-      "path---index-04f5dfb167ad27f77dff.js",
-      "path---index-04f5dfb167ad27f77dff.js.map"
+      "path---index-2094808b966aaa7c3548.js",
+      "path---index-2094808b966aaa7c3548.js.map"
     ],
     "path---projects-stayregular-v-3": [
       "path---projects-stayregular-v-3-fe945d4a027d1b77ee39.js",
       "path---projects-stayregular-v-3-fe945d4a027d1b77ee39.js.map"
     ],
     "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github": [
-      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-4f718d034af8ca551e61.js",
-      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-4f718d034af8ca551e61.js.map"
+      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-14c32dc1b2771830374f.js",
+      "path---blog-2018-deploy-a-static-react-blog-using-gatsbyjs-and-github-14c32dc1b2771830374f.js.map"
     ],
     "path---tags-shortcode": [
       "path---tags-shortcode-37fdaad47f04c676effb.js",
@@ -193,16 +197,16 @@
       "path---tags-api-1f9ee2580eb26b412711.js.map"
     ],
     "path---blog-2018-kushy-frontend-in-nextjs": [
-      "path---blog-2018-kushy-frontend-in-nextjs-35cd231f8d61a630c6e1.js",
-      "path---blog-2018-kushy-frontend-in-nextjs-35cd231f8d61a630c6e1.js.map"
+      "path---blog-2018-kushy-frontend-in-nextjs-23b4ac6ae862e5faa6b9.js",
+      "path---blog-2018-kushy-frontend-in-nextjs-23b4ac6ae862e5faa6b9.js.map"
     ],
     "path---blog-2018-shortcode-docker-for-wordpress-made-easy": [
-      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-42db95663dea01c325e8.js",
-      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-42db95663dea01c325e8.js.map"
+      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-ffd570b814cbeac0033c.js",
+      "path---blog-2018-shortcode-docker-for-wordpress-made-easy-ffd570b814cbeac0033c.js.map"
     ],
     "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql": [
-      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-4bc2ce494fcde2bf6c91.js",
-      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-4bc2ce494fcde2bf6c91.js.map"
+      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-e4aeaae64ccca6bfb978.js",
+      "path---blog-2018-shortcode-make-yourself-wordpress-admin-using-sql-e4aeaae64ccca6bfb978.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -211,6 +215,10 @@
     "path---tags-editorial-design": [
       "path---tags-editorial-design-93642ad71bb140801323.js",
       "path---tags-editorial-design-93642ad71bb140801323.js.map"
+    ],
+    "path---blog-2018-how-to-create-a-php-package-for-composer": [
+      "path---blog-2018-how-to-create-a-php-package-for-composer-b7bbc64c720e0f0d8a59.js",
+      "path---blog-2018-how-to-create-a-php-package-for-composer-b7bbc64c720e0f0d8a59.js.map"
     ],
     "path---tags-oauth-2": [
       "path---tags-oauth-2-17ad50035ec510832f19.js",
@@ -227,12 +235,12 @@
       "build-js-styles.css.map"
     ],
     "path---blog-2018-nextjs-tip-using-media-in-css": [
-      "path---blog-2018-nextjs-tip-using-media-in-css-a984e0dbff130b46e47b.js",
-      "path---blog-2018-nextjs-tip-using-media-in-css-a984e0dbff130b46e47b.js.map"
+      "path---blog-2018-nextjs-tip-using-media-in-css-09881d74e1a0351310f7.js",
+      "path---blog-2018-nextjs-tip-using-media-in-css-09881d74e1a0351310f7.js.map"
     ],
     "path---blog-3": [
-      "path---blog-3-125b07695abe6b39afbd.js",
-      "path---blog-3-125b07695abe6b39afbd.js.map"
+      "path---blog-3-dd4358b9f1551bb9108a.js",
+      "path---blog-3-dd4358b9f1551bb9108a.js.map"
     ],
     "path---404-html": [
       "path---404-html-a0e39f21c11f6a62c5ab.js",
@@ -255,8 +263,8 @@
       "component---src-pages-tags-js-308460c729f316c100a5.js.map"
     ],
     "path---blog-2018-shortcode-reorder-content-with-css-flexbox": [
-      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-4947fe0807b9d9c71aa2.js",
-      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-4947fe0807b9d9c71aa2.js.map"
+      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-8dd691ff90946e445c62.js",
+      "path---blog-2018-shortcode-reorder-content-with-css-flexbox-8dd691ff90946e445c62.js.map"
     ],
     "path---tags-sql": [
       "path---tags-sql-f53941a21d9d449fce26.js",
@@ -265,6 +273,10 @@
     "path---tags-marketing": [
       "path---tags-marketing-97752902eab38266ee03.js",
       "path---tags-marketing-97752902eab38266ee03.js.map"
+    ],
+    "path---tags-tutorial": [
+      "path---tags-tutorial-7e2564355c0b8bf10d19.js",
+      "path---tags-tutorial-7e2564355c0b8bf10d19.js.map"
     ],
     "path---tags-css": [
       "path---tags-css-523351923588dfd95a8a.js",
@@ -283,13 +295,13 @@
       "path---blog-2018-lorem-ipsum-generator-for-sketch-3cd256b9d9f0cb5a5d62.js.map"
     ],
     "path---blog-2": [
-      "path---blog-2-3a185f4df7e97ef17958.js",
-      "path---blog-2-3a185f4df7e97ef17958.js.map"
+      "path---blog-2-58d96e937b71c1437106.js",
+      "path---blog-2-58d96e937b71c1437106.js.map"
     ],
     "app": [
-      "app-6e4fda76670f130175bb.js",
+      "app-c479c21ad6d931d71418.js",
       "build-js-styles.css",
-      "app-6e4fda76670f130175bb.js.map",
+      "app-c479c21ad6d931d71418.js.map",
       "build-js-styles.css.map"
     ],
     "path---tags-code-snippet": [
@@ -309,20 +321,20 @@
       "path---tags-videography-8a7316e26ac4e4cd8548.js.map"
     ],
     "path---tags-tips": [
-      "path---tags-tips-0638c203b506abdbd1ff.js",
-      "path---tags-tips-0638c203b506abdbd1ff.js.map"
+      "path---tags-tips-3b76374ad1c4a7947e9e.js",
+      "path---tags-tips-3b76374ad1c4a7947e9e.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
       "path---404-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---blog-2018-shortcode-laravel-change-api-resource-fields": [
-      "path---blog-2018-shortcode-laravel-change-api-resource-fields-56633db5acb9c0ccf1e2.js",
-      "path---blog-2018-shortcode-laravel-change-api-resource-fields-56633db5acb9c0ccf1e2.js.map"
+      "path---blog-2018-shortcode-laravel-change-api-resource-fields-6468d71669fd8522e711.js",
+      "path---blog-2018-shortcode-laravel-change-api-resource-fields-6468d71669fd8522e711.js.map"
     ],
     "path---tags-github": [
-      "path---tags-github-f228a630a1493b89559f.js",
-      "path---tags-github-f228a630a1493b89559f.js.map"
+      "path---tags-github-1b1e46a350cecae8055b.js",
+      "path---tags-github-1b1e46a350cecae8055b.js.map"
     ],
     "component---src-pages-about-js": [
       "component---src-pages-about-js-0f303e60e0af0a7d5844.js",
@@ -336,13 +348,17 @@
       "path---tags-js-b3a8f20f2831652afe8b.js",
       "path---tags-js-b3a8f20f2831652afe8b.js.map"
     ],
+    "path---tags-composer": [
+      "path---tags-composer-ef1159ce8756498c9917.js",
+      "path---tags-composer-ef1159ce8756498c9917.js.map"
+    ],
     "path---about": [
       "path---about-a5e60245857179c131fa.js",
       "path---about-a5e60245857179c131fa.js.map"
     ],
     "path---projects-doja-website": [
-      "path---projects-doja-website-e8420d5cb0523f9e1e20.js",
-      "path---projects-doja-website-e8420d5cb0523f9e1e20.js.map"
+      "path---projects-doja-website-0ad772910484e649634e.js",
+      "path---projects-doja-website-0ad772910484e649634e.js.map"
     ]
   }
 }
