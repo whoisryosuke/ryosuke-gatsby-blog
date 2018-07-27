@@ -5,6 +5,7 @@
 <url> <loc>http://whoisryosuke.com//blog</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/3</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/4</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/doja-photography/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/doja-website/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/stayregular-v3/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -31,6 +32,7 @@
 <url> <loc>http://whoisryosuke.com//blog/2018/how-to-create-a-php-package-for-composer/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/express-middleware-for-api-requests/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/nextjs-tip-hot-reloading-for-dynamic-servers/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018/my-visual-studio-code-setup/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/photography/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -74,6 +76,8 @@
 <url> <loc>http://whoisryosuke.com//tags/open-source/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/tutorial/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/express/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/vscode/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/resource/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
