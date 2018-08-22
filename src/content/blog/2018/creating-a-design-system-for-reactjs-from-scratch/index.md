@@ -24,6 +24,8 @@ It's pretty simple when you distill it down.
 
 We need components to share. A place to build them and another place to document them. And linting and testing that ensures code is error free and working.
 
+> This is the best part of how simple a design system can be. If our end user is just importing our components into their app (NPM or otherwise), we don't need to build or transpile our code. The end user will be handling that in their own way. The only reason you'd need to build your code is if you wanted to distribute component files (so users can import them as `<script>` tags from a CDN).
+
 ## The Stack
 
 For the sake of this tutorial, I'll be going with the following stack:
@@ -320,6 +322,8 @@ At the end of the day, **you only need to write React code** and commit it to gi
 You can see my final [JSS Design System boilerplate here](https://github.com/whoisryosuke/jss-design-system), and also look at the branches labeled 'starter'. Or check out the [Emotion JS Design System boilerplate](https://github.com/whoisryosuke/emotion-semantic-ui) for comparison.
 
 In the next part of the tutorial I'll cover adding testing, linting, and automated component documentation!
+
+If you want to add your design system to NPM, [check out their guide here.](https://docs.npmjs.com/getting-started/publishing-npm-packages)
 
 Rock on 🤘
 Ryo
