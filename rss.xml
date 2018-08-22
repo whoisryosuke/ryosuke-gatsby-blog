@@ -1,4 +1,295 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 06 Aug 2018 17:55:21 GMT</lastBuildDate><item><title><![CDATA[2 ways to auto-generate documentation for Laravel APIs 📄⚙️]]></title><description><![CDATA[Recently the Kushy API finally reached a beta release of v1, and I redesigned the Kushy API documentation to use GatsbyJS. The documentation…]]></description><link>http://whoisryosuke.com//blog/2018/adding-auto-generated-docs-to-laravel-api-kushy/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/adding-auto-generated-docs-to-laravel-api-kushy/</guid><pubDate>Mon, 06 Aug 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently the Kushy API finally reached a beta release of v1, and I redesigned the Kushy API documentation to use GatsbyJS. The documentation itself was hand-written in Markdown, with a structure inspired by most API docs (endpoints with descriptions, code snippets, and response examples). &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 22 Aug 2018 18:48:42 GMT</lastBuildDate><item><title><![CDATA[Creating a Design System for ReactJS from Scratch]]></title><description><![CDATA[Design systems are upon us. Everywhere you look, companies are releasing new fangled design systems with fancy names like  Polaris…]]></description><link>http://whoisryosuke.com//blog/2018/creating-a-design-system-for-reactjs-from-scratch/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/creating-a-design-system-for-reactjs-from-scratch/</guid><pubDate>Wed, 22 Aug 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Design systems are upon us. Everywhere you look, companies are releasing new fangled design systems with fancy names like &lt;a href=&quot;https://polaris.shopify.com/&quot;&gt;Polaris&lt;/a&gt;, &lt;a href=&quot;https://github.com/mashmatrix/react-lightning-design-system&quot;&gt;Lightning&lt;/a&gt;, or &lt;a href=&quot;https://github.com/IBM/carbon-components-react&quot;&gt;Carbon&lt;/a&gt;. And you&apos;ve got open source systems like &lt;a href=&quot;https://github.com/mui-org/material-ui&quot;&gt;Material UI&lt;/a&gt; getting used in &lt;a href=&quot;https://www.npmjs.com/package/@material-ui/core&quot;&gt;every other project&lt;/a&gt; because of their high quality and accessibility.&lt;/p&gt;
+&lt;p&gt;But if you&apos;re here, I don&apos;t need to convince you of the advantages of having a design system. You already know the benefits of having a single source of truth for your web components across all projects, and how empowering it is for developers to have a dedicated ecosystem to control and create a consistent style guide. &lt;/p&gt;
+&lt;p&gt;You&apos;re probably asking yourself the same thing I did: What exactly does it take to make a design system? I wrote down traits I&apos;d encountered across most systems that were absolutely essential and went on my way.&lt;/p&gt;
+&lt;h2&gt;Requirements for a Design System&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Components &lt;/li&gt;
+&lt;li&gt;Development environment to view components&lt;/li&gt;
+&lt;li&gt;Documentation (with prop-types and examples)&lt;/li&gt;
+&lt;li&gt;Unit testing &lt;em&gt;(and ideally visual regression)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Automated code linting and formatting&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It&apos;s pretty simple when you distill it down. &lt;/p&gt;
+&lt;p&gt;We need components to share. A place to build them and another place to document them. And linting and testing that ensures code is error free and working.&lt;/p&gt;
+&lt;h2&gt;The Stack&lt;/h2&gt;
+&lt;p&gt;For the sake of this tutorial, I&apos;ll be going with the following stack:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Component system:&lt;/strong&gt; &lt;a href=&quot;https://reactjs.org&quot;&gt;ReactJS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CSS in JS:&lt;/strong&gt; &lt;a href=&quot;https://github.com/cssinjs/react-jss&quot;&gt;react-jss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Code Transpiling for Development&lt;/strong&gt;: &lt;a href=&quot;https://babeljs.io/docs/en&quot;&gt;Babel&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Development Environment:&lt;/strong&gt; &lt;a href=&quot;https://storybook.js.org/&quot;&gt;StorybookJS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Component testing:&lt;/strong&gt; &lt;a href=&quot;https://jestjs.io/&quot;&gt;jest&lt;/a&gt; + [enzyme]&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Documentation:&lt;/strong&gt; &lt;a href=&quot;https://github.com/styleguidist/react-styleguidist&quot;&gt;react-styleguideist&lt;/a&gt;(&lt;a href=&quot;https://github.com/airbnb/enzyme&quot;&gt;https://github.com/airbnb/enzyme&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Code linting + formatting:&lt;/strong&gt; &lt;a href=&quot;https://eslint.org/&quot;&gt;ESLint&lt;/a&gt; + &lt;a href=&quot;https://github.com/prettier/prettier&quot;&gt;Prettier&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Let&apos;s tackle each of these needs one by one, and build this design system piece by piece. &lt;/p&gt;
+&lt;h2&gt;Components&lt;/h2&gt;
+&lt;p&gt;We&apos;ll be building our components with ReactJS, and in this case, styling them using a CSS in JS library. You can totally use CSS, SASS, LESS, or whatever you prefer in your own system. I chose CSS in JS for the benefits when used in design systems.&lt;/p&gt;
+&lt;p&gt;CSS in JS &lt;a href=&quot;https://hackernoon.com/all-you-need-to-know-about-css-in-js-984a72d48ebc&quot;&gt;allows for advantages&lt;/a&gt; like less dead CSS, optimized styles on demand - rather than loading an entire CSS stylesheet of stuff we don&apos;t use, and more modularity by separating the CSS on a component level. Your style logic is separated beyond simply files - since all class names are uniquely generated (&lt;code class=&quot;language-text&quot;&gt;.bem--btn-1389429&lt;/code&gt;), you don&apos;t have to worry about namespace collisions or leaky styles.  &lt;/p&gt;
+&lt;p&gt;This allows our components to be as &lt;strong&gt;lightweight as possible&lt;/strong&gt;, and slip in and out of other apps without requiring global styles that would conflict with other systems.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you don&apos;t know what CSS in JS is, here&apos;s &lt;a href=&quot;https://hackernoon.com/all-you-need-to-know-about-css-in-js-984a72d48ebc&quot;&gt;everything you need to know&lt;/a&gt;. And here&apos;s &lt;a href=&quot;https://medium.com/@gajus/stop-using-css-in-javascript-for-web-development-fa32fb873dcc&quot;&gt;why you might not want to use it.&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I&apos;ll quickly cover how I chose the CSS in JS library in correlation to design systems. If you&apos;re not that interested in those, just skip past to &lt;em&gt;&quot;Starting your project&quot;&lt;/em&gt;.&lt;/p&gt;
+&lt;h3&gt;The CSS in JS War&lt;/h3&gt;
+&lt;p&gt;There are quite a few CSS in JS options out on the market, from &lt;a href=&quot;https://www.styled-components.com/&quot;&gt;Styled Components&lt;/a&gt; to &lt;a href=&quot;https://github.com/Khan/aphrodite&quot;&gt;Aphrodite&lt;/a&gt; to &lt;a href=&quot;https://github.com/emotion-js/emotion&quot;&gt;Emotion&lt;/a&gt; to JSS and everything in between. So how do you choose between all of them? &lt;/p&gt;
+&lt;p&gt;I left it down to a few factors: Ease of use, Bundle Size, and Performance (load and render times).&lt;/p&gt;
+&lt;p&gt;If you like writing code that looks more like actual CSS, you probably want to go with &lt;strong&gt;Styled Components&lt;/strong&gt; or &lt;strong&gt;Emotion&lt;/strong&gt;. Or if you&apos;re looking for React Native support out of the box, you&apos;d pick Aphrodite. And if you wanted to judge by performance, well...those numbers &lt;a href=&quot;https://github.com/oliviertassinari/a-journey-toward-better-style#results&quot;&gt;seem&lt;/a&gt; &lt;a href=&quot;https://medium.com/@tkh44/emotion-ad1c45c6d28b&quot;&gt;all&lt;/a&gt; &lt;a href=&quot;https://github.com/hellofresh/css-in-js-perf-tests&quot;&gt;over&lt;/a&gt; &lt;a href=&quot;http://cssinjs.org/performance/?v=v9.8.7&quot;&gt;the&lt;/a&gt; &lt;a href=&quot;https://github.com/A-gambit/CSS-IN-JS-Benchmarks&quot;&gt;place&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;My CSS in JS choice&lt;/h3&gt;
+&lt;p&gt;At the end of of the day, I chose JSS (specifically react-jss for React integration). It&apos;s got great performance, small bundle, and large system&apos;s like Material UI have shown it&apos;s worth.&lt;/p&gt;
+&lt;p&gt;I initially chose Emotion, because I liked writing real CSS instead of JSON. But theming with Emotion didn&apos;t work as well as it did with JSS. Emotion technically performs better when you don&apos;t used it&apos;s &apos;styled&apos; components, but it forces you to use them when you want theme variables in your CSS. Less perf, more abstraction and dependencies-- not what I wanted for this system.&lt;/p&gt;
+&lt;p&gt;JSS was the clear winner, time to build our system.&lt;/p&gt;
+&lt;h2&gt;Starting your project&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Create a new folder for your project: &lt;code class=&quot;language-text&quot;&gt;mkdir your-design-system&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Inside the project folder, initialize an NPM package: &lt;code class=&quot;language-text&quot;&gt;npm init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Create a Git repository: &lt;code class=&quot;language-text&quot;&gt;git init&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Install the dev dependencies: &lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; i --save-dev react react-dom babel-cli babel-core babel-preset-env babel-preset-react @storybook/react @storybook/addon-options
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;Install the dependencies: &lt;code class=&quot;language-text&quot;&gt;npm install react-jss&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Go inside your &lt;code class=&quot;language-text&quot;&gt;package.json&lt;/code&gt; and add peer dependencies:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;peerDependencies&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;react&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^16.0.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;react-dom&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^16.0.0&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;Create a &lt;code class=&quot;language-text&quot;&gt;.babelrc&lt;/code&gt; file in the project root and add these preset configurations: &lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token property&quot;&gt;&quot;presets&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;env&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;react&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;Create a new folder in the project root called &lt;code class=&quot;language-text&quot;&gt;.storybook&lt;/code&gt; and create a &lt;code class=&quot;language-text&quot;&gt;config.js&lt;/code&gt; file in that folder with the following config:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; configure &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@storybook/react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; setOptions &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;@storybook/addon-options&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Option defaults:&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;setOptions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Name to display in the top left corner
+   * @type {String}
+   */&lt;/span&gt;
+  name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;JSS Design System&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * URL for name in top left corner to link to
+   * @type {String}
+   */&lt;/span&gt;
+  url&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://github.com/whoisryosuke&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Show story component as full screen
+   * @type {Boolean}
+   */&lt;/span&gt;
+  goFullScreen&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Display left panel that shows a list of stories
+   * @type {Boolean}
+   */&lt;/span&gt;
+  showLeftPanel&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Display horizontal panel that displays addon configurations
+   * @type {Boolean}
+   */&lt;/span&gt;
+  showDownPanel&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Display floating search box to search through stories
+   * @type {Boolean}
+   */&lt;/span&gt;
+  showSearchBox&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Show horizontal addons panel as a vertical panel on the right
+   * @type {Boolean}
+   */&lt;/span&gt;
+  downPanelInRight&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Sorts stories
+   * @type {Boolean}
+   */&lt;/span&gt;
+  sortStoriesByKind&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Regex for finding the hierarchy separator
+   * @example:
+   *   null - turn off hierarchy
+   *   /\// - split by `/`
+   *   /\./ - split by `.`
+   *   /\/|\./ - split by `/` or `.`
+   * @type {Regex}
+   */&lt;/span&gt;
+  hierarchySeparator&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * Sidebar tree animations
+   * @type {Boolean}
+   */&lt;/span&gt;
+  sidebarAnimations&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;/**
+   * ID to select an addon panel
+   * @type {String}
+   */&lt;/span&gt;
+  selectedAddonPanel&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; undefined &lt;span class=&quot;token comment&quot;&gt;// The order of addons in the &quot;Addons Panel&quot; is the same as you import them in &apos;addons.js&apos;. The first panel will be opened by default as you run Storybook&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// This will search the /src/components/ folder (and sub-folders) for any files that match &amp;lt;filename&gt;.story.js &lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// (e.g /src/components/Button/Button.story.js)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; req &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; require&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;context&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;../src/components/&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token regex&quot;&gt;/(\.story\.js$)|(\.story\.jsx$)/&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;loadStories&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;keys&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;filename&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;filename&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;configure&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;loadStories&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; module&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;And now you have a base project to start developing components! Let&apos;s break down what just happened:&lt;/p&gt;
+&lt;p&gt;We created a new project (NPM, Git, etc), installed all the dependencies, and setup default configurations for Babel and Storybook. The Storybook config specifically tells Storybook to grab all the stories from the &lt;code class=&quot;language-text&quot;&gt;src/components/&lt;/code&gt; folder that have the suffix &lt;code class=&quot;language-text&quot;&gt;.story.js&lt;/code&gt;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Check out the &lt;a href=&quot;https://storybook.js.org/basics/slow-start-guide/&quot;&gt;StorybookJS&apos; Slow Start Guide&lt;/a&gt; for more behind the setup of that.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Creating our first component&lt;/h2&gt;
+&lt;p&gt;We&apos;ll be placing our components in the &lt;code class=&quot;language-text&quot;&gt;/src/components/&lt;/code&gt; folder. Each component will be stored inside it&apos;s own folder, preferably Pascal cased (ComponentNameExample). Inside will contain any components, stories, tests, and an &lt;code class=&quot;language-text&quot;&gt;index.js&lt;/code&gt; to provide default exports for all the components.&lt;/p&gt;
+&lt;p&gt;It should look like this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;components
+└─┬ Button
+     ├── Button.js
+     ├── Button.story.js
+     ├── Button.test.js
+     ├── ButtonAlternate.js
+     ├── ButtonAlternate.story.js
+     └── ButtonAlternate.test.js&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Let&apos;s start by creating a new component at &lt;code class=&quot;language-text&quot;&gt;/src/components/Button/Button.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;react&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// The HOC we wrap our components in to apply styles&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; injectSheet &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;react-jss&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Your CSS file - in a JS object&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;styles&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; theme &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;// All top level object keys are different class names&lt;/span&gt;
+  myButton&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// Global style applied from theming&lt;/span&gt;
+    color&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; theme&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;text&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;color&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    margin&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// jss-expand gives more readable syntax&lt;/span&gt;
+      top&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// jss-default-unit makes this 5px&lt;/span&gt;
+      right&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      bottom&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      left&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1rem&quot;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// And we get SASS/LESS like qualities with the nested &amp;amp;&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;&amp;amp; span&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token comment&quot;&gt;// jss-nested applies this to a child span&lt;/span&gt;
+      fontWeight&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;bold&quot;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// jss-camel-case turns this into &apos;font-weight&apos;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  myLabel&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    fontStyle&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;italic&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Define the component using these styles and pass it the &apos;classes&apos; prop.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// Use this to assign scoped class names.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;Button&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; classes&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; children &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;button className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;classes&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;myButton&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;span className&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;classes&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;myLabel&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;children&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;span&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;button&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Export component with HOC to apply styles from above&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;default&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;injectSheet&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;styles&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Button&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Let&apos;s break this component down and understand how JSS works.&lt;/p&gt;
+&lt;p&gt;The first major thing we see is a variable for CSS styling called &lt;code class=&quot;language-text&quot;&gt;styles&lt;/code&gt;. In this case, the &lt;code class=&quot;language-text&quot;&gt;styles&lt;/code&gt; variable is a function that accepts a &lt;code class=&quot;language-text&quot;&gt;theme&lt;/code&gt; object, and returns an object of CSS classes. That &lt;code class=&quot;language-text&quot;&gt;theme&lt;/code&gt; object contains global values we place in a &lt;code class=&quot;language-text&quot;&gt;theme.js&lt;/code&gt; file, allowing us to set dynamic values like &lt;code class=&quot;language-text&quot;&gt;theme.text.color&lt;/code&gt;. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you don&apos;t need to access any theme variables, the &lt;code class=&quot;language-text&quot;&gt;styles&lt;/code&gt; variable can be just an object (instead of a function).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Below the &lt;code class=&quot;language-text&quot;&gt;styles&lt;/code&gt; variable is the actual Button itself, which is just a functional React component. The &lt;code class=&quot;language-text&quot;&gt;injectSheet&lt;/code&gt; HOC processes the style variable and provides a &lt;code class=&quot;language-text&quot;&gt;classes&lt;/code&gt; prop on the Button component. We grab our class names from there, and apply them using &lt;code class=&quot;language-text&quot;&gt;className={classes.buttonClassName}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;So basically:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CSS is written as a Javascript object&lt;/li&gt;
+&lt;li&gt;We wrap our component in a &quot;HOC&quot; (see below)&lt;/li&gt;
+&lt;li&gt;The HOC compiles the CSS &lt;em&gt;object&lt;/em&gt; into &lt;em&gt;actual CSS&lt;/em&gt; and injects it into the app (as &lt;code class=&quot;language-text&quot;&gt;&amp;lt;style&amp;gt;&amp;lt;/style&amp;gt;&lt;/code&gt; elements in the &lt;code class=&quot;language-text&quot;&gt;&amp;lt;head&amp;gt;&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;The HOC also provides our component with a &lt;code class=&quot;language-text&quot;&gt;classes&lt;/code&gt; prop, which contains any class names we wrote in our CSS object earlier.&lt;/li&gt;
+&lt;li&gt;We then apply class names to our components using the &lt;code class=&quot;language-text&quot;&gt;classes&lt;/code&gt; object (kinda like &lt;a href=&quot;https://github.com/css-modules/css-modules&quot;&gt;CSS modules&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Now that we have a component, let&apos;s actually figure out how to look at it.&lt;/p&gt;
+&lt;h2&gt;Setting up the dev environment&lt;/h2&gt;
+&lt;p&gt;The problem with developing React components is having a dev environment setup to make the process possible. You&apos;ll usually find yourself using a boilerplate like &lt;strong&gt;Create React App&lt;/strong&gt;, or creating a &lt;strong&gt;custom Webpack config&lt;/strong&gt; to compile the JS to a page. Instead of &lt;em&gt;bloating&lt;/em&gt; our project down with all the Create React App dependencies, or going through the hassle of setting up Webpack just to look at components -- we use StorybookJS.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://storybook.js.org&quot;&gt;&lt;strong&gt;StorybookJS&lt;/strong&gt;&lt;/a&gt; is a live development environment for your components. Spinning up StorybookJS locally launches a component library in your browser, with live component previews (and hot reloading if you save changes). By creating &lt;em&gt;&quot;stories&quot;&lt;/em&gt;, we can browse through our components, and even create different states (like an active or disabled button). &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Ironically&lt;/em&gt;, StorybookJS uses Create React App to run your application. It just downloads it on demand.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Creating stories&lt;/h2&gt;
+&lt;p&gt;Our Storybook config (&lt;code class=&quot;language-text&quot;&gt;/.storybook/config.js&lt;/code&gt;) looks through our &lt;code class=&quot;language-text&quot;&gt;src/components/&lt;/code&gt; folder and finds any files with the suffix &lt;code class=&quot;language-text&quot;&gt;.story.js&lt;/code&gt;. &lt;/p&gt;
+&lt;p&gt;We can create our first story by making a file in &lt;code class=&quot;language-text&quot;&gt;src/components/Button/Button.story.js&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; React &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; storiesOf &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@storybook/react&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; action &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@storybook/addon-actions&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; ThemeProvider &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;react-jss&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; theme &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;../../theme/theme&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; Button &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;./Button&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;storiesOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Button&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; module&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;with text&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;ThemeProvider theme&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;theme&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Button onClick&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;clicked&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;Hello Button&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;Button&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;ThemeProvider&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;with some emoji&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;ThemeProvider theme&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;theme&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Button onClick&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;clicked&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;span role&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;img&quot;&lt;/span&gt; aria&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;label&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;so cool&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;😀 😎 👍 💯&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;span&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;Button&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;ThemeProvider&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;   
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;Storybook uses a function called &lt;code class=&quot;language-text&quot;&gt;storiesOf&lt;/code&gt; to create stories of your component. We chain &lt;code class=&quot;language-text&quot;&gt;.add(description, component)&lt;/code&gt; methods to it with the variations of our component.&lt;/p&gt;
+&lt;p&gt;The only special thing we do here is wrap our components in a &lt;code class=&quot;language-text&quot;&gt;&amp;lt;ThemeProvider&amp;gt;&lt;/code&gt; component. This comes from &lt;code class=&quot;language-text&quot;&gt;react-jss&lt;/code&gt;, and uses React&apos;s Context Provider system to pass the &lt;code class=&quot;language-text&quot;&gt;theme&lt;/code&gt; object down to our &lt;code class=&quot;language-text&quot;&gt;&amp;lt;Button&amp;gt;&lt;/code&gt;.  If we didn&apos;t wrap this, we couldn&apos;t use the &lt;code class=&quot;language-text&quot;&gt;theme&lt;/code&gt; variable in our components.&lt;/p&gt;
+&lt;h2&gt;Running your Storybook&lt;/h2&gt;
+&lt;p&gt;Starting up StorybookJS is as simple as &lt;code class=&quot;language-text&quot;&gt;npm run storybook&lt;/code&gt;. This will spin up a development server at &lt;a href=&quot;http://localhost:9001/&quot;&gt;http://localhost:9001/&lt;/a&gt;. Here you&apos;ll find the Storybook dashboard, and any stories you&apos;ve created inside &lt;code class=&quot;language-text&quot;&gt;src/components/&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you make any changes to your components and save while Storybook dev server is running, it&apos;ll re-build and reload with any changes.&lt;/p&gt;
+&lt;h2&gt;Simple as that!&lt;/h2&gt;
+&lt;p&gt;You&apos;d be surprised by how easy it can be to start developing React components and deploying them as NPM packages. &lt;/p&gt;
+&lt;p&gt;At the end of the day, &lt;strong&gt;you only need to write React code&lt;/strong&gt; and commit it to git. &lt;strong&gt;There&apos;s no need to setup crazy build processes&lt;/strong&gt; like Webpack or Parcel, or even Babel really. Your components will be imported into other people&apos;s projects who will handle transpiling on their end. The simpler you keep your project, the better actually.&lt;/p&gt;
+&lt;p&gt;You can see my final &lt;a href=&quot;https://github.com/whoisryosuke/jss-design-system&quot;&gt;JSS Design System boilerplate here&lt;/a&gt;, and also look at the branches labeled &apos;starter&apos;. Or check out the &lt;a href=&quot;https://github.com/whoisryosuke/emotion-semantic-ui&quot;&gt;Emotion JS Design System boilerplate&lt;/a&gt; for comparison.&lt;/p&gt;
+&lt;p&gt;In the next part of the tutorial I&apos;ll cover adding testing, linting, and automated component documentation!&lt;/p&gt;
+&lt;p&gt;Rock on 🤘
+Ryo&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/cssinjs/react-jss&quot;&gt;react-jss&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://storybook.js.org/basics/guide-react/&quot;&gt;Storybook for React&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/oliviertassinari/a-journey-toward-better-style#results&quot;&gt;CSS in JS Performance 1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://medium.com/@tkh44/emotion-ad1c45c6d28b&quot;&gt;CSS in JS Performance 2&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/hellofresh/css-in-js-perf-tests&quot;&gt;CSS in JS Performance 3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://cssinjs.org/performance/?v=v9.8.7&quot;&gt;CSS in JS Performance 4&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/A-gambit/CSS-IN-JS-Benchmarks&quot;&gt;CSS in JS Performance 5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/mui-org/material-ui/issues/6115&quot;&gt;CSS in JS Performance 6 - Why Material UI chose JSS over Styled Components&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sumup/circuit-ui&quot;&gt;circuit-ui - Design system using Emotion&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=bLgZwFRYTJ4&quot;&gt;Video: Siddharth Kshetrapal - We Need To Talk About Our Frontend Workflow - ReactFest &lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=iMunXpy2Ezo&quot;&gt;Video: Jon Gold - react-sketchapp: Design as a Function of Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://bradfrost.github.io/style-guide-guide/&quot;&gt;Style Guide Guide&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[2 ways to auto-generate documentation for Laravel APIs 📄⚙️]]></title><description><![CDATA[Recently the Kushy API finally reached a beta release of v1, and I redesigned the Kushy API documentation to use GatsbyJS. The documentation…]]></description><link>http://whoisryosuke.com//blog/2018/adding-auto-generated-docs-to-laravel-api-kushy/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/adding-auto-generated-docs-to-laravel-api-kushy/</guid><pubDate>Mon, 06 Aug 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently the Kushy API finally reached a beta release of v1, and I redesigned the Kushy API documentation to use GatsbyJS. The documentation itself was hand-written in Markdown, with a structure inspired by most API docs (endpoints with descriptions, code snippets, and response examples). &lt;/p&gt;
 &lt;p&gt;This got pretty tedious pretty quick, and immediately becomes an issue when any small updates occur to the API and require manual modification of a separate doc repo. It became time to auto-generate our docs from our codebase, and discovering the best way to accomplish that within the Laravel framework.&lt;/p&gt;
 &lt;p&gt;The options were fairly slim after some research: &lt;/p&gt;
 &lt;ol&gt;
