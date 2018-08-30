@@ -2,7 +2,7 @@
 title: Headstash
 date: "2017-06-15"
 section: project
-cover_image: "./Website Mockup Copy.jpg"
+cover_image: "./Website-Mockup-Copy.jpg"
 tags: [ 'web design', 'ui', 'ux', 'branding', 'photography' ]
 ---
 
@@ -16,6 +16,7 @@ My role in the project was to be the sole creator. I would develop the branding 
 
 For the Headstash branding, I primarily took inspiration from Amazon and the Gap, and taking note of cues from Etsy. 
 
+<p><img src="./headstash-header.png" alt="" /></p>
 <p><img src="./branding.png" alt="" /></p>
 
 The logo drew most inspiration from the Gap with it's refined and safe qualities exhibited by the san-serif typeface. After a bit of experimentation, I ended up on the Headstash "logo" to be it's logotype in white inside a black box.
@@ -34,7 +35,7 @@ Before developing the application, I embarked on user research through user flow
 
 I really wanted Headstash to feel modern, and the first impression users receive from a website is it's visual theming. I set out to create components that would exhibit the style I was looking to achieve, to later restyle pre-existing Wordpress elements. I took inspiration from Material Design, and used some of their components as the basis.
 
-<p><img src="./Website Mockup Copy.jpg" alt="" /></p>
+<p><img src="./Website-Mockup-Copy.jpg" alt="" /></p>
 <p><img src="./interface-design1.png" alt="" /></p>
 
 ## Website Design
