@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 13 Sep 2018 19:55:52 GMT</lastBuildDate><item><title><![CDATA[Deploy MDX-Deck to Netlify 🚀]]></title><description><![CDATA[As I'm starting to prepare for delivering talks and presentations, I've decided to upgrade my slideshow game to use React components…]]></description><link>http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</guid><pubDate>Thu, 13 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As I&apos;m starting to prepare for delivering talks and presentations, I&apos;ve decided to upgrade my slideshow game to use React components 📈💁‍♀️&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 13 Sep 2018 20:02:51 GMT</lastBuildDate><item><title><![CDATA[Deploy MDX-Deck to Netlify 🚀]]></title><description><![CDATA[As I'm starting to prepare for delivering talks and presentations, I've decided to upgrade my slideshow game to use React components…]]></description><link>http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</guid><pubDate>Thu, 13 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As I&apos;m starting to prepare for delivering talks and presentations, I&apos;ve decided to upgrade my slideshow game to use React components 📈💁‍♀️&lt;/p&gt;
 &lt;p&gt;As a React developer, it&apos;s only natural to want to include real example of my work inside my presentations, and &lt;a href=&quot;https://github.com/mdx-js/mdx&quot;&gt;MDX&lt;/a&gt; makes that possible using a mix of Markdown and JSX.&lt;/p&gt;
 &lt;p&gt;But rather than building my own slideshow framework in React, I decided to utilize &lt;a href=&quot;https://github.com/jxnblk/mdx-deck&quot;&gt;&lt;strong&gt;mdx-deck&lt;/strong&gt;&lt;/a&gt;, a framework and CLI for creating MDX-powered slideshows. It makes creating slide decks as simple as writing Markdown, and provides indispensable features:&lt;/p&gt;
 &lt;ul&gt;
@@ -17,12 +17,12 @@
 &lt;p&gt;I just used the example MDX deck provided by in the mdx-deck repo. I copied it into a new folder, created a new git repo, and pushed it to Github.&lt;/p&gt;
 &lt;p&gt;You can clone my project to get started.&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Clone the project to your Github&lt;/li&gt;
+&lt;li&gt;Clone the project and add to your Github&lt;/li&gt;
 &lt;li&gt;Add the repo to Netlify&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;or&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;Click deploy to Netlify on the example repo&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://app.netlify.com/start/deploy?repository=https://github.com/whoisryosuke/mdx-deck-netlify&quot;&gt;Click deploy here to Netlify&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;⚙️ Netlify settings&lt;/h2&gt;
 &lt;p&gt;In order to make sure our deck deploys properly using continuous integration, we have to configure Netlify to build and display our app.  &lt;/p&gt;
@@ -32,11 +32,11 @@
 &lt;li&gt;Set the deploy folder to &lt;code class=&quot;language-text&quot;&gt;dist&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;We give Netlify a build script to run each time we make a commit to the repo. And the deploy folder is the place where mdx-deck exports the static HTML/JS version, and by pointing Netlify there it displays our deck after building.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://dazzling-kepler-4cc40d.netlify.com/&quot;&gt;See the demo site here&lt;/a&gt; | &lt;a href=&quot;https://github.com/whoisryosuke/mdx-deck-netlify&quot;&gt;Source code&lt;/a&gt;&lt;/p&gt;
 &lt;h2&gt;Why Netlify? 🤨&lt;/h2&gt;
 &lt;p&gt;I found myself in a situation where I didn&apos;t have immediate access to a development environment (Node/NPM specifically). I thought of using something like &lt;a href=&quot;http://codesandbox.io&quot;&gt;CodeSandbox&lt;/a&gt;, but since I was running build scripts and not just importing modules, it wasn&apos;t suitable for projects like mdx-deck.&lt;/p&gt;
 &lt;p&gt;Hosting on Netlify allows me to utilize &lt;a href=&quot;http://github.com&quot;&gt;Github&lt;/a&gt; as an code editor/IDE, make changes to my deck&apos;s repo, and deploy those to Netlify immediately. It gives me the power of a development environment &lt;em&gt;(on a delay)&lt;/em&gt; in the cloud. &lt;/p&gt;
 &lt;p&gt;This way, if I need to make quick changes to my talk, I can deploy them easily through web interfaces 👏👌&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://dazzling-kepler-4cc40d.netlify.com/&quot;&gt;See the demo site here&lt;/a&gt; | &lt;a href=&quot;https://github.com/whoisryosuke/mdx-deck-netlify&quot;&gt;Source code&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Hope that helps!
 Ryo&lt;/p&gt;
 &lt;hr&gt;
