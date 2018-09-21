@@ -52,6 +52,7 @@
 <url> <loc>http://whoisryosuke.com//projects/kushy-api-docs/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//projects/koleto/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//blog/2018/gatsby-documentation-starter/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/photography/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/development/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
@@ -123,6 +124,7 @@
 <url> <loc>http://whoisryosuke.com//tags/responsive-design/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/mdx/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/jsx/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
+<url> <loc>http://whoisryosuke.com//tags/boilerplate/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//about/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>
 <url> <loc>http://whoisryosuke.com//tags/</loc> <changefreq>daily</changefreq> <priority>0.7</priority> </url>

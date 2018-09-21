@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 13 Sep 2018 20:02:51 GMT</lastBuildDate><item><title><![CDATA[Deploy MDX-Deck to Netlify 🚀]]></title><description><![CDATA[As I'm starting to prepare for delivering talks and presentations, I've decided to upgrade my slideshow game to use React components…]]></description><link>http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</guid><pubDate>Thu, 13 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As I&apos;m starting to prepare for delivering talks and presentations, I&apos;ve decided to upgrade my slideshow game to use React components 📈💁‍♀️&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 21 Sep 2018 21:47:01 GMT</lastBuildDate><item><title><![CDATA[Generate documentation for any React project using GatsbyJS]]></title><description><![CDATA[I recently was exploring different documentation solutions for design systems, and through my experimentation I  created a template to…]]></description><link>http://whoisryosuke.com//blog/2018/gatsby-documentation-starter/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/gatsby-documentation-starter/</guid><pubDate>Fri, 21 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I recently was exploring different documentation solutions for design systems, and through my experimentation I &lt;strong&gt;created a template to create Gatsby documentation for any React project.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Write your documentation inline with your components as &lt;a href=&quot;http://usejsdoc.org/&quot;&gt;docblocks&lt;/a&gt;, and add more in-depth descriptions + live examples using &lt;a href=&quot;https://github.com/mdx-js/mdx&quot;&gt;MDX&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you&apos;re code is &lt;em&gt;already&lt;/em&gt; documented, and your components are located in &lt;code class=&quot;language-text&quot;&gt;src/components&lt;/code&gt; -- then &lt;strong&gt;you&apos;re good to go!&lt;/strong&gt; Clone this project into your codebase and &lt;em&gt;let it rip!&lt;/em&gt; 🚀&lt;/p&gt;
+&lt;p&gt;Don&apos;t have that setup? &lt;em&gt;Don&apos;t worry!&lt;/em&gt; I cover everything below 👇&lt;/p&gt;
+&lt;h2&gt;Getting started&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Install with Netlify&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://app.netlify.com/start/deploy?repository=https://github.com/whoisryosuke/gatsby-documentation-starter/tree/example&quot;&gt;&lt;img src=&quot;https://www.netlify.com/img/deploy/button.svg&quot; alt=&quot;Deploy to Netlify&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Install with Gatsby CLI&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;gatsby new docs https://github.com/whoisryosuke/gatsby-documentation-starter/&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Install from Github&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;git clone https://github.com/whoisryosuke/gatsby-documentation-starter.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Update &lt;code class=&quot;language-text&quot;&gt;gatsby-config.js&lt;/code&gt; with the location of your components + MDX &lt;em&gt;(see: &quot;Changing source folder&quot;)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;npm install&lt;/code&gt; inside project&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;npm run develop&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;View your documentation: &lt;a href=&quot;http://localhost:8000&quot;&gt;http://localhost:8000&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Creating documentation&lt;/h3&gt;
+&lt;p&gt;Documentation is sourced from two places: component source code and MDX files.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;src
+└── components
+    └── Button
+        ├── Button.js
+        └── Button.mdx&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/reactjs/react-docgen&quot;&gt;&lt;strong&gt;React-docgen&lt;/strong&gt;&lt;/a&gt; grabs any JS Docblocks you write for your React classes/functions (&lt;code class=&quot;language-text&quot;&gt;Button.js&lt;/code&gt;), as well as the Prop Types. These are displayed on your documentation page, with the props organized in a table.&lt;/p&gt;
+&lt;p&gt;Inside your &lt;strong&gt;MDX&lt;/strong&gt; file you can write additional documentation with JSX examples (like React components!). You can also specify the page slug here (a &lt;strong&gt;page name&lt;/strong&gt; and &lt;strong&gt;category&lt;/strong&gt;). Your pages will be generated as &lt;code class=&quot;language-text&quot;&gt;http://yoursite.com/&amp;lt;category&amp;gt;/&amp;lt;pageName&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In order for your component data to show up, you need an MDX file for the component - and the page name and component name in the docblock need to match. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you don&apos;t want to create MDX files and generate pages directly from components/JS files -- see the Github docs section: &quot;Creating pages from react-docgen&quot;. The reason I chose MDX foremost is the flexibility of the frontmatter, allowing you to create different &quot;sections&quot; for components (if you have elements vs typography for example).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
+ * ComponentTitle
+**/&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ComponentName&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;React&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Component&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-md&quot;&gt;&lt;code class=&quot;language-md&quot;&gt;---
+name: ComponentTitle
+menu: CategoryName
+---&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Creates a page for the component located at &lt;a href=&quot;http://localhost:8000/categoryname/componentname&quot;&gt;http://localhost:8000/categoryname/componentname&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;How does it work?&lt;/h2&gt;
+&lt;p&gt;Gatsby can get pretty complicated if you&apos;ve never sat down and actually spun up a &quot;Hello World&quot; - and it can get even more complex when building a blog. &lt;/p&gt;
+&lt;p&gt;Here&apos;s how it works on a high-level: &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Gatsby pulls data from your project (JS and MDX files)&lt;/li&gt;
+&lt;li&gt;The data gets transformed into a GraphQL data layer&lt;/li&gt;
+&lt;li&gt;During the build process, Gatsby generates pages for each component using the MDX files. The pages are React components that query GraphQL for our component&apos;s documentation + parsed MDX&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you&apos;re not familiar with how Gatsby works, &lt;a href=&quot;http://gatsby.org&quot;&gt;check out their website&lt;/a&gt; for more info. It&apos;s basically a static-site generator that uses GraphQL during development to generate static pages from dynamic data sources (APIs, local files, etc). &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;A little slower please&lt;/h2&gt;
+&lt;p&gt;Gatsby pulls data into GraphQL, transforms the data (like parsing Markdown), then builds pages based off React components.&lt;/p&gt;
+&lt;p&gt;Let&apos;s break each of those parts down.&lt;/p&gt;
+&lt;h3&gt;♻️ The Data Part&lt;/h3&gt;
+&lt;p&gt;Gatsby works by using &quot;source&quot; plugins to aggregate data into GraphQL. This project is setup with &lt;code class=&quot;language-text&quot;&gt;gatsby-source-filesystem&lt;/code&gt;, which allows you to use the project&apos;s local filesystem (grabbing any file, from TXT to JS to MDX). This creates a GraphQL endpoint with all imported files. Each queried file, or GraphQL &quot;node&quot;, contains auto-generated ID and a stringified version document body. &lt;/p&gt;
+&lt;h3&gt;✨ The Transforming Part&lt;/h3&gt;
+&lt;p&gt;Then Gatsby uses &lt;strong&gt;&quot;transformer&quot;&lt;/strong&gt; plugins to create different GraphQL endpoints structured for specific datasets. If you query GraphQL for the data that the &quot;source&quot; plugin imported, you&apos;d notice that it&apos;s pretty barebones. The transformer plugins do just that, &lt;em&gt;transform&lt;/em&gt; the data into usable formats. For example, &lt;code class=&quot;language-text&quot;&gt;gatsby-transformer-json&lt;/code&gt; goes through each file, checks if it&apos;s JSON, then parses the body string back into an object/array.&lt;/p&gt;
+&lt;p&gt;This template uses &lt;a href=&quot;https://github.com/ChristopherBiscardi/gatsby-mdx/&quot;&gt;gatsby-mdx&lt;/a&gt; by &lt;a href=&quot;https://github.com/ChristopherBiscardi/&quot;&gt;@ChristopherBiscardi&lt;/a&gt; and &lt;a href=&quot;https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-react-docgen&quot;&gt;gatsby-transformer-react-docgen&lt;/a&gt; by the Gatsby team. &lt;strong&gt;gatsby-mdx&lt;/strong&gt; parses any MDX files and creates cached HTML+JS files that are imported into pages. &lt;strong&gt;gatsby-transformer-react-docgen&lt;/strong&gt; uses &lt;a href=&quot;https://github.com/reactjs/react-docgen&quot;&gt;react-docgen&lt;/a&gt;, a CLI tool created by the Facebook team to pull documentation from React components. It runs the CLI on any JS files you import and creates GraphQL endpoints for it.&lt;/p&gt;
+&lt;h3&gt;⚙️ The Build Part&lt;/h3&gt;
+&lt;p&gt;When Gatsby runs it&apos;s build process, it creates pages from any JS files we include inside the &lt;code class=&quot;language-text&quot;&gt;src/pages/&lt;/code&gt; directory. &lt;/p&gt;
+&lt;p&gt;During the build process, it also executes additional modules we add to &lt;code class=&quot;language-text&quot;&gt;gatsby-node.js&lt;/code&gt;. This allows us to do things like add new nodes to GraphQL endpoints, or create pages from GraphQL queries.&lt;/p&gt;
+&lt;p&gt;For this template, I query GraphQL for all MDX files, and create pages from those. The pages are generated from a &quot;template&quot;, which is a React component capable of running GraphQL queries. As Gatsby is a framework, it offers an API/methods for all these actions (querying GraphQL, creating pages from React components, passing data to the React components, etc).&lt;/p&gt;
+&lt;h2&gt;🎨 The Design Process&lt;/h2&gt;
+&lt;p&gt;I wanted to keep the design and actual code pretty lightweight to make it easier to repurpose. The layout of the documentation is 2-column with a header, where the sidebar column disappears on mobile (and a &quot;toggle sidebar&quot; button appears in the header). The snazzy animated mobile button was pulled from Codepen by &lt;a href=&quot;https://codepen.io/ainalem/&quot;&gt;@ ainalem&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;What if I don&apos;t like Gatsby/JS/React/etc?&lt;/h2&gt;
+&lt;p&gt;There are plenty of documentation options out there if you&apos;re looking for a different solution:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/pedronauck/docz/&quot;&gt;Docz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/styleguidist/react-styleguidist&quot;&gt;react-styleguidist&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docusaurus.io/&quot;&gt;Docusaurus&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://vuepress.vuejs.org/&quot;&gt;Vuepress&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gitbook.com/&quot;&gt;Gitbook&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/docsifyjs/docsify&quot;&gt;docsify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And &lt;a href=&quot;https://github.com/topics/documentation&quot;&gt;there are plenty more!&lt;/a&gt; Don&apos;t feel limited to one particular stack or setup. Find one that gels with your flow.&lt;/p&gt;
+&lt;h2&gt;Document everything!&lt;/h2&gt;
+&lt;p&gt;I appreciate great tools that take your hard work slaving over &lt;em&gt;docblocks&lt;/em&gt; and &lt;em&gt;proptypes&lt;/em&gt;, and in a click of a button -- transform your codebase into a fully functioning and well-designed documentation site. &lt;/p&gt;
+&lt;p&gt;I designed this for &lt;strong&gt;design systems&lt;/strong&gt; in mind, but it can really work with &lt;strong&gt;any project&lt;/strong&gt; that uses React components 🙌&lt;/p&gt;
+&lt;p&gt;I&apos;m always looking to empower my fellow devs and designers with tools that can improve their workflow. If this helped you with your docs, let me know in the comments, or send me a tweet 👍&lt;/p&gt;
+&lt;p&gt;Cheers 🍻
+Ryo&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://gatsby.org&quot;&gt;GatsbyJS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/ChristopherBiscardi/gatsby-mdx/&quot;&gt;gatsby-mdx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-react-docgen&quot;&gt;gatsby-transformer-react-docgen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-remark&quot;&gt;gatsby-transformer-remark&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://bradfrost.github.io/style-guide-guide/&quot;&gt;Style Guide Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://codepen.io/ainalem/pen/LJYRxz&quot;&gt;Mobile Button CSS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Deploy MDX-Deck to Netlify 🚀]]></title><description><![CDATA[As I'm starting to prepare for delivering talks and presentations, I've decided to upgrade my slideshow game to use React components…]]></description><link>http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/mdx-deck-on-netlify/</guid><pubDate>Thu, 13 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;As I&apos;m starting to prepare for delivering talks and presentations, I&apos;ve decided to upgrade my slideshow game to use React components 📈💁‍♀️&lt;/p&gt;
 &lt;p&gt;As a React developer, it&apos;s only natural to want to include real example of my work inside my presentations, and &lt;a href=&quot;https://github.com/mdx-js/mdx&quot;&gt;MDX&lt;/a&gt; makes that possible using a mix of Markdown and JSX.&lt;/p&gt;
 &lt;p&gt;But rather than building my own slideshow framework in React, I decided to utilize &lt;a href=&quot;https://github.com/jxnblk/mdx-deck&quot;&gt;&lt;strong&gt;mdx-deck&lt;/strong&gt;&lt;/a&gt;, a framework and CLI for creating MDX-powered slideshows. It makes creating slide decks as simple as writing Markdown, and provides indispensable features:&lt;/p&gt;
 &lt;ul&gt;
