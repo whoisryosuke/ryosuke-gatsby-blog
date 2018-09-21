@@ -8,7 +8,9 @@ tags: [ 'documentation', 'boilerplate', 'react', 'mdx', 'javascript', 'jsx', 'gu
 
 I recently was exploring different documentation solutions for design systems, and through my experimentation I **created a template to create Gatsby documentation for any React project.**
 
-Write your documentation inline with your components as [docblocks](http://usejsdoc.org/), and add more in-depth descriptions + live examples using [MDX](https://github.com/mdx-js/mdx).
+Write your documentation inline with your components as [docblocks](http://usejsdoc.org/), and add more in-depth descriptions + live examples using [MDX](https://github.com/mdx-js/mdx). Check out the [demo here.](https://gatsby-documentation-starter.netlify.com)
+
+<img src="./screenshot.png" alt="Screenshot of demo documentation site" />
 
 If you're code is *already* documented, and your components are located in `src/components` -- then **you're good to go!** Clone this project into your codebase and *let it rip!* 🚀
 
@@ -108,6 +110,12 @@ For this template, I query GraphQL for all MDX files, and create pages from thos
 
 I wanted to keep the design and actual code pretty lightweight to make it easier to repurpose. The layout of the documentation is 2-column with a header, where the sidebar column disappears on mobile (and a "toggle sidebar" button appears in the header). The snazzy animated mobile button was pulled from Codepen by [@ ainalem](https://codepen.io/ainalem/).
 
+## 🚀 Deploy to Netlify
+
+This project is perfect for deploying on Netlify, since it's optimized for static-site generators like Gatsby. 
+
+Once your fork your project, just import the Git repo into Netlify and it should handle the rest!
+
 ## What if I don't like Gatsby/JS/React/etc?
 
 There are plenty of documentation options out there if you're looking for a different solution:
@@ -129,6 +137,8 @@ I designed this for **design systems** in mind, but it can really work with **an
 
 I'm always looking to empower my fellow devs and designers with tools that can improve their workflow. If this helped you with your docs, let me know in the comments, or send me a tweet 👍
 
+[Clone project on Github](https://github.com/whoisryosuke/gatsby-documentation-starter) | [View demo site](https://gatsby-documentation-starter.netlify.com)
+
 Cheers 🍻
 Ryo
 
@@ -136,6 +146,9 @@ Ryo
 
 **References:**
 
+
+- [gatsby-documentation-starter](https://github.com/whoisryosuke/gatsby-documentation-starter)
+- [Demo site](https://gatsby-documentation-starter.netlify.com)
 - [GatsbyJS](http://gatsby.org)
 - [gatsby-mdx](https://github.com/ChristopherBiscardi/gatsby-mdx/)
 - [gatsby-transformer-react-docgen](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-react-docgen)
