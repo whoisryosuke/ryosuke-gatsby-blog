@@ -1,4 +1,224 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 24 Sep 2018 20:58:12 GMT</lastBuildDate><item><title><![CDATA[Automating React Documentation using React-Docgen ⚛⚙️📚]]></title><description><![CDATA[In my neverending quest for making the documentation as painless and seamless as possible, I started experimenting with a library by the…]]></description><link>http://whoisryosuke.com//blog/2018/automating-react-documentation-using-react-docgen/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/automating-react-documentation-using-react-docgen/</guid><pubDate>Mon, 24 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In my neverending quest for making the documentation as painless and seamless as possible, I started experimenting with a library by the Facebook team called &lt;a href=&quot;https://github.com/reactjs/react-docgen&quot;&gt;&lt;strong&gt;react-docgen&lt;/strong&gt;&lt;/a&gt;. &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 27 Nov 2018 00:06:04 GMT</lastBuildDate><item><title><![CDATA[Comparing UX design apps for iOS 🎨📱]]></title><description><![CDATA[Recently I was on the hunt for an iOS to prototype and sketch UI designs in on the go. I whittled my search down to three options: Marvel…]]></description><link>http://whoisryosuke.com//blog/2018/comparing-ux-design-apps-for-ios/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/comparing-ux-design-apps-for-ios/</guid><pubDate>Mon, 26 Nov 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I was on the hunt for an iOS to prototype and sketch UI designs in on the go. I whittled my search down to three options: Marvel, Invision, and Adobe Sketch. I thought I&apos;d share my findings to help other UX/UI designers make their decision 👍&lt;/p&gt;
+&lt;p&gt;First, let&apos;s break down the core features you&apos;d want out of these apps, and which one made the cut:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Marvel&lt;/th&gt;
+&lt;th&gt;Invision&lt;/th&gt;
+&lt;th&gt;Adobe Sketch&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Can draw shapes&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;🤔&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Can insert images&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Can create prototypes from sketch&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Lots of control&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Grid based&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Doesn&apos;t require an account to use&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Allows for linking of screens&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Free to use&lt;/td&gt;
+&lt;td&gt;🤔&lt;/td&gt;
+&lt;td&gt;🤔&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Collaborate live with team&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;td&gt;✅&lt;/td&gt;
+&lt;td&gt;❌&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;It&apos;s clear that Marvel had more features, but was it the better app?  Let me talk about my experience with each one and you can come to your own conclusion.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-c4644.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 53.103188077721185%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAChklEQVQoz02TS09TQRTH+Qwu2JCwAQ1GY1RowUQ0MWxYGMPCGEMKirgx+gXc6VIXvEqM+CKg4RUXWrQEUh9EwEhNgfAIVF6FlgtIue19zp05c5w7vQJncefcMzO/+Z9zZvK2d5V6VVUD+/v79fF4/HpsatoHHOvUjB7QDesWZVCjavoVm5AGSlmtYZp3EPml/JLz/vwSf2N+cVntsRMVtwtOV1bnuYZHjBCS1TT9meurGU3GOMctm0LE9UGc5NmH6sZrHQ3372LN1RsYePAQq+49ih0AHcehAICU0hQw1qwZFs4srtPFNQWzuvVHLBn0QJY39j4NPm9TkwnEVNz8qyj4MRQeO1TIBU0YdRxFAFvUrIEj4zMwPhXHtKoti6nPnlriAfvbX/cEPd92P4NDkYkDoOYA6CIbQpmCIICaid9/zcHk7CqmM/qKC9zTKUbn18hO1pHAzu7/QC6B4ZEvOaAhQOEUh2gG0XAEEEEqHB6bhrHYkgBqEpgxHJxdWCZpTYrsDza/De7OASaiWTs9L2rQOXSoECCXMgemMEpbbEJxLbkDyp6GumlLoCsjmswQ00v55ZteqZAYIBWGBo+kLErIPLAiOt3s1UbGGICoIf8kpGPXOtqJ3Fzfq+6+4NFGhYcj44dAYbIpQLdFp1s9uIwxxlaB87C32fHGga6e9+2uIxTLGgxFRn9KoNjgXhvijhaxkuIeNjEG3DQtEQMXuCRODMnmEWp4wJ7HT9paB2IJ7JhY0ftiG9j04t0PCdzaSvnECylbTyT8mxubZycnfxc6lPu+fhstm19Y9FPGzwjAcduyylfiS6XiVVWI/6KConOFPv/lC4GbdaWVF6vKi09VnHR5/wDQqMvkTvfEnwAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;marvel-screens2.png&quot;
+        title=&quot;&quot;
+        src=&quot;/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-e2462.png&quot;
+        srcset=&quot;/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-f6591.png 270w,
+/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-cce5f.png 540w,
+/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-e2462.png 1080w,
+/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-b1cf7.png 1620w,
+/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-781d5.png 2160w,
+/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-73cc4.png 3240w,
+/static/marvel-screens2-87ec29eac3dd4d3e516a8a3f3cdc2e40-c4644.png 5301w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h1&gt;Marvel app&lt;/h1&gt;
+&lt;p&gt;The Marvel app had &lt;em&gt;nearly&lt;/em&gt; everything I needed. It did an excellent job of onboarding with plenty of helpful tips and even tutorials in empty states to encourage creation. And I was able to import Sketch documents as screens.&lt;/p&gt;
+&lt;p&gt;Drawing felt great, and it had a variety of tools to use (like creating basic shapes, or inserting images - even stock photos). It even featured a grid mode, which allowed for tighter drawing and command over shapes.&lt;/p&gt;
+&lt;p&gt;You can add clickable boxes to your sketch to link between sketches, which when played, is a live (shareable) prototype of your app. This was the only app that allowed for the actual creation of a true &quot;prototype&quot;, and not just a handful of screen sketches.&lt;/p&gt;
+&lt;p&gt;The best part? No account required. You can sketch away and have JPGs saved to your camera roll. Creating an account allows you to share your prototypes online.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The cons?&lt;/strong&gt; Free tier is limited by 2 projects and prototypes are branded with Marvel&apos;s logo (not sketches JPGs though). The paid version starts at $12/mo for unlimited, unbranded projects. Marvel also limits the canvas size to your phone&apos;s screen size, which makes sketching cramped unless you&apos;re working at always working at a 1:1 scale. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The verdict?&lt;/strong&gt; Marvel is the best (and only option) for creating prototypes on the go, but maybe not the best place to sketch out more loose wireframes, site trees, or other UX visual data structures.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-c4644.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 53.103188077721185%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACYElEQVQoz12Sz2sTQRTH+2coiFSrCElbbDRa0Kse9CQepDkoYpOYWosXwasHb0Kt1oPg0YNWQgU1XoKkYP1d2oRSC7HFQkhjjJvdmN35Pc83u1MJDuy+N29mPvPe+04fOXx5AhLpLCSzE07/+UtB8csJAZBjhGcpE9cYlynX9c74fnAdADKUsSmn0z7led5Jr/PnBmU8zTmfbLVa5/rMgOQkwNEcwOgUqIExnxe/PoKe8ctXTU5JqTcmhHhJKXtsfKU0RFZVImAiDTqR5pC8CjCQquvS8rTEDVIqHm7UUGWUvTI+FzIwljHxFM19y/etfRcBj2QARsaVAeqBVANKKzNtXN1qS+UgkkrY8AkpcAXgdQNmTqKdQzMbUAVLlSq1wA82wwzoZFbB6ITJsKER+BtXW12pGrjVo3qTUlpgWJnjdSyQhEDjr65WqR/dY4HDV0CfvaXg9E2A/gsNiUBzpeNLtU0AXARqJQsSgV17knHxD/jt8xp1XP+/DBNpBcdQmAOphni7PCPCQyrM0CV6E0AXbONZVJ2eE0KGwObPFiWUYV9ZD3BkXFpRtlGUe8ooKcEkZX4baF6HGK3DfmH8GfoPIl8Tu/beipI1ogAkc0aUJiyshOqRgES5KPUDN7/ZeTE29hyhD22MW+CnEIjlChTF18dzAoFbsFC+G2Bp6+vf/SAgmnG+Bky8CC+h1DNWkuAJVjFtfBoErhQCJL7VHWCcXbwT42O347B/7BAvLu3CRsU/Li7GyuXKoNZwEM/tbTvO0Pz8fGy7Xh/C+R78dnc6neF8Ph+r1WqDON9neH8Bqq7EFWLxYVwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;invision-screens.png&quot;
+        title=&quot;&quot;
+        src=&quot;/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-e2462.png&quot;
+        srcset=&quot;/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-f6591.png 270w,
+/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-cce5f.png 540w,
+/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-e2462.png 1080w,
+/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-b1cf7.png 1620w,
+/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-781d5.png 2160w,
+/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-73cc4.png 3240w,
+/static/invision-screens-d3dc8aee140e8e72ac877db0d3bf87a5-c4644.png 5301w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h1&gt;Invision app&lt;/h1&gt;
+&lt;p&gt;The Invision app honestly felt the best out of all the other UI/UX iOS apps. The drawing feels great, and you get an infinite canvas to draw on -- something none of the other apps offer. And it was cool to have to option to flick a switch and have my drawing broadcasted to all my other team members watching the same doc. No other UX app featured that kind of live collaboration, only sharing of creation afterwards.&lt;/p&gt;
+&lt;p&gt;You can import your sketch designs and prototypes to browse them on the go. And there are a few other collaborative features, like chatting with team members, that might be more enticing on larger projects.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The cons come quicker here.&lt;/strong&gt; It takes longer to load than Marvel, opening any freehand sketch takes ~15-20s. This app is missing a lot of key features though, such as shape drawing tools, or linking of screens to prototype. And before you even get into the &quot;freehand&quot; sketch mode, you&apos;re required to login to an Invision account (meaning no working without internet). Despite being able to import Sketch files, you can&apos;t actually manipulate or even draw on top of any of them.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The verdict?&lt;/strong&gt; Invision seemed like a great app to sketch in, and maybe even browse prototypes you&apos;ve created on desktop, but it wasn&apos;t possible to prototype on the go.&lt;/p&gt;
+&lt;h2&gt;Pros&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Drawing feels good. Rounded brush works great. &lt;/li&gt;
+&lt;li&gt;Large canvases to work on (infinite)&lt;/li&gt;
+&lt;li&gt;Can create prototypes from sketches&lt;/li&gt;
+&lt;li&gt;Can insert images&lt;/li&gt;
+&lt;li&gt;Can collaborate live with other team members viewing same document.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Cons&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Requires account to use.&lt;/li&gt;
+&lt;li&gt;Can’t draw shapes&lt;/li&gt;
+&lt;li&gt;Can&apos;t link screens to create live prototypes.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/adobe-sketch-2dc509d301f16528c5f11fcf6dbf21ce-063f1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 216.53333333333333%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAArCAIAAAD3xz8iAAAACXBIWXMAAAsSAAALEgHS3X78AAADdklEQVRIx6VWS08TURS+/wxFTTS4kwUbw15REhIfjSwMsgB+AK2giQuiBGOiRHeCYSVCwisgFWYaitDpdDqd6Tw6nVfHb+bUUtoitj05uTlz7vnu+eace+8MC4LAcRxZli3LCi4T13UVRdF1XRAE3/cZXJqmbW9vS5IEu1KptISRH5Gbm1s8z39bXnZdj8Fb8X2aJvE9DwOcvmsDEtqh0/UdohatDqfnssBzKqZy5oXYRuDZviHbu19Dr5QKAxwz0KWKazvpTSADpxQ4FgMHnuP4RuF47pDb3w3nkj/5w0PuIMkl9/DE/doP4w+SfCrFpqfjkZ6XeBwaTyQiO1GNicejmUTNZi//JYmzMZEI9byw2S6ESVK2Y2WeV+5YWblsdqwAG3XaNrhEatuWbZfaA9dvYMex28rPJiYmpqamXoyPf/zw3tWkcpjfBIWa1kKbnezh8PDIyMi9+0NvXs+6RdEsGbqGQ6eSappimhqFappaLBagqiq3oO26NgCIhlqWgbFU0oGHraqFfF40jCICCgUJBvKzd5+/vJ2bW1paUhTV81xKiOWBRARGWg5LoByKkoeTVgzBdx89eT46+mlxMZPJ+L6HUExDwa3GnDjDBhjrkj8EN9A2DJWIQcEWSWQ5F4EV4qLrRS0qSgg+2N9aW1tfXf2eSqVwdwCMtTFNrwolcLGoEFvyAxwWLPagv/f6zSs9PWNjY7g2KAMAoig0gGGjZpnMSS6XxUvhsYG2o+vIEGKosBGgShsekAJb2IJwEtLOi4VsVhBF0bZtVJtYYQIk/4JFAlDlHcfCWAUP3Xl649a1q1d65+fnkVxV88hMYKozwFgC1SYuAMPIZk+xEZl4Ih3/Pk6n07i3o8wFyky99Tw7lxMoJ7WQwKKYCQvm+i5uaLrTo1YVafcgM7qKagFMfYYfHuofOdng48GB/oG+230LCwvA0wbA8oSvbU+AqYp4RKllOdwFbGNvY/3H+srKys7ODvocJZTxnsiJPNjS2C1IAgBgmKXXQdlbnmfTskwEUZNJwQJ0gEe3YWC2eqqO0kdQbC9MomAIbXnuW55wpkaCDyf6jE1yEfh/rqFye9dQ7QIst3n7Ebire7sLcH1L2lV8q+yOlQnCacfKpruQFn8GiQukObIFeGZm5lWT4D/gEjCWR9Dk5GQsFntWJ3jEJ60Z/wfVGt27sDO0OAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;adobe-sketch.png&quot;
+        title=&quot;&quot;
+        src=&quot;/static/adobe-sketch-2dc509d301f16528c5f11fcf6dbf21ce-e2462.png&quot;
+        srcset=&quot;/static/adobe-sketch-2dc509d301f16528c5f11fcf6dbf21ce-f6591.png 270w,
+/static/adobe-sketch-2dc509d301f16528c5f11fcf6dbf21ce-cce5f.png 540w,
+/static/adobe-sketch-2dc509d301f16528c5f11fcf6dbf21ce-e2462.png 1080w,
+/static/adobe-sketch-2dc509d301f16528c5f11fcf6dbf21ce-063f1.png 1125w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h1&gt;Adobe Sketch&lt;/h1&gt;
+&lt;p&gt;I worried some UX apps might not have the best drawing tech, so I threw Adobe Sketch into the mix hoping that it&apos;d meet my standards for a smooth drawing experience.&lt;/p&gt;
+&lt;p&gt;Honestly the only pro I can convey -- beyond the fantastic drawing feel you can expect from Adobe -- is that it had more brushes? Oh, and it&apos;s amazing that&apos;s it&apos;s a completely free app to use (beyond premium paid brushes).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The cons&lt;/strong&gt; The canvas size is limited, although it&apos;s possible to set it to larger sizes and proportions. But the worst offender is the limited drawing area, the UI of the app is so intrusive that you lose 40-50% of the canvas to brushes and other tools. And unlike other mobile sketch apps, you&apos;re unable to hide all the panels while drawing (or even rotate to landscape, which would help). Drawing shapes was cumbersome and clunky -- you have to draw shapes with the marquee tool and trace them with your finger.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The verdict?&lt;/strong&gt; Doesn&apos;t even come close to the feature set of Marvel or Invision. The lack of sketch imports, linking of screens for prototyping, and easily&lt;/p&gt;
+&lt;h2&gt;The best UX iOS app?&lt;/h2&gt;
+&lt;p&gt;Overall I&apos;m incredibly impressed by the performance of all the apps I reviewed. It&apos;s amazing what&apos;s possible portably using these apps, and how well they worked. &lt;/p&gt;
+&lt;p&gt;At the end of the day though, I couldn&apos;t settle on a single app for my workflow. &lt;strong&gt;I use Marvel to create prototypes&lt;/strong&gt; (sketches and compiled images). And until I can find another drawing app with infinite canvas and good shape tools, &lt;strong&gt;Invision is my go-to tool for more &lt;em&gt;freehand&lt;/em&gt; sketches&lt;/strong&gt; of interfaces, wireframes, etc.&lt;/p&gt;
+&lt;p&gt;What do you think? I&apos;m curious to hear from other designers and hear what your mobile workflow looks like. Do you use any web apps? What&apos;s the Android platform look like in comparison? Let me know in the commments, or &lt;a href=&quot;http://twitter.com/whoisryosuke&quot;&gt;hit me up on Twitter&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cheers,
+Ryo&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://marvelapp.com/ios/&quot;&gt;Marvel App for iOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/us/app/invision-design-prototype/id990700027?mt=8&quot;&gt;Invision App for iOS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/us/app/adobe-photoshop-sketch/id839085644?mt=8&quot;&gt;Adobe Photoshop Sketch for iOS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Automating React Documentation using React-Docgen ⚛⚙️📚]]></title><description><![CDATA[In my neverending quest for making the documentation as painless and seamless as possible, I started experimenting with a library by the…]]></description><link>http://whoisryosuke.com//blog/2018/automating-react-documentation-using-react-docgen/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/automating-react-documentation-using-react-docgen/</guid><pubDate>Mon, 24 Sep 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;In my neverending quest for making the documentation as painless and seamless as possible, I started experimenting with a library by the Facebook team called &lt;a href=&quot;https://github.com/reactjs/react-docgen&quot;&gt;&lt;strong&gt;react-docgen&lt;/strong&gt;&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;It&apos;s a CLI and API that reads your React component files, grabs any documentation left in comments, and pumps out an object with all the docs and props:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot;&gt;
       &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
