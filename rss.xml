@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 27 Nov 2018 00:06:04 GMT</lastBuildDate><item><title><![CDATA[Comparing UX design apps for iOS 🎨📱]]></title><description><![CDATA[Recently I was on the hunt for an iOS to prototype and sketch UI designs in on the go. I whittled my search down to three options: Marvel…]]></description><link>http://whoisryosuke.com//blog/2018/comparing-ux-design-apps-for-ios/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/comparing-ux-design-apps-for-ios/</guid><pubDate>Mon, 26 Nov 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I was on the hunt for an iOS to prototype and sketch UI designs in on the go. I whittled my search down to three options: Marvel, Invision, and Adobe Sketch. I thought I&apos;d share my findings to help other UX/UI designers make their decision 👍&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 27 Nov 2018 00:12:07 GMT</lastBuildDate><item><title><![CDATA[Comparing UX design apps for iOS 🎨📱]]></title><description><![CDATA[Recently I was on the hunt for an iOS to prototype and sketch UI designs in on the go. I whittled my search down to three options: Marvel…]]></description><link>http://whoisryosuke.com//blog/2018/comparing-ux-design-apps-for-ios/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2018/comparing-ux-design-apps-for-ios/</guid><pubDate>Mon, 26 Nov 2018 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I was on the hunt for an iOS to prototype and sketch UI designs in on the go. I whittled my search down to three options: Marvel, Invision, and Adobe Sketch. I thought I&apos;d share my findings to help other UX/UI designers make their decision 👍&lt;/p&gt;
 &lt;p&gt;First, let&apos;s break down the core features you&apos;d want out of these apps, and which one made the cut:&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -153,20 +153,6 @@
 &lt;p&gt;You can import your sketch designs and prototypes to browse them on the go. And there are a few other collaborative features, like chatting with team members, that might be more enticing on larger projects.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The cons come quicker here.&lt;/strong&gt; It takes longer to load than Marvel, opening any freehand sketch takes ~15-20s. This app is missing a lot of key features though, such as shape drawing tools, or linking of screens to prototype. And before you even get into the &quot;freehand&quot; sketch mode, you&apos;re required to login to an Invision account (meaning no working without internet). Despite being able to import Sketch files, you can&apos;t actually manipulate or even draw on top of any of them.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;The verdict?&lt;/strong&gt; Invision seemed like a great app to sketch in, and maybe even browse prototypes you&apos;ve created on desktop, but it wasn&apos;t possible to prototype on the go.&lt;/p&gt;
-&lt;h2&gt;Pros&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Drawing feels good. Rounded brush works great. &lt;/li&gt;
-&lt;li&gt;Large canvases to work on (infinite)&lt;/li&gt;
-&lt;li&gt;Can create prototypes from sketches&lt;/li&gt;
-&lt;li&gt;Can insert images&lt;/li&gt;
-&lt;li&gt;Can collaborate live with other team members viewing same document.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2&gt;Cons&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Requires account to use.&lt;/li&gt;
-&lt;li&gt;Can’t draw shapes&lt;/li&gt;
-&lt;li&gt;Can&apos;t link screens to create live prototypes.&lt;/li&gt;
-&lt;/ul&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
