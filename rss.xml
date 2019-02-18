@@ -1,4 +1,447 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 08 Feb 2019 21:50:01 GMT</lastBuildDate><item><title><![CDATA[Styled Components using Pure CSS Framework]]></title><description><![CDATA[Recently I've been doing a lot of research into the myriad of design systems out there, and I stumbled upon Pure CSS, a tiny CSS framework…]]></description><link>http://whoisryosuke.com//blog/2019/pure-styled-components/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/pure-styled-components/</guid><pubDate>Fri, 08 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I&apos;ve been doing a lot of research into the myriad of design systems out there, and I stumbled upon Pure CSS, a tiny CSS framework with only essential modules for creating sites. I&apos;ve been wanting to experiment with Styled Components, and I thought converting the CSS framework into React components would be an fantastic exercise to flex a few skills. And Pure CSS was so small and modular, it was perfect for translating into CSS-in-JS.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 18 Feb 2019 21:20:55 GMT</lastBuildDate><item><title><![CDATA[Design Collaboration Tools in 2019]]></title><description><![CDATA[Recently I got to work on a UX/UI project with a new team, and was tasked with selecting a design collaboration tool we'd use to create and…]]></description><link>http://whoisryosuke.com//blog/2019/design-collaboration-tools-2019/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/design-collaboration-tools-2019/</guid><pubDate>Mon, 18 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I got to work on a UX/UI project with a new team, and was tasked with selecting a design collaboration tool we&apos;d use to create and collaborate on the mockups and prototypes. The team was comprised of a few different departments that didn&apos;t use design tools and 3rd party design studio that used Sketch. &lt;/p&gt;
+&lt;p&gt;After doing a bit of shopping, I found that &lt;strong&gt;Figma, Invision, Marvel, Adobe XD, and Sketch&lt;/strong&gt; each had the features the team desired: Sketch import, cloud-based design, prototyping, and collaboration. &lt;/p&gt;
+&lt;h2&gt;My Process 🎨&lt;/h2&gt;
+&lt;p&gt;These are the notes I took while exploring each of the apps and putting them standard UI work. &lt;/p&gt;
+&lt;p&gt;With each app/service, I attempted to &lt;strong&gt;import a Sketch file&lt;/strong&gt; that utilized nested symbols. This tested how each app faired importing components, and the quality of the conversion. I also attempted to &lt;strong&gt;create prototypes&lt;/strong&gt; to get an idea of the extent of that toolset. Beyond that, I simply explored each app and &lt;em&gt;poked around&lt;/em&gt; in the way I normally would on my day-to-day as a designer.&lt;/p&gt;
+&lt;p&gt;Let the design deliberations begin! 🧐&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/figma-logo-ef52bea7185b0807962faad03137e8da-7ad10.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 769px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 57.86736020806242%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAMABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAEEBv/EABQBAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhADEAAAAc/TMxAH/8QAGRAAAgMBAAAAAAAAAAAAAAAAAQIAAxAR/9oACAEBAAEFApcippPc/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGRAAAgMBAAAAAAAAAAAAAAAAARAAEiFx/9oACAEBAAY/AoKnr1f/xAAYEAEAAwEAAAAAAAAAAAAAAAABABBREf/aAAgBAQABPyGIBF02i6lda//aAAwDAQACAAMAAAAQgA//xAAXEQADAQAAAAAAAAAAAAAAAAABEBEx/9oACAEDAQE/EKcX/8QAFREBAQAAAAAAAAAAAAAAAAAAECH/2gAIAQIBAT8Qh//EABkQAQADAQEAAAAAAAAAAAAAAAEQETEAcf/aAAgBAQABPxALQ59BGgKZXmyna9S1j//Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Figma logo&quot;
+        title=&quot;&quot;
+        src=&quot;/static/figma-logo-ef52bea7185b0807962faad03137e8da-7ad10.jpg&quot;
+        srcset=&quot;/static/figma-logo-ef52bea7185b0807962faad03137e8da-4e3ca.jpg 270w,
+/static/figma-logo-ef52bea7185b0807962faad03137e8da-44c09.jpg 540w,
+/static/figma-logo-ef52bea7185b0807962faad03137e8da-7ad10.jpg 769w&quot;
+        sizes=&quot;(max-width: 769px) 100vw, 769px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Figma&lt;/h2&gt;
+&lt;p&gt;This was the best in terms of overall performance, features, and price. It hit the mark with everything we needed, worked on Mac and Windows, did &lt;em&gt;fairly&lt;/em&gt; well with operations like importing Sketch files, and the shared component system was fantastic. &lt;/p&gt;
+&lt;p&gt;Beyond a few minor gripes (and lack of plugins), Figma&apos;s browser tool for designing was not nearly as powerful as Sketch in terms of design, but close enough for a majority of basic tasks.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Best price for features.&lt;/li&gt;
+&lt;li&gt;No way of exporting to Sketch/XD other than SVG. You import Sketch files with Symbols (that become Figma Components), but then you can&apos;t export those &quot;components&quot; without losing all the power of nested components/styles (like changing the color/text of a button dynamically). Once you go Figma, you never go back (for better or worse).&lt;/li&gt;
+&lt;li&gt;Sketch import isn&apos;t perfect, requiring me to tweak/fix designs that I spent time meticulously crafting in Sketch (only to have text overflow and change size). Makes the Sketch import less useful, since I feel like I&apos;d rather design directly in Figma to avoid the loss in translation.&lt;/li&gt;
+&lt;li&gt;Sketch import does work amazingly though and imports Symbols as Components (with bugs here or there). The result is an entire component library accessible now in your browser for anyone to prototype without a Mac or Sketch.&lt;/li&gt;
+&lt;li&gt;UI is a little confusing. You can click individual parts of a component, but you can&apos;t move them around without reverting the component back to a group/layers. This wouldn&apos;t be an issue, since Sketch is the same way, requiring you to edit the &quot;symbol&quot; or component directly (instead of the &quot;instance&quot; of it). The issue is that Figma lets me click on things nested inside the component (which is semi-convenient for changing colors), but gets frustrating when you can&apos;t easily tell what&apos;s a component or not (particularly being nested 30 layers down and not seeing the parent component layer in the sidebar).&lt;/li&gt;
+&lt;li&gt;Artboards (or &quot;Frames&quot;) are annoying. Once you define an artboard, there&apos;s no way of resizing it without resizing the child elements responsively. In Sketch and Illustrator, you have the option to disable this. In Figma however, you&apos;re forced to wrap you artboard in a new artboard, resize that, then &quot;ungroup&quot; the smaller, nested artboard. The workaround works, but it takes too much time and effort when it&apos;s such a frequently used action.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/figma-screenshot-e6e6ef4456c493ce050919679bf0ec2d-9bb6a.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 65.06955177743431%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAAClElEQVQ4y1VTTU8UQRDdv+cf4Waiicuyi6ygQUBjIh4gxkQPmCzEmJgoHjDB4IGDSrwRjEZAQD52d766p6e/Zp+vZ/kIk7z0VE3Vq1dV07V7L99gurOK6dFbGGuNo14fRXNsDI3RBibuTqDZaGBqchKzMzOYm51Ds9lE/U4dDfoX2uNov17FWHsKLea0Wi3U1o4tPveBjRToG8BpBaAEBh7wFiZNYIucLoeBMzBKVn4GwFoNqwScC/bwqX0/6OEbsdNXOMkUjns9JFIgEhniXGD/3xFO+vTlkhA4jXroxjFjZHWe9rqIeVprK9QMg4osgaeKtLBIhEImFUReIKctcz2EMrQNFCGVvkQ/ipAkCbTWUEqh5ssSASWRMEkWbMO5CpoVM5WjsCSqoKmShYxH4UraJUlp5/mVQsfEAO89YlZMhKTtLwnP0giZkRAmh7AK/TiBFDk0Y4sACgiEQV1RFFeEZUVoIFjRlwM4z+pcUDePoPndeIeCy8j7tHPFvbALzTFwlkKIiuwaYVAYWu5GMSIOOQtBxqJHRV2SBGWFcUh59rs9xPQpSaVUqI2GMabiOSf0JHTItEXMAefcqGVASaX7hyf48/cIB8dn3GoGmabIGBPUeI7Es2gQc4HrLXObOSsOlzSAYVtxJhGlEjER8X3YruVvyTy2HNp2zL3gqRnnrxEKIhDpc1jO0rKAYQEbijA+IHwbvnNc5yOrtszfv9ooeDH25Almdtt49XMdG7uH9BdYW9rDx/sbkI8fYWlhCZ3Oc4j1Ebz4uomnq5vwW1tgNpwd3pbayoGvrlQg/JUe4Pb2CJ78eIcP27+hdIa38ztYubmKZLSO+QfPsLj4EOL9DUyvr2G88wlu4wsuLt7y8jL+A2dywEpSsQvqAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Figma in action&quot;
+        title=&quot;&quot;
+        src=&quot;/static/figma-screenshot-e6e6ef4456c493ce050919679bf0ec2d-e2462.png&quot;
+        srcset=&quot;/static/figma-screenshot-e6e6ef4456c493ce050919679bf0ec2d-f6591.png 270w,
+/static/figma-screenshot-e6e6ef4456c493ce050919679bf0ec2d-cce5f.png 540w,
+/static/figma-screenshot-e6e6ef4456c493ce050919679bf0ec2d-e2462.png 1080w,
+/static/figma-screenshot-e6e6ef4456c493ce050919679bf0ec2d-9bb6a.png 1294w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Sketch import (Not 100%)&lt;/li&gt;
+&lt;li&gt;Principle can import Figma prototypes&lt;/li&gt;
+&lt;li&gt;Real time collaboration&lt;/li&gt;
+&lt;li&gt;Prototyping&lt;/li&gt;
+&lt;li&gt;Design system management&lt;/li&gt;
+&lt;li&gt;Live preview on mobile device using Figma Mirror&lt;/li&gt;
+&lt;li&gt;Web interface, desktop apps&lt;/li&gt;
+&lt;li&gt;Reusable Components (Symbols)&lt;/li&gt;
+&lt;li&gt;Text styles / Document Colors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pricing 💰&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Free for 3 projects, 2 editors&lt;/li&gt;
+&lt;li&gt;$15/editor/mo&lt;/li&gt;
+&lt;li&gt;$45/editor/mo - Organization level design system&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/invision-logo-51cfd2456b2edfebcd773c20492f3189-27259.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1024px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 33.30078125%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAARlAAAEZQAGA43XUAAAA+0lEQVQoz2NgQAL/LYsYsIH/1mVAXMrw37YSQsOwVSlY/p9VCaamf5ZFjBBDi1WBBgf/syj0BdKu/63LORnwAJihmBKWRSxQuhOIrwHx9f8WhU/+WxRoQlxZyvXfsZEJ6FpOoCUcQJoPiFkhLizFaiAzlK7/b1VS/9+mPAzIXg7EPUCNSUCXVP2zKc/7Z12aBWSXAnEl0CBHiIHFjDhdCPR6B9DbJ4F4BxAf/m9VXAh0nRrQAJD33YGG2wPZnkA5HaDFimC9FgVYXQgNwyIDoFfTgWGYCDQ8GqiRFW8YmmbjkYQaiiXgGYGWgGKbEegqRqAlEBoauyA5GAAA/BeKTO9OfOMAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Invision logo&quot;
+        title=&quot;&quot;
+        src=&quot;/static/invision-logo-51cfd2456b2edfebcd773c20492f3189-27259.png&quot;
+        srcset=&quot;/static/invision-logo-51cfd2456b2edfebcd773c20492f3189-e9da2.png 270w,
+/static/invision-logo-51cfd2456b2edfebcd773c20492f3189-53557.png 540w,
+/static/invision-logo-51cfd2456b2edfebcd773c20492f3189-27259.png 1024w&quot;
+        sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Invision&lt;/h2&gt;
+&lt;p&gt;High price, but lots of different products and integrations (like Craft for Sketch). Great native app.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Highest price, yet most collaborative product (allows for mobile collab via app).&lt;/li&gt;
+&lt;li&gt;Fantastic mobile app experience for sketching ideas and interfaces on the go, better than all other competitors. Became my go-to for pumping out ideas for screens.&lt;/li&gt;
+&lt;li&gt;Sketch import works well, no clunky conversions with heavily nested symbols in a design system.&lt;/li&gt;
+&lt;li&gt;Prototyping in Invision Studio is more powerful than Sketch, but on par with something like Principle.&lt;/li&gt;
+&lt;li&gt;Design system manager creates a library accessible by Studio and Sketch, allowing for syncing and use of symbols across all files -- creating a single source of truth (for design). Pretty nifty, something a lot of designers try to accomplish. The only limitation is unlike Figma, Invision doesn&apos;t export to code, so it&apos;s not truly a &quot;single source of truth&quot; if you have to also maintain a coded component library.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/invision-screenshot-153171e76c5cdbb3cbc75610d7be5b5f-03845.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 68.23161189358373%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAAsSAAALEgHS3X78AAACNElEQVQ4y6VTa2/bMAzM32rWdM0ebVd0Q/fzs2FrAie245espyUn2e0kt0ULbF82AwRFijyRR3oWwoi8rJBtCxjr8D/feDhg5glonYcdPB1HHI6npP9F/EhAoR02uwqrnxm+PWzRSINOWbRRZBTzF3l9F3MiVgLcVR3WBN3kFfJaoGj6JGUrUQmFWmjUvf6jjvcVdfsSsJWahoW0AybbMFilc28efQTonqqhTHcu5TzFxCoTYK8MBh8QyEEYR2gGKT4Q+R3pi/xKbZIdhxhjBXMUAQ35j37FnARYNoK8WRg/wo1H2HCEsCFxaf0Bw3iCdIEtGjjeDYwx4ZA62GxL7MoGp9MvOOY3jEmAgsh24MtMcARRmi1EAJ49fdr61Ga0Y4xxIyWk6uN0j6dTqjQWkVoWXYvBKHhnkla0Zb3HYDWC09CyZ0wD/2g7xnSJd/fM3asp53XDlnpOipOTnKxUyKqaPolGcYr07RjTULe066TNM9hL4FmaaKewjyvSTSvS9tE3rUUjTLKbuCrkrUk+Pe3fY2XTzk67ONPkLq5EzxfsEMjRAYLTi5Vp76GDR+8cq+RakTsdOfVHJrtptQgS+TTEkeR6tvqxwTorsC0qVK1AxSE97AqsNmtsyWNG2ZQlvvNPynZ7FJxqTtnmezysM+RFia4TqJmbFTVmF++/4M3yDlEv3n3G/PIWi+i7vMPZ8hPmH295vsX87Q3OFteYX0R9g3PmLK++YvHhHpdX9ynnnPm/AZNLCb0XKeFgAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Invision prototyping interface&quot;
+        title=&quot;&quot;
+        src=&quot;/static/invision-screenshot-153171e76c5cdbb3cbc75610d7be5b5f-e2462.png&quot;
+        srcset=&quot;/static/invision-screenshot-153171e76c5cdbb3cbc75610d7be5b5f-f6591.png 270w,
+/static/invision-screenshot-153171e76c5cdbb3cbc75610d7be5b5f-cce5f.png 540w,
+/static/invision-screenshot-153171e76c5cdbb3cbc75610d7be5b5f-e2462.png 1080w,
+/static/invision-screenshot-153171e76c5cdbb3cbc75610d7be5b5f-03845.png 1278w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Sketch import&lt;/li&gt;
+&lt;li&gt;Real time collaboration&lt;/li&gt;
+&lt;li&gt;Prototyping&lt;/li&gt;
+&lt;li&gt;Design system management&lt;/li&gt;
+&lt;li&gt;Web interface, desktop + native apps&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pricing 💰&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Free for 1 project&lt;/li&gt;
+&lt;li&gt;$15/mo - 3 prototypes&lt;/li&gt;
+&lt;li&gt;$25/mo - Unlimited&lt;/li&gt;
+&lt;li&gt;$99/mo - 5 team members&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/marvel-logo-8cbc2affdd46b8b428bf5f0679b89540-3cd3d.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIB/8QAFgEBAQEAAAAAAAAAAAAAAAAAAQQF/9oADAMBAAIQAxAAAAG6jL8nQn//xAAXEAEBAQEAAAAAAAAAAAAAAAABEQIg/9oACAEBAAEFAgq5nP8A/8QAFREBAQAAAAAAAAAAAAAAAAAAECH/2gAIAQMBAT8Bh//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABcQAAMBAAAAAAAAAAAAAAAAAAABIDH/2gAIAQEABj8CNU//xAAYEAEAAwEAAAAAAAAAAAAAAAABABEgkf/aAAgBAQABPyFqiKFemf/aAAwDAQACAAMAAAAQ3B//xAAXEQEAAwAAAAAAAAAAAAAAAAABEBEx/9oACAEDAQE/EBpkf//EABcRAQADAAAAAAAAAAAAAAAAAAEQETH/2gAIAQIBAT8QRvY//8QAGxABAQABBQAAAAAAAAAAAAAAAREQACExQVH/2gAIAQEAAT8QESr6w1sMnRTgZxn/2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Marvel logo&quot;
+        title=&quot;&quot;
+        src=&quot;/static/marvel-logo-8cbc2affdd46b8b428bf5f0679b89540-918ac.jpg&quot;
+        srcset=&quot;/static/marvel-logo-8cbc2affdd46b8b428bf5f0679b89540-2ceef.jpg 270w,
+/static/marvel-logo-8cbc2affdd46b8b428bf5f0679b89540-b59aa.jpg 540w,
+/static/marvel-logo-8cbc2affdd46b8b428bf5f0679b89540-918ac.jpg 1080w,
+/static/marvel-logo-8cbc2affdd46b8b428bf5f0679b89540-3cd3d.jpg 1200w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Marvel&lt;/h2&gt;
+&lt;p&gt;More of a fan of their iOS app than the overall service. Browser based design tool isn&apos;t as fleshed out as others (Sketch, Figma, etc), and doesn&apos;t support symbols/components for individual files. Even &lt;a href=&quot;https://blog.marvelapp.com/creating-maintaining-marvel-style-guide-sketch/&quot;&gt;the Marvel blog&apos;s article on creating a style guide&lt;/a&gt; doesn&apos;t show how they integrate a complex Sketch file with their own service.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A little pricey for the limited feature set (compared to competitors).&lt;/li&gt;
+&lt;li&gt;Prototyping only for mobile apps.&lt;/li&gt;
+&lt;li&gt;Native app works great, easily my number 2 in the top UX/UI design apps. Makes drawing shapes incredibly easy (something Invision could learn from). The only downside is the limited canvas size, which forces you into a mobile-app resolution. No desktop/tablet UI sketches here.&lt;/li&gt;
+&lt;li&gt;Web based design tool is a plus, allows for designing anywhere.&lt;/li&gt;
+&lt;li&gt;Exports design to code like Figma.&lt;/li&gt;
+&lt;li&gt;Good collaboration tools. Not as fleshed out as Invision, but minimally what you need (point and talk about things in the design -- without annotations).&lt;/li&gt;
+&lt;li&gt;Sketches from mobile app don&apos;t work in the web-based design tool, making it impossible to go from wireframes/lofi to hi-fi mockup.&lt;/li&gt;
+&lt;li&gt;No symbols or components for individual projects/designs. Only &quot;shared assets&quot;, which act as a global design system. Though it&apos;s not exportable or synced to Sketch like the Invision DSM.&lt;/li&gt;
+&lt;li&gt;Sketch plugins allows syncing with Marvel for prototypes/hotspots. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pricing 💰&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Free for 1 user, 1 project&lt;/li&gt;
+&lt;li&gt;$16/mo - Unlimited&lt;/li&gt;
+&lt;li&gt;$48/mo - Teams&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/sketch-logo-light@2x-481ae42edc35fef57c6a64379c870c5f-4894c.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 37.52577319587629%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAAsSAAALEgHS3X78AAABG0lEQVQY041Ru06EUBC9P2HjZ/ghtva0/AIhkQRaE5RCQgzbECGRKFCtFIYohJgQEhopKLTYYEiwWV1l78NZ766i23iae2YyZ2bOXMQAlDKODSGE0C+w3/iTROuXLBies61q6IIx5ppvAsmR+GVKn49of05nxxB1XZdlWdM0QHgRyIZhANL3fdu2fIW1eHG5v7zeo+XB/GyHvc8urqLJxHYcJwzDoiiCILBt2zTNNE1939c0rSxLrl+JP54e3k53BwO93pxAmN7d6rquqqogCLIsi6KoKIokSZ7nGYbhuq5lWXwRxOjKAH6cLu8PuZWqqqIogpl1XcM04EDyPI/jOEkSWBtCMLLxvHXtfwL9yEb/xMEPC0PICONrfwK1JK3Lkq/KcQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Sketch logo&quot;
+        title=&quot;&quot;
+        src=&quot;/static/sketch-logo-light@2x-481ae42edc35fef57c6a64379c870c5f-e2462.png&quot;
+        srcset=&quot;/static/sketch-logo-light@2x-481ae42edc35fef57c6a64379c870c5f-f6591.png 270w,
+/static/sketch-logo-light@2x-481ae42edc35fef57c6a64379c870c5f-cce5f.png 540w,
+/static/sketch-logo-light@2x-481ae42edc35fef57c6a64379c870c5f-e2462.png 1080w,
+/static/sketch-logo-light@2x-481ae42edc35fef57c6a64379c870c5f-b1cf7.png 1620w,
+/static/sketch-logo-light@2x-481ae42edc35fef57c6a64379c870c5f-4894c.png 1940w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Sketch Cloud&lt;/h2&gt;
+&lt;p&gt;It&apos;s easy to forget that Sketch in itself is a fully functioning prototyping tool now, complete with a cloud to share designs onto. &lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/sketch-screenshot-9c56c63120973a8b4d82af4bec4512df-af6d4.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 54.773622047244096%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACyklEQVQoz3VSTW8TSRD1H+LG34ADcLaFxBUtl1yIhAAJOABaL+KAFJSAlJAACQMosU0WRwGBkJA4IIhnbI8nJHHsjOe7e756errftr0r7YmSSt1d9fTqVXVVvn35eE439O2u3l83e32tp3c1szfQTNNS3tcGpqnpHV3r6Lr2XeV+7vW1H52+tqebmtEdaIZhKHx//eDrTqu7o12sGEb3JpRlOUNR4rfGJUA5kAogUbhY3Wmh3urM82yGGRyOHlVM07xaFAwkyXI3Lnic0DIv8rKUZSmkmJYoGS9KxliZJkkZBkFJaVQK8Fluaq4zyaM4g24N/6wYujGvQHD8kLuUySQn8KiL/i8T1qGFkxMbeVKAsQK+72M8PoHt2PAiD2maqTiDHwRKp8Svfate6XT0+SxN4YUR9xMpk9BAngaIKQGJfNAoxF70HUmeoF7/C9VqFTeuX8fwaAjbtpFlGRzH5VmWq9hxvaL/p3A4trkXM2nbxwgCD0nsIiauGl6BVvgaURbi3t37uHDhPObm5qYkM8WEEOx+2OUfPu8iIMG/CmNKVRsen5BU5nmKNFOKiY/jcARrvI+m/QqUUdy+dQdnzp7BH1cuw3Vt1XKq6nH4kc/dcgLjwJgq7M4TQjGyncIluaRxJK2RJdVIZMypNA9MuTnckIQR2d5uy6ePn8rN128li2PJ01KyrJCUEq7wODw4rFf6Rme+SAhU28yPS+EnjrAiUzjiRDjcFp6cCC1YETSjgkkmPExECF+Mi2Mxyo5Ew98QhJJiujZHR4pw9ZN5bUsJavWIGrCAFffQDprYCVpo+0003A18CtpQbNinA/ztbmHHbylv4p33Bu+9TfV5dLaHlmU9rNysPz51b3H90oOlF9Vnz5ZrL1Ze1jZXGzPfWm3Wmmvvao21Vm15Zbn2fOW5iv2fa6y2attr7drSk6Xq4uLipYWFhdP/AEQC+vqNS405AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Sketch interface&quot;
+        title=&quot;&quot;
+        src=&quot;/static/sketch-screenshot-9c56c63120973a8b4d82af4bec4512df-e2462.png&quot;
+        srcset=&quot;/static/sketch-screenshot-9c56c63120973a8b4d82af4bec4512df-f6591.png 270w,
+/static/sketch-screenshot-9c56c63120973a8b4d82af4bec4512df-cce5f.png 540w,
+/static/sketch-screenshot-9c56c63120973a8b4d82af4bec4512df-e2462.png 1080w,
+/static/sketch-screenshot-9c56c63120973a8b4d82af4bec4512df-b1cf7.png 1620w,
+/static/sketch-screenshot-9c56c63120973a8b4d82af4bec4512df-af6d4.png 2032w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Prototyping&lt;/li&gt;
+&lt;li&gt;Collaboration with commenting (basic point and comment, no annotations).&lt;/li&gt;
+&lt;li&gt;Live preview on mobile device using Sketch Mirror&lt;/li&gt;
+&lt;li&gt;Desktop app only for editing&lt;/li&gt;
+&lt;li&gt;Reusable Components (Symbols)&lt;/li&gt;
+&lt;li&gt;Text styles / Document Colors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pricing 💰&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;FREE - with purchase of app (see below)&lt;/li&gt;
+&lt;li&gt;$99 - One time fee for app + yearly updates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/adobe-xd-12d85a3db7efa03024f1d6499076933a-56cd7.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 58.333333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAAsSAAALEgHS3X78AAABDklEQVQoz2P4jwP8+/cPTqNjZHl0wIDLsH8Qxv+/v//8//PrNxz/+/MXxSKiDITq+P8Pl9Tffzi14XEhUNPv///PTtvzf23pnP/bGpb931A67//Lo/eghv4l3oUgxSDw6fKL/4Gslv/9JG3/27Fo/7dh0fo/M7AJLPfn7x/SDXx/4dl/f2Gb/yta5/xvjSn/351W939GRAvEwH+kuBAa8O/OPfkfADSw2C/9f09y3f88j8T/E/xryDAQ6sIf9z78j+Fz/q/HIPvflln7vyGD3P9Fsb1keBkpSXw89/z/0103/j/be/P/sx03/v9+8RWRDv/9JyHZ4Em88MT9/x+JyeYfJDz/ImFYGiQ9YZMJAO8tipHpp04zAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Adobe XD logo&quot;
+        title=&quot;&quot;
+        src=&quot;/static/adobe-xd-12d85a3db7efa03024f1d6499076933a-e2462.png&quot;
+        srcset=&quot;/static/adobe-xd-12d85a3db7efa03024f1d6499076933a-f6591.png 270w,
+/static/adobe-xd-12d85a3db7efa03024f1d6499076933a-cce5f.png 540w,
+/static/adobe-xd-12d85a3db7efa03024f1d6499076933a-e2462.png 1080w,
+/static/adobe-xd-12d85a3db7efa03024f1d6499076933a-56cd7.png 1200w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;Adobe XD&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Doesn&apos;t have nested symbols (like Figma or Sketch), so when you edit a symbol/component, it effects all others. This also means you can&apos;t even scale symbols to different sizes, so you button has to be the exact height and width every single time. The only dynamic part of symbols is text, which is editable. Game breaker for me.&lt;/li&gt;
+&lt;li&gt;No pages. One page for all artboards, and no page for browsing Symbols (only scrollable sidebar).&lt;/li&gt;
+&lt;li&gt;Replacing a symbol replaces all symbols, so if you want to swap an icon, you have to drag it in and position it manually, or replace every single instance of that icon on the page with the new one. Handy if you need to do mass-editing, immobilizing if you need to work on swap a single element.&lt;/li&gt;
+&lt;li&gt;Copy/pasting anything from XD to Illustrator exports as a JPG, instead of SVG elements. You can copy/paste vectors from Illustrator, but can&apos;t copy/paste them back unless you export the XD file as SVG and import manually. Semi-understandable once you learn Adobe uses different algorithms for vector objects in every single app, still doesn&apos;t make the ecosystem fool-proof. Best case would be to use Adobe&apos;s library to import the Illustrator file (like an EPS of an artboard), allowing you to sync changes between both.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-87767.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 65.30187369882027%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAABYlAAAWJQFJUiTwAAADrklEQVQ4y12R60+TdxTHnxEcUwOiDKTqKq1MpRQeaCmRchGQ69NNN15IZlSuQcYYbEUuoy06pzExW7LgyCSCQPYnbAnLXuwfUENoi51mLxhUbvIUyqXt79f2fFdhW7ad5Lz65nxyzvkI8zN2ldv9wjY7N2eVV2WL3+ezEpEVwD8dDHLr1qbXyjmzhkKh/2QeedUyt7BsvffrK9vk499VgsPuuIC/ivMgnjydwtDQMG7cvIMbt+7COnAb/dZbuH33G3w//Ag//jSJ3r4B2CL54ODQ36PwhYEpu/OCMD09Xb2+vk6hyBqzs3/wwfsPeI4+l78Zk8D3xLzNo/cmcCE6jmdodbyouJJf+7iDC8J+LrwRz5Upp7hHljkLMO7f3iSnw1Et2O12yev1ggUC9PLlAo2MTZAhq4AO6hPpsEZNyYdSSZGkpp6cGCrPN5K5e4COpyops0JHanUWLa+skN/vJ5/PB4fDIQn26WnJu7EROZfT4uIifTc8jnrpLBosxVDWGxBfdhoa0xlcvfcRCs9X4IvOXlyqzUTdaAPev1gF9/wiBViAtre3d4FOh1Py+f2IPDsCXKKHI+MwnMlH7ZfnYLRIUHxWAEV9NlJMGuRWlOC6uR9JyhSUXj2LRks9lhdWKSLr9ZZwOp2S8Nz1XJLXZQRDnJaWlmlkdBxaMQ8HEo9CIxrwrl6PtKxcxO9Lhk5XgK4eCw4cege5hhKY3rsIj8dDnP0b+MwlyRuRHwZ3gaOPJiBmG3H4SCqMBeUwGstQVFyFxCMnoDMUoqfPhrf2J0GpTt/JZfl/wN9cL6Q17yv4Az7yeNZo8udf0NdnRXNjG1paOvBpx3U0t3biSl0L+vtvYmz8B1y+0ozmpk/Q3WtBRCixHWBgF+iacUlrm2tgnIWXllbCIyNjVFD+IR3UZpAqPZ0Ki/IpIy2dVKpTVFJ5nmy2ryghOYUSM9KoKL+MNrzr4QBj4deWd4DPnC6TL+RHmMKQV1fx7YNxtJTpUNp4HMJlFaTWE1DXKpFTnYy86nPo7R5AVFwComqU0NdkYcO7FhEaRjAYxMzMjEl4/ORp1dzCQmhza4u55+fZ1/cfssbSHFZel8qEFi0ztmmY4nMDO9p4ktVIRcxstjBBm8gyr6nYxJ08Nr/oZlubWywiJzQ1NVUlNNRfiu1s7xa7urrF1rY28QNTtSgIClGI3iNGZcaJWRmxoqFSLZ4sVIn608fEXJ1RFI7tE/dmx4vabIXY3tEums3mnW5qaor9E+tfiTuXVGKPAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Adobe XD interface&quot;
+        title=&quot;&quot;
+        src=&quot;/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-e2462.png&quot;
+        srcset=&quot;/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-f6591.png 270w,
+/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-cce5f.png 540w,
+/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-e2462.png 1080w,
+/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-b1cf7.png 1620w,
+/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-781d5.png 2160w,
+/static/adobe-xd-screenshot-3c2ca7bd1fd2bb75af71e3c0c8fa49cf-87767.png 2882w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Prototyping&lt;/li&gt;
+&lt;li&gt;Embeddable prototypes (for portfolio/sites)&lt;/li&gt;
+&lt;li&gt;Reusable Components (Symbols)&lt;/li&gt;
+&lt;li&gt;Text styles / Document Colors&lt;/li&gt;
+&lt;li&gt;Desktop app only for editing&lt;/li&gt;
+&lt;li&gt;Live preview on mobile device using Adobe XD app&lt;/li&gt;
+&lt;li&gt;Supports Sketch files (complete with Symbols)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Pricing 💰&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;$9.99/mo - Individual plan&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;But who wins? 🥊&lt;/h2&gt;
+&lt;p&gt;🥇 As always, it depends on what you need. &lt;strong&gt;Figma was honestly the best all-in-one solution out there&lt;/strong&gt;, with a cloud-based design and prototyping tool, and the lowest price point with most features. However, the prototyping in Figma is limited, and something like Principle or Invision Studio might more appropriate if your use case involves complex UI animations/transitions.&lt;/p&gt;
+&lt;p&gt;🥈 &lt;strong&gt;Sketch&lt;/strong&gt; comes in a close second, being a complete design and prototyping solution, only inhibited by it&apos;s exclusivity to MacOS and limited prototyping tools compared to Principle/Studio.&lt;/p&gt;
+&lt;p&gt;💩 &lt;strong&gt;Adobe XD&lt;/strong&gt; was the most disappointing, where it hit the mark with so many features (great UI, Sketch import, Adobe ecosystem) -- but the fact that symbols weren&apos;t that dynamic or even &lt;em&gt;scalable&lt;/em&gt; was a game breaker. Making your button a symbol and not being able to make it wider is simply broken. I couldn&apos;t bring myself to use it intensively knowing that the workflow would be so inherently restrained by that one missing feature.&lt;/p&gt;
+&lt;h3&gt;My winner? 🙌&lt;/h3&gt;
+&lt;p&gt;I&apos;ve landed on using &lt;strong&gt;Sketch&lt;/strong&gt; as my primary design tool for most projects and simple prototypes, &lt;strong&gt;Principle&lt;/strong&gt; for complex prototypes, and &lt;strong&gt;Figma&lt;/strong&gt; if I need to collaborate on a greater level with multiple designers/team members. And for sketching on the go, I can&apos;t shake the &lt;strong&gt;Invision iOS app&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;Cheers 🍻
+Ryo&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.sketchapp.com/&quot;&gt;Sketch App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.sketchapp.com/docs/sketch-cloud/&quot;&gt;Sketch Cloud&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://marvelapp.com/&quot;&gt;Marvel App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.marvelapp.com/creating-maintaining-marvel-style-guide-sketch/&quot;&gt;Creating and Maintaining the Marvel Style Guide in Sketch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://invisionapp.com/&quot;&gt;Invision App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://figma.com&quot;&gt;Figma&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https:f//www.adobe.com/products/xd.html&quot;&gt;Adobe XD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://framer.com&quot;&gt;Framer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Styled Components using Pure CSS Framework]]></title><description><![CDATA[Recently I've been doing a lot of research into the myriad of design systems out there, and I stumbled upon Pure CSS, a tiny CSS framework…]]></description><link>http://whoisryosuke.com//blog/2019/pure-styled-components/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/pure-styled-components/</guid><pubDate>Fri, 08 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I&apos;ve been doing a lot of research into the myriad of design systems out there, and I stumbled upon Pure CSS, a tiny CSS framework with only essential modules for creating sites. I&apos;ve been wanting to experiment with Styled Components, and I thought converting the CSS framework into React components would be an fantastic exercise to flex a few skills. And Pure CSS was so small and modular, it was perfect for translating into CSS-in-JS.&lt;/p&gt;
 &lt;p&gt;Ultimately, I was able to create a complete React component system in &lt;em&gt;**only&lt;/em&gt; 135 KB of code 😳🤯  &lt;em&gt;(not minified/gzipped, but also not including peer dependencies like React and styled-components).&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;How to use&lt;/h2&gt;
 &lt;p&gt;You can install this into your project today &lt;a href=&quot;https://www.npmjs.com/package/pure-styled-components&quot;&gt;using npm&lt;/a&gt;:&lt;/p&gt;
