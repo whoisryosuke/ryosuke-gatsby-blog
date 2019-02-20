@@ -1423,6 +1423,11 @@ a.Title:hover
   {
     margin-top:-4rem;
   }
+  .ArticlePage.blog .content,
+  .ArticlePage.blog .meta,
+  .Blog .Comments .content {
+    width:100%;
+  }
 }
 
 /* -------------- Component specific ---------------- */
@@ -1841,6 +1846,20 @@ progress::-moz-progress-bar {
   width:25%;
   height:auto;
   opacity:0.85;
+}
+
+@media (max-width: 800px) {
+  .About__bio {
+    padding:1rem;
+    flex-direction: column;
+  }
+  .About__bio figure {
+    width:80%;
+  }
+  .About__bio aside {
+    width:100%;
+    margin:0;
+  }
 }
 
 /* ------- Blog Archive ------- */
