@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 20 Feb 2019 23:32:58 GMT</lastBuildDate><item><title><![CDATA[Design Collaboration Tools in 2019]]></title><description><![CDATA[Recently I got to work on a UX/UI project with a new team, and was tasked with selecting a design collaboration tool we'd use to create and…]]></description><link>http://whoisryosuke.com//blog/2019/design-collaboration-tools-2019/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/design-collaboration-tools-2019/</guid><pubDate>Mon, 18 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I got to work on a UX/UI project with a new team, and was tasked with selecting a design collaboration tool we&apos;d use to create and collaborate on the mockups and prototypes. The team was comprised of a few different departments that didn&apos;t use design tools and 3rd party design studio that used Sketch. &lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 03 Apr 2019 00:01:45 GMT</lastBuildDate><item><title><![CDATA[Sketch Data Table Components]]></title><description><![CDATA[Tables - they comprise a multitude of different interfaces we consume on a regular basis. Spreadsheets, CRMs, settings pages -- we see…]]></description><link>http://whoisryosuke.com//blog/2019/sketch-table-components/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/sketch-table-components/</guid><pubDate>Mon, 01 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Tables - they comprise a multitude of different interfaces we consume on a regular basis. Spreadsheets, CRMs, settings pages -- we see tables everywhere in our UI and it&apos;s inevitable as a designer that you&apos;ll have to mock one up (without completely copping out with a screenshot of Excel/HTML).&lt;/p&gt;
+&lt;p&gt;I had to design a table for a client in Sketch, so I did a quick search for dynamic Sketch table symbols/components, and I couldn&apos;t track anything down that was &lt;em&gt;actually&lt;/em&gt; dynamic. Most tables were &quot;hard coded&quot; in a sense, with their columns and rows defined by line shapes, instead of individual cells, making it impossible to change the table format beyond the template.&lt;/p&gt;
+&lt;p&gt;So I set off and created my own dynamic Sketch table and decided to share it with everyone (because tables are hard enough right? 😅😵)&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/example-table-33fed95da8d740d0eddbe4a1b4049d88-0265e.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 848px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 56.60377358490566%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAX/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIQAxAAAAG+AD//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAEFAl//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/AT//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAY/Al//xAAUEAEAAAAAAAAAAAAAAAAAAAAg/9oACAEBAAE/IV//2gAMAwEAAgADAAAAEAAP/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPxA//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPxA//8QAGBAAAgMAAAAAAAAAAAAAAAAAAAEQMUH/2gAIAQEAAT8QVmwrNj//2Q==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Example Table&quot;
+        title=&quot;&quot;
+        src=&quot;/static/example-table-33fed95da8d740d0eddbe4a1b4049d88-0265e.jpg&quot;
+        srcset=&quot;/static/example-table-33fed95da8d740d0eddbe4a1b4049d88-e5bd0.jpg 270w,
+/static/example-table-33fed95da8d740d0eddbe4a1b4049d88-bcc11.jpg 540w,
+/static/example-table-33fed95da8d740d0eddbe4a1b4049d88-0265e.jpg 848w&quot;
+        sizes=&quot;(max-width: 848px) 100vw, 848px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;How to use 🛠&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/whoisryosuke/ryosuke-gatsby-blog/tree/master/src/content/blog/2019/sketch-table-components/Dynamic-Sketch-Tables.zip&quot;&gt;&lt;strong&gt;Download the Sketch template here&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Insert desired cell symbols and align horizontally into a table row.&lt;/li&gt;
+&lt;li&gt;Group the table row (to make it easier to work with).&lt;/li&gt;
+&lt;li&gt;Copy and paste the row, then align underneath. Repeat until desired row count is reached.&lt;/li&gt;
+&lt;li&gt;CMD/CTRL + Click each cell and change the data dynamically in the sidebar (like text or even icons!)&lt;/li&gt;
+&lt;li&gt;Resize to your ❤️&apos;s desire 👌&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/example-table-subtitles-492a8ec9b43ee9bfb54cf54aec26c048-0265e.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 848px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 56.367924528301884%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB34oB/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQJf/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAwEBPwE//8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwJf/8QAFhABAQEAAAAAAAAAAAAAAAAAQRAA/9oACAEBAAE/IXMb/9oADAMBAAIAAwAAABBgD//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABkQAQACAwAAAAAAAAAAAAAAAAEAEDFBsf/aAAgBAQABPxAyj0URuv/Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Example Subtitle Table&quot;
+        title=&quot;&quot;
+        src=&quot;/static/example-table-subtitles-492a8ec9b43ee9bfb54cf54aec26c048-0265e.jpg&quot;
+        srcset=&quot;/static/example-table-subtitles-492a8ec9b43ee9bfb54cf54aec26c048-e5bd0.jpg 270w,
+/static/example-table-subtitles-492a8ec9b43ee9bfb54cf54aec26c048-bcc11.jpg 540w,
+/static/example-table-subtitles-492a8ec9b43ee9bfb54cf54aec26c048-0265e.jpg 848w&quot;
+        sizes=&quot;(max-width: 848px) 100vw, 848px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;The limitations / caveats 🚦&lt;/h2&gt;
+&lt;h3&gt;Complex text styles 🖍&lt;/h3&gt;
+&lt;p&gt;If you&apos;d like a cell where a portion of the text is bold or colored differently than the defined text style, you&apos;ll have to detach it from the symbol. Sketch simply can&apos;t handle nested text styles yet in that capacity.&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/example-table-multilines-eaf72eee5240e14f233ab00cba00e913-0265e.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 848px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 62.735849056603776%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAANABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAIBBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHu6EKWf//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEAAQUCX//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABcQAQADAAAAAAAAAAAAAAAAABAAMeH/2gAIAQEABj8CNbn/xAAbEAABBAMAAAAAAAAAAAAAAAAAARExQWHh8f/aAAgBAQABPyFZ2WWsBsljLwf/2gAMAwEAAgADAAAAEADP/8QAFREBAQAAAAAAAAAAAAAAAAAAABH/2gAIAQMBAT8QR//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/EFf/xAAdEAABBAMBAQAAAAAAAAAAAAABABEhMUFRgWGh/9oACAEBAAE/EKjHWJy+MbRIsvsiRLhnFMn+KcnLwv/Z&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;Example Multiline alternating row Table&quot;
+        title=&quot;&quot;
+        src=&quot;/static/example-table-multilines-eaf72eee5240e14f233ab00cba00e913-0265e.jpg&quot;
+        srcset=&quot;/static/example-table-multilines-eaf72eee5240e14f233ab00cba00e913-e5bd0.jpg 270w,
+/static/example-table-multilines-eaf72eee5240e14f233ab00cba00e913-bcc11.jpg 540w,
+/static/example-table-multilines-eaf72eee5240e14f233ab00cba00e913-0265e.jpg 848w&quot;
+        sizes=&quot;(max-width: 848px) 100vw, 848px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h3&gt;Alternating table rows⚪️⚫️&lt;/h3&gt;
+&lt;p&gt;You could add a nested symbol for alternating table rows, but it becomes cumbersome to delete a row, and have to go into each cell/row and swap the background style. I&apos;ve found it&apos;s easier to separate the alternating background behind the table row group, and you can delete rows and move them up without fussing with backgrounds.&lt;/p&gt;
+&lt;h2&gt;Table tennis for days 🏓&lt;/h2&gt;
+&lt;p&gt;I hope this helps you design some tables in the future and expedite the already painful process of data-based design. If you have any questions feel free to hit me up on Twitter or comment here. And let me know if you 👀 any glitches 👾&lt;/p&gt;
+&lt;p&gt;Cheers,
+Ryo&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Design Collaboration Tools in 2019]]></title><description><![CDATA[Recently I got to work on a UX/UI project with a new team, and was tasked with selecting a design collaboration tool we'd use to create and…]]></description><link>http://whoisryosuke.com//blog/2019/design-collaboration-tools-2019/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/design-collaboration-tools-2019/</guid><pubDate>Mon, 18 Feb 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Recently I got to work on a UX/UI project with a new team, and was tasked with selecting a design collaboration tool we&apos;d use to create and collaborate on the mockups and prototypes. The team was comprised of a few different departments that didn&apos;t use design tools and 3rd party design studio that used Sketch. &lt;/p&gt;
 &lt;p&gt;After doing a bit of shopping, I found that &lt;strong&gt;Figma, Invision, Marvel, Adobe XD, and Sketch&lt;/strong&gt; each had the features the team desired: Sketch import, cloud-based design, prototyping, and collaboration. &lt;/p&gt;
 &lt;h2&gt;My Process 🎨&lt;/h2&gt;
 &lt;p&gt;These are the notes I took while exploring each of the apps and putting them standard UI work. &lt;/p&gt;
