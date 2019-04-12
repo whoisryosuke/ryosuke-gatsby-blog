@@ -14,7 +14,7 @@ As great as GatsbyJS is, it can take a while to start your first project. You ha
 
 What if you could just click a link, wait for dependencies to download and compile, and **blam** -- [you've got yourself a Gatsby blog?](http://codesandbox.io/s/github/gatsbyjs/gatsby-starter-blog) This is the kind of world we live in thanks to platforms like [CodeSandbox](http://codesandbox.io).
 
-But this got me thinking, why not **use CodeSandbox as a kind of CMS** for your blog? Since it works off Github, and can commit code/pull requests, you're capable of editing and authoring any content you'd like. Just open up the Sandbox, create a new file, make a pull request, and you're done! *(depending on your build process)*
+But this got me thinking, why not **use CodeSandbox as a kind of CMS** for your blog? Since it works off Github, and can commit code/pull requests, you're capable of editing and authoring any content you'd like (as long as it's static - like Markdown or JSON). Just open up the Sandbox, create a new Markdown file, make a pull request, and you're done! *(depending on your build process)*
 
 ![CodeSandbox running as a CMS for Gatsby](./codesandbox-gatsby-mdx-typescript-starter.png)
 
