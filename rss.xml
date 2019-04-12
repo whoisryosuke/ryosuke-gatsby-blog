@@ -1,4 +1,90 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 03 Apr 2019 00:01:45 GMT</lastBuildDate><item><title><![CDATA[Sketch Data Table Components]]></title><description><![CDATA[Tables - they comprise a multitude of different interfaces we consume on a regular basis. Spreadsheets, CRMs, settings pages -- we see…]]></description><link>http://whoisryosuke.com//blog/2019/sketch-table-components/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/sketch-table-components/</guid><pubDate>Mon, 01 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Tables - they comprise a multitude of different interfaces we consume on a regular basis. Spreadsheets, CRMs, settings pages -- we see tables everywhere in our UI and it&apos;s inevitable as a designer that you&apos;ll have to mock one up (without completely copping out with a screenshot of Excel/HTML).&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Apr 2019 18:06:08 GMT</lastBuildDate><item><title><![CDATA[Using CodeSandbox as a CMS and Live Preview for your Gatsby Blog]]></title><description><![CDATA[GatsbyJS has been exploding over the static JS scene over the last few months. Developers everywhere are embracing Gatsby for it's ability…]]></description><link>http://whoisryosuke.com//blog/2019/codesandbox-as-gatsby-cms/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/codesandbox-as-gatsby-cms/</guid><pubDate>Fri, 12 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;GatsbyJS has been exploding over the static JS scene over the last few months. Developers everywhere are embracing Gatsby for it&apos;s ability to simplify static content generation, as well as it&apos;s content and asset aggregation through GraphQL. They make it much easier to spin up a new project and build blazing fast static React apps. It&apos;s become my go-to when working with any static site, such as landing pages or blogs, where content isn&apos;t very dynamic and benefits from preprocessing.&lt;/p&gt;
+&lt;p&gt;As great as GatsbyJS is, it can take a while to start your first project. You have to download and install their CLI, bootstrap a new project with &lt;code class=&quot;language-text&quot;&gt;npx&lt;/code&gt;, or clone a starter project repo. Then you can spin up the local dev environment. It&apos;s not a lot, but it is a commitment, particularly when you&apos;re introducing it to someone new. You want results, and fast.&lt;/p&gt;
+&lt;h2&gt;Blazing fast sites -- in a blast 💣🔥&lt;/h2&gt;
+&lt;p&gt;What if you could just click a link, wait for dependencies to download and compile, and &lt;strong&gt;blam&lt;/strong&gt; -- &lt;a href=&quot;http://codesandbox.io/s/github/gatsbyjs/gatsby-starter-blog&quot;&gt;you&apos;ve got yourself a Gatsby blog?&lt;/a&gt; This is the kind of world we live in thanks to platforms like &lt;a href=&quot;http://codesandbox.io&quot;&gt;CodeSandbox&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;But this got me thinking, why not &lt;strong&gt;use CodeSandbox as a kind of CMS&lt;/strong&gt; for your blog? Since it works off Github, and can commit code/pull requests, you&apos;re capable of editing and authoring any content you&apos;d like. Just open up the Sandbox, create a new file, make a pull request, and you&apos;re done! &lt;em&gt;(depending on your build process)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;
+  &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/codesandbox-gatsby-mdx-typescript-starter-b037bb1d3aa0140ef63757da3b72b692-3c5ae.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+  
+  &lt;span
+    class=&quot;gatsby-resp-image-wrapper&quot;
+    style=&quot;position: relative; display: block; ; max-width: 1080px; margin-left: auto; margin-right: auto;&quot;
+  &gt;
+    &lt;span
+      class=&quot;gatsby-resp-image-background-image&quot;
+      style=&quot;padding-bottom: 55.13833992094862%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAACy0lEQVQoz12Q3UsUURjG5z771F3b2Tm7M3NmZmcXta3N1XWt1KylTyiIRPNzcSIt+862tQK7iMiLAtOgyAKhjGIoMK3oH9Eu8iIqvUuMaj6ezqwh0YHfYebA8+N5X06n5PDuzK53Fy/1vzCOHzdbjh0z2zs6Vujo7DQ7u7JmVzZrtrW1m01NzYwWs+los9nc3Gom4ltNItKXVFEndS2a5aKxssFNWypRld6GyuoapLbtQKIqhXiikpFEIlmNZE0tkqk0auvr0LhvFxr3L5M5mEGqPo1NqS1IN6SxOZF4xLUeOHclXlGLdT7fTz8vWIJEbYFK9sYQsUuDgu33CAj26uINdmb7EXs4Z9qD3WP2DeOJfbNn3B46PWEP9T37PXTqOQbO3hrm9FhFXtHLEAxLFh8SXZFqoEoEshqBqKoIUYqQrMJPeOxJteJ2+yTONozhQuMTnN/5GP2ZceT2PnUGD73CjTOjI5wgSnmRhYNh2QqQsCvRCDQ9BjUWhRzVQSSZQbG2xI+L/ZcxOzOLublPWFhYwPz8PJaWlsCO411vpqZGOKrpeU0vhxops8Ky5oZkChqLIKwqCCsKiCyzhgrWFvtwOT+AQtop5FeO67qFh6np6REuQEheY22IpBRG9sKFVkzM2nurKAjXMGHur9CyrIJ0GReu84+QZ8JITGdh+bc3sqh4LRVXEKnL1lAgRFWXCd1c/qrrFbIsmzncFWzHsZdHZsKNJHxFjsS8Jr8CJOSERIZEHBIWHD7IOwE+4AiEOKuKipyBfM75u6//sTzhh/dv73H+ILkualEIbDReVKBV1yOSboBSVQdauQM0WQe1ugH+6Fb0XbuFz4sOZr8t4uPC0gozX7/jyw/g4cTrB9z64pJ4aYA/WeLzdZdKuhHvHTbKe0cN/cSIEe0ZNWK9940o+/e+NWPYkLvuGHL2P7rudMvZuyek1ps1fwDbTL7ynRgvMQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    &gt;
+      &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
+        alt=&quot;CodeSandbox running as a CMS for Gatsby&quot;
+        title=&quot;&quot;
+        src=&quot;/static/codesandbox-gatsby-mdx-typescript-starter-b037bb1d3aa0140ef63757da3b72b692-e2462.png&quot;
+        srcset=&quot;/static/codesandbox-gatsby-mdx-typescript-starter-b037bb1d3aa0140ef63757da3b72b692-f6591.png 270w,
+/static/codesandbox-gatsby-mdx-typescript-starter-b037bb1d3aa0140ef63757da3b72b692-cce5f.png 540w,
+/static/codesandbox-gatsby-mdx-typescript-starter-b037bb1d3aa0140ef63757da3b72b692-e2462.png 1080w,
+/static/codesandbox-gatsby-mdx-typescript-starter-b037bb1d3aa0140ef63757da3b72b692-b1cf7.png 1620w,
+/static/codesandbox-gatsby-mdx-typescript-starter-b037bb1d3aa0140ef63757da3b72b692-3c5ae.png 2024w&quot;
+        sizes=&quot;(max-width: 1080px) 100vw, 1080px&quot;
+      /&gt;
+    &lt;/span&gt;
+  &lt;/span&gt;
+  
+  &lt;/a&gt;
+    &lt;/p&gt;
+&lt;h2&gt;How it works ⚙️&lt;/h2&gt;
+&lt;p&gt;CodeSandbox added server-side platforms like Gatsby, Node, and Apollo a few months ago. This allows anyone to spin up &lt;em&gt;(any?)&lt;/em&gt; Gatsby project in &lt;strong&gt;your browser&lt;/strong&gt;. If you don&apos;t already have a Gatsby blog, there&apos;s no excuse now.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Only requirements?&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Github account&lt;/li&gt;
+&lt;li&gt;CodeSandbox account (uses Sign-in with Github)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Here&apos;s how it roughly works:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pick &lt;a href=&quot;https://www.gatsbyjs.org/starters/&quot;&gt;a Gatsby starter template&lt;/a&gt; that pulls content locally (like text, markdown, MDX, etc)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://codesandbox.io/s/github/tylergreulich/gatsby-typescript-mdx-prismjs-starter&quot;&gt;Open on CodeSandbox&lt;/a&gt;. &lt;em&gt;You can open any Github repo by using the format &lt;code class=&quot;language-text&quot;&gt;codesandbox.io/s/githubuser/reponame/&lt;/code&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Create a new page or content file (like MDX). In Gatsby, any React component in the &lt;code class=&quot;language-text&quot;&gt;/src/pages/&lt;/code&gt; directory will be a page. For content sites (like Markdown), try finding an example .MD post to copy.&lt;/li&gt;
+&lt;li&gt;Fork sandbox (click button on top or happens automatically when you save changes).&lt;/li&gt;
+&lt;li&gt;Save new repo to Github. Click the Github icon on the left side, sign in using Github, and save the repo there.&lt;/li&gt;
+&lt;li&gt;Save any changes and commit code (if not already)&lt;/li&gt;
+&lt;li&gt;Merge pull request on Github&lt;/li&gt;
+&lt;li&gt;Use a service like Netlify to build your code. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;You could build Gatsby locally on your machine, but this tutorial assumes you&apos;re trying to achieve everything in the cloud.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You could also use Netlify CMS once you&apos;re using Netlify. However, you don&apos;t get the same benefits of the &quot;local dev environment&quot; that CodeSandbox emulates, like a live preview, editing React components, or Gatsby configs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Deploying with Netlify 🚀&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://app.netlify.com/signup&quot;&gt;Sign up for a Netlify account&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://app.netlify.com/start&quot;&gt;Create a new site from Git&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Netlify should automatically detect Gatsby and run the appropriate build script. If not (or if you have a custom/pre-build script), you can change it in the Netlify deploy settings.&lt;/p&gt;
+&lt;h3&gt;Caveats 🐛&lt;/h3&gt;
+&lt;p&gt;The only &lt;em&gt;tiny&lt;/em&gt; bug I&apos;ve encountered involves using MDX with Gatsby (ironically the starter I chose to feature as well). When you save an MDX file, the changes don&apos;t immediately propogate in the live preview. &lt;/p&gt;
+&lt;p&gt;The way MDX works is by compiling static assets like JS files for all the JSX components you import, then Gatsby displays those. Every time you save, new static assets are generated for any changed MDX file (instead of using hot module reloading like most CLIs). &lt;/p&gt;
+&lt;p&gt;This gets a little clunky in CodeSandbox, and sometimes you won&apos;t see changes immediately (requring a refresh of the live preview window).&lt;/p&gt;
+&lt;h2&gt;Why stop at blogs? 👨‍💻&lt;/h2&gt;
+&lt;p&gt;If you need to whip out a fast static website completely in the cloud, this is your solution. This streamlines the design sprint: allowing you to jump directly into code that easily shareable with collaborators, synced with Git, and effortlessly iterable through forks. Whether you&apos;re working on a &lt;strong&gt;&lt;a href=&quot;https://www.gatsbyjs.org/starters/gillkyle/gatsby-starter-landing-page/&quot;&gt;landing page&lt;/a&gt;&lt;/strong&gt; or a &lt;strong&gt;&lt;a href=&quot;https://www.gatsbyjs.org/starters/fabe/gatsby-starter-deck/&quot;&gt;deck for your next conf talk&lt;/a&gt;&lt;/strong&gt;, Gatsby has plenty of starters to get you hacking away even faster 👍 And combined with services like &lt;a href=&quot;http://netlify.com&quot;&gt;Netlify&lt;/a&gt; that deploy from Git repositories, your workflow can&apos;t get any faster &lt;em&gt;(or secure!)&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;And if you haven&apos;t already explored &lt;a href=&quot;http://codesandbox.io&quot;&gt;CodeSandbox&lt;/a&gt;, I highly suggest checking it out. It&apos;s a really useful tool not only for coding from scratch, but also pulling up any git branch, which makes it fantastic for creating examples or reviewing PRs live. Also deploys to &lt;a href=&quot;https://zeit.co/now&quot;&gt;Zeit&apos;s Now&lt;/a&gt; if you&apos;re into that ▲ 🌚&lt;/p&gt;
+&lt;p&gt;Hope this helps!
+Ryo&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://codesandbox.io&quot;&gt;CodeSandbox&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://gatsbyjs.org&quot;&gt;GatsbyJS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/starters/&quot;&gt;GatsbyJS Starters&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://codesandbox.io/s/github/tylergreulich/gatsby-typescript-mdx-prismjs-starter&quot;&gt;Gatsby Starter - MDX + PrismJS + Styled Components + TS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/&quot;&gt;Deploying GatsbyJS to Github Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://netlify.com&quot;&gt;Netlify&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Sketch Data Table Components]]></title><description><![CDATA[Tables - they comprise a multitude of different interfaces we consume on a regular basis. Spreadsheets, CRMs, settings pages -- we see…]]></description><link>http://whoisryosuke.com//blog/2019/sketch-table-components/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/sketch-table-components/</guid><pubDate>Mon, 01 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Tables - they comprise a multitude of different interfaces we consume on a regular basis. Spreadsheets, CRMs, settings pages -- we see tables everywhere in our UI and it&apos;s inevitable as a designer that you&apos;ll have to mock one up (without completely copping out with a screenshot of Excel/HTML).&lt;/p&gt;
 &lt;p&gt;I had to design a table for a client in Sketch, so I did a quick search for dynamic Sketch table symbols/components, and I couldn&apos;t track anything down that was &lt;em&gt;actually&lt;/em&gt; dynamic. Most tables were &quot;hard coded&quot; in a sense, with their columns and rows defined by line shapes, instead of individual cells, making it impossible to change the table format beyond the template.&lt;/p&gt;
 &lt;p&gt;So I set off and created my own dynamic Sketch table and decided to share it with everyone (because tables are hard enough right? 😅😵)&lt;/p&gt;
 &lt;p&gt;
