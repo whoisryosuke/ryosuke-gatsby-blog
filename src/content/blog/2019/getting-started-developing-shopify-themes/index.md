@@ -1,0 +1,231 @@
+---
+title: Getting started developing Shopify themes
+date: "2019-06-05"
+section: blog
+cover_image: "./getting-started-developing-shopify-themes@0.5x.jpg"
+tags: [ 'shopify', 'tutorial', 'shopify themes' ]
+---
+
+Shopify has exploded over the past few years, becoming a near de-facto decision for any small to mid scale e-commerce project. It's become more important than ever to sharpen Shopify skills and get a handle on Liquid.
+
+I wrote this guide to outline the process of developing on a pre-existing Shopify theme (although you could deploy a new theme using these directions). This documentation [is available on the Shopify website](https://help.shopify.com/en/themes/development/getting-started/choosing-an-editor), but it's so disjointed that I opted to aggregate and disseminate the key elements here.
+
+> This guide assumes you have already signed up for a Shopify account, created a store, and activated a theme on the site. Please note that free trials of themes cannot be downloaded locally for development, you must purchase a theme before editing it's code.
+
+## Why can't I just spin up a Shopify dev server? 🤨
+
+Shopify theme development doesn't work like other platforms, like Wordpress, since it's a closed-source cloud-based solution. **There is no way to spin up a local development Shopify server.**
+
+All your changes have to be committed to the live Shopify servers in order to preview it. You don't have to push code to production per say, you can update preview themes (or use a staging/development store). But keep in mind, **there's no way to develop Shopify themes without an active internet connection.**
+
+In order to edit a Shopify theme's code, you have two options:
+
+* You can either edit the code through the browser, inside the Shopify admin (similar to Wordpress).
+* Or you can download the theme to your computer, and send/sync changes with the Shopify server.
+
+Because of this tightly coupled process with the Shopify server, they've developed tools to help simplify the process of transferring code between the Shopify server and your local machine.
+
+## The Tools 🛠Theme Kit vs Slate
+
+Shopify offers two tools to streamline local development of their themes: Theme Kit and Slate.
+
+**Theme Kit** is a CLI, or command-line interface, that allows you to execute standard operations on themes (like downloading or updating theme files) using the command line. Essentially you write commands like `theme get` or `theme watch` to download or start syncing file changes.
+
+**Slate** is a new project that is a wrapper around the Theme Kit CLI. It's meant to simplify Shopify development even further for users who prefer against using CLI. It provides you scripts (using Theme Kit) to deploy changes, and it also includes a kind of "starter theme" to help scaffold your new Shopify themes. Because of the inclusion of the starter theme, it makes it difficult to easily use Slate with pre-existing theme (my theme wasn't compatible for some reason).
+
+### Which do you choose? 🧐
+
+* If you're developing an existing theme: **Theme Kit**.
+* If you're developing a new theme: **A decoupled React/Vue/etc app using the API** or **Slate**.
+
+I'll be moving forward using **Theme Kit**, since it is more flexible to learn (allowing you to use existing theme or even new ones).
+
+## Starting a project 🎉
+
+You can find the instructions [from Shopify on Theme Kit are here](https://shopify.github.io/themekit/). Basically you install a CLI called Theme Kit that Shopify created to interface with their theme API. It makes downloading and deploying changes your theme much simpler than a classic FTP-type setup.
+
+Generate an API key by creating a "Private App": https://your-store.myshopify.com/admin/apps/private/new. Make sure to enable read and write access on the Theme Assets (you'll have to see more since it's hidden by default).
+
+1.  Install Theme Kit CLI
+2.  Navigate to your project directory
+3.  Run the initial configuration script to generate a YML config:
+
+`theme configure --password=[your-api-password] --store=[your-store.myshopify.com] --themeid=[your-theme-id]`
+
+4.  If your theme hasn't downloaded, run `theme get`
+5.  Add the settings to ignore config (see below)
+6.  Run `theme watch` when you're ready to start developing.
+
+## Avoiding Customizer Conflicts 🙅‍♂️
+
+Shopify allows store owners to customize their shop using a "Theme Customizer" in the admin section. Any settings saved in the Customizer, like fonts or colors, are committed to a file called `settings_data.json` in the theme's config folder.
+
+When you're developing Shopify themes locally, if you choose to use the `theme deploy` command over `theme watch`, you can accidentally override the Customizer options with your local JSON file. This can be problematic, particularly if you're saving changes to the server, and another user is also customizing the site (or you just want to make customizer tweaks while editing source code).
+
+### The solution 👍
+
+Make sure to add the `settings_data.json` config file to your ignore list. This overrides any customizations made in the browser, and can get annoying if you're testing colors/modules and accidentally deploy old overrides.
+
+```yml
+development:
+  password: 4383472319239
+  theme_id: "12359393"
+  store: yourstore.myshopify.com
+  ignore_files:
+  - config/settings_data.json
+```
+
+## Basic scripts to get started ⚙️
+
+`theme watch` and `theme deploy` for sending files to server. Watch will send files on save, deploy overrides all files (or specified files/folders).
+
+You can use the commands directly, but I made a `package.json` to utilize NPM scripts to simplify deployment since some flags like `-n` are almost required -- but not defaults.
+
+```js
+{
+  "name": "your-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "theme deploy -n",
+    "watch": "theme watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "You",
+  "license": "MIT"
+}
+```
+
+## Creating customizable sections 🍰
+
+One of the benefits of using Shopify is the drag and drop page building functionality provided by the Customizer. Store owners are able to re-order pages like the frontpage and easily do things like change text, colors, etc. Creating customizable "sections" as Shopify calls them is very simple, and only requires you to create a Liquid template with a JSON configuration on the bottom to specify the customizable fields.
+
+To create a new section, add create a new `.liquid` file in the `sections` folder. Here I created a "quote" section that displays a user-defined quote in a large, quote-like format:
+
+```liquid
+{% if section.settings.centered == true %}
+<div class="section quote centered n-margin relative show-on-scroll">
+{% else %}
+<div class="section quote n-margin relative">
+{% endif %}
+    {% if section.settings.subtitle != blank %}
+        <h3 class="subtitle">{{ section.settings.subtitle | escape }}</h3>
+    {% endif %}
+    {% if section.settings.heading != blank %}
+        <h1>{{ section.settings.heading | escape }}</h1>
+    {% endif %}
+</div>
+
+
+{% schema %}
+{
+    "name": {
+        "de": "Quote",
+        "en": "Quote",
+        "es": "Quote",
+        "fr": "Quote",
+        "it": "Quote",
+        "ja": "Quote",
+        "pt-BR": "Quote"
+    },
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": {
+                "de": "Titel",
+                "en": "Heading",
+                "es": "Título",
+                "fr": "Titre",
+                "it": "Heading",
+                "ja": "見出し",
+                "pt-BR": "Título"
+            },
+            "default": {
+                "de": "Explore",
+                "en": "Explore",
+                "es": "Explore",
+                "fr": "Explore",
+                "it": "Explore",
+                "ja": "Explore",
+                "pt-BR": "Explore"
+            }
+        },
+        {
+            "type": "checkbox",
+            "id": "centered",
+            "label": "Centered?",
+            "default": true,
+            "info": "Centers quote text"
+        },
+        {
+            "type": "text",
+            "id": "subtitle",
+            "label": {
+                "de": "Sub Titel",
+                "en": "Sub-heading",
+                "es": "Sub Título",
+                "fr": "Sub Titre",
+                "it": "Sub Heading",
+                "ja": "S見出し",
+                "pt-BR": "Sub Título"
+            },
+            "default": {
+                "de": "Vestibulum aliquam hendrerit molestie mauris.",
+                "en": "Vestibulum aliquam hendrerit molestie mauris.",
+                "es": "Vestibulum aliquam hendrerit molestie mauris.",
+                "fr": "Vestibulum aliquam hendrerit molestie mauris.",
+                "it": "Vestibulum aliquam hendrerit molestie mauris.",
+                "ja": "Vestibulum aliquam hendrerit molestie mauris.",
+                "pt-BR": "Vestibulum aliquam hendrerit molestie mauris."
+            }
+        }
+    ],
+    "presets": [
+        {
+            "name": {
+                "de": "Quote",
+                "en": "Quote",
+                "es": "Quote",
+                "fr": "Quote",
+                "it": "Quote",
+                "ja": "Quote",
+                "pt-BR": "Quote"
+            },
+            "category": {
+                "de": "Text",
+                "en": "Text",
+                "es": "Text",
+                "fr": "Text",
+                "it": "Text",
+                "ja": "Text",
+                "pt-BR": "Text"
+            }
+        }
+    ]
+}
+{% endschema %}
+```
+
+You can see above that I added input fields to the JSON's settings section. Each input is a JSON object that contains the input info (name, type, etc), which is inside the settings array.
+
+We can access these user inputted values from the settings in the theme using the Liquid syntax: `{{ section.settings.yourinputname }}`.
+
+And similarly we can create conditionals (to check if a value exists or not) by using: `{% if section.settings.yourinputname == 'your value here' %}`.
+
+If you're familiar with any sort of templating language (such as Blade or Twig), this should be reminiscent to syntax you've seen.
+
+## Start coding away! 🚀
+
+Run `theme watch` in the project directory, open a file, and save your changes to see your code sent to the live Shopify server. You could use `theme deploy`, but it's more tedious, and risks overwriting files you possibly didn't sync (or changed since your last edit).
+
+> Whenever you pick up a project again, make sure to run `theme get` before getting started. It's the equivalent of updating your local git with a remote repo. This way you won't override changes someone else might have made since your last development session.
+
+Do you already develop for Shopify? How does your process differ, and what kind of tips can you additionally offer? [Let me know on Twitter](http://twitter.com/whoisryosuke) or in the comments below 💬👇
+
+---
+
+**References:**
+
+* [Shopify Development Tools](https://help.shopify.com/en/themes/development/getting-started/choosing-an-editor)
