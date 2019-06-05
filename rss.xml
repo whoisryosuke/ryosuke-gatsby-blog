@@ -1,4 +1,196 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 12 Apr 2019 18:12:03 GMT</lastBuildDate><item><title><![CDATA[Using CodeSandbox as a CMS and Live Preview for your Gatsby Blog]]></title><description><![CDATA[GatsbyJS has been exploding over the static JS scene over the last few months. Developers everywhere are embracing Gatsby for it's ability…]]></description><link>http://whoisryosuke.com//blog/2019/codesandbox-as-gatsby-cms/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/codesandbox-as-gatsby-cms/</guid><pubDate>Fri, 12 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;GatsbyJS has been exploding over the static JS scene over the last few months. Developers everywhere are embracing Gatsby for it&apos;s ability to simplify static content generation, as well as it&apos;s content and asset aggregation through GraphQL. They make it much easier to spin up a new project and build blazing fast static React apps. It&apos;s become my go-to when working with any static site, such as landing pages or blogs, where content isn&apos;t very dynamic and benefits from preprocessing.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Ryosuke]]></title><description><![CDATA[The portfolio and blog of Ryosuke]]></description><link>http://whoisryosuke.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 05 Jun 2019 17:24:30 GMT</lastBuildDate><item><title><![CDATA[Getting started developing Shopify themes]]></title><description><![CDATA[Shopify has exploded over the past few years, becoming a near de-facto decision for any small to mid scale e-commerce project. It's become…]]></description><link>http://whoisryosuke.com//blog/2019/getting-started-developing-shopify-themes/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/getting-started-developing-shopify-themes/</guid><pubDate>Wed, 05 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Shopify has exploded over the past few years, becoming a near de-facto decision for any small to mid scale e-commerce project. It&apos;s become more important than ever to sharpen Shopify skills and get a handle on Liquid.&lt;/p&gt;
+&lt;p&gt;I wrote this guide to outline the process of developing on a pre-existing Shopify theme (although you could deploy a new theme using these directions). This documentation &lt;a href=&quot;https://help.shopify.com/en/themes/development/getting-started/choosing-an-editor&quot;&gt;is available on the Shopify website&lt;/a&gt;, but it&apos;s so poorly written and disjointed that I opted to aggregate and disseminate it fully here.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This guide assumes you have already signed up for a Shopify account, created a store, and activated a theme on the site. Please note that free trials of themes cannot be downloaded locally for development, you must purchase a theme before editing it&apos;s code.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Why can&apos;t I just spin up a Shopify dev server? 🤨&lt;/h2&gt;
+&lt;p&gt;Shopify theme development doesn&apos;t work like other platforms, like Wordpress, since it&apos;s a closed-source cloud-based solution. &lt;strong&gt;There is no way to spin up a local development Shopify server.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;All your changes have to be committed to the live Shopify servers in order to preview it. You don&apos;t have to push code to production per say, you can update preview themes (or use a staging/development store). But keep in mind, &lt;strong&gt;there&apos;s no way to develop Shopify themes without an active internet connection.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In order to edit a Shopify theme&apos;s code, you have two options:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;You can either edit the code through the browser, inside the Shopify admin (similar to Wordpress).&lt;/li&gt;
+&lt;li&gt;Or you can download the theme to your computer, and send/sync changes with the Shopify server.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Because of this tightly coupled process with the Shopify server, they&apos;ve developed tools to help simplify the process of transferring code between the Shopify server and your local machine.&lt;/p&gt;
+&lt;h2&gt;The Tools 🛠Theme Kit vs Slate&lt;/h2&gt;
+&lt;p&gt;Shopify offers two tools to streamline local development of their themes: Theme Kit and Slate.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Theme Kit&lt;/strong&gt; is a CLI, or command-line interface, that allows you to execute standard operations on themes (like downloading or updating theme files) using the command line. Essentially you write commands like &lt;code class=&quot;language-text&quot;&gt;theme get&lt;/code&gt; or &lt;code class=&quot;language-text&quot;&gt;theme watch&lt;/code&gt; to download or start syncing file changes.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Slate&lt;/strong&gt; is a new project that is a wrapper around the Theme Kit CLI. It&apos;s meant to simplify Shopify development even further for users who prefer against using CLI. It provides you scripts (using Theme Kit) to deploy changes, and it also includes a kind of &quot;starter theme&quot; to help scaffold your new Shopify themes. Because of the inclusion of the starter theme, it makes it difficult to easily use Slate with pre-existing theme (my theme wasn&apos;t compatible for some reason).&lt;/p&gt;
+&lt;h3&gt;Which do you choose? 🧐&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;If you&apos;re developing an existing theme: &lt;strong&gt;Theme Kit&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;If you&apos;re developing a new theme: &lt;strong&gt;A decoupled React/Vue/etc app using the API&lt;/strong&gt; or &lt;strong&gt;Slate&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I&apos;ll be moving forward using &lt;strong&gt;Theme Kit&lt;/strong&gt;, since it is more flexible to learn (allowing you to use existing theme or even new ones).&lt;/p&gt;
+&lt;h2&gt;Starting a project 🎉&lt;/h2&gt;
+&lt;p&gt;You can find the instructions &lt;a href=&quot;https://shopify.github.io/themekit/&quot;&gt;from Shopify on Theme Kit are here&lt;/a&gt;. Basically you install a CLI called Theme Kit that Shopify created to interface with their theme API. It makes downloading and deploying changes your theme much simpler than a classic FTP-type setup.&lt;/p&gt;
+&lt;p&gt;Generate an API key by creating a &quot;Private App&quot;: &lt;a href=&quot;https://your-store.myshopify.com/admin/apps/private/new&quot;&gt;https://your-store.myshopify.com/admin/apps/private/new&lt;/a&gt;. Make sure to enable read and write access on the Theme Assets (you&apos;ll have to see more since it&apos;s hidden by default).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Install Theme Kit CLI&lt;/li&gt;
+&lt;li&gt;Navigate to your project directory&lt;/li&gt;
+&lt;li&gt;Run the initial configuration script to generate a YML config:&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;theme configure --password=[your-api-password] --store=[your-store.myshopify.com] --themeid=[your-theme-id]&lt;/code&gt;&lt;/p&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;If your theme hasn&apos;t downloaded, run &lt;code class=&quot;language-text&quot;&gt;theme get&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add the settings to ignore config (see below)&lt;/li&gt;
+&lt;li&gt;Run &lt;code class=&quot;language-text&quot;&gt;theme watch&lt;/code&gt; when you&apos;re ready to start developing.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Avoiding Customizer Conflicts 🙅‍♂️&lt;/h2&gt;
+&lt;p&gt;Shopify allows store owners to customize their shop using a &quot;Theme Customizer&quot; in the admin section. Any settings saved in the Customizer, like fonts or colors, are committed to a file called &lt;code class=&quot;language-text&quot;&gt;settings_data.json&lt;/code&gt; in the theme&apos;s config folder.&lt;/p&gt;
+&lt;p&gt;When you&apos;re developing Shopify themes locally, if you choose to use the &lt;code class=&quot;language-text&quot;&gt;theme deploy&lt;/code&gt; command over &lt;code class=&quot;language-text&quot;&gt;theme watch&lt;/code&gt;, you can accidentally override the Customizer options with your local JSON file. This can be problematic, particularly if you&apos;re saving changes to the server, and another user is also customizing the site (or you just want to make customizer tweaks while editing source code).&lt;/p&gt;
+&lt;h3&gt;The solution 👍&lt;/h3&gt;
+&lt;p&gt;Make sure to add the &lt;code class=&quot;language-text&quot;&gt;settings_data.json&lt;/code&gt; config file to your ignore list. This overrides any customizations made in the browser, and can get annoying if you&apos;re testing colors/modules and accidentally deploy old overrides.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-yml&quot;&gt;&lt;code class=&quot;language-yml&quot;&gt;development:
+  password: 4383472319239
+  theme_id: &amp;quot;12359393&amp;quot;
+  store: yourstore.myshopify.com
+  ignore_files:
+  - config/settings_data.json&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Basic scripts to get started ⚙️&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;theme watch&lt;/code&gt; and &lt;code class=&quot;language-text&quot;&gt;theme deploy&lt;/code&gt; for sending files to server. Watch will send files on save, deploy overrides all files (or specified files/folders).&lt;/p&gt;
+&lt;p&gt;You can use the commands directly, but I made a &lt;code class=&quot;language-text&quot;&gt;package.json&lt;/code&gt; to utilize NPM scripts to simplify deployment since some flags like &lt;code class=&quot;language-text&quot;&gt;-n&lt;/code&gt; are almost required -- but not defaults.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;kush-cbd-byron&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;deploy&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;theme deploy -n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;watch&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;theme watch&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;echo \&quot;Error: no test specified\&quot; &amp;amp;&amp;amp; exit 1&quot;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Ryosuke&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;MIT&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;h2&gt;Creating customizable sections 🍰&lt;/h2&gt;
+&lt;p&gt;One of the benefits of using Shopify is the drag and drop page building functionality provided by the Customizer. Store owners are able to re-order pages like the frontpage and easily do things like change text, colors, etc. Creating customizable &quot;sections&quot; as Shopify calls them is very simple, and only requires you to create a Liquid template with a JSON configuration on the bottom to specify the customizable fields.&lt;/p&gt;
+&lt;p&gt;To create a new section, add create a new &lt;code class=&quot;language-text&quot;&gt;.liquid&lt;/code&gt; file in the &lt;code class=&quot;language-text&quot;&gt;sections&lt;/code&gt; folder. Here I created a &quot;quote&quot; section that displays a user-defined quote in a large, quote-like format:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot;&gt;
+      &lt;pre class=&quot;language-liquid&quot;&gt;&lt;code class=&quot;language-liquid&quot;&gt;{&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; section.settings.centered &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; true &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div class&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&quot;section quote centered n&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;margin relative show&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;on&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;scroll&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+{&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;div class&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&quot;section quote n&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;margin relative&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+{&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+    {&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; section.settings.subtitle &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; blank &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;h3 class&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&quot;subtitle&quot;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;{{ section.settings.subtitle &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;escape&lt;/span&gt; }}&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;h3&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    {&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+    {&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; section.settings.heading &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; blank &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+        &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;h1&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;{{ section.settings.heading &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;escape&lt;/span&gt; }}&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;h1&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    {&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;div&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+
+{&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; schema &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+{
+    &quot;name&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; {
+        &quot;de&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+        &quot;en&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+        &quot;es&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+        &quot;fr&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+        &quot;it&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+        &quot;ja&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+        &quot;pt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;BR&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;
+    },
+    &quot;settings&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; [
+        {
+            &quot;type&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;text&quot;,
+            &quot;id&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;heading&quot;,
+            &quot;label&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; {
+                &quot;de&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Titel&quot;,
+                &quot;en&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Heading&quot;,
+                &quot;es&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Título&quot;,
+                &quot;fr&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Titre&quot;,
+                &quot;it&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Heading&quot;,
+                &quot;ja&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;見出し&quot;,
+                &quot;pt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;BR&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Título&quot;
+            },
+            &quot;default&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; {
+                &quot;de&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Explore&quot;,
+                &quot;en&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Explore&quot;,
+                &quot;es&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Explore&quot;,
+                &quot;fr&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Explore&quot;,
+                &quot;it&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Explore&quot;,
+                &quot;ja&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Explore&quot;,
+                &quot;pt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;BR&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Explore&quot;
+            }
+        },
+        {
+            &quot;type&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;checkbox&quot;,
+            &quot;id&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;centered&quot;,
+            &quot;label&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Centered&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&quot;,
+            &quot;default&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; true,
+            &quot;info&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Centers quote text&quot;
+        },
+        {
+            &quot;type&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;text&quot;,
+            &quot;id&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;subtitle&quot;,
+            &quot;label&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; {
+                &quot;de&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Sub Titel&quot;,
+                &quot;en&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Sub&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;heading&quot;,
+                &quot;es&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Sub Título&quot;,
+                &quot;fr&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Sub Titre&quot;,
+                &quot;it&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Sub Heading&quot;,
+                &quot;ja&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;S見出し&quot;,
+                &quot;pt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;BR&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Sub Título&quot;
+            },
+            &quot;default&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; {
+                &quot;de&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Vestibulum aliquam hendrerit molestie mauris.&quot;,
+                &quot;en&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Vestibulum aliquam hendrerit molestie mauris.&quot;,
+                &quot;es&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Vestibulum aliquam hendrerit molestie mauris.&quot;,
+                &quot;fr&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Vestibulum aliquam hendrerit molestie mauris.&quot;,
+                &quot;it&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Vestibulum aliquam hendrerit molestie mauris.&quot;,
+                &quot;ja&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Vestibulum aliquam hendrerit molestie mauris.&quot;,
+                &quot;pt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;BR&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Vestibulum aliquam hendrerit molestie mauris.&quot;
+            }
+        }
+    ],
+    &quot;presets&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; [
+        {
+            &quot;name&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; {
+                &quot;de&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+                &quot;en&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+                &quot;es&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+                &quot;fr&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+                &quot;it&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+                &quot;ja&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;,
+                &quot;pt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;BR&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Quote&quot;
+            },
+            &quot;category&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; {
+                &quot;de&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Text&quot;,
+                &quot;en&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Text&quot;,
+                &quot;es&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Text&quot;,
+                &quot;fr&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Text&quot;,
+                &quot;it&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Text&quot;,
+                &quot;ja&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Text&quot;,
+                &quot;pt&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;BR&quot;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &quot;Text&quot;
+            }
+        }
+    ]
+}
+{&lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; endschema &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt;}
+&lt;/code&gt;&lt;/pre&gt;
+      &lt;/div&gt;
+&lt;p&gt;You can see above that I added input fields to the JSON&apos;s settings section. Each input is a JSON object that contains the input info (name, type, etc), which is inside the settings array.&lt;/p&gt;
+&lt;p&gt;We can access these user inputted values from the settings in the theme using the Liquid syntax: &lt;code class=&quot;language-text&quot;&gt;{{ section.settings.yourinputname }}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;And similarly we can create conditionals (to check if a value exists or not) by using: &lt;code class=&quot;language-text&quot;&gt;{% if section.settings.yourinputname == &amp;#39;your value here&amp;#39; %}&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;If you&apos;re familiar with any sort of templating language (such as Blade or Twig), this should be reminiscent to syntax you&apos;ve seen.&lt;/p&gt;
+&lt;h2&gt;Start coding away! 🚀&lt;/h2&gt;
+&lt;p&gt;Run &lt;code class=&quot;language-text&quot;&gt;theme watch&lt;/code&gt; in the project directory, open a file, and save your changes to see your code sent to the live Shopify server. You could use &lt;code class=&quot;language-text&quot;&gt;theme deploy&lt;/code&gt;, but it&apos;s more tedious, and risks overwriting files you possibly didn&apos;t sync (or changed since your last edit).&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Whenever you pick up a project again, make sure to run &lt;code class=&quot;language-text&quot;&gt;theme get&lt;/code&gt; before getting started. It&apos;s the equivalent of updating your local git with a remote repo. This way you won&apos;t override changes someone else might have made since your last development session.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Do you already develop for Shopify? How does your process differ, and what kind of tips can you additionally offer? &lt;a href=&quot;http://twitter.com/whoisryosuke&quot;&gt;Let me know on Twitter&lt;/a&gt; or in the comments below 💬👇&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;References:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://help.shopify.com/en/themes/development/getting-started/choosing-an-editor&quot;&gt;Shopify Development Tools&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Using CodeSandbox as a CMS and Live Preview for your Gatsby Blog]]></title><description><![CDATA[GatsbyJS has been exploding over the static JS scene over the last few months. Developers everywhere are embracing Gatsby for it's ability…]]></description><link>http://whoisryosuke.com//blog/2019/codesandbox-as-gatsby-cms/</link><guid isPermaLink="false">http://whoisryosuke.com//blog/2019/codesandbox-as-gatsby-cms/</guid><pubDate>Fri, 12 Apr 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;GatsbyJS has been exploding over the static JS scene over the last few months. Developers everywhere are embracing Gatsby for it&apos;s ability to simplify static content generation, as well as it&apos;s content and asset aggregation through GraphQL. They make it much easier to spin up a new project and build blazing fast static React apps. It&apos;s become my go-to when working with any static site, such as landing pages or blogs, where content isn&apos;t very dynamic and benefits from preprocessing.&lt;/p&gt;
 &lt;p&gt;As great as GatsbyJS is, it can take a while to start your first project. You have to download and install their CLI, bootstrap a new project with &lt;code class=&quot;language-text&quot;&gt;npx&lt;/code&gt;, or clone a starter project repo. Then you can spin up the local dev environment. It&apos;s not a lot, but it is a commitment, particularly when you&apos;re introducing it to someone new. You want results, and fast.&lt;/p&gt;
 &lt;h2&gt;Blazing fast sites -- in a blast 💣🔥&lt;/h2&gt;
 &lt;p&gt;What if you could just click a link, wait for dependencies to download and compile, and &lt;strong&gt;blam&lt;/strong&gt; -- &lt;a href=&quot;http://codesandbox.io/s/github/gatsbyjs/gatsby-starter-blog&quot;&gt;you&apos;ve got yourself a Gatsby blog?&lt;/a&gt; This is the kind of world we live in thanks to platforms like &lt;a href=&quot;http://codesandbox.io&quot;&gt;CodeSandbox&lt;/a&gt;.&lt;/p&gt;
