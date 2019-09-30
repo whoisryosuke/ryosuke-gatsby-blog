@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 
 import config from '../config'
 
+import Layout from "../layouts/index"
 import ServicesGrid from '../components/ServicesGrid'
 import Newsletter from '../components/Newsletter'
 import Featured from '../components/Featured'
@@ -14,7 +16,7 @@ export default class Frontpage extends Component {
   render() {
     let { data } = this.props
     const skip = true
-
+    console.log('graphql data', data)
     const {
       blog,
       projects,
@@ -25,15 +27,15 @@ export default class Frontpage extends Component {
     } = data
 
     return (
-      <div className="Frontpage pt2">
+      <Layout className="Frontpage pt2">
         <div className="container Frontpage__hero">
           <h1>
             Hey I'm <span className="text blue">Ryosuke</span>{' '}
-            <Img resolutions={PeaceEmoji.resolutions} alt="Peace sign emoji" />
+            <Img fixed={PeaceEmoji.childImageSharp.fixed} alt="Peace sign emoji" />
             <br />Designer, developer,
             <br /> &amp; influencer{' '}
             <Img
-              resolutions={ThoughtCloudEmoji.resolutions}
+              fixed={ThoughtCloudEmoji.childImageSharp.fixed}
               alt="Thought cloud emoji"
             />
           </h1>
@@ -41,7 +43,7 @@ export default class Frontpage extends Component {
         <div className="container Frontpage__about">
           <figure>
             <Img
-              resolutions={RyosukeAvatar.resolutions}
+              fixed={RyosukeAvatar.childImageSharp.fixed}
               alt="Ryosuke in white Japanese font on blue background"
             />
           </figure>
@@ -84,7 +86,7 @@ export default class Frontpage extends Component {
         <Newsletter />
 
         <FrontpageContact CoffeeEmoji={CoffeeEmoji} />
-      </div>
+      </Layout>
     )
   }
 }
@@ -106,8 +108,8 @@ export const query = graphql`
             cover_image {
               publicURL
               childImageSharp {
-                sizes(maxWidth: 1240) {
-                  srcSet
+                fluid(maxWidth: 1240) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -135,8 +137,8 @@ export const query = graphql`
             cover_image {
               publicURL
               childImageSharp {
-                sizes(maxWidth: 1240) {
-                  srcSet
+                fluid(maxWidth: 1240) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -148,27 +150,30 @@ export const query = graphql`
         }
       }
     }
-    PeaceEmoji: imageSharp(id: { regex: "/peace.png/" }) {
+
+    PeaceEmoji: file(relativePath: {regex: "/peace.png/"}) {
       ...emojiImageFields
     }
-    ThoughtCloudEmoji: imageSharp(id: { regex: "/thought-cloud.png/" }) {
+    ThoughtCloudEmoji: file(relativePath: { regex: "/thought-cloud.png/" }) {
       ...emojiImageFields
     }
-    CoffeeEmoji: imageSharp(id: { regex: "/coffee.png/" }) {
-      resolutions(width: 36, height: 36) {
-        ...GatsbyImageSharpResolutions
-      }
+    CoffeeEmoji: file(relativePath: { regex: "/coffee.png/" }) {
+      ...emojiImageFields
     }
-    RyosukeAvatar: imageSharp(id: { regex: "/ryosuke-avatar-128.png/" }) {
-      resolutions(width: 170, height: 170) {
-        ...GatsbyImageSharpResolutions
+    RyosukeAvatar: file(relativePath: { regex: "/ryosuke-avatar-128.png/" }) {
+      childImageSharp {
+        fixed(width: 170, height: 170) {
+          ...GatsbyImageSharpFixed
+        }
       }
     }
   }
 
-  fragment emojiImageFields on ImageSharp {
-    resolutions(width: 54, height: 54) {
-      ...GatsbyImageSharpResolutions
-    }
+  fragment emojiImageFields on File {
+      childImageSharp {
+        fixed(width: 36, height: 36) {
+          ...GatsbyImageSharpFixed
+        }
+      }
   }
 `

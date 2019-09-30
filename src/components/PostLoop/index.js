@@ -28,7 +28,7 @@ export default (props) => {
                             <figure>
                                 <Link to={node.fields.slug}>
                                     {node.frontmatter.cover_image.childImageSharp ? (
-                                        <Img sizes={node.frontmatter.cover_image.childImageSharp.sizes} /> 
+                                        <Img fluid={node.frontmatter.cover_image.childImageSharp.fluid} /> 
                                     ) : (
                                         <img src={node.frontmatter.cover_image.publicURL} />
                                     )}

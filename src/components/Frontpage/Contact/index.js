@@ -9,7 +9,7 @@ export default class FrontpageContact extends Component {
     }
     
     render() {
-        let CoffeeEmojiImg = this.props.CoffeeEmoji ? <Img resolutions={this.props.CoffeeEmoji.resolutions} alt="Coffee emoji" /> : '';
+        let CoffeeEmojiImg = this.props.CoffeeEmoji ? <Img fixed={this.props.CoffeeEmoji.childImageSharp.fixed} alt="Coffee emoji" /> : '';
 
         return (
             <div className="cta gray very padded Frontpage__contact">

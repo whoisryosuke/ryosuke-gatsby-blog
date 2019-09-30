@@ -13,7 +13,7 @@ export default (props) => {
     return (
         <figure className="Featured container">
             <div className="image">
-                <Img sizes={featured.frontmatter.cover_image.childImageSharp.sizes} />
+                <Img fluid={featured.frontmatter.cover_image.childImageSharp.fluid} />
             </div>
             <figcaption>
                 <Link

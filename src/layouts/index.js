@@ -28,7 +28,7 @@ const TemplateWrapper = ({ children }) => (
     <Header />
 
     <section className="App">
-      {children()}
+      {children}
     </section>
 
     <Footer />

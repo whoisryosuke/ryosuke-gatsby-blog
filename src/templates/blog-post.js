@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { graphql } from 'gatsby'
 import Link from "gatsby-link";
 import Img from "gatsby-image";
 import nicetime from '../helpers/nicetime';
 
 import kebabCase from "lodash/kebabCase";
-import 'prismjs/themes/prism-okaidia.css';
+// import 'prismjs/themes/prism-okaidia.css';
 
 import ReadingProgress from '../components/ReadingProgress';
 import SEO from '../components/SEO';
@@ -40,7 +41,7 @@ export default class BlogPost extends Component {
       s.async = s.defer = true
       s.src = `//www.instagram.com/embed.js`
       s.id = 'react-instagram-embed-script'
-      const body: HTMLElement | null = document.body
+      const body = document.body
       if (body) {
         body.appendChild(s)
       }
@@ -66,7 +67,7 @@ export default class BlogPost extends Component {
         s.async = s.defer = true
         s.src = `//static.codepen.io/assets/embed/ei.js`
         s.id = 'codepen-script'
-        const body: HTMLElement | null = document.body
+        const body = document.body
         if (body) {
           body.appendChild(s)
         }
@@ -116,7 +117,7 @@ export default class BlogPost extends Component {
               <section className="content">
                 <h1 className="Title">{post.frontmatter.title}</h1>
 
-                <div dangerouslySetInnerHTML={{ __html: post.html }} />
+                {/* <div dangerouslySetInnerHTML={{ __html: post.html }} /> */}
 
                 <aside className="TagCloud small">
                   <ul>
@@ -153,14 +154,14 @@ export default class BlogPost extends Component {
 
         { post.frontmatter.section === 'blog' && <Comments post={post} /> }
 
-          { related ? 
+          {/* { related ? 
             <nav className="RelatedPosts container">
               <h3 className="Title">Related Posts</h3>
               <PostLoop loop={related} skip={skip} />
             </nav>
             :
             ''
-          }
+          } */}
         </div>
     );
   }
@@ -169,7 +170,6 @@ export default class BlogPost extends Component {
 export const query = graphql`
   query BlogPostQuery($slug: String!, $tag: String!) {
     blog: markdownRemark(fields: { slug: { eq: $slug } }) {
-      html
       frontmatter {
         title
         cover_image {
@@ -200,7 +200,6 @@ export const query = graphql`
     ) {
       edges {
         node {
-          html
           frontmatter {
             title
             cover_image {
