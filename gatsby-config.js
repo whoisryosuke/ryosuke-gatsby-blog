@@ -5,7 +5,6 @@ module.exports = {
     siteUrl: `http://whoisryosuke.com/`,
   },
   plugins: [
-    `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -30,6 +29,24 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        extensions: [".mdx", ".md"],
+
+
+        // Imports here are available globally to .mdx files, with the exception
+        // of automatically created pages located in /pages. This is a bug in
+        // gatsby-mdx. See https://github.com/ChristopherBiscardi/gatsby-mdx/issues/243
+        //
+        // Also note: For mdx to work in NetlifyCMS, global scope passed in here
+        // also be passed into `cms.js`, under the `scope` key.
+        //
+        // globalScope: `
+        //   import { UIComponents } from 'Theme'
+        //   export default {
+        //     ...UIComponents
+        //   }
+        // `,
+
+        // Handle images inside posts
         gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-images`,
@@ -41,45 +58,6 @@ module.exports = {
         ],
       },
     },
-    // {
-    //   resolve: `gatsby-transformer-remark`,
-    //   options: {
-    //     plugins: [
-    //       "gatsby-remark-copy-linked-files",
-    //       {
-    //         resolve: `gatsby-remark-images`,
-    //         options: {
-    //           maxWidth: 1080,
-    //         },
-    //       },
-    //       {
-    //         resolve: `gatsby-remark-prismjs`,
-    //         options: {
-    //           // Class prefix for <pre> tags containing syntax highlighting;
-    //           // defaults to 'language-' (eg <pre class="language-js">).
-    //           // If your site loads Prism into the browser at runtime,
-    //           // (eg for use with libraries like react-live),
-    //           // you may use this to prevent Prism from re-processing syntax.
-    //           // This is an uncommon use-case though;
-    //           // If you're unsure, it's best to use the default value.
-    //           classPrefix: "language-",
-    //           // This is used to allow setting a language for inline code
-    //           // (i.e. single backticks) by creating a separator.
-    //           // This separator is a string and will do no white-space
-    //           // stripping.
-    //           // A suggested value for English speakers is the non-ascii
-    //           // character '›'.
-    //           inlineCodeMarker: null,
-    //           // This lets you set up language aliases.  For example,
-    //           // setting this to '{ sh: "bash" }' will let you use
-    //           // the language "sh" which will highlight using the
-    //           // bash highlighter.
-    //           aliases: {},
-    //         },
-    //       },
-    //     ],
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -142,6 +120,8 @@ module.exports = {
         respectDNT: true,
       },
     },
-    `gatsby-plugin-offline`,    
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-typescript`,
   ],
 };

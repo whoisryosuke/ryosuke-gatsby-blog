@@ -4,9 +4,11 @@
   "version": "1.0.0",
   "author": "Ryosuke <ryosuke.san.hana@gmail.com>",
   "dependencies": {
+    "@babel/core": "^7.6.2",
     "@mdx-js/mdx": "^1.5.0",
     "@mdx-js/react": "^1.5.0",
     "axios": "^0.19.0",
+    "babel-plugin-styled-components": "^1.10.6",
     "disqus-react": "^1.0.7",
     "gatsby": "^2.15.28",
     "gatsby-image": "^2.2.23",
@@ -20,6 +22,7 @@
     "gatsby-plugin-react-helmet": "^3.1.10",
     "gatsby-plugin-sharp": "^2.2.27",
     "gatsby-plugin-sitemap": "^2.2.16",
+    "gatsby-plugin-styled-components": "^3.1.8",
     "gatsby-plugin-twitter": "^2.1.9",
     "gatsby-remark-copy-linked-files": "^2.1.23",
     "gatsby-remark-images": "^3.1.25",
@@ -32,7 +35,8 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-helmet": "^5.2.1",
-    "react-mailchimp-subscribe": "^2.1.0"
+    "react-mailchimp-subscribe": "^2.1.0",
+    "styled-components": "^4.4.0"
   },
   "keywords": [
     "gatsby"
@@ -42,18 +46,26 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
+    "lint": "eslint . --ext ts --ext tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.18",
     "@types/node": "^12.7.8",
     "@types/react": "^16.9.4",
     "@types/react-dom": "^16.9.1",
     "@types/styled-components": "^4.1.19",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-graphql": "^3.1.0",
+    "eslint-plugin-react": "^7.15.0",
     "gatsby-plugin-typescript": "^2.1.11",
     "graphql-typescript-definitions": "^0.17.3",
+    "jest": "^24.9.0",
     "nodemon": "^1.19.3",
     "prettier": "^1.18.2",
     "typescript": "^3.6.3",
