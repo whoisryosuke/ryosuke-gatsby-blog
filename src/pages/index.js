@@ -16,7 +16,6 @@ export default class Frontpage extends Component {
   render() {
     let { data } = this.props
     const skip = true
-    console.log('graphql data', data)
     const {
       blog,
       projects,

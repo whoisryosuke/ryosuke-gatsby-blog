@@ -84,7 +84,6 @@ export default class BlogPost extends Component {
 
   render() {
     const skip = false;
-    console.log('blog post', this.props)
     const post = this.props.data.blog;
     let related;
     this.props.data.relatedPosts ? related = this.props.data.relatedPosts.edges : related = null;
