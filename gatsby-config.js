@@ -5,6 +5,7 @@ module.exports = {
     siteUrl: `http://whoisryosuke.com/`,
   },
   plugins: [
+    `gatsby-plugin-typescript`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,

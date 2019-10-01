@@ -43,9 +43,20 @@
     "develop": "gatsby develop",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "@types/node": "^12.7.8",
+    "@types/react": "^16.9.4",
+    "@types/react-dom": "^16.9.1",
+    "@types/styled-components": "^4.1.19",
+    "gatsby-plugin-typescript": "^2.1.11",
+    "graphql-typescript-definitions": "^0.17.3",
+    "nodemon": "^1.19.3",
+    "prettier": "^1.18.2",
+    "typescript": "^3.6.3",
+    "typescript-styled-plugin": "^0.14.0"
   }
 }
