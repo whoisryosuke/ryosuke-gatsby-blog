@@ -96,7 +96,7 @@ export default class Frontpage extends Component {
 
 export const query = graphql`
   query AboutQuery {
-    projects: allMarkdownRemark(
+    projects: allMdx(
       sort: {fields: [frontmatter___date], order: DESC}, 
       limit: 4
       filter:{frontmatter:{section:{eq: "project"}}}
@@ -108,14 +108,6 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
-            cover_image {
-              publicURL
-              childImageSharp {
-                sizes(maxWidth: 1240 ) {
-                  srcSet
-                }
-              }
-            }
             section
           }
           fields {

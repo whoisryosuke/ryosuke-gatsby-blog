@@ -10,7 +10,7 @@ import Helmet from "react-helmet";
 import Link from "gatsby-link";
 
 const TagsPage = ({
-    data: { allMarkdownRemark: { group }, site: { siteMetadata: { title } } },
+    data: { allMdx: { group }, site: { siteMetadata: { title } } },
 }) => (
         <div>
             <Helmet title={title} />
@@ -33,7 +33,7 @@ const TagsPage = ({
 
 TagsPage.propTypes = {
     data: PropTypes.shape({
-        allMarkdownRemark: PropTypes.shape({
+        allMdx: PropTypes.shape({
             group: PropTypes.arrayOf(
                 PropTypes.shape({
                     fieldValue: PropTypes.string.isRequired,
@@ -58,7 +58,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 2000
     ) {
       group(field: frontmatter___tags) {

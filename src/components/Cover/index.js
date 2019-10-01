@@ -5,7 +5,7 @@ export default (props) => {
     return (
         <figure className="Cover">
             {props.image.childImageSharp ? (
-                <Img sizes={props.image.childImageSharp.sizes} />
+                <Img fluid={props.image.childImageSharp.fluid} />
             ) : (
                     <img src={props.image.publicURL} className="static-image" />
                 )}

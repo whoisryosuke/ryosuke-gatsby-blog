@@ -93,7 +93,7 @@ export default class Frontpage extends Component {
 
 export const query = graphql`
   query IndexQuery {
-    blog: allMarkdownRemark(
+    blog: allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3
       filter: { frontmatter: { section: { eq: "blog" } } }
@@ -122,7 +122,7 @@ export const query = graphql`
         }
       }
     }
-    projects: allMarkdownRemark(
+    projects: allMdx(
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 2
       filter: { frontmatter: { section: { eq: "project" } } }

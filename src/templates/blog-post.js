@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { graphql } from 'gatsby'
 import Link from "gatsby-link";
 import Img from "gatsby-image";
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import nicetime from '../helpers/nicetime';
 
 import kebabCase from "lodash/kebabCase";
 // import 'prismjs/themes/prism-okaidia.css';
 
+import Layout from '../layouts/index'
 import ReadingProgress from '../components/ReadingProgress';
 import SEO from '../components/SEO';
 import Cover from '../components/Cover';
@@ -82,6 +84,7 @@ export default class BlogPost extends Component {
 
   render() {
     const skip = false;
+    console.log('blog post', this.props)
     const post = this.props.data.blog;
     let related;
     this.props.data.relatedPosts ? related = this.props.data.relatedPosts.edges : related = null;
@@ -99,7 +102,7 @@ export default class BlogPost extends Component {
     }
 
     return (
-        <div className="Blog">
+        <Layout className="Blog">
           {/*----- Reading progress only on blog -----*/}
           { post.frontmatter.section === 'blog' && <ReadingProgress targetEl="#Article" /> }
           <SEO 
@@ -117,7 +120,8 @@ export default class BlogPost extends Component {
               <section className="content">
                 <h1 className="Title">{post.frontmatter.title}</h1>
 
-                {/* <div dangerouslySetInnerHTML={{ __html: post.html }} /> */}
+
+                <MDXRenderer>{post.body}</MDXRenderer>
 
                 <aside className="TagCloud small">
                   <ul>
@@ -162,39 +166,38 @@ export default class BlogPost extends Component {
             :
             ''
           } */}
-        </div>
+        </Layout>
     );
   }
 };
 
 export const query = graphql`
-  query BlogPostQuery($slug: String!, $tag: String!) {
-    blog: markdownRemark(fields: { slug: { eq: $slug } }) {
+  query BlogPostQuery($id: String!, $tag: String!) {
+    blog: mdx(id: { eq: $id }) {
       frontmatter {
         title
-        cover_image {
-              publicURL
-              childImageSharp {
-                sizes(maxWidth: 1240 ) {
-                  tracedSVG
-                  src
-                  srcSet
-                }
-              }
-            }
         date(formatString: "DD MMMM, YYYY")
         tags
         section
+        cover_image {
+          publicURL
+          childImageSharp {
+            fluid(maxWidth: 1240) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
+      body
       fields {
         slug
       }
     },
-    relatedPosts:  allMarkdownRemark(
+    relatedPosts:  allMdx(
       limit: 2
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { 
-        fields:{ slug: { ne: $slug } } 
+        id:{ ne: $id } 
         frontmatter: { tags: { in: [$tag] } }
       }
     ) {
@@ -202,17 +205,16 @@ export const query = graphql`
         node {
           frontmatter {
             title
-            cover_image {
-                  publicURL
-                  childImageSharp {
-                    sizes(maxWidth: 1240 ) {
-                      src
-                      srcSet
-                    }
-                  }
-                }
             date(formatString: "DD MMMM, YYYY")
             tags
+            cover_image {
+              publicURL
+              childImageSharp {
+                fluid(maxWidth: 1240) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
           fields {
             slug

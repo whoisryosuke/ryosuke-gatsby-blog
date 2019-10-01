@@ -19,6 +19,20 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
             value: slug,
         })
     }
+
+    if (node.internal.type === "Mdx") {
+        const value = createFilePath({ node, getNode })
+        createNodeField({
+            // Name of the field you are adding
+            name: "slug",
+            // Individual MDX node
+            node,
+            // Generated value based on filepath with "blog" prefix. We
+            // don't need a separating "/" before the value because
+            // createFilePath returns a path with the leading "/".
+            value: `/blog${value}`,
+        })
+    }
 };
 
 
@@ -125,92 +139,159 @@ function createProjectsPagination(graphql, createPage, resolve, reject) {
  *  Create slug pages for markdown files
  *  Create pages for each tag
  */
-exports.createPages = ({ graphql, boundActionCreators }) => {
-    const { createPage } = boundActionCreators
-    return new Promise((resolve, reject) => {
-        graphql(`
-      {
-        allMarkdownRemark {
-          edges {
-            node {
-                excerpt
-                frontmatter {
-                    title
-                    cover_image {
-                        childImageSharp {
-                            sizes(maxWidth: 1240 ) {
-                            tracedSVG
-                            src
-                            srcSet
-                            }
-                        }
-                    }
-                    date(formatString: "DD MMMM, YYYY")
-                    tags
-                }
-                fields {
-                    slug
-                }
+// exports.createPages = ({ graphql, boundActionCreators }) => {
+//     const { createPage } = boundActionCreators
+//     return new Promise((resolve, reject) => {
+//         graphql(`
+//       {
+//         allMarkdownRemark {
+//           edges {
+//             node {
+//                 excerpt
+//                 frontmatter {
+//                     title
+//                     cover_image {
+//                         childImageSharp {
+//                             sizes(maxWidth: 1240 ) {
+//                             tracedSVG
+//                             src
+//                             srcSet
+//                             }
+//                         }
+//                     }
+//                     date(formatString: "DD MMMM, YYYY")
+//                     tags
+//                 }
+//                 fields {
+//                     slug
+//                 }
+//             }
+//           }
+//         }
+//       }
+//     `).then(result => {
+//                 /**
+//                  * Create blog posts based on slugs
+//                  */
+//                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+
+//                     // Grab random tag to do related posts
+//                     var tag = node.frontmatter.tags[Math.floor(Math.random() * node.frontmatter.tags.length)];
+                    
+//                     createPage({
+//                         path: node.fields.slug,
+//                         component: path.resolve(`./src/templates/blog-post.js`),
+//                         context: {
+//                             // Data passed to context is available in page queries as GraphQL variables.
+//                             tag: tag,
+//                             slug: node.fields.slug,
+//                         },
+//                     })
+//                 });
+
+//                 /**
+//                  * Create archive pages for tags
+//                  */
+//                 let tags = [];
+//                 // Iterate through each post, putting all found tags into `tags`
+//                 result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+//                     if('tags' in node.frontmatter) {
+//                         tags = tags.concat(node.frontmatter.tags);
+//                     }
+//                 });
+//                 // _.each(posts, edge => {
+//                 //     if (_.get(edge, "node.frontmatter.tags")) {
+//                 //         tags = tags.concat(edge.node.frontmatter.tags);
+//                 //     }
+//                 // });
+                
+//                 // Eliminate duplicate tags
+//                 // tags = _.uniq(tags);
+//                 tags = tags.filter(function (item, i, ar) { return ar.indexOf(item) === i; });
+
+//                 // Make tag pages
+//                 tags.forEach(tag => {
+//                     let tagName = tag.replace(/\s+/g, '-').toLowerCase();
+//                     createPage({
+//                         path: `/tags/${tagName}/`,
+//                         component: path.resolve(`./src/templates/tags.js`),
+//                         context: {
+//                             tag,
+//                         },
+//                     });
+//                 });
+
+
+//                 resolve()
+//             })
+//         createBlogPagination(graphql, createPage);
+//         createProjectsPagination(graphql, createPage);
+//     })
+// };
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+    // Destructure the createPage function from the actions object
+    const { createPage } = actions
+    const result = await graphql(`
+    query {
+      allMdx {
+        edges {
+          node {
+            id
+            frontmatter {
+                tags
+            }
+            fields {
+              slug
             }
           }
         }
       }
-    `).then(result => {
-                /**
-                 * Create blog posts based on slugs
-                 */
-                result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-
-                    // Grab random tag to do related posts
-                    var tag = node.frontmatter.tags[Math.floor(Math.random() * node.frontmatter.tags.length)];
-                    
-                    createPage({
-                        path: node.fields.slug,
-                        component: path.resolve(`./src/templates/blog-post.js`),
-                        context: {
-                            // Data passed to context is available in page queries as GraphQL variables.
-                            tag: tag,
-                            slug: node.fields.slug,
-                        },
-                    })
-                });
-
-                /**
-                 * Create archive pages for tags
-                 */
-                let tags = [];
-                // Iterate through each post, putting all found tags into `tags`
-                result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-                    if('tags' in node.frontmatter) {
-                        tags = tags.concat(node.frontmatter.tags);
-                    }
-                });
-                // _.each(posts, edge => {
-                //     if (_.get(edge, "node.frontmatter.tags")) {
-                //         tags = tags.concat(edge.node.frontmatter.tags);
-                //     }
-                // });
-                
-                // Eliminate duplicate tags
-                // tags = _.uniq(tags);
-                tags = tags.filter(function (item, i, ar) { return ar.indexOf(item) === i; });
-
-                // Make tag pages
-                tags.forEach(tag => {
-                    let tagName = tag.replace(/\s+/g, '-').toLowerCase();
-                    createPage({
-                        path: `/tags/${tagName}/`,
-                        component: path.resolve(`./src/templates/tags.js`),
-                        context: {
-                            tag,
-                        },
-                    });
-                });
-
-
-                resolve()
-            })
-        createBlogPagination(graphql, createPage);
-        createProjectsPagination(graphql, createPage);
+    }
+  `)
+    if (result.errors) {
+        reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
+    }
+    // Create blog post pages.
+    const posts = result.data.allMdx.edges
+    // We'll call `createPage` for each result
+    posts.forEach(({ node }, index) => {
+        // Grab random tag to do related posts
+        var tag = node.frontmatter.tags[Math.floor(Math.random() * node.frontmatter.tags.length)];
+        createPage({
+            // This is the slug we created before
+            // (or `node.frontmatter.slug`)
+            path: node.fields.slug,
+            // This component will wrap our MDX content
+            component: path.resolve(`./src/templates/blog-post.js`),
+            // We can use the values in this context in
+            // our page layout component
+            context: { id: node.id, tag: tag },
+        })
     })
-};
+
+    /**
+     * Create archive pages for tags
+     */
+    let tags = [];
+    // Iterate through each post, putting all found tags into `tags`
+    posts.forEach(({ node }) => {
+        if('tags' in node.frontmatter) {
+            tags = tags.concat(node.frontmatter.tags);
+        }
+    });
+    // Eliminate duplicate tags
+    tags = tags.filter(function (item, i, ar) { return ar.indexOf(item) === i; });
+
+    // Make tag pages
+    tags.forEach(tag => {
+        let tagName = tag.replace(/\s+/g, '-').toLowerCase();
+        createPage({
+            path: `/tags/${tagName}/`,
+            component: path.resolve(`./src/templates/tags.js`),
+            context: {
+                tag,
+            },
+        });
+    });
+}
