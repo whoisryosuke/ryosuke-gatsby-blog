@@ -4,6 +4,7 @@ import Link from "gatsby-link";
 
 import config from '../config';
 
+import Layout from "../layouts/index"
 import Skills from '../components/Skills';
 import Newsletter from '../components/Newsletter';
 import PostLoop from '../components/PostLoop';
@@ -29,7 +30,7 @@ export default class Frontpage extends Component {
         const skip = false;
 
         return (
-            <div className="About pt2">
+            <Layout className="About pt2">
                 <div className="container Frontpage__hero">
                     <h1>
                         The artist formerly known as <span className="text blue">Oscar</span> <img src={ BombEmoji } alt="Bomb emoji" />
@@ -88,7 +89,7 @@ export default class Frontpage extends Component {
 
                 <FrontpageContact />
 
-            </div>
+            </Layout>
         );
     }
 };
@@ -108,6 +109,14 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            cover_image {
+              publicURL
+              childImageSharp {
+                fluid(maxWidth: 1240) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
             section
           }
           fields {

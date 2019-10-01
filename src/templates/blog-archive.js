@@ -3,6 +3,7 @@ import Link from "gatsby-link";
 
 import capitalizeFirstLetter from '../helpers/uppercase';
 
+import Layout from "../layouts/index"
 import PostLoop from '../components/PostLoop';
 
 const NavLink = props => {
@@ -19,7 +20,7 @@ const IndexPage = ({ data, pathContext }) => {
     const nextUrl = '/' + pathPrefix + '/' + (index + 1).toString();
 
     return (
-        <div className="BlogArchive">
+        <Layout className="BlogArchive">
             <header className="container Title">
                 <h1>{ capitalizeFirstLetter(pathPrefix) } archive</h1>
                 <h4 className="Title__sub">Page {index}</h4>
@@ -35,7 +36,7 @@ const IndexPage = ({ data, pathContext }) => {
                     <NavLink test={last} url={nextUrl} text="Go to Next Page" />
                 </div>
             </nav>
-        </div>
+        </Layout>
     );
 };
 export default IndexPage;
