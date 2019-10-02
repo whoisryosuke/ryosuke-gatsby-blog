@@ -21,17 +21,19 @@ export default (props) => {
                     return node;
                 }
             }).map(({ node }) => {
+                console.log('post loaded', node)
                 let postDate = new Date(node.frontmatter.date);
                 return (
                     <section className="col">
                         <article className="Card small" key={node.id}>
                             <figure>
                                 <Link to={node.fields.slug}>
-                                    {node.frontmatter.cover_image.childImageSharp ? (
+                                    {node.frontmatter.cover_image ?
+                                    node.frontmatter.cover_image.childImageSharp ? (
                                         <Img fluid={node.frontmatter.cover_image.childImageSharp.fluid} /> 
                                     ) : (
                                         <img src={node.frontmatter.cover_image.publicURL} />
-                                    )}
+                                    ) : ''}
                                 </Link>
                             </figure>
                             <div className="content">
