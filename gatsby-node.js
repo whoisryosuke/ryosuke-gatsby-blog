@@ -12,7 +12,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     const { createNodeField } = boundActionCreators
     
     if (node.internal.type === "Mdx") {
-        const value = createFilePath({ node, getNode })
+        const value = createFilePath({ node, getNode, basePath: `pages` })
         createNodeField({
             // Name of the field you are adding
             name: "slug",
@@ -119,7 +119,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         createPage({
             // This is the slug we created before
             // (or `node.frontmatter.slug`)
-            path: `${node.frontmatter.section}/${node.fields.slug}`,
+            path: node.fields.slug,
             // This component will wrap our MDX content
             component: path.resolve(`./src/templates/blog-post.js`),
             // We can use the values in this context in
