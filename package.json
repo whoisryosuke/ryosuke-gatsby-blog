@@ -44,13 +44,24 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "clean": "rm -rf .cache && yarn start",
+    "develop": "nodemon --exec \"gatsby develop\"",
+    "debug": "nodemon --exec \"node --inspect-brk --no-lazy node_modules/.bin/gatsby develop\"",
     "format": "prettier --write 'src/**/*.js'",
     "lint": "eslint . --ext ts --ext tsx",
     "test": "echo \"Error: no test specified\" && exit 1",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".cache/*",
+      "public/*",
+      "schema.json",
+      "src/*"
+    ],
+    "delay": "1500"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
