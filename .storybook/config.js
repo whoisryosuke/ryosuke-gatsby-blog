@@ -1,9 +1,7 @@
-import { configure } from '@storybook/react';
-
-// Import CSS Globally for stories
-import "../src/layouts/index.css"
-
-configure(require.context('../src', true, /\.stories\.js$/), module);
+import React from 'react';
+import { configure, addDecorator } from '@storybook/react';
+import { ThemeProvider } from "styled-components"
+import theme from "../src/assets/theme"
 
 // Gatsby's Link overrides:
 // Gatsby defines a global called ___loader to prevent its method calls from creating console errors you override it here
@@ -17,4 +15,12 @@ global.__PATH_PREFIX__ = ""
 window.___navigate = pathname => {
   action("NavigateTo:")(pathname)
 }
-configure(loadStories, module)
+
+addDecorator((story) => (
+  <ThemeProvider theme={theme}>
+    {story()}
+  </ThemeProvider>
+))
+
+
+configure(require.context('../src', true, /\.stories$/), module);
