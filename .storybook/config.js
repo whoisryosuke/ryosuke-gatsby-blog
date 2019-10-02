@@ -1,5 +1,6 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
+import { withA11y } from "@storybook/addon-a11y";
 import { ThemeProvider } from "styled-components"
 import theme from "../src/assets/theme"
 
@@ -16,11 +17,27 @@ window.___navigate = pathname => {
   action("NavigateTo:")(pathname)
 }
 
+// Add a11y support
+addDecorator(withA11y);
+
+addParameters({
+  a11y: {
+    config: {},
+    options: {
+      checks: { "color-contrast": { options: { noScroll: true } } },
+      restoreScroll: true
+    }
+  },
+  options: {
+    hierarchyRootSeparator: /\|/
+  }
+});
+
+// Rebass / Styled Components theme provider wraps app
 addDecorator((story) => (
   <ThemeProvider theme={theme}>
     {story()}
   </ThemeProvider>
 ))
-
 
 configure(require.context('../src', true, /\.stories$/), module);
