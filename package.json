@@ -48,7 +48,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "clean": "rm -rf .cache && yarn start",
+    "clean": "rm -rf .cache && npm run develop",
     "develop": "nodemon --exec \"gatsby develop\"",
     "debug": "nodemon --exec \"node --inspect-brk --no-lazy node_modules/.bin/gatsby develop\"",
     "format": "prettier --write 'src/**/*.js'",
