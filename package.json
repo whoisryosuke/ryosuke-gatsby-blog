@@ -49,6 +49,7 @@
     "debug": "nodemon --exec \"node --inspect-brk --no-lazy node_modules/.bin/gatsby develop\"",
     "format": "prettier --write 'src/**/*.js'",
     "lint": "eslint . --ext ts --ext tsx",
+    "storybook": "start-storybook",
     "test": "echo \"Error: no test specified\" && exit 1",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
@@ -64,12 +65,15 @@
     "delay": "1500"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@storybook/react": "^5.2.1",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.8",
     "@types/react": "^16.9.4",
     "@types/react-dom": "^16.9.1",
     "@types/styled-components": "^4.1.19",
     "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-graphql": "^3.1.0",
