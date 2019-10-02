@@ -31,21 +31,6 @@ module.exports = {
       options: {
         extensions: [".mdx", ".md"],
 
-
-        // Imports here are available globally to .mdx files, with the exception
-        // of automatically created pages located in /pages. This is a bug in
-        // gatsby-mdx. See https://github.com/ChristopherBiscardi/gatsby-mdx/issues/243
-        //
-        // Also note: For mdx to work in NetlifyCMS, global scope passed in here
-        // also be passed into `cms.js`, under the `scope` key.
-        //
-        // globalScope: `
-        //   import { UIComponents } from 'Theme'
-        //   export default {
-        //     ...UIComponents
-        //   }
-        // `,
-
         // Handle images inside posts
         gatsbyRemarkPlugins: [
           {
