@@ -21,7 +21,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
             // Generated value based on filepath with "blog" prefix. We
             // don't need a separating "/" before the value because
             // createFilePath returns a path with the leading "/".
-            value: `/blog${value}`,
+            value: `${value}`,
         })
     }
 };
@@ -119,7 +119,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         createPage({
             // This is the slug we created before
             // (or `node.frontmatter.slug`)
-            path: node.fields.slug,
+            path: `${node.frontmatter.section}/${node.fields.slug}`,
             // This component will wrap our MDX content
             component: path.resolve(`./src/templates/blog-post.js`),
             // We can use the values in this context in
