@@ -6,13 +6,11 @@
 
 import React, { Fragment } from "react"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import * as rebass from "rebass"
+import * as rebass from "rebass/styled-components"
+
+import theme from "../assets/theme"
 
 import { CodeBlock } from "../components/CodeBlock/CodeBlock"
-
-export const theme = {
-  // TODO: https://rebassjs.org/theming
-}
 
 const GlobalStyle = createGlobalStyle`
   html, body {
