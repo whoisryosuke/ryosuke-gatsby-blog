@@ -21,7 +21,6 @@ export default (props) => {
                     return node;
                 }
             }).map(({ node }) => {
-                console.log('post loaded', node)
                 let postDate = new Date(node.frontmatter.date);
                 return (
                     <section className="col">
