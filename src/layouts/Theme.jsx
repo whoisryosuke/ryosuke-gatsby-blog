@@ -31,11 +31,6 @@ export const LayoutComponents = {
   p: styled.p`
     font-size: 16px;
   `,
-  pre: props => <div {...props} />,
-  code: CodeBlock,
-  h2: styled.h2`
-  color:red;
-  `
 }
 
 export const UIComponents = {
