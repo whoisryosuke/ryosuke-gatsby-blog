@@ -1,15 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components'
+import { Box } from 'rebass/styled-components'
 
-const StyledCard = styled.article`
+const StyledCard = styled(Box)`
   box-shadow:none;
   border:1px solid #111212;
-
-  ${(props) => props.cols && `width:${100/parseInt(props.cols)}%;`}
-
-  @media(max-width:${(props) => props.theme.breakpoints[0]}) {
-    width:100%;
-  }
+  padding:2.5em;
 `
 
 interface IBaseCardProps {

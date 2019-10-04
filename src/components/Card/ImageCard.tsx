@@ -20,7 +20,7 @@ interface IImageCardProps {
 
 const ImageCard: React.FunctionComponent<IImageCardProps> = ({title, subheader, ...props}) => {
   return(
-    <BaseCard cols={2} {...props}>
+    <BaseCard {...props}>
       <Image src={Avatar} width="100%" height="auto" variant="avatar" sx={{marginBottom:"3rem"}} />
       <Flex flexWrap='wrap'>
         <Heading variant="header" mb="4" width={[1, 1/2]}>{title}</Heading>

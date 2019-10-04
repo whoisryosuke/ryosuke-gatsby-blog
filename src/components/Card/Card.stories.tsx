@@ -8,8 +8,8 @@ export default { title: 'Card' };
 export const basic = () => <BasicCard title="Getting started developing Shopify themes" subheader="Getting Started" description="Shopify has exploded over the past few years, becoming a near de-facto decision for any small to mid scale e-commerce project. It's become more important than ever to sharpen Shopify skills and get a handle on Liquid." />
 export const image = () => <ImageCard title="Kushy API Documentation" subheader="UI / UX" />
 export const imageGrid = () => <Flex flexWrap="wrap">
-  <ImageCard title="Kushy API Documentation" subheader="UI / UX" />
-  <ImageCard title="Kushy API Documentation" subheader="UI / UX" />
-  <ImageCard title="Kushy API Documentation" subheader="UI / UX" />
-  <ImageCard title="Kushy API Documentation" subheader="UI / UX" />
+  <ImageCard title="Kushy API Documentation" subheader="UI / UX" width={[1, 1/2]} />
+  <ImageCard title="Kushy API Documentation" subheader="UI / UX" width={[1, 1/2]} />
+  <ImageCard title="Kushy API Documentation" subheader="UI / UX" width={[1, 1/2]} />
+  <ImageCard title="Kushy API Documentation" subheader="UI / UX" width={[1, 1/2]} />
   </Flex>
