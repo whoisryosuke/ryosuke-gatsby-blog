@@ -213,21 +213,46 @@
 //   grid
 // };
 
+const breakpoints = [
+  // mobile
+  "320px",
+  // tablet
+  "768px",
+  // computer
+  "992px",
+  // desktop
+  "1200px",
+  // widescreen
+  "1920px"
+]
+
+const colors = {
+  text: '#000',
+  background: '#fff',
+  primary: '#07c',
+  secondary: '#30c',
+  muted: '#f6f6f9',
+  gray: '#dddddf',
+  highlight: 'hsla(205, 100%, 40%, 0.125)',
+}
+
+const fonts = {
+  body: 'Roboto, Helvetiva Neue, Helvetica, Aria, sans-serif',
+  heading: 'Poppins, Helvetiva Neue, Helvetica, Aria, sans-serif',
+  monospace: 'Menlo, monospace',
+}
+
 const theme = {
-  colors: {
-    text: '#000',
-    background: '#fff',
-    primary: '#07c',
-    secondary: '#30c',
-    muted: '#f6f6f9',
-    gray: '#dddddf',
-    highlight: 'hsla(205, 100%, 40%, 0.125)',
+  breakpoints,
+  mediaQueries: {
+    mobile: `@media screen and (min-width: ${breakpoints[0]})`,
+    tablet: `@media screen and (min-width: ${breakpoints[1]})`,
+    computer: `@media screen and (min-width: ${breakpoints[2]})`,
+    desktop: `@media screen and (min-width: ${breakpoints[3]})`,
+    widescreen: `@media screen and (min-width: ${breakpoints[4]})`,
   },
-  fonts: {
-    body: 'Roboto, Helvetiva Neue, Helvetica, Aria, sans-serif',
-    heading: 'Poppins, Helvetiva Neue, Helvetica, Aria, sans-serif',
-    monospace: 'Menlo, monospace',
-  },
+  colors,
+  fonts,
   fontSizes: [
     12, 14, 16, 20, 24, 32, 48, 64, 96
   ],
@@ -253,15 +278,28 @@ const theme = {
   },
   // rebass variants
   text: {
-    heading: {
-      fontFamily: 'Poppins, Helvetiva Neue, Helvetica, Aria, sans- serif',
+    header: {
+      fontFamily: fonts.heading,
       lineHeight: '1.25',
       fontWeight: 'bold',
+      fontSize: [2, 3, 4],
+    },
+    subheader: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontWeight: '500',
+      fontSize: [1,2],
+    },
+    paragraph: {
+      fontFamily: fonts.body,
+      lineHeight: '1.5',
+      fontWeight: 'normal',
+      fontSize: [1,2],
     },
     display: {
-      fontFamily: 'heading',
-      fontWeight: 'heading',
-      lineHeight: 'heading',
+      fontFamily: fonts.body,
+      fontWeight: 'normal',
+      lineHeight: '1.5',
       fontSize: [5, 6, 7],
     },
     caps: {
@@ -317,9 +355,9 @@ const theme = {
   },
   styles: {
     root: {
-      fontFamily: 'body',
-      fontWeight: 'body',
-      lineHeight: 'body',
+      fontFamily: fonts.body,
+      fontWeight: 'normal',
+      lineHeight: '1.5',
     },
   },
 }
