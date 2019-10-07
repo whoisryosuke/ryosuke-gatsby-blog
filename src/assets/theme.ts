@@ -234,6 +234,8 @@ const colors = {
   muted: '#f6f6f9',
   gray: '#dddddf',
   highlight: 'hsla(205, 100%, 40%, 0.125)',
+  white: '#FFF',
+  black: '#000',
 }
 
 const fonts = {
@@ -258,7 +260,7 @@ const theme = {
   ],
   fontWeights: {
     body: 400,
-    heading: 700,
+    heading: 500,
     bold: 700,
   },
   lineHeights: {
@@ -281,24 +283,27 @@ const theme = {
     header: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
-      fontWeight: 'bold',
       fontSize: [2, 3, 4],
     },
     subheader: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
-      fontWeight: '500',
       fontSize: [1,2],
+    },
+    label: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [0],
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase',
     },
     paragraph: {
       fontFamily: fonts.body,
       lineHeight: '1.5',
-      fontWeight: 'normal',
       fontSize: [1,2],
     },
     display: {
       fontFamily: fonts.body,
-      fontWeight: 'normal',
       lineHeight: '1.5',
       fontSize: [5, 6, 7],
     },
