@@ -8,7 +8,7 @@ import nicetime from '../helpers/nicetime';
 import kebabCase from "lodash/kebabCase";
 // import 'prismjs/themes/prism-okaidia.css';
 
-import Layout from '../layouts/index'
+import Layout from '../layouts/BaseLayout'
 import ReadingProgress from '../components/ReadingProgress';
 import SEO from '../components/SEO';
 import Cover from '../components/Cover';

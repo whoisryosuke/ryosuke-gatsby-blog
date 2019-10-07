@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 
 import config from '../config'
 
-import Layout from "../layouts/index"
+import Layout from "../layouts/BaseLayout"
 import ServicesGrid from '../components/ServicesGrid'
 import Newsletter from '../components/Newsletter'
 import Featured from '../components/Featured'

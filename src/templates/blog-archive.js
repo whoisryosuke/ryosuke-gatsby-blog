@@ -3,7 +3,7 @@ import Link from "gatsby-link";
 
 import capitalizeFirstLetter from '../helpers/uppercase';
 
-import Layout from "../layouts/index"
+import Layout from "../layouts/BaseLayout"
 import PostLoop from '../components/PostLoop';
 
 const NavLink = props => {

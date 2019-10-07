@@ -2,9 +2,8 @@ import React from 'react'
 import Helmet from 'react-helmet'
 import config from '../config'
 
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import './index.css'
+import Header from "../components/Header/Header"
+import Footer from '../components/Footer/Footer'
 
 import appleTouchIcon from '../../static/assets/favicon/apple-touch-icon.png'
 import favicon32 from '../../static/assets/favicon/favicon-32x32.png'
@@ -12,7 +11,7 @@ import favicon16 from '../../static/assets/favicon/favicon-16x16.png'
 
 //import '../assets/css/bootstrap-grid.min.css'
 
-const TemplateWrapper = ({ children }) => (
+const BaseLayout = ({ children }) => (
   <div>
     <Helmet>
       <title>{ config.title }</title>
@@ -34,4 +33,4 @@ const TemplateWrapper = ({ children }) => (
   </div>
 )
 
-export default TemplateWrapper
+export default BaseLayout

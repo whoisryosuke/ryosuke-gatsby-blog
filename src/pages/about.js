@@ -4,7 +4,7 @@ import Link from "gatsby-link";
 
 import config from '../config';
 
-import Layout from "../layouts/index"
+import Layout from "../layouts/BaseLayout"
 import Skills from '../components/Skills';
 import Newsletter from '../components/Newsletter';
 import PostLoop from '../components/PostLoop';
