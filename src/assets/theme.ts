@@ -227,15 +227,21 @@ const breakpoints = [
 ]
 
 const colors = {
-  text: '#000',
+  text: '#111212',
   background: '#fff',
-  primary: '#07c',
-  secondary: '#30c',
+  primary: '#00A0FE',
+  secondary: '#6D59F0',
   muted: '#f6f6f9',
-  gray: '#dddddf',
+  gray: '#D3D7DA',
   highlight: 'hsla(205, 100%, 40%, 0.125)',
   white: '#FFF',
-  black: '#000',
+  black: '#111212',
+}
+
+const gradients = {
+  subtle: `linear-gradient(180deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
+  purple: `linear-gradient(180deg, ${colors.primary} 0%, #A000C4 100%)`,
+  blue: `linear-gradient(180deg, #00D2FF 0%, ${colors.secondary} 100%)`
 }
 
 const fonts = {
@@ -254,6 +260,7 @@ const theme = {
     widescreen: `@media screen and (min-width: ${breakpoints[4]})`,
   },
   colors,
+  gradients,
   fonts,
   fontSizes: [
     12, 14, 16, 20, 24, 32, 48, 64, 96
@@ -272,7 +279,7 @@ const theme = {
     avatar: 48,
   },
   radii: {
-    default: 4,
+    default: 0,
     circle: 99999,
   },
   shadows: {
@@ -345,12 +352,16 @@ const theme = {
       color: 'background',
       bg: 'primary',
       borderRadius: 'default',
+      padding: '1em 4em',
     },
     outline: {
       variant: 'buttons.primary',
-      color: 'primary',
+      color: 'black',
       bg: 'transparent',
-      boxShadow: 'inset 0 0 2px',
+      border: '1px solid #000',
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+      fontSize: 1,
     },
     secondary: {
       variant: 'buttons.primary',
