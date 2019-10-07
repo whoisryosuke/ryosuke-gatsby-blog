@@ -11,7 +11,7 @@ interface IBasicCardProps {
 const BasicCard: React.FunctionComponent<IBasicCardProps> = ({title, subheader, description, ...props}) => {
   return(
     <BaseCard {...props}>
-      <Heading variant="subheader" mb="4">{subheader}</Heading>
+      <Heading variant="label" mb="4">{subheader}</Heading>
       <Heading variant="header" mb="4">{title}</Heading>
       <Text variant="paragraph">{description}</Text>
     </BaseCard>
