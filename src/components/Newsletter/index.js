@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import { Box, Button, Flex, Heading } from 'rebass/styled-components'
+import { Input } from '@rebass/forms'
 
 import validateEmail from '../../helpers/validateEmail';
 import MailchimpSubscribe from "react-mailchimp-subscribe"
 
-// a basic form
 const CustomForm = ({ status, message, onValidated }) => {
     let email;
     const submit = () =>
@@ -15,23 +15,25 @@ const CustomForm = ({ status, message, onValidated }) => {
         });
 
     return (
-        <div className={status === "success" ? 'success' : ''}>
-            <h4 className="Title text blue">Only the best in your inbox weekly</h4>
-            <input
+        <Box px={3} py={5} sx={{borderBottom:"1px solid black"}} className={status === "success" ? 'success' : ''}>
+            <Heading fontSize={[2,3]} mb={3}>📬 Subscribe for weekly blog digests</Heading>
+            <Flex>
+            <Input
                 ref={node => (email = node)}
                 type="email"
-                placeholder="Type your email here…"
+                placeholder="your.email@website.com"
+                required
             />
-            <button onClick={submit}>
+            <Button variant="outline" onClick={submit}>
                 Subscribe
-            </button>
-
+            </Button>
+            </Flex>
             <aside className={'message ' + status}>
                 {status === "sending" && <div className="sending">sending...</div>}
                 {status === "error" && <div className="error">{message}</div>}
                 {status === "success" && <div className="success">{message}</div>}
             </aside>
-        </div>
+        </Box>
     );
 };
 
