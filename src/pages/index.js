@@ -42,7 +42,7 @@ export default class Frontpage extends Component {
         </Featured>
 
         {/*------- Posts loop -------*/}
-        <PostLoop loop={blog.edges} skip={skip} />
+        <PostLoop type="blog" loop={blog.edges} skip={skip} />
         <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
           <Link to={'blog'}>
             <Button variant="outline">
@@ -53,7 +53,7 @@ export default class Frontpage extends Component {
 
         {/*------- Projects loop -------*/}
         <SectionHeading emoji="🎨" heading="Latest projects" />
-        <PostLoop loop={projects.edges} skip={!skip} />
+        <PostLoop type="project" loop={projects.edges} skip={!skip} />
         <Box sx={{borderBottom:'1px solid black'}} textAlign="right" p={3}>
           <Link to={'projects'}>
             <Button variant="outline">
@@ -114,6 +114,7 @@ export const query = graphql`
           frontmatter {
             title
             date
+            tags
             cover_image {
               publicURL
               childImageSharp {
