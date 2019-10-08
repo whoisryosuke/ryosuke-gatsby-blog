@@ -49,14 +49,19 @@ const StyledCard = styled(Box)`
     }
   `}
 
-  ${(props) => props.grid && `
+  ${(props) => props.theme.mediaQueries.mobile} {
+      border-width:0 0 1px 0;
+    &:last-child, &:nth-child(2n) {
+      border-width:0 0 1px 0;
+    }
+  }
   ${(props) => props.theme.mediaQueries.tablet} {
     border-width:0 0 1px 0;
-  }
 
-  &:last-child {
-    border-width:0 0 1px 1px;
-  }`}
+    &:last-child, &:nth-child(2n) {
+      border-width:0 0 1px 1px;
+    }
+  }
 `
 
 interface IBaseCardProps {
