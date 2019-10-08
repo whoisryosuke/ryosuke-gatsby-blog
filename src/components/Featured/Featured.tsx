@@ -5,7 +5,7 @@ import TriangleBG from '../../assets/svg/bg-triangle.svg'
 
 const StyledBox = styled(Box)`
   box-shadow:none;
-  border:1px solid #111212;
+  border-bottom:1px solid ${(props) => props.theme.colors.black};
   padding:2.5em; 
   background:url(${TriangleBG});
   background-size:200px 200px;
