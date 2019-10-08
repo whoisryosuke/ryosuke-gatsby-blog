@@ -15,14 +15,18 @@ interface IProjectCardProps {
   description: string
 }
 
-const ProjectCard: React.FunctionComponent<IProjectCardProps> = ({href, title, subheader, ...props}) => {
+const ProjectCard: React.FunctionComponent<IProjectCardProps> = ({ title, subheader, link, ...props }) => {
+  // Check if Subheader is array or string
+  // return one item if array
+  let subtitle = subheader
+  if (Array.isArray(subheader) && subheader.length > 0) {
+    subtitle = subheader[Math.floor(Math.random() * subheader.length)]
+  }
   return(
-    <StyledLink to={href}>
-      <BaseCard hover={true} {...props}>
-        <Heading fontSize={[3,4,5]} mt="5" mb="2">{title}</Heading>
-        <Heading variant="label" mb="4">{subheader}</Heading>
-      </BaseCard>
-    </StyledLink>
+    <BaseCard link={link} hover {...props}>
+      <Heading fontSize={[3,4,5]} mt="5" mb="2">{title}</Heading>
+      <Heading variant="label" mb="4">{subtitle}</Heading>
+    </BaseCard>
   )
 };
 
