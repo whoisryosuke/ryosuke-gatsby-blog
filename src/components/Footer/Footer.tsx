@@ -44,7 +44,7 @@ export const Footer: React.FC<Props> = () => {
         <Box width={[1, 1, 1,1/3]} mb={3}>
           <Text variant="paragraph">Copyright &copy; 2019, Oscar Diaz, All Rights Reserved</Text>
         </Box>
-        <Box width={[1, 1, 1, 2 / 3]}>
+        <Box width={[1, 1, 1, 2 / 3]} textAlign="right">
           <StyledLink href="https://codepen.io/whoisryosuke">
             <Image src={CodePen} />
           </StyledLink>
