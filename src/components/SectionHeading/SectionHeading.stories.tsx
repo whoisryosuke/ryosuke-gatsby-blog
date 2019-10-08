@@ -1,5 +1,5 @@
 import React from 'react';
-import SectionHeading from "./index"
+import SectionHeading from "./SectionHeading"
 
 export default { title: 'Section Heading' };
 
