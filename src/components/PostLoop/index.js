@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "gatsby-link";
 import Img from "gatsby-image";
+import { Flex } from 'rebass/styled-components'
 import nicetime from '../../helpers/nicetime';
 
+import BasicCard from "../../components/Card/BasicCard"
 import arrowRight from '../../assets/img/icon-arrow-right.svg';
 
 export default (props) => {
@@ -23,48 +25,15 @@ export default (props) => {
             }).map(({ node }) => {
                 let postDate = new Date(node.frontmatter.date);
                 return (
-                    <section className="col">
-                        <article className="Card small" key={node.id}>
-                            <figure>
-                                <Link to={node.fields.slug}>
-                                    {node.frontmatter.cover_image ?
-                                    node.frontmatter.cover_image.childImageSharp ? (
-                                        <Img fluid={node.frontmatter.cover_image.childImageSharp.fluid} /> 
-                                    ) : (
-                                        <img src={node.frontmatter.cover_image.publicURL} />
-                                    ) : ''}
-                                </Link>
-                            </figure>
-                            <div className="content">
-                                <Link
-                                    to={node.fields.slug}
-                                    css={{ textDecoration: `none`, color: `inherit` }}
-                                >
-                                    <h3 className="Title">
-                                        {node.frontmatter.title}
-                                    </h3>
-                                </Link>
-                                <p className="excerpt">{node.excerpt}</p>
-                                
-                                <aside className="meta">
-                                    <Link
-                                        to={node.fields.slug}
-                                        className="Link"
-                                    >
-                                        {node.frontmatter.section ? links[node.frontmatter.section] : 'See post'}
-                                        <img src={arrowRight} className="icon arrow right" alt="Arrow pointing right" />
-                                    </Link>
-                                    <span className="date">{ nicetime(currentDate, postDate) }</span>
-                                </aside>
-                            </div>
-                        </article>
-                    </section>
+
+                    <BasicCard width={[1, 1, 1 / 2]} grid title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} />
+                    //                 <span className="date">{ nicetime(currentDate, postDate) }</span>
                 )
             })
         }
     return (
-        <section className="container row">
+        <Flex flexWrap="wrap">
             { postLoop }
-        </section>
+        </Flex>
     );
 };
