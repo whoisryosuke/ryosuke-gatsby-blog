@@ -1,6 +1,24 @@
 import React, { Component } from "react";
+import styled from 'styled-components'
+import {Box} from 'rebass/styled-components'
+
+import SectionHeading from '../SectionHeading/SectionHeading'
 
 import MoneyBagEmoji from '../../assets/img/emoji/money-bag.png';
+
+const StyledList = styled.li`
+    list-style:none;
+    display:inline-block;
+    border-width:0 1px 1px 0;
+    border-style: solid;
+    border-color: ${(props) => props.theme.colors.black};
+    
+    &:last-child {
+        border-right:1px solid;
+    }
+    
+  }
+`
 
 export default class Skills extends Component {
     constructor(props) {
@@ -60,20 +78,17 @@ export default class Skills extends Component {
         ];
 
         let skillsList = skills.map((skill) => (
-            <li className={skill.class}>
+            <Box as={StyledList} width={[1/2,1/2,1/3]} p={3} className={skill.class}>
                 {skill.name}
-            </li>
+            </Box>
         ));
 
         return(
             <div className="container row Skills">
-                <p>I've got the <strong>skills</strong> to the pay the <strong>bills</strong> <img src={MoneyBagEmoji} alt="Money bag emoji" height="36" /></p>
-                <section className={'TagCloud skills ' + seeMore}>
-                    <ul>
-                        { skillsList }
-                    </ul>
-                </section>
-                <button className="btn more" onClick={ this.more }>See more</button>
+                <SectionHeading emoji="💽" heading="Technology and software I use" />
+                <Box as="ul" sx={{padding:0, borderLeft:'1px solid black'}}>
+                    { skillsList }
+                </Box>
             </div>
         );
     }
