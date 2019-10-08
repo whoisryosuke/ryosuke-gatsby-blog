@@ -1,5 +1,5 @@
 import React from 'react';
-import Masthead from "./index"
+import Masthead from "./Masthead"
 import GreetingMasthead from "./GreetingMasthead"
 
 export default { title: 'Masthead' };

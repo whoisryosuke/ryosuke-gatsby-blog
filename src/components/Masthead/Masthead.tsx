@@ -6,15 +6,12 @@ interface IMastheadProps {
   className: string
 }
 
-const Masthead: React.FunctionComponent<IMastheadProps> = ({className}) => {
+const Masthead: React.FunctionComponent<IMastheadProps> = ({className, header, subheader}) => {
   return(
   <section className={className}>
-    <Heading fontSize={[1,2,3]}>誰ですか</Heading>
+    <Heading fontSize={[1,2,3]}>{subheader}</Heading>
       <Heading
-        fontSize={[5, 6, 7]}>
-      Hey I'm Ryosuke ✌️<br />
-      Designer, developer,<br />
-      &amp; influencer 💭
+        fontSize={[5, 6, 7]}>{header}
     </Heading>
   </section>
   )
