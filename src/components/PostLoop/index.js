@@ -5,6 +5,7 @@ import { Flex } from 'rebass/styled-components'
 import nicetime from '../../helpers/nicetime';
 
 import BasicCard from "../../components/Card/BasicCard"
+import ProjectCard from "../../components/Card/ProjectCard"
 import arrowRight from '../../assets/img/icon-arrow-right.svg';
 
 export default (props) => {
@@ -24,11 +25,23 @@ export default (props) => {
                 }
             }).map(({ node }) => {
                 let postDate = new Date(node.frontmatter.date);
-                return (
-
-                    <BasicCard width={[1, 1, 1 / 2]} grid title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} />
-                    //                 <span className="date">{ nicetime(currentDate, postDate) }</span>
-                )
+                switch(props.type) {
+                    case 'blog':
+                    case 'blogs':
+                        return (
+                            <BasicCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} />
+                            //                 <span className="date">{ nicetime(currentDate, postDate) }</span>
+                        )
+                    case 'project':
+                    case 'projects':
+                        return (
+                            <ProjectCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} link={node.fields.slug} />
+                        )
+                    default:
+                        return (
+                            <BasicCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} />
+                        )
+                }
             })
         }
     return (
