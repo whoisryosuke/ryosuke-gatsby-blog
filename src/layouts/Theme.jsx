@@ -15,6 +15,7 @@ import { CodeBlock } from "../components/CodeBlock/CodeBlock"
 const GlobalStyle = createGlobalStyle`
   html, body {
     font-family: Arial, Helvetica, sans-serif;
+    margin:0;
   }
 
   h3 {
