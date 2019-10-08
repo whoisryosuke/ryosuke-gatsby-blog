@@ -8,10 +8,11 @@ interface ISectionHeadingProps {
   heading: string,
 }
 
-const SectionHeading: React.FunctionComponent<ISectionHeadingProps> = ({className, emoji, heading}) => {
+const SectionHeading: React.FunctionComponent<ISectionHeadingProps> = ({className, emoji, heading, subheader}) => {
   return(
   <Box className={className}>
     <Heading variant="heading">{emoji && emoji} {heading}</Heading>
+    {subheader && <Heading variant="subheader" mt={2} pl={4}>{subheader}</Heading>}
   </Box>
   )
 };
