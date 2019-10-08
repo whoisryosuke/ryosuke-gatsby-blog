@@ -2,15 +2,19 @@ import React, { Component } from 'react'
 import { graphql } from 'gatsby'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
+import { Button, Box, Flex } from 'rebass/styled-components'
 
 import config from '../config'
 
 import Layout from "../layouts/BaseLayout"
+import GreetingMasthead from '../components/Masthead/GreetingMasthead'
+import SectionHeading from '../components/SectionHeading/SectionHeading'
+import BasicCard from "../components/Card/BasicCard"
 import ServicesGrid from '../components/ServicesGrid'
 import Newsletter from '../components/Newsletter'
-import Featured from '../components/Featured'
+import Featured from '../components/Featured/Featured'
 import PostLoop from '../components/PostLoop'
-import FrontpageContact from '../components/Frontpage/Contact'
+import Contact from '../components/Contact/Contact'
 
 export default class Frontpage extends Component {
   render() {
@@ -27,64 +31,40 @@ export default class Frontpage extends Component {
 
     return (
       <Layout className="Frontpage pt2">
-        <div className="container Frontpage__hero">
-          <h1>
-            Hey I'm <span className="text blue">Ryosuke</span>{' '}
-            <Img fixed={PeaceEmoji.childImageSharp.fixed} alt="Peace sign emoji" />
-            <br />Designer, developer,
-            <br /> &amp; influencer{' '}
-            <Img
-              fixed={ThoughtCloudEmoji.childImageSharp.fixed}
-              alt="Thought cloud emoji"
-            />
-          </h1>
-        </div>
-        <div className="container Frontpage__about">
-          <figure>
-            <Img
-              fixed={RyosukeAvatar.childImageSharp.fixed}
-              alt="Ryosuke in white Japanese font on blue background"
-            />
-          </figure>
-          <p>
-            I'm a <strong>designer</strong> and{' '}
-            <strong>full stack engineer</strong> currently residing in Los
-            Angeles. I live for <strong>stunning design</strong>,{' '}
-            <strong>accessible UX</strong>, and{' '}
-            <strong>inspiring others</strong> through my work.
-          </p>
-        </div>
-
-        <ServicesGrid />
+        <GreetingMasthead />
+        
+        {/* <ServicesGrid /> */}
 
         {/*------- Featured image -------*/}
-        <div className="container">
-          <h2 className="Title text blue">Latest posts</h2>
-        </div>
-        <Featured post={blog.edges[0].node} />
+        <SectionHeading emoji="📓" heading="Latest writings" />
+        <Featured>
+          <BasicCard width={[1,1,2/3,1/2,1/3]} title={blog.edges[0].node.frontmatter.title} subheader={blog.edges[0].node.frontmatter.tags} description={blog.edges[0].node.excerpt} />
+        </Featured>
 
         {/*------- Posts loop -------*/}
         <PostLoop loop={blog.edges} skip={skip} />
-        <div className="container centered">
-          <Link to={'blog'} className="btn">
-            Find more reading material
+        <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
+          <Link to={'blog'}>
+            <Button variant="outline">
+              Find more reading material
+            </Button>
           </Link>
-        </div>
+        </Box>
 
         {/*------- Projects loop -------*/}
-        <div className="container pt4">
-          <h2 className="Title text blue">Latest projects</h2>
-        </div>
+        <SectionHeading emoji="🎨" heading="Latest projects" />
         <PostLoop loop={projects.edges} skip={!skip} />
-        <div className="container centered">
-          <Link to={'projects'} className="btn">
+        <Box sx={{borderBottom:'1px solid black'}} textAlign="right" p={3}>
+          <Link to={'projects'}>
+            <Button variant="outline">
             See more eye candy
+            </Button>
           </Link>
-        </div>
+        </Box>
 
         <Newsletter />
 
-        <FrontpageContact CoffeeEmoji={CoffeeEmoji} />
+        <Contact />
       </Layout>
     )
   }
@@ -104,6 +84,7 @@ export const query = graphql`
           frontmatter {
             title
             date
+            tags
             cover_image {
               publicURL
               childImageSharp {
