@@ -1,25 +1,41 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import throttle from './throttle'
+
+const Progress = styled.progress`
+    position: fixed;
+    display: block;
+    top: 5rem;
+    width: 100vw;
+    height: 0.4rem;
+    border: 0;
+    background-color: transparent;
+    color:#005CDD;
+    z-index: 810;
+    border:1px solid ${(props) => props.theme.colors.black};
+
+  &::-webkit-progress-bar {
+      background: #FFF;
+  }
+  &::-webkit-progress-value {
+    background: #005CDD;
+  }
+  &::-moz-progress-bar {
+    background-color: #005CDD;
+  }
+`
+
+interface Props {
+  targetEl: string,
+  className: string,
+  style: object,
+}
 
 /**
  * Adapted from @makotot on Github
  * via: https://github.com/makotot/react-reading-progress
  */
-export default class ReadingProgress extends React.Component {
-
-  static get propTypes() {
-    return {
-      targetEl: PropTypes.string,
-      className: PropTypes.string,
-      style: PropTypes.object,
-    }
-  }
-
-  static get defaultProps() {
-    return {
-    }
-  }
+export default class ReadingProgress extends React.Component<Props, {}> {
 
   constructor(props) {
     super(props)
@@ -85,7 +101,7 @@ export default class ReadingProgress extends React.Component {
 
   render() {
     return (
-        <progress
+        <Progress
         value={ this.state.value }
         max={ this.max }
         className={ this.props.className }
