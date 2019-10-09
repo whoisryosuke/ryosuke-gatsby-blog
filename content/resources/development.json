@@ -1,0 +1,65 @@
+{
+  "resources": {
+    "development": [{
+        "name": "Pure Styled Components",
+        "link": "http://github.com/sjdnfdj",
+        "categories": [
+          "Design Systems",
+          "Component Library",
+          "Design Tooling",
+          "Documentation"
+        ],
+        "software": [
+          "React",
+          "JavaScript",
+          "Styled Components"
+        ]
+      },
+      {
+        "name": "Pure Styled Components",
+        "link": "http://github.com/sjdnfdj",
+        "categories": [
+          "Design Systems",
+          "Component Library",
+          "Design Tooling",
+          "Documentation"
+        ],
+        "software": [
+          "React",
+          "JavaScript",
+          "Styled Components"
+        ]
+      },
+      {
+        "name": "Pure Styled Components",
+        "link": "http://github.com/sjdnfdj",
+        "categories": [
+          "Design Systems",
+          "Component Library",
+          "Design Tooling",
+          "Documentation"
+        ],
+        "software": [
+          "React",
+          "JavaScript",
+          "Styled Components"
+        ]
+      },
+      {
+        "name": "Pure Styled Components",
+        "link": "http://github.com/sjdnfdj",
+        "categories": [
+          "Design Systems",
+          "Component Library",
+          "Design Tooling",
+          "Documentation"
+        ],
+        "software": [
+          "React",
+          "JavaScript",
+          "Styled Components"
+        ]
+      }
+    ]
+  }
+}
