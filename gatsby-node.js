@@ -8,6 +8,26 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 const createPaginatedPages = require("gatsby-paginate");
 
+/** 
+ * Custom Webpack config
+ * 
+ * Adds aliases for paths (like components)
+ * so you don't get lost in relative hell -> '../../../'
+ */
+exports.onCreateWebpackConfig = ({ config, actions }) => {
+    actions.setWebpackConfig({
+        resolve: {
+            alias: {
+                '@components': path.join(__dirname, './src/components'),
+                '@assets': path.join(__dirname, './src/assets'),
+                '@helpers': path.join(__dirname, './src/helpers'),
+                '@layouts': path.join(__dirname, './src/layouts'),
+                '@templates': path.join(__dirname, './src/templates'),
+            },
+        },
+    });
+};
+
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     const { createNodeField } = boundActionCreators
     
