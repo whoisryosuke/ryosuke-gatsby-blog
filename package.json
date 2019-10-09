@@ -47,6 +47,7 @@
     "prism-react-renderer": "^1.0.1",
     "react": "^16.10.1",
     "react-copy-to-clipboard": "^5.0.1",
+    "react-data-table-component": "^3.5.1",
     "react-dom": "^16.10.1",
     "react-helmet": "^5.2.1",
     "react-live": "^2.2.1",
