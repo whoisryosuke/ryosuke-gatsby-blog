@@ -54,16 +54,15 @@ const StyledGreetingMasthead = styled(GreetingMasthead)`
 
   background-image:url(${MastheadSVG});
   background-repeat:no-repeat;
-  background-size:60%;
-  background-position:10% 10%;
 
   ${(props) => props.theme.mediaQueries.mobile} {
     background-size:150%;
-    background-position:-30% 30%;
+    background-position:30% 30%;
   }
 
   ${(props) => props.theme.mediaQueries.tablet} {
-    background-size:60%;
+    background-size:75%;
+    background-position:0 30%;
   }
 `
 
