@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Box, Button, Flex, Heading } from 'rebass/styled-components'
 import { Input } from '@rebass/forms'
+import ButtonOutline from '../Button/ButtonOutline'
 
 import validateEmail from '../../helpers/validateEmail';
 import MailchimpSubscribe from "react-mailchimp-subscribe"
@@ -23,10 +24,11 @@ const CustomForm = ({ status, message, onValidated }) => {
                 type="email"
                 placeholder="your.email@website.com"
                 required
+                sx={{borderRight:0}}
             />
-            <Button variant="outline" onClick={submit}>
+            <ButtonOutline onClick={submit}>
                 Subscribe
-            </Button>
+            </ButtonOutline>
             </Flex>
             <aside className={'message ' + status}>
                 {status === "sending" && <div className="sending">sending...</div>}
