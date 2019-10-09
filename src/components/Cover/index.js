@@ -1,14 +1,15 @@
 import React from "react";
 import Img from "gatsby-image";
+import {Box, Image} from 'rebass/styled-components'
 
 export default (props) => {
     return (
-        <figure className="Cover">
+        <Box as="figure" mb={3} className="Cover">
             {props.image.childImageSharp ? (
-                <Img fluid={props.image.childImageSharp.fluid} />
+                <Image as={Img} fluid={props.image.childImageSharp.fluid} />
             ) : (
-                    <img src={props.image.publicURL} className="static-image" />
+                    <Image src={props.image.publicURL} className="static-image" />
                 )}
-        </figure>
+        </Box>
     );
 };
