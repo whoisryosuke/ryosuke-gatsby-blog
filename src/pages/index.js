@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
-import Link from 'gatsby-link'
-import Img from 'gatsby-image'
 import { Button, Box, Flex } from 'rebass/styled-components'
 
 import config from '../config'
 
 import Layout from "../layouts/BaseLayout"
+import Link from "../components/Link/Link"
+import ButtonOutline from '../components/Button/ButtonOutline'
 import GreetingMasthead from '../components/Masthead/GreetingMasthead'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import BasicCard from "../components/Card/BasicCard"
-import ServicesGrid from '../components/ServicesGrid'
 import Newsletter from '../components/Newsletter'
 import Featured from '../components/Featured/Featured'
 import PostLoop from '../components/PostLoop'
@@ -45,9 +44,9 @@ export default class Frontpage extends Component {
         <PostLoop type="blog" loop={blog.edges} skip={skip} />
         <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
           <Link to={'blog'}>
-            <Button variant="outline">
+            <ButtonOutline>
               Find more reading material
-            </Button>
+            </ButtonOutline>
           </Link>
         </Box>
 
@@ -56,9 +55,9 @@ export default class Frontpage extends Component {
         <PostLoop type="project" loop={projects.edges} skip={!skip} />
         <Box sx={{borderBottom:'1px solid black'}} textAlign="right" p={3}>
           <Link to={'projects'}>
-            <Button variant="outline">
+            <ButtonOutline>
             See more eye candy
-            </Button>
+            </ButtonOutline>
           </Link>
         </Box>
 
