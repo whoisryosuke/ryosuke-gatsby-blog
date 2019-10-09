@@ -37,7 +37,7 @@ export default class Frontpage extends Component {
         {/*------- Featured image -------*/}
         <SectionHeading emoji="📓" heading="Latest writings" />
         <Featured>
-          <BasicCard width={[1,1,2/3,1/2,1/3]} title={blog.edges[0].node.frontmatter.title} subheader={blog.edges[0].node.frontmatter.tags} description={blog.edges[0].node.excerpt} />
+          <BasicCard width={[1,1,2/3,1/2,1/3]} solid title={blog.edges[0].node.frontmatter.title} subheader={blog.edges[0].node.frontmatter.tags} description={blog.edges[0].node.excerpt} />
         </Featured>
 
         {/*------- Posts loop -------*/}
