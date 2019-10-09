@@ -29,17 +29,17 @@ export default (props) => {
                     case 'blog':
                     case 'blogs':
                         return (
-                            <BasicCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} />
+                            <BasicCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} cols={2} />
                             //                 <span className="date">{ nicetime(currentDate, postDate) }</span>
                         )
                     case 'project':
                     case 'projects':
                         return (
-                            <ProjectCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} link={node.fields.slug} />
+                            <ProjectCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} link={node.fields.slug} cols={2} />
                         )
                     default:
                         return (
-                            <BasicCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} />
+                            <BasicCard width={[1, 1, 1 / 2]} title={node.frontmatter.title} subheader={node.frontmatter.tags} description={node.excerpt} link={node.fields.slug} cols={2} />
                         )
                 }
             })

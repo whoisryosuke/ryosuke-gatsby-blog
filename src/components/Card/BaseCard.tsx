@@ -5,7 +5,8 @@ import { Box } from 'rebass/styled-components'
 
 const StyledLink = styled(Link)`
     text-decoration:none;
-    color:${(props) => props.theme.colors.black}
+    color:${(props) => props.theme.colors.black};
+    border-bottom:0;
 `
 
 const StyledCard = styled(Box)`
@@ -39,8 +40,8 @@ const StyledCard = styled(Box)`
     }
 
   `}
-
-  ${(props) => props.theme.mediaQueries.mobile} {
+  ${props => props.cols == 2 && `
+  ${props.theme.mediaQueries.mobile} {
     border-width:0 0 1px 0;
     
     &:last-child, &:nth-child(2n) {
@@ -52,7 +53,7 @@ const StyledCard = styled(Box)`
 
     }
   }
-  ${(props) => props.theme.mediaQueries.tablet} {
+  ${props.theme.mediaQueries.tablet} {
     border-width:0 0 1px 0;
 
     &:last-child, &:nth-child(2n) {
@@ -63,17 +64,52 @@ const StyledCard = styled(Box)`
       }
     }
   }
+  `}
+
+  ${props => props.cols == 3 && `
+  ${props.theme.mediaQueries.mobile} {
+    border-width:0 0 1px 0;
+    
+    &:last-child, &:nth-child(3n-1), &:nth-child(3n) {
+      border-width:0 0 1px 0;
+      
+      &:hover {
+        border-width:0 0 2px 0;
+      }
+
+    }
+    &:not(:nth-child(3n)):last-child {
+      border-right:1px;
+    }
+  }
+  ${props.theme.mediaQueries.tablet} {
+    border-width:0 0 1px 0;
+
+    &:last-child, &:nth-child(3n-1), &:nth-child(3n) {
+      border-width:0 0 1px 1px;
+      
+      &:hover {
+        border-width:0 0 2px 1px;
+      }
+    }
+    &:not(:nth-child(3n)):last-child {
+      border-right:1px;
+    }
+  }
+  `}
+
 `
 
 interface IBaseCardProps {
   children: JSX.Element
 }
 
-const BaseCard: React.FunctionComponent<IBaseCardProps> = ({children, link, ...props}) => {
-  if(link) {
+const BaseCard: React.FunctionComponent<IBaseCardProps> = ({children, link, href, ...props}) => {
+  const LinkComponent = link ? Link : 'a';
+  if(link || href) {
     return(
       <StyledCard {...props}>
-        <StyledLink to={link}>
+        <StyledLink as={LinkComponent} to={link} href={href}>
           {children}
         </StyledLink>
       </StyledCard>
