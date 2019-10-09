@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { graphql } from 'gatsby'
 import Link from "gatsby-link";
 import Img from "gatsby-image";
+import { Heading, Image, Flex, Box } from 'rebass/styled-components'
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import nicetime from '../helpers/nicetime';
 
@@ -14,6 +15,8 @@ import SEO from '../components/SEO';
 import Cover from '../components/Cover';
 import Comments from '../components/Comments';
 import PostLoop from '../components/PostLoop';
+import ListItemGrid from '../components/List/ListItemGrid';
+import SectionHeading from '../components/SectionHeading/SectionHeading';
 import Twitter from '../components/icons/Twitter'
 import Tumblr from '../components/icons/Tumblr'
 import ryosukeAvatar from '../assets/img/ryosuke-avatar-128.png'
@@ -90,7 +93,7 @@ export default class BlogPost extends Component {
     const currentDate = new Date();
 
     const tags = post.frontmatter.tags.map((tag) => (
-      <li key={tag}><Link to={'/tags/' + kebabCase(tag) }>#{ tag }</Link></li>
+      <Heading width={[1/2,1/2,1/3]} p={3} key={tag} variant="subheader" textAlign="center"><Link to={'/tags/' + kebabCase(tag) }>#{ tag }</Link></Heading>
     ));
 
     let postImage = post.frontmatter.cover_image.publicURL;
@@ -110,61 +113,48 @@ export default class BlogPost extends Component {
             postData={post}
             isBlogPost
           />
-          <article className={"ArticlePage " + post.frontmatter.section } id="Article">
+          <Box maxWidth="text" mx="auto" px={[4,4,6]} py={[1,2]} as="article" className={"ArticlePage " + post.frontmatter.section } id="Article">
             {/*----- Cover image only on blog -----*/}
             { post.frontmatter.section === 'blog' && <Cover image={post.frontmatter.cover_image} /> }
             <section className="container">
 
               {/*----- Post content -----*/}
               <section className="content">
-                <h1 className="Title">{post.frontmatter.title}</h1>
+                <Heading variant="header">{post.frontmatter.title}</Heading>
 
 
                 <MDXRenderer>{post.body}</MDXRenderer>
-
-                <aside className="TagCloud small">
-                  <ul>
-                    {tags}
-                  </ul>
-                </aside>
                 
               </section>
 
-              {/*----- Author / Date meta data -----*/}
-              <aside className="meta">
-                <figure className="author">
-                  <img src={ryosukeAvatar} alt="Blue square avatar white centered hiragana text reading Ryosuke" />
-                  <h5>
-                    @Ryosuke
-                    <span className="date">{ nicetime(currentDate, postDate) }</span>                  
-                  </h5>
-                </figure>
-                <section className="share">
-                  <a href={`http://twitter.com/share?text=${post.frontmatter.title}&url=http://whoisryosuke.com/${post.fields.slug}&hashtags=${post.frontmatter.tags }`} className="twitter">
-                    { post.frontmatter.section === 'blog' ? 'Share on Twitter' : 'Share' }
-                    <Twitter />
-                  </a>
-                  <a href={`http://www.tumblr.com/share/link?url=http://whoisryosuke.com${post.fields.slug}`} className="tumblr">
-                    { post.frontmatter.section === 'blog' ? 'Share on Tumblr' : 'Share' }
-                    <Tumblr />
-                  </a>
-                </section>
-              </aside>
-
             </section>
 
-        </article>
+        </Box>
+
+        <SectionHeading emoji="🔗" heading="This post was filed under" sx={{borderTop:'1px solid black'}} />
+        <Flex width={1} p={3} sx={{borderBottom:'1px solid black'}}>
+          {tags}
+        </Flex>
+
+        {/*----- Author / Date meta data -----*/}
+        <Flex p={3} className="meta">
+            <Image variant="avatar" src={ryosukeAvatar} alt="Blue square avatar white centered hiragana text reading Ryosuke" />
+            <Heading p={3} variant="label">
+              @Ryosuke
+              <span className="date" style={{marginLeft:'1em'}}>{ nicetime(currentDate, postDate) }</span>                  
+            </Heading>
+        </Flex>
 
         { post.frontmatter.section === 'blog' && <Comments post={post} /> }
 
-          {/* { related ? 
-            <nav className="RelatedPosts container">
-              <h3 className="Title">Related Posts</h3>
+          { related ? 
+            <nav className="RelatedPosts">
+              <SectionHeading emoji="📚" heading="Related posts" />
               <PostLoop loop={related} skip={skip} />
             </nav>
             :
             ''
-          } */}
+          }
         </Layout>
     );
   }
