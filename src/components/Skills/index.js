@@ -1,95 +1,80 @@
 import React, { Component } from "react";
 import styled from 'styled-components'
-import {Box} from 'rebass/styled-components'
+import {Box, Heading, Text} from 'rebass/styled-components'
+import DataTable from 'react-data-table-component';
 
+import ListItemGrid from '../List/ListItemGrid'
 import SectionHeading from '../SectionHeading/SectionHeading'
 
 import MoneyBagEmoji from '../../assets/img/emoji/money-bag.png';
 
-const StyledList = styled.li`
-    list-style:none;
-    display:inline-block;
-    border-width:0 1px 1px 0;
-    border-style: solid;
-    border-color: ${(props) => props.theme.colors.black};
-    
-    &:last-child {
-        border-right:1px solid;
-    }
-    
-  }
-`
+const Skills = () => {
+    const skills = [
+        { class: 'html5', name: 'HTML5', type: 'Development', category: 'Frontend' },
+        { class: 'css3', name: 'CSS3', type: 'Development', category: 'Frontend' },
+        { class: 'sass', name: 'SASS', type: 'Development', category: 'Frontend' },
+        { class: 'gulp', name: 'Gulp', type: 'Development', category: 'Frontend' },
+        { class: 'js', name: 'JavaScript (ES6)', type: 'Development', category: 'Frontend' },
+        { class: 'jquery', name: 'jQuery', type: 'Development', category: 'Frontend' },
+        { class: 'node', name: 'NodeJS', type: 'Development', category: 'Full stack' },
+        { class: 'npm', name: 'NPM', type: 'Development', category: 'Full stack' },
+        { class: 'react', name: 'ReactJS', type: 'Development', category: 'Frontend' },
+        { class: 'babel', name: 'Babel', type: 'Development', category: 'Full stack' },
+        { class: 'webpack', name: 'Webpack', type: 'Development', category: 'Backend' },
+        { class: 'docker', name: 'Docker', type: 'Development', category: 'Backend' },
+        { class: 'mysql', name: 'mySQL', type: 'Development', category: 'Backend' },
+        { class: 'redis', name: 'Redis', type: 'Development', category: 'Backend' },
+        { class: 'memcached', name: 'Memcached', type: 'Development', category: 'Backend' },
+        { class: 'php', name: 'PHP', type: 'Development', category: 'Backend' },
+        { class: 'laravel', name: 'Laravel', type: 'Development', category: 'Backend' },
+        { class: 'wordpress', name: 'Wordpress', type: 'Development', category: 'Backend' },
+        { class: 'shopify', name: 'Shopify', type: 'Development', category: 'Full stack' },
+        { class: 'api', name: 'APIs', type: 'Development', category: 'Backend' },
+        { class: 'cms', name: 'CMS', type: 'Development', category: 'Full stack' },
+        { class: 'ecommerce', name: 'E-Commerce', type: 'Development', category: 'Full stack' },
+        { class: 'git', name: 'Git', type: 'Development', category: 'Full stack' },
+        { class: 'sketch', name: 'Sketch', type: 'Design', category: 'Frontend' },
+        { class: 'principle', name: 'Principle', type: 'Design', category: 'Frontend' },
+        { class: 'photoshop', name: 'Adobe Photoshop', type: 'Design', category: 'Print/Digital' },
+        { class: 'illustrator', name: 'Adobe Illustrator', type: 'Design', category: 'Print/Digital' },
+        { class: 'premiere', name: 'Adobe Premiere', type: 'Design', category: 'Video' },
+        { class: 'aftereffects', name: 'Adobe After Effects', type: 'Design', category: 'Video' },
+        { class: 'indesign', name: 'Adobe InDesign', type: 'Design', category: 'Print/Digital' },
+    ];
+    const columns = [
+    {
+        name: 'Name',
+        selector: 'name',
+        sortable: true,
+        cell: row => <Heading variant="label" p={2}>{row.name}</Heading>,
+    },
+    {
+        name: 'Type',
+        selector: 'type',
+        sortable: true,
+        cell: row => <Box p={2} sx={{border:'1px solid black'}}><Text variant="label">{row.type}</Text></Box>,
+    },
+    {
+        name: 'Category',
+        selector: 'category',
+        sortable: true,
+        cell: row => <Heading variant="label" p={2}>{row.category}</Heading>,
+    },
+    ];
 
-export default class Skills extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            more: false
-        }
-
-        this.more = this.more.bind(this);
-    }
-
-    more() {
-        this.setState({
-            more: !this.state.more
-        });
-    }
-
-    render() {
-        let { more } = this.state;
-
-        let seeMore = more ? 'show' : 'hide';
-
-        const skills = [
-            { class: 'html5', name: 'HTML5' },
-            { class: 'css3', name: 'CSS3' },
-            { class: 'sass', name: 'SASS' },
-            { class: 'grunt', name: 'Grunt' },
-            { class: 'gulp', name: 'Gulp' },
-            { class: 'js', name: 'JavaScript' },
-            { class: 'jquery', name: 'jQuery' },
-            { class: 'node', name: 'NodeJS' },
-            { class: 'npm', name: 'NPM' },
-            { class: 'react', name: 'ReactJS' },
-            { class: 'es6', name: 'ES6' },
-            { class: 'babel', name: 'Babel' },
-            { class: 'webpack', name: 'Webpack' },
-            { class: 'docker', name: 'Docker' },
-            { class: 'mysql', name: 'mySQL' },
-            { class: 'redis', name: 'Redis' },
-            { class: 'memcached', name: 'Memcached' },
-            { class: 'php', name: 'PHP' },
-            { class: 'laravel', name: 'Laravel' },
-            { class: 'wordpress', name: 'Wordpress' },
-            { class: 'shopify', name: 'Shopify' },
-            { class: 'api', name: 'APIs' },
-            { class: 'cms', name: 'CMS' },
-            { class: 'ecommerce', name: 'E-Commerce' },
-            { class: 'git', name: 'Git' },
-            { class: 'sketch', name: 'Sketch' },
-            { class: 'principle', name: 'Principle' },
-            { class: 'photoshop', name: 'Adobe Photoshop' },
-            { class: 'illustrator', name: 'Adobe Illustrator' },
-            { class: 'premiere', name: 'Adobe Premiere' },
-            { class: 'aftereffects', name: 'Adobe After Effects' },
-            { class: 'indesign', name: 'Adobe InDesign' },
-        ];
-
-        let skillsList = skills.map((skill) => (
-            <Box as={StyledList} width={[1/2,1/2,1/3]} p={3} className={skill.class}>
-                {skill.name}
+    return(
+        <section className="Skills">
+            <SectionHeading emoji="💽" heading="Technology and software I use" />
+            <Box py={4} sx={{borderBottom:'1px solid black'}}>
+                <DataTable
+                    columns={columns}
+                    data={skills}
+                    defaultSortField="title"
+                    noHeader
+                />
             </Box>
-        ));
-
-        return(
-            <div className="container row Skills">
-                <SectionHeading emoji="💽" heading="Technology and software I use" />
-                <Box as="ul" sx={{padding:0, borderLeft:'1px solid black'}}>
-                    { skillsList }
-                </Box>
-            </div>
-        );
-    }
+        </section>
+    );
 }
+
+export default Skills
