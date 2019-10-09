@@ -14,45 +14,42 @@ const StyledCard = styled(Box)`
   border-color: ${(props) => props.theme.colors.black};
   box-shadow:none;
   padding:2.5em;
-  background: linear-gradient(180deg, ${(props) => props.theme.colors.white} 0%, ${(props) => props.theme.colors.white} 100%);
+  background: ${(props) => props.theme.colors.white};
   position:relative;
   z-index:10;
 
   transition: all 200ms linear;
 
-  ${(props) => props.hover && `
+  &:hover {
+    background: ${(props) => props.theme.colors.muted};
+    border-bottom:2px inset ${(props) => props.theme.colors.primary};
+  }
+
+  ${(props) => props.solid && `
+    border-width:1px 1px 1px 1px !important;
+    box-shadow: 15px 15px 35px rgba(0, 160, 254, 0.5);
+    transform:translateY(0);
+    transition:all 400ms ease-in;
+
     &:hover {
-      color:#FFF;
+      background: ${(props) => props.theme.colors.white};
+      transform:translateY(-0.2em);
+      box-shadow: 15px 15px 35px rgba(0, 160, 254, 0.5), 7px 7px 15px #00BBFF;
+      border-color:${(props) => props.theme.colors.black};
     }
 
-    &::before {
-      content: '';
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      z-index:1;
-
-      background: linear-gradient(180deg, rgba(0, 210, 255, 0.7) 0%, #6D59F0 100%);
-
-      opacity:0;
-      transition: opacity 300ms linear;
-    }
-    &:hover::before {
-      opacity:1;
-    }
-
-    & * {
-      position:relative;
-      z-index:10;
-    }
   `}
 
   ${(props) => props.theme.mediaQueries.mobile} {
-      border-width:0 0 1px 0;
+    border-width:0 0 1px 0;
+    
     &:last-child, &:nth-child(2n) {
       border-width:0 0 1px 0;
+      
+      &:hover {
+        border-width:0 0 2px 0;
+      }
+
     }
   }
   ${(props) => props.theme.mediaQueries.tablet} {
@@ -60,6 +57,10 @@ const StyledCard = styled(Box)`
 
     &:last-child, &:nth-child(2n) {
       border-width:0 0 1px 1px;
+      
+      &:hover {
+        border-width:0 0 2px 1px;
+      }
     }
   }
 `

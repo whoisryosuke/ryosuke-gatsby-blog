@@ -23,7 +23,7 @@ const ProjectCard: React.FunctionComponent<IProjectCardProps> = ({ title, subhea
     subtitle = subheader[Math.floor(Math.random() * subheader.length)]
   }
   return(
-    <BaseCard link={link} hover {...props}>
+    <BaseCard link={link} {...props}>
       <Heading fontSize={[3,4,5]} mt="5" mb="2">{title}</Heading>
       <Heading variant="label" mb="4">{subtitle}</Heading>
     </BaseCard>
