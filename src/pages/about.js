@@ -56,11 +56,11 @@ export default class Frontpage extends Component {
                     </Box>
 
                     <Box width={[1,1,2/3]}>
-                        <Text px={5} mt={4} mb={4}>
+                        <Text variant="paragraph" px={5} mt={4} mb={4}>
                             I've been working as a designer and developer for <strong>over 15 years now</strong>, with over a decade of 
                             experience in the cannabis industry. 
                         </Text>
-                        <Text px={5}>
+                        <Text variant="paragraph" px={5}>
                             From engineering <a href="http://kushy.net">web apps</a> and e-commerce solutions, 
                             to designing brands and products, to producing innovative digital media, and even creating <strong>famous <a href="http://weedporndaily.tumblr.com/tagged/gif">ganja related GIFs</a></strong> -- my experience 
                             as an <strong>entrepreneur</strong> has broadened my skillset substantially.
@@ -72,13 +72,13 @@ export default class Frontpage extends Component {
 
 
                 {/*------- Featured image -------*/}
-                <SectionHeading emoji="🚀" heading="My recent work" />
+                <SectionHeading emoji="🚀" heading="My recent work" tall />
                 {/*------- Posts loop -------*/}
                 <PostLoop loop={data.projects.edges} skip={skip} />
 
 
                 {/*------- Speaking / Workshops -------*/}
-                <SectionHeading emoji="🎓" heading="Speaking and Workshops" />
+                <SectionHeading emoji="🎓" heading="Speaking and Workshops" tall />
                 <Box as="section" px={3} py={5} className="Speaking" sx={{borderBottom:"1px solid black"}}>
                     <Text px={5}>
                         I’m available for speaking gigs, <a href="mailto:ryosuke.san.hana@gmail.com">contact me anytime</a>.
