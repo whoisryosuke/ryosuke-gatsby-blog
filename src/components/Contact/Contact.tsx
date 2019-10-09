@@ -2,6 +2,9 @@ import React, {useState} from 'react'
 import styled from 'styled-components'
 import { Heading, Flex, Button, Box } from 'rebass/styled-components'
 import { Label, Input, Select } from '@rebass/forms'
+import ButtonOutline from '../Button/ButtonOutline'
+
+import ContactSVG from '../../assets/svg/contact-circles.svg'
 
 const StyledLabel = styled(Label)`
   font-family:${(props) => props.theme.fonts.heading};
@@ -15,6 +18,20 @@ const StyledInput = styled(Input)`
 const SectionBox = styled(Box)`
   border-bottom:1px solid ${(props) => props.theme.colors.black} !important;
   padding:3rem 0;
+
+
+  background-image:url(${ContactSVG});
+  background-repeat:no-repeat;
+
+  ${(props) => props.theme.mediaQueries.mobile} {
+    background-size:150%;
+    background-position:-150% 30%;
+  }
+
+  ${(props) => props.theme.mediaQueries.tablet} {
+    background-size:60%;
+    background-position:center right;
+  }
 `
 
 interface Props {
@@ -96,7 +113,7 @@ export const Contact: React.FC<Props> = () => {
               onChange={updateContactData}
               mx={2}
             />
-          <Button width={[1,1,1]} onSubmit={submitContactData} variant="outline">Reach out and touch</Button>
+          <ButtonOutline width={[1,1,1]} onSubmit={submitContactData}>Reach out and touch</ButtonOutline>
         </Box>
       </Flex>
     </SectionBox>
