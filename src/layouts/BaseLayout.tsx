@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import config from '../config'
+import { Box } from 'rebass/styled-components'
 
 import Header from "../components/Header/Header"
 import Footer from '../components/Footer/Footer'
@@ -25,9 +26,9 @@ const BaseLayout = ({ children }) => (
     </Helmet>
     <Header />
 
-    <section className="App">
+    <Box as="section" pt="4.8rem" className="App">
       {children}
-    </section>
+    </Box>
 
     <Footer />
   </div>

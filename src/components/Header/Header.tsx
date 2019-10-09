@@ -5,12 +5,40 @@ import { Flex, Text } from 'rebass/styled-components'
 
 const StyledHeader = styled(Flex)`
   width:100%;
+  background-color:${(props) => props.theme.colors.white};
   padding:1rem;
   text-align:right;
   border-bottom:1px solid ${(props) => props.theme.colors.black};
+  position:fixed;
+  top:0;
+  left:0;
+  z-index: 710;
 
   & .logo {
+      border:0;
     display:inline-block;
+    position:relative;
+
+    &:after {
+      content:'';
+      width:80px;
+      height:100%;
+      padding:1em 1.25em;
+      display:block;
+      position:absolute;
+      top: 0;
+      left: 0;
+      background:${(props) => props.theme.colors.muted};
+      border:1px solid ${(props) => props.theme.colors.black};
+      transform-origin: 0 50%;
+      transform: translate(-1.25em, -1.05em) scaleX(0);
+      z-index: -1; 
+      transition:transform 300ms ease-out;
+    }
+
+    &:hover:after {
+      transform: translate(-1.25em, -1.05em) scaleX(1);
+    }
   }
 `
 
@@ -25,11 +53,34 @@ const StyledHeaderNav = styled.nav`
   & li { 
     list-style-type:none;
     display:inline-block;
-    margin-right:1.5em;
+    margin-right:2.25em;
 
     & a {
       color: ${(props) => props.theme.colors.black};
       text-decoration:none;
+      border:0;
+      position:relative;
+      display:block;
+
+      &:after {
+        content:'';
+        width:100%;
+        padding:1.25em;
+        display:block;
+        position:absolute;
+        top: 0;
+        left: 0;
+        background:${(props) => props.theme.colors.muted};
+        border:1px solid ${(props) => props.theme.colors.black};
+        transform-origin: 0 50%;
+        transform: translate(-1.25em, -0.75em) scaleX(0);
+        z-index: -1; 
+        transition:transform 300ms ease-out;
+      }
+
+      &:hover:after {
+        transform: translate(-1.25em, -0.75em) scaleX(1);
+      }
     }
   }
 `
