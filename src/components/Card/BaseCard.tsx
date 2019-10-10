@@ -7,6 +7,10 @@ const StyledLink = styled(Link)`
     text-decoration:none;
     color:${(props) => props.theme.colors.black};
     border-bottom:0;
+
+    &:hover {
+      color:${(props) => props.theme.colors.black};
+    }
 `
 
 const StyledCard = styled(Box)`
