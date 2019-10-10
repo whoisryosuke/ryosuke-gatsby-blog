@@ -137,7 +137,7 @@ export default class BlogPost extends Component {
         </Flex>
 
         {/*----- Author / Date meta data -----*/}
-        <Flex p={3} className="meta">
+        <Flex p={3} className="meta" sx={{ borderBottom: '1px solid black' }}>
             <Image variant="avatar" src={ryosukeAvatar} alt="Blue square avatar white centered hiragana text reading Ryosuke" />
             <Heading p={3} variant="label">
               @Ryosuke
