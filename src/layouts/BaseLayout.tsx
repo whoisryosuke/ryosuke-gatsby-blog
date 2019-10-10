@@ -3,14 +3,12 @@ import Helmet from 'react-helmet'
 import config from '../config'
 import { Box } from 'rebass/styled-components'
 
-import Header from "../components/Header/Header"
+import MobileHeader from "../components/Header/MobileHeader"
 import Footer from '../components/Footer/Footer'
 
 import appleTouchIcon from '../../static/assets/favicon/apple-touch-icon.png'
 import favicon32 from '../../static/assets/favicon/favicon-32x32.png'
 import favicon16 from '../../static/assets/favicon/favicon-16x16.png'
-
-//import '../assets/css/bootstrap-grid.min.css'
 
 const BaseLayout = ({ children }) => (
   <div>
@@ -24,7 +22,7 @@ const BaseLayout = ({ children }) => (
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
     </Helmet>
-    <Header />
+    <MobileHeader />
 
     <Box as="section" pt="4.8rem" className="App">
       {children}
