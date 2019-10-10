@@ -1,41 +1,99 @@
 {
   "resources": {
     "development": [{
-        "name": "Pure Styled Components",
-        "link": "http://github.com/sjdnfdj",
+        "name": "Personal Portfolio Gatsby Blog",
+        "link": "https://github.com/whoisryosuke/ryosuke-gatsby-blog",
         "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
+        "description": "Design System using Styled Components and ReactJS, inspired by Semantic UI",
         "categories": [
-          "Design Systems",
+          "Template",
           "Component Library",
           "Design Tooling",
-          "Documentation"
+          "Frontend"
         ],
         "software": [
+          "Gatsby",
           "React",
-          "JavaScript",
+          "Typescript",
           "Styled Components"
         ]
       },
       {
-        "name": "Pure Styled Components",
+        "name": "NextJS - Semantic/Fomantic UI Starter",
         "link": "http://github.com/sjdnfdj",
         "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
+        "description": "Template for using NextJS and Semantic UI / Fomantic UI + Styled Components",
         "categories": [
-          "Design Systems",
-          "Component Library",
-          "Design Tooling",
-          "Documentation"
+          "Template",
+          "PWA",
+          "SSR",
+          "Frontend"
         ],
         "software": [
+          "NextJS",
           "React",
           "JavaScript",
+          "Semantic/Fomantic UI",
           "Styled Components"
         ]
       },
       {
-        "name": "Pure Styled Components",
-        "link": "http://github.com/sjdnfdj",
-        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
+        "name": "JSS Design System",
+        "link": "https://github.com/whoisryosuke/design-system-jss",
+        "install": "git clone git@github.com:whoisryosuke/design-system-jss.git",
+        "description": "Boilerplate Design System using JSS and ReactJS",
+        "categories": [
+          "Design Systems",
+          "Component Library",
+          "Design Tooling",
+          "Documentation",
+          "CSS in JS"
+        ],
+        "software": [
+          "React",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "Gatsby - Design System Documentation Starter",
+        "link": "https://github.com/whoisryosuke/gatsby-documentation-starter",
+        "install": "git clone git@github.com:whoisryosuke/gatsby-documentation-starter.git",
+        "description": "Automatically generate docs for React components using MDX, react-docgen, and GatsbyJS",
+        "categories": [
+          "Template",
+          "Design Systems",
+          "Component Library",
+          "Design Tooling",
+          "Documentation"
+        ],
+        "software": [
+          "GatsbyJS",
+          "MDX",
+          "React",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "Laravel - Heroku SQLite Starter",
+        "link": "https://github.com/whoisryosuke/laravel-sqlite-heroku-starter",
+        "install": "git clone git@github.com:whoisryosuke/laravel-sqlite-heroku-starter.git",
+        "description": "Laravel 5.8 base install + authentication + SQLite + Heroku config -- ready to go! 🚀",
+        "categories": [
+          "Boilerplate",
+          "Backend",
+          "API"
+        ],
+        "software": [
+          "Laravel",
+          "PHP",
+          "Heroku"
+        ]
+      },
+      {
+        "name": "Styled Semantic UI",
+        "link": "https://github.com/whoisryosuke/styled-semantic-ui",
+        "install": "git clone git@github.com:whoisryosuke/styled-semantic-ui.git",
+        "description": "Design System using Styled Components and ReactJS, inspired by Semantic UI",
         "categories": [
           "Design Systems",
           "Component Library",
@@ -43,25 +101,153 @@
           "Documentation"
         ],
         "software": [
+          "GatsbyJS",
+          "Styled Components",
+          "React",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "UI Kit - OOTO Dashboard",
+        "link": "https://github.com/whoisryosuke/ooto-dashboard-design",
+        "install": "git clone git@github.com:whoisryosuke/ooto-dashboard-design.git",
+        "description": "Sprint to recreate Sketch design to React UI components. Based on https://www.uplabs.com/posts/ooto-productivity-dashboards",
+        "categories": [
+          "Template",
+          "Design Systems",
+          "Component Library"
+        ],
+        "software": [
+          "React",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "Pure Components",
+        "link": "https://github.com/whoisryosuke/pure-components",
+        "install": "git clone git@github.com:whoisryosuke/pure-components.git",
+        "description": "Styled Component design system based on Pure CSS for React/Preact",
+        "categories": [
+          "Design Systems",
+          "Component Library",
+          "Design Tooling",
+          "Documentation"
+        ],
+        "software": [
+          "GatsbyJS",
+          "React",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "Instagram to Tumblr",
+        "link": "https://github.com/whoisryosuke/instagram-to-tumblr",
+        "install": "git clone git@github.com:whoisryosuke/instagram-to-tumblr.git",
+        "description": "Grabs IG posts and converts to RSS feed (for IFTTT -> Tumblr)",
+        "categories": [
+          "Tooling"
+        ],
+        "software": [
+          "PHP",
+          "RSS",
+          "Instagram API",
+          "Tumblr API"
+        ]
+      },
+      {
+        "name": "Tech Tube",
+        "link": "https://github.com/whoisryosuke/tech-tube",
+        "install": "git clone git@github.com:whoisryosuke/tech-tube.git",
+        "description": "A video directory for developer and design talks using GatsbyJS, ReactJS, EmotionJS.",
+        "categories": [
+          "Template"
+        ],
+        "software": [
+          "GatsbyJS",
+          "React",
+          "EmotionJS",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "Semantic UI Boilerplate",
+        "link": "https://github.com/whoisryosuke/semantic-boilerplate",
+        "install": "git clone git@github.com:whoisryosuke/semantic-boilerplate.git",
+        "description": "Multi-purpose HTML5 templates using Semantic UI",
+        "categories": [
+          "Template"
+        ],
+        "software": [
+          "GatsbyJS",
+          "React",
+          "EmotionJS",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "Chrome Extension - Copy as Markdown",
+        "link": "https://github.com/whoisryosuke/chrome-copy-as-markdown",
+        "install": "git clone git@github.com:whoisryosuke/chrome-copy-as-markdown.git",
+        "description": "Chrome extension to copy text as Markdown",
+        "categories": [
+          "Tooling"
+        ],
+        "software": [
+          "Chrome",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "NextJS - OAuth2 + Cookie Auth Starter",
+        "link": "https://github.com/whoisryosuke/nextjs-oauth2-cookie-auth",
+        "install": "git clone git@github.com:whoisryosuke/nextjs-oauth2-cookie-auth.git",
+        "description": "Template for using NextJS and Semantic UI / Fomantic UI + Styled Components",
+        "categories": [
+          "Template",
+          "PWA",
+          "SSR",
+          "Frontend"
+        ],
+        "software": [
+          "NextJS",
           "React",
           "JavaScript",
+          "Semantic/Fomantic UI",
           "Styled Components"
         ]
       },
       {
-        "name": "Pure Styled Components",
-        "link": "http://github.com/sjdnfdj",
-        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
+        "name": "NextJS - Redux Auth Starter",
+        "link": "https://github.com/whoisryosuke/nextjs-redux-authentication-boilerplate",
+        "install": "git clone git@github.com:whoisryosuke/nextjs-redux-authentication-boilerplate.git",
+        "description": "Template for using NextJS and Semantic UI / Fomantic UI + Styled Components",
         "categories": [
-          "Design Systems",
-          "Component Library",
-          "Design Tooling",
-          "Documentation"
+          "Template",
+          "PWA",
+          "SSR",
+          "Frontend"
         ],
         "software": [
+          "NextJS",
           "React",
           "JavaScript",
+          "Semantic/Fomantic UI",
           "Styled Components"
+        ]
+      },
+      {
+        "name": "Boostnote PWA",
+        "link": "https://github.com/whoisryosuke/boostnote-pwa-test",
+        "install": "git clone git@github.com:whoisryosuke/boostnote-pwa-test.git",
+        "description": "PWA version of Boostnote, a Markdown editor",
+        "categories": [
+          "Template",
+          "PWA"
+        ],
+        "software": [
+          "Dropbox API",
+          "React",
+          "JavaScript"
         ]
       }
     ]
