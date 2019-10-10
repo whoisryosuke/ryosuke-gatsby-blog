@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from "gatsby-link"
 import { Box, Heading, Flex, Text } from 'rebass/styled-components'
 import { Input } from '@rebass/forms'
 import DataTable from 'react-data-table-component';
@@ -23,7 +24,7 @@ export const DevResources: React.FC<Props> = ({resources}) => {
       name: 'Software',
       selector: 'software',
       sortable: true,
-      cell: row => row.software.map(software => <Box p={2} mr={2} sx={{ border: '1px solid black' }}><Text variant="label">{software}</Text></Box>),
+      cell: row => <Flex flexWrap="wrap" py={3}>{row.software.map(software => <Box p={2} mr={2} mb={2} sx={{ border: '1px solid black' }}><Link to={`/tags/${software}`}><Text variant="label">{software}</Text></Link></Box>)}</Flex>,
     },
     {
       name: 'Category',
