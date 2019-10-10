@@ -32,15 +32,15 @@ const StyledCard = styled(Box)`
 
   ${(props) => props.solid && `
     border-width:1px 1px 1px 1px !important;
-    box-shadow: 15px 15px 35px rgba(0, 160, 254, 0.5);
+    box-shadow: ${props.theme.shadows.card.light};
     transform:translateY(0);
     transition:all 400ms ease-in;
 
     &:hover {
-      background: ${(props) => props.theme.colors.white};
+      background: ${props.theme.colors.white};
       transform:translateY(-0.2em);
-      box-shadow: 15px 15px 35px rgba(0, 160, 254, 0.5), 7px 7px 15px #00BBFF;
-      border-color:${(props) => props.theme.colors.black};
+      box-shadow: ${props.theme.shadows.card.light}, ${props.theme.shadows.card.dark};
+      border-color:${props.theme.colors.black};
     }
 
   `}

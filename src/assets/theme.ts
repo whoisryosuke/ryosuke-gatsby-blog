@@ -284,7 +284,10 @@ const theme = {
     circle: 99999,
   },
   shadows: {
-    card: '0 0 4px rgba(0, 0, 0, .125)',
+    card: {
+      light: '15px 15px 35px rgba(0, 127, 255, 0.5)',
+      dark: `7px 7px 15px ${colors.primary}`
+    },
   },
   // rebass variants
   text: {
