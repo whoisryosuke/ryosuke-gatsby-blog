@@ -5,6 +5,8 @@ import { Flex, Box, Text, Link as RLink } from 'rebass/styled-components'
 
 import capitalizeFirstLetter from '../helpers/uppercase';
 
+import MastheadSVG from '@assets/svg/masthead-circles.svg'
+
 import Layout from "../layouts/BaseLayout"
 import ButtonOutline from '../components/Button/ButtonOutline';
 import SectionHeading from '../components/SectionHeading/SectionHeading';
@@ -24,6 +26,14 @@ const StyledLink = styled(GLink)`
     &:hover {
         color:${(props) => props.theme.colors.white};
     }
+`
+
+const StyledBackground = styled.section`
+
+    background-image:url(${MastheadSVG});
+    background-repeat:no-repeat;
+    background-size: 50%;
+    background-position: top right;
 `
 
 const NavLink = props => {
@@ -46,18 +56,20 @@ const IndexPage = ({ data, pathContext }) => {
 
     return (
         <Layout className="BlogArchive">
-            <SectionHeading emoji={emojis[pathPrefix]} heading={`${capitalizeFirstLetter(pathPrefix)} archive`} subheader={`Page ${index}`} />
+            <StyledBackground>
+                <SectionHeading emoji={emojis[pathPrefix]} heading={`${capitalizeFirstLetter(pathPrefix)} archive`} subheader={`Page ${index}`} />
 
-            <PostLoop type={pathPrefix} loop={group} />
+                <PostLoop type={pathPrefix} loop={group} />
 
-            <Flex as="nav" justifyContent="space-between">
-                <ButtonOutline test={first} textAlign="left" p={3} width={[1/2,1/2,1/2]} sx={{ borderTop:0, borderLeft:0, borderRight: 0 }} ariaLabel="prev">
-                    <NavLink test={first} url={previousUrl} text="Previous Page" />
-                </ButtonOutline>
-                <ButtonOutline test={last} textAlign="right" p={3} width={[1 / 2, 1 / 2, 1 / 2]} sx={{ borderTop:0, borderRight: 0 }} ariaLabel="next">
-                    <NavLink test={last} url={nextUrl} text="Next Page" />
-                </ButtonOutline>
-            </Flex>
+                <Flex as="nav" justifyContent="space-between">
+                    <ButtonOutline test={first} textAlign="left" p={3} width={[1/2,1/2,1/2]} sx={{ borderTop:0, borderLeft:0, borderRight: 0 }} ariaLabel="prev">
+                        <NavLink test={first} url={previousUrl} text="Previous Page" />
+                    </ButtonOutline>
+                    <ButtonOutline test={last} textAlign="right" p={3} width={[1 / 2, 1 / 2, 1 / 2]} sx={{ borderTop:0, borderRight: 0 }} ariaLabel="next">
+                        <NavLink test={last} url={nextUrl} text="Next Page" />
+                    </ButtonOutline>
+                </Flex>
+            </StyledBackground>
         </Layout>
     );
 };
