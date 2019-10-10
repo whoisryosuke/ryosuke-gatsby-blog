@@ -3,6 +3,7 @@
     "development": [{
         "name": "Pure Styled Components",
         "link": "http://github.com/sjdnfdj",
+        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
         "categories": [
           "Design Systems",
           "Component Library",
@@ -18,6 +19,7 @@
       {
         "name": "Pure Styled Components",
         "link": "http://github.com/sjdnfdj",
+        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
         "categories": [
           "Design Systems",
           "Component Library",
@@ -33,6 +35,7 @@
       {
         "name": "Pure Styled Components",
         "link": "http://github.com/sjdnfdj",
+        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
         "categories": [
           "Design Systems",
           "Component Library",
@@ -48,6 +51,7 @@
       {
         "name": "Pure Styled Components",
         "link": "http://github.com/sjdnfdj",
+        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
         "categories": [
           "Design Systems",
           "Component Library",
