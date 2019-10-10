@@ -2,15 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import {Box, Flex, Image, Text} from 'rebass/styled-components'
 
-import CodePen from "../../assets/svg/social-codepen.svg"
-import Twitch from "../../assets/svg/social-twitch.svg"
-import YouTube from "../../assets/svg/social-youtube.svg"
-import Instagram from "../../assets/svg/social-instagram.svg"
-import Twitter from "../../assets/svg/social-twitter.svg"
-import LinkedIn from "../../assets/svg/social-linkedin.svg"
-import Dribbble from "../../assets/svg/social-dribbble.svg"
-import Behance from "../../assets/svg/social-behance.svg"
-import Github from "../../assets/svg/social-github.svg"
+import CodePen from "@assets/svg/social-codepen.svg"
+import Twitch from "@assets/svg/social-twitch.svg"
+import YouTube from "@assets/svg/social-youtube.svg"
+import Instagram from "@assets/svg/social-instagram.svg"
+import Twitter from "@assets/svg/social-twitter.svg"
+import LinkedIn from "@assets/svg/social-linkedin.svg"
+import Dribbble from "@assets/svg/social-dribbble.svg"
+import Behance from "@assets/svg/social-behance.svg"
+import Github from "@assets/svg/social-github.svg"
 
 const StyledFlex = styled(Flex)`
   padding:3rem 4rem;

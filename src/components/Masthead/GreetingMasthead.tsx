@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from "styled-components"
 import { Box, Heading } from 'rebass/styled-components'
-import MastheadSVG from '../../assets/svg/masthead-circles.svg'
+import MastheadSVG from '@assets/svg/masthead-circles.svg'
 
 interface IGreetingMastheadProps {
   className: string
