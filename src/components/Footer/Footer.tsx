@@ -43,7 +43,7 @@ export const Footer: React.FC<Props> = () => {
     <Box as="footer">
       <StyledFlex justifyContent="space-between" flexWrap="wrap">
         <Box width={[1, 1, 1,1/3]} mb={3}>
-          <Text variant="paragraph">Copyright &copy; 2019, Oscar Diaz, All Rights Reserved</Text>
+          <Text variant="label">Copyright &copy; 2019, Oscar Diaz</Text>
         </Box>
         <Box width={[1, 1, 1, 2 / 3]} textAlign="right">
           <StyledLink href="https://codepen.io/whoisryosuke">
