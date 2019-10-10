@@ -34,7 +34,7 @@ const StyledCard = styled(Box)`
     border-width:1px 1px 1px 1px !important;
     box-shadow: ${props.theme.shadows.card.light};
     transform:translateY(0);
-    transition:all 400ms ease-in;
+    transition:all ${(props) => props.theme.animation.default};
 
     &:hover {
       background: ${props.theme.colors.white};

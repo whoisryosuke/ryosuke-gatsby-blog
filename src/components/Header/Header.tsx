@@ -57,7 +57,7 @@ const StyledHeader = styled(Flex)`
     & svg {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-      transition: transform 400ms;
+      transition: transform ${(props) => props.theme.animation.default};
       -moz-user-select: none;
       -webkit-user-select: none;
       -ms-user-select: none;
@@ -66,7 +66,7 @@ const StyledHeader = styled(Flex)`
     
     & .line {
       fill:none;
-      transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+      transition: stroke-dasharray ${(props) => props.theme.animation.default}, stroke-dashoffset ${(props) => props.theme.animation.default};
       stroke:#000;
       stroke-width:5.5;
       stroke-linecap:round;

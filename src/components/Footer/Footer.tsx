@@ -27,7 +27,7 @@ const StyledLink = styled.a`
   border-bottom:0;
   margin-right:1em;
   opacity:0.5;
-  transition:opacity 400ms ease-in;
+  transition:opacity ${(props) => props.theme.animation.default};
 
   &:hover {
     opacity:1;
