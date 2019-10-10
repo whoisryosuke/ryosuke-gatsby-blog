@@ -93,7 +93,7 @@ export default class BlogPost extends Component {
     const currentDate = new Date();
 
     const tags = post.frontmatter.tags.map((tag) => (
-      <Heading width={[1/2,1/2,1/3]} p={3} key={tag} variant="subheader" textAlign="center"><Link to={'/tags/' + kebabCase(tag) }>#{ tag }</Link></Heading>
+      <Heading width={[1/2,1/3,1/4]} p={3} key={tag} variant="subheader" textAlign="center"><Link to={'/tags/' + kebabCase(tag) }>#{ tag }</Link></Heading>
     ));
 
     let postImage = post.frontmatter.cover_image.publicURL;
@@ -132,7 +132,7 @@ export default class BlogPost extends Component {
         </Box>
 
         <SectionHeading emoji="🔗" heading="This post was filed under" sx={{borderTop:'1px solid black'}} />
-        <Flex width={1} p={3} sx={{borderBottom:'1px solid black'}}>
+        <Flex width={1} p={3} sx={{borderBottom:'1px solid black'}} flexWrap="wrap">
           {tags}
         </Flex>
 
