@@ -19,25 +19,6 @@
         ]
       },
       {
-        "name": "NextJS - Semantic/Fomantic UI Starter",
-        "link": "http://github.com/sjdnfdj",
-        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
-        "description": "Template for using NextJS and Semantic UI / Fomantic UI + Styled Components",
-        "categories": [
-          "Template",
-          "PWA",
-          "SSR",
-          "Frontend"
-        ],
-        "software": [
-          "NextJS",
-          "React",
-          "JavaScript",
-          "Semantic/Fomantic UI",
-          "Styled Components"
-        ]
-      },
-      {
         "name": "JSS Design System",
         "link": "https://github.com/whoisryosuke/design-system-jss",
         "install": "git clone git@github.com:whoisryosuke/design-system-jss.git",
@@ -50,6 +31,7 @@
           "CSS in JS"
         ],
         "software": [
+          "JSS",
           "React",
           "JavaScript"
         ]
@@ -108,21 +90,6 @@
         ]
       },
       {
-        "name": "UI Kit - OOTO Dashboard",
-        "link": "https://github.com/whoisryosuke/ooto-dashboard-design",
-        "install": "git clone git@github.com:whoisryosuke/ooto-dashboard-design.git",
-        "description": "Sprint to recreate Sketch design to React UI components. Based on https://www.uplabs.com/posts/ooto-productivity-dashboards",
-        "categories": [
-          "Template",
-          "Design Systems",
-          "Component Library"
-        ],
-        "software": [
-          "React",
-          "JavaScript"
-        ]
-      },
-      {
         "name": "Pure Components",
         "link": "https://github.com/whoisryosuke/pure-components",
         "install": "git clone git@github.com:whoisryosuke/pure-components.git",
@@ -140,36 +107,6 @@
         ]
       },
       {
-        "name": "Instagram to Tumblr",
-        "link": "https://github.com/whoisryosuke/instagram-to-tumblr",
-        "install": "git clone git@github.com:whoisryosuke/instagram-to-tumblr.git",
-        "description": "Grabs IG posts and converts to RSS feed (for IFTTT -> Tumblr)",
-        "categories": [
-          "Tooling"
-        ],
-        "software": [
-          "PHP",
-          "RSS",
-          "Instagram API",
-          "Tumblr API"
-        ]
-      },
-      {
-        "name": "Tech Tube",
-        "link": "https://github.com/whoisryosuke/tech-tube",
-        "install": "git clone git@github.com:whoisryosuke/tech-tube.git",
-        "description": "A video directory for developer and design talks using GatsbyJS, ReactJS, EmotionJS.",
-        "categories": [
-          "Template"
-        ],
-        "software": [
-          "GatsbyJS",
-          "React",
-          "EmotionJS",
-          "JavaScript"
-        ]
-      },
-      {
         "name": "Semantic UI Boilerplate",
         "link": "https://github.com/whoisryosuke/semantic-boilerplate",
         "install": "git clone git@github.com:whoisryosuke/semantic-boilerplate.git",
@@ -178,23 +115,29 @@
           "Template"
         ],
         "software": [
-          "GatsbyJS",
-          "React",
-          "EmotionJS",
+          "Semantic UI",
+          "HTML",
+          "CSS",
           "JavaScript"
         ]
       },
       {
-        "name": "Chrome Extension - Copy as Markdown",
-        "link": "https://github.com/whoisryosuke/chrome-copy-as-markdown",
-        "install": "git clone git@github.com:whoisryosuke/chrome-copy-as-markdown.git",
-        "description": "Chrome extension to copy text as Markdown",
+        "name": "NextJS - Semantic/Fomantic UI Starter",
+        "link": "http://github.com/sjdnfdj",
+        "install": "git clone git@github.com:whoisryosuke/ryosuke-gatsby-blog.git",
+        "description": "Template for using NextJS and Semantic UI / Fomantic UI + Styled Components",
         "categories": [
-          "Tooling"
+          "Template",
+          "PWA",
+          "SSR",
+          "Frontend"
         ],
         "software": [
-          "Chrome",
-          "JavaScript"
+          "NextJS",
+          "React",
+          "JavaScript",
+          "Semantic/Fomantic UI",
+          "Styled Components"
         ]
       },
       {
@@ -247,6 +190,47 @@
         "software": [
           "Dropbox API",
           "React",
+          "JavaScript"
+        ]
+      },
+      {
+        "name": "Instagram to Tumblr",
+        "link": "https://github.com/whoisryosuke/instagram-to-tumblr",
+        "install": "git clone git@github.com:whoisryosuke/instagram-to-tumblr.git",
+        "description": "Grabs IG posts and converts to RSS feed (for IFTTT -> Tumblr)",
+        "categories": [
+          "Tooling"
+        ],
+        "software": [
+          "PHP",
+          "RSS",
+          "Instagram API",
+          "Tumblr API"
+        ]
+      }, {
+        "name": "Tech Tube",
+        "link": "https://github.com/whoisryosuke/tech-tube",
+        "install": "git clone git@github.com:whoisryosuke/tech-tube.git",
+        "description": "A video directory for developer and design talks using GatsbyJS, ReactJS, EmotionJS.",
+        "categories": [
+          "Template"
+        ],
+        "software": [
+          "GatsbyJS",
+          "React",
+          "EmotionJS",
+          "JavaScript"
+        ]
+      }, {
+        "name": "Chrome Extension - Copy as Markdown",
+        "link": "https://github.com/whoisryosuke/chrome-copy-as-markdown",
+        "install": "git clone git@github.com:whoisryosuke/chrome-copy-as-markdown.git",
+        "description": "Chrome extension to copy text as Markdown",
+        "categories": [
+          "Tooling"
+        ],
+        "software": [
+          "Chrome",
           "JavaScript"
         ]
       }
