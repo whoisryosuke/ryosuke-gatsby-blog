@@ -11,6 +11,13 @@ import SectionHeading from '../components/SectionHeading/SectionHeading';
 import PostLoop from '../components/PostLoop';
 
 const StyledLink = styled(GLink)`
+    width:100%;
+    height:100%;
+    display:block;
+    position:absolute;
+    top:0;
+    left:0;
+
     text-decoration:none;
     color:${(props) => props.theme.colors.black};
 
@@ -21,7 +28,7 @@ const StyledLink = styled(GLink)`
 
 const NavLink = props => {
     if (!props.test) {
-        return <StyledLink to={props.url}><Text variant="label">{props.text}</Text></StyledLink>;
+        return <StyledLink to={props.url}><Text variant="label" p={3}>{props.text}</Text></StyledLink>;
     } else {
         return <Text color="gray" variant="label">{props.text}</Text>;
     }
