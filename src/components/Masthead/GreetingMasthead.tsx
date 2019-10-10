@@ -62,7 +62,7 @@ const StyledGreetingMasthead = styled(GreetingMasthead)`
 
   ${(props) => props.theme.mediaQueries.tablet} {
     background-size:75%;
-    background-position:0 30%;
+    background-position:-30% 30%;
   }
 `
 
