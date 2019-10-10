@@ -12,7 +12,7 @@
         "link": "https://www.uplabs.com/posts/sketch-data-table-components",
         "description": "I had to design a table for a client in Sketch, so I did a quick search for dynamic Sketch table symbols/components, and I couldn't track anything down that was actually dynamic. Most tables were 'hard coded' in a sense, with their columns and rows defined by line shapes, instead of individual cells, making it impossible to change the table format beyond the template. So I set off and created my own dynamic Sketch table and decided to share it with everyone(because tables are hard enough right? 😅😵)",
         "category": "UI Kit",
-        "image": "sketch-data-table-components.png"
+        "image": "sketch-data-table-components.jpg"
       },
       {
         "name": "OOTO Dashboard",
@@ -47,7 +47,7 @@
         "link": "https://www.uplabs.com/posts/daily-ui-6-user-profile-with-seshsource",
         "description": "Another exercise using the Daily UI prompts. This time I used SeshSource.com, a ticketing platform for cannabis events, and it's branding as the basis.",
         "category": "UI Kit",
-        "image": "ddaily-ui-6-user-profile-with-seshsource.png"
+        "image": "daily-ui-6-user-profile-with-seshsource.png"
       }
     ]
   }
