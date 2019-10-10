@@ -22,7 +22,7 @@ export const DesignResources: React.FC<Props> = ({ resources }) => {
           width={[1,1/2,1/2,1/3]} 
           title={resource.name} 
           subheader={resource.category} 
-          image={Avatar} 
+          image={`/resources/img/${resource.image}`}
           href={resource.link}
           cols={3}
         />
