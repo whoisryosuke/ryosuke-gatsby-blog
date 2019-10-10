@@ -77,7 +77,7 @@ export const Contact: React.FC<Props> = () => {
       <Heading fontSize={[2,3,4]} mx={3} mb={2}>Want to say hi? 👋</Heading>
       <Heading fontSize={1} mx={3} mb={4}>Introduce yourself and I’ll do my best do get back to you timely</Heading>
       <Flex flexWrap="wrap" mx={3}>
-        <Box width={[1, 1, 1/2]}>
+        <Box width={[1, 3/4, 1/3]}>
             <StyledLabel htmlFor='name' px={2}>Greetings, my name is</StyledLabel>
             <StyledInput
               id='name'
