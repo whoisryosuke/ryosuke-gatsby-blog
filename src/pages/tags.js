@@ -1,55 +1,60 @@
-import React from "react";
+import React from 'react'
 import { graphql } from 'gatsby'
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
 // Utilities
-import kebabCase from "lodash/kebabCase";
+import kebabCase from 'lodash/kebabCase'
 
 // Components
-import Helmet from "react-helmet";
-import Link from "gatsby-link";
+import Helmet from 'react-helmet'
+import Link from 'gatsby-link'
 
 const TagsPage = ({
-    data: { allMdx: { group }, site: { siteMetadata: { title } } },
+  data: {
+    allMdx: { group },
+    site: {
+      siteMetadata: { title },
+    },
+  },
 }) => (
-        <div>
-            <Helmet title={title} />
-            <section className="TagList">
-                <h1 className="container Title">Tags</h1>
-                <nav className="container TagCloud large">
-                    <ul>
-                        {group.map(tag => (
-                            <li key={tag.fieldValue}>
-                                <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-                                    {tag.fieldValue} ({tag.totalCount})
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            </section>
-        </div>
-    );
+  <div>
+    <Helmet title={title} />
+    <section className="TagList">
+      <h1 className="container Title">Tags</h1>
+      <nav className="container TagCloud large">
+        <ul>
+          {group.map(tag => (
+            <li key={tag.fieldValue}>
+              <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
+                {tag.fieldValue} ({tag.totalCount})
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
+  </div>
+)
 
 TagsPage.propTypes = {
-    data: PropTypes.shape({
-        allMdx: PropTypes.shape({
-            group: PropTypes.arrayOf(
-                PropTypes.shape({
-                    fieldValue: PropTypes.string.isRequired,
-                    totalCount: PropTypes.number.isRequired,
-                }).isRequired
-            ),
-        }),
-        site: PropTypes.shape({
-            siteMetadata: PropTypes.shape({
-                title: PropTypes.string.isRequired,
-            }),
-        }),
+  data: PropTypes.shape({
+    allMdx: PropTypes.shape({
+      group: PropTypes.arrayOf(
+        PropTypes.shape({
+          fieldValue: PropTypes.string.isRequired,
+          totalCount: PropTypes.number.isRequired,
+        }).isRequired
+      ),
     }),
-};
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+      }),
+    }),
+  }),
+}
 
-export default TagsPage;
+export default TagsPage
 
 export const pageQuery = graphql`
   query TagsQuery {
@@ -58,13 +63,11 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMdx(
-      limit: 2000
-    ) {
+    allMdx(limit: 2000) {
       group(field: frontmatter___tags) {
         fieldValue
         totalCount
       }
     }
   }
-`;
+`

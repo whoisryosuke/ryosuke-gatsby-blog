@@ -1,15 +1,15 @@
-import React from "react";
-import Img from "gatsby-image";
-import {Box, Image} from 'rebass/styled-components'
+import React from 'react'
+import Img from 'gatsby-image'
+import { Box, Image } from 'rebass/styled-components'
 
-export default (props) => {
-    return (
-        <Box as="figure" mb={3} className="Cover">
-            {props.image.childImageSharp ? (
-                <Image as={Img} fluid={props.image.childImageSharp.fluid} />
-            ) : (
-                    <Image src={props.image.publicURL} className="static-image" />
-                )}
-        </Box>
-    );
-};
+export default props => {
+  return (
+    <Box as="figure" mb={3} className="Cover">
+      {props.image.childImageSharp ? (
+        <Image as={Img} fluid={props.image.childImageSharp.fluid} />
+      ) : (
+        <Image src={props.image.publicURL} className="static-image" />
+      )}
+    </Box>
+  )
+}

@@ -4,12 +4,12 @@ import { Button, Box, Flex } from 'rebass/styled-components'
 
 import config from '../config'
 
-import Layout from "../layouts/BaseLayout"
-import Link from "../components/Link/Link"
+import Layout from '../layouts/BaseLayout'
+import Link from '../components/Link/Link'
 import ButtonOutline from '../components/Button/ButtonOutline'
 import GreetingMasthead from '../components/Masthead/GreetingMasthead'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
-import BasicCard from "../components/Card/BasicCard"
+import BasicCard from '../components/Card/BasicCard'
 import Newsletter from '../components/Newsletter'
 import Featured from '../components/Featured/Featured'
 import PostLoop from '../components/PostLoop'
@@ -31,33 +31,36 @@ export default class Frontpage extends Component {
     return (
       <Layout className="Frontpage pt2">
         <GreetingMasthead />
-        
+
         {/* <ServicesGrid /> */}
 
         {/*------- Featured image -------*/}
         <SectionHeading emoji="📓" heading="Latest writings" />
         <Featured>
-          <BasicCard width={[1,1,2/3,1/2,1/3]} solid title={blog.edges[0].node.frontmatter.title} subheader={blog.edges[0].node.frontmatter.tags} description={blog.edges[0].node.excerpt} link={blog.edges[0].node.fields.slug}  />
+          <BasicCard
+            width={[1, 1, 2 / 3, 1 / 2, 1 / 3]}
+            solid
+            title={blog.edges[0].node.frontmatter.title}
+            subheader={blog.edges[0].node.frontmatter.tags}
+            description={blog.edges[0].node.excerpt}
+            link={blog.edges[0].node.fields.slug}
+          />
         </Featured>
 
         {/*------- Posts loop -------*/}
         <PostLoop type="blog" loop={blog.edges} skip={skip} />
         <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
           <Link to={'blog'}>
-            <ButtonOutline>
-              Find more reading material
-            </ButtonOutline>
+            <ButtonOutline>Find more reading material</ButtonOutline>
           </Link>
         </Box>
 
         {/*------- Projects loop -------*/}
         <SectionHeading emoji="🎨" heading="Latest projects" />
         <PostLoop type="project" loop={projects.edges} skip={!skip} />
-        <Box sx={{borderBottom:'1px solid black'}} textAlign="right" p={3}>
+        <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
           <Link to={'projects'}>
-            <ButtonOutline>
-            See more eye candy
-            </ButtonOutline>
+            <ButtonOutline>See more eye candy</ButtonOutline>
           </Link>
         </Box>
 
@@ -131,7 +134,7 @@ export const query = graphql`
       }
     }
 
-    PeaceEmoji: file(relativePath: {regex: "/peace.png/"}) {
+    PeaceEmoji: file(relativePath: { regex: "/peace.png/" }) {
       ...emojiImageFields
     }
     ThoughtCloudEmoji: file(relativePath: { regex: "/thought-cloud.png/" }) {
@@ -150,10 +153,10 @@ export const query = graphql`
   }
 
   fragment emojiImageFields on File {
-      childImageSharp {
-        fixed(width: 36, height: 36) {
-          ...GatsbyImageSharpFixed
-        }
+    childImageSharp {
+      fixed(width: 36, height: 36) {
+        ...GatsbyImageSharpFixed
       }
+    }
   }
 `
