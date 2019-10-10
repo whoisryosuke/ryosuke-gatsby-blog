@@ -19,6 +19,16 @@ const StyledHeader = styled(Flex)`
     display:inline-block;
     position:relative;
 
+    &:hover #ryosuke path {
+      transition: fill ${(props) => props.theme.animation.default};
+    }
+
+    &:hover #ryosuke path,
+    &:focus #ryosuke path
+    {
+     fill: ${(props) => props.theme.colors.primary} 
+    }
+
     &:after {
       content:'';
       width:80px;
