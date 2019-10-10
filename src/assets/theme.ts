@@ -145,6 +145,14 @@ const theme = {
       p: 2,
       bg: 'background',
       boxShadow: 'card',
+      avatar: {
+        width: 'avatar',
+        height: 'avatar',
+        borderRadius: 'circle',
+        backgroundSize: 'cover', 
+        backgroundPosition:'center',
+        marginBottom: "3rem"
+      }
     },
     link: {
       color: 'primary',
