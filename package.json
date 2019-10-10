@@ -78,7 +78,9 @@
       ".cache/*",
       "public/*",
       "schema.json",
-      "src/*"
+      "src/*",
+      "content/*",
+      "static/*"
     ],
     "delay": "1500"
   },
