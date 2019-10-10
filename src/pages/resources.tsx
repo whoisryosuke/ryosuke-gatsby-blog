@@ -84,6 +84,8 @@ export const query = graphql`
               link
               name
               software
+              install
+              description
             }
           }
         }
@@ -98,6 +100,7 @@ export const query = graphql`
               link
               name
               image
+              description
             }
           }
         }

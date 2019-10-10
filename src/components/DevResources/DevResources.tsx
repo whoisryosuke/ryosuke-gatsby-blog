@@ -30,13 +30,13 @@ export const DevResources: React.FC<Props> = ({resources}) => {
       name: 'Category',
       selector: 'categories',
       sortable: true,
-      cell: row => <Flex flexWrap="wrap" py={3}>{row.categories.map(software => <Box minWidth="100%" p={2} mr={2} sx={{ border: '1px solid black', '&:not(:last-child)': { borderBottom: 0 } }}><Text variant="label">{software}</Text></Box>)}</Flex>,
+      cell: row => <Flex flexWrap="wrap" py={3} minWidth="100%">{row.categories.map(software => <Box minWidth="100%" p={2} mr={2} sx={{ border: '1px solid black', '&:not(:last-child)': { borderBottom: 0 } }}><Text variant="label">{software}</Text></Box>)}</Flex>,
     },
-    {
-      name: 'Quick Start',
-      selector: 'install',
-      cell: row => <Input type="text" disabled value={row.install} />,
-    },
+    // {
+    //   name: 'Quick Start',
+    //   selector: 'install',
+    //   cell: row => <Input type="text" disabled value={row.install} />,
+    // },
   ];
 
   return (
