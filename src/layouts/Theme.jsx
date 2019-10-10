@@ -34,23 +34,19 @@ const GlobalStyle = createGlobalStyle`
     color: ${props => props.theme.colors.primary};
     border-color: ${props => props.theme.colors.primary};
   }
-`
 
-export const LayoutComponents = {
-  h1: styled.h1`
-    font-size: 20px;
-  `,
-  p: styled.p`
-    font-size: 16px;
-  `,
-}
+  p+ul {
+    margin-top:-1em;
+  }
+`
 
 export const UIComponents = {
   h1: props => <rebass.Heading variant="heading" {...props} />, 
   h2: props => <rebass.Heading variant="subheader" {...props} />, 
   h3: props => <rebass.Heading variant="h3" {...props} />, 
   h4: props => <rebass.Heading variant="h4" {...props} />, 
-  p: props => <rebass.Text variant="paragraph" {...props} />, 
+  p: props => <rebass.Text as="p" variant="paragraph" {...props} />, 
+  hr: props => <rebass.Box as="hr" variant="hr" {...props} />, 
   ul: List,
   li: ListItem,
   pre: props => <div {...props} />,

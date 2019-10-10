@@ -369,6 +369,12 @@ const theme = {
         color: 'primary',
       }
     },
+    hr: {
+      width:'100%',
+      borderTop:0,
+      borderBottom:'1px solid black',
+      my:4,
+    }
   },
   buttons: {
     primary: {

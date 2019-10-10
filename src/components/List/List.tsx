@@ -11,7 +11,7 @@ interface Props {
 export const List: React.FC<Props> = ({children, items}) => {
   
   return (
-    <Box as="ul" p={3}>
+    <Box as="ul" px={3} pb={3}>
       {items && items.map(item => <ListItem>{item}</ListItem>)}
       {children}
     </Box>
