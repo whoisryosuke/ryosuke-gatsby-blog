@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Heading, Flex, Text } from 'rebass/styled-components'
+import { Flex } from 'rebass/styled-components'
 
 import Avatar from '@assets/img/ryosuke-avatar-128.png'
 
