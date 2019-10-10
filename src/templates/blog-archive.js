@@ -39,9 +39,14 @@ const IndexPage = ({ data, pathContext }) => {
     const previousUrl = index - 1 == 1 ? '/' + pathPrefix + '/' : '/' + pathPrefix + '/' + (index - 1).toString();
     const nextUrl = '/' + pathPrefix + '/' + (index + 1).toString();
 
+    const emojis = {
+        projects: '🎨',
+        blog: '📓'
+    }
+
     return (
         <Layout className="BlogArchive">
-            <SectionHeading emoji="📓" heading={`${capitalizeFirstLetter(pathPrefix)} archive`} subheader={`Page ${index}`} />
+            <SectionHeading emoji={emojis[pathPrefix]} heading={`${capitalizeFirstLetter(pathPrefix)} archive`} subheader={`Page ${index}`} />
 
             <PostLoop type={pathPrefix} loop={group} />
 
