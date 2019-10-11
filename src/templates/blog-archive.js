@@ -75,8 +75,10 @@ const IndexPage = ({ data, pathContext }) => {
           subheader={`Page ${index}`}
         />
 
-        <PostLoop type={pathPrefix} loop={group} />
-
+        <Box bg="muted">
+          <PostLoop type={pathPrefix} loop={group} />
+        </Box>
+        
         <Flex as="nav" justifyContent="space-between">
           <ButtonOutline
             test={first}
