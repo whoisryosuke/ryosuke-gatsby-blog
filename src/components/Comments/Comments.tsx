@@ -3,9 +3,19 @@ import { Box, Flex, Button } from 'rebass/styled-components'
 
 import ButtonOutline from '../Button/ButtonOutline'
 
-export default props => {
-  const post = props.post
+interface Props {
+  post: {
+    frontmatter: {
+      title: string
+      tags: string[]
+    },
+    fields: {
+      slug: string
+    }
+  }
+}
 
+export const Comments: React.FC<Props> = ({post}) => {
   return (
     <Flex className="Comments container">
       <Box
@@ -27,3 +37,5 @@ export default props => {
     </Flex>
   )
 }
+
+export default Comments
