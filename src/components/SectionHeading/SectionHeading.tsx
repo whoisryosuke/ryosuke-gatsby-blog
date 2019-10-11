@@ -4,8 +4,9 @@ import { Box, Heading } from 'rebass/styled-components'
 
 interface ISectionHeadingProps {
   className: string,
-  emnoji: string,
+  emoji: string,
   heading: string,
+  subheader?: string
 }
 
 const SectionHeading: React.FunctionComponent<ISectionHeadingProps> = ({className, emoji, heading, subheader, ...props}) => {
