@@ -45,6 +45,16 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-netlify-cms",
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.jsx`,
+        enableIdentityWidget: false,
+        publicPath: "admin",
+        htmlTitle: "Admin",
+        manualInit: true,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: "Ryosuke - Designer, Developer, & Influencer",

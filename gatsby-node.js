@@ -177,3 +177,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     await createMdxPagination('project', 'projects', graphql, createPage, reporter)
     await createMdxPagination('blog', 'blog', graphql, createPage, reporter)
 }
+
+
+/**
+ * Add the file-system as an api proxy:
+ * https://www.gatsbyjs.org/docs/api-proxy/#advanced-proxying
+ */
+exports.onCreateDevServer = ({ app }) => {
+    const fsMiddlewareAPI = require("netlify-cms-backend-fs/dist/fs")
+    fsMiddlewareAPI(app)
+}

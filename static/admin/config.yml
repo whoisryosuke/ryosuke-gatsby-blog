@@ -1,0 +1,48 @@
+# Netlify "kitchen sink" example: https://github.com/netlify/netlify-cms/blob/master/dev-test/config.yml
+
+localhost_development:
+  backend:
+    name: file-system
+    api_root: /api
+
+backend:
+  name: github
+  repo: whoisryosuke/ryosuke-gatsby-blog
+  branch: redesign-2019
+
+display_url: http://localhost:8000
+media_folder: static/assets/posts
+public_folder: assets
+
+collections:
+  - name: projects
+    label: Projects
+    description: Documentation
+    folder: content/projects
+    extension: mdx
+    format: frontmatter
+    widget: mdx
+    create: true
+    fields:
+      - { label: Title, name: title, widget: string, required: true }
+      - { label: Body, name: body, widget: mdx }
+
+  - name: blog
+    label: Blog
+    folder: content/blog
+    extension: mdx
+    format: frontmatter
+    widget: mdx
+    create: true
+    fields:
+      - {
+          label: Template Key,
+          name: templateKey,
+          widget: hidden,
+          default: blog-post,
+        }
+      - { label: Title, name: title, widget: string }
+      - { label: Publish Date, name: date, widget: datetime }
+      - { label: Description, name: description, widget: text }
+      - { label: Tags, name: tags, widget: list }
+      - { label: Body, name: body, widget: mdx }
