@@ -89,3 +89,5 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
     </Highlight>
   )
 }
+
+export default CodeBlock
