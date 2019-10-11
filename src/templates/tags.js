@@ -1,39 +1,41 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
+import { Box } from 'rebass/styled-components'
 
-// Components
+import Layout from '../layouts/BaseLayout'
+import SectionHeading from '../components/SectionHeading/SectionHeading'
 import PostLoop from '../components/PostLoop'
+import Link from '../components/Link/Link'
+import ButtonOutline from '../components/Button/ButtonOutline'
 
 const Tags = ({ pathContext, data }) => {
   const { tag } = pathContext
-  const { edges, totalCount } = data.allMarkdownRemark
+  const { edges, totalCount } = data.tags
   const skip = false
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
   } tagged with `
 
   return (
-    <div>
-      <header>
-        <h1 className="container Title">
-          #<span className="text blue">{tag}</span>{' '}
-          <small className="normal smaller">({totalCount} post total)</small>
-        </h1>
-      </header>
+    <Layout>
+      <SectionHeading emoji="#️⃣" heading={tag} subheader={`(${totalCount} post total)`} />
 
-      <PostLoop loop={edges} skip={skip} />
+      <Box bg="muted">
+        <PostLoop loop={edges} skip={skip} />
+      </Box>
       {/*
-              This links to a page that does not yet exist.
-              We'll come back to it!
-            */}
+        This links to a page that does not yet exist.
+        We'll come back to it!
+      */}
       <nav className="centered">
-        <Link to="/tags" className="btn">
+        <Link to="/tags">
+          <ButtonOutline width="100%" sx={{borderTop:0, borderRight:0, borderLeft:0}}>
           All tags
+          </ButtonOutline>
         </Link>
       </nav>
-    </div>
+    </Layout>
   )
 }
 
@@ -64,7 +66,7 @@ export default Tags
 
 export const pageQuery = graphql`
   query TagPage($tag: String) {
-    allMdx(
+    tags: allMdx(
       limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
@@ -72,22 +74,24 @@ export const pageQuery = graphql`
       totalCount
       edges {
         node {
+          id
           frontmatter {
             title
+            date
+            tags
             cover_image {
               publicURL
               childImageSharp {
-                sizes(maxWidth: 1240) {
-                  srcSet
+                fluid(maxWidth: 1240) {
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
-            date
+            section
           }
           fields {
             slug
           }
-          excerpt
         }
       }
     }
