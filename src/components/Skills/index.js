@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import { Box, Heading, Text } from 'rebass/styled-components'
 import DataTable from 'react-data-table-component'
 
-import ListItemGrid from '../List/ListItemGrid'
 import SectionHeading from '../SectionHeading/SectionHeading'
 
-import MoneyBagEmoji from '../../assets/img/emoji/money-bag.png'
 
 const Skills = () => {
   const skills = [
