@@ -3,6 +3,40 @@
   "description": "Personal Portfolio and Blog of Ryosuke",
   "version": "1.0.0",
   "author": "Ryosuke <ryosuke.san.hana@gmail.com>",
+  "keywords": [
+    "react",
+    "styled-components",
+    "gatsby",
+    "blog",
+    "portfolio",
+    "rebass"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "clean": "rm -rf .cache && npm run develop",
+    "develop": "nodemon --exec \"gatsby develop\"",
+    "debug": "nodemon --exec \"node --inspect-brk --no-lazy node_modules/.bin/gatsby develop\"",
+    "format": "prettier --write 'src/**/*.js'",
+    "lint": "eslint . --ext ts --ext tsx",
+    "storybook": "start-storybook",
+    "storybook:build": "build-storybook -c .storybook -o .out",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      ".cache/*",
+      "public/*",
+      "schema.json",
+      "src/*",
+      "content/*",
+      "static/*"
+    ],
+    "delay": "1500"
+  },
   "dependencies": {
     "@mdx-js/mdx": "^1.5.0",
     "@mdx-js/react": "^1.5.0",
@@ -54,35 +88,6 @@
     "react-mailchimp-subscribe": "^2.1.0",
     "rebass": "^4.0.6",
     "styled-components": "^4.4.0"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "clean": "rm -rf .cache && npm run develop",
-    "develop": "nodemon --exec \"gatsby develop\"",
-    "debug": "nodemon --exec \"node --inspect-brk --no-lazy node_modules/.bin/gatsby develop\"",
-    "format": "prettier --write 'src/**/*.js'",
-    "lint": "eslint . --ext ts --ext tsx",
-    "storybook": "start-storybook",
-    "storybook:build": "build-storybook -c .storybook -o .out",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
-  },
-  "nodemonConfig": {
-    "ignore": [
-      ".cache/*",
-      "public/*",
-      "schema.json",
-      "src/*",
-      "content/*",
-      "static/*"
-    ],
-    "delay": "1500"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
