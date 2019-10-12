@@ -1,4 +1,5 @@
 import React from 'react'
+import 'array-flat-polyfill';
 import { Flex } from 'rebass/styled-components'
 
 import ImageCard from '@components/Card/ImageCard';

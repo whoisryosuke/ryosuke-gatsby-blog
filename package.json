@@ -54,6 +54,7 @@
     "@storybook/addon-storysource": "^5.2.1",
     "@storybook/addon-viewport": "^5.2.1",
     "@types/rebass": "^4.0.1",
+    "array-flat-polyfill": "^1.0.1",
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.15.28",
     "gatsby-image": "^2.2.23",
