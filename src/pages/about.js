@@ -10,7 +10,7 @@ import Layout from '../layouts/BaseLayout'
 import Masthead from '../components/Masthead/Masthead'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import Skills from '../components/Skills/Skills'
-import Newsletter from '../components/Newsletter'
+import Newsletter from '../components/Newsletter/Newsletter'
 import PostLoop from '../components/PostLoop'
 import Contact from '../components/Contact/Contact'
 
