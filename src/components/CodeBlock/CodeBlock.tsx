@@ -18,7 +18,7 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
   const showCode = () => {
     setCodeVisibility(!codeVisibility)
   }
-  const language = className.replace(/language-/, "")
+  const language = className && className.replace(/language-/, "")
   if (live) {
     return (
       <div style={{ marginTop: "40px" }}>
