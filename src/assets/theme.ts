@@ -148,7 +148,6 @@ const theme = {
       avatar: {
         width: 'avatar',
         height: 'avatar',
-        borderRadius: 'circle',
         backgroundSize: 'cover', 
         backgroundPosition:'center',
         marginBottom: "3rem"
