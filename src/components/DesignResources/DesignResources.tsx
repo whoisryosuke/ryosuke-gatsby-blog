@@ -10,7 +10,13 @@ interface Props {
 export const DesignResources: React.FC<Props> = ({ resources }) => {
   // Loop through GraphQL query and merge any edges of nodes together
   // Merges arrays and Filters out empty arrays
-  const repos = resources.map(resource => resource.node.resources.design !== null && resource.node.resources.design).flat().filter(resource => resource !== false)
+  let repos = resources.map(resource => resource.node.resources.design !== null && resource.node.resources.design)
+  // Check if it's an array before running array methods
+  if(Array.isArray(repos)) {
+    repos = repos.flat().filter(resource => resource !== false)
+  } else {
+    repos = []
+  }
   
   return (
     <section className="DesignResources">
