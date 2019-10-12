@@ -10,7 +10,7 @@ import MastheadSVG from '@assets/svg/masthead-circles.svg'
 import Layout from '../layouts/BaseLayout'
 import ButtonOutline from '../components/Button/ButtonOutline'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
-import PostLoop from '../components/PostLoop'
+import PostLoop from '../components/PostLoop/PostLoop'
 
 const StyledLink = styled(GLink)`
   width: 100%;

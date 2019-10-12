@@ -5,7 +5,7 @@ import { Box } from 'rebass/styled-components'
 
 import Layout from '../layouts/BaseLayout'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
-import PostLoop from '../components/PostLoop'
+import PostLoop from '../components/PostLoop/PostLoop'
 import Link from '../components/Link/Link'
 import ButtonOutline from '../components/Button/ButtonOutline'
 
