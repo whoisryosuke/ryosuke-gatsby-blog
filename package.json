@@ -67,6 +67,7 @@
     "format": "prettier --write 'src/**/*.js'",
     "lint": "eslint . --ext ts --ext tsx",
     "storybook": "start-storybook",
+    "storybook:build": "build-storybook -c .storybook -o .out",
     "test": "echo \"Error: no test specified\" && exit 1",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
