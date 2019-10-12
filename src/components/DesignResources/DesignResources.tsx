@@ -1,8 +1,6 @@
 import React from 'react'
 import { Flex } from 'rebass/styled-components'
 
-import Avatar from '@assets/img/ryosuke-avatar-128.png'
-
 import ImageCard from '@components/Card/ImageCard';
 
 interface Props {
