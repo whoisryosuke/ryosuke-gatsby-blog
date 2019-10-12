@@ -1,12 +1,9 @@
 import React from 'react'
-import Link from 'gatsby-link'
-import Img from 'gatsby-image'
 import { Flex } from 'rebass/styled-components'
 import nicetime from '../../helpers/nicetime'
 
 import BasicCard from '../Card/BasicCard'
 import ProjectCard from '../Card/ProjectCard'
-import arrowRight from '../../assets/img/icon-arrow-right.svg'
 
 export default props => {
   const links = {

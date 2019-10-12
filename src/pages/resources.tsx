@@ -1,20 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import { graphql } from 'gatsby'
-import Link from "gatsby-link";
 import styled from 'styled-components'
-import { Box, Flex, Text, Heading, Image } from 'rebass/styled-components'
 
 import Layout from "../layouts/BaseLayout"
-import Masthead from '../components/Masthead/Masthead';
 import SectionHeading from '../components/SectionHeading/SectionHeading';
 import DesignResources from '@components/DesignResources/DesignResources';
 import DevResources from '../components/DevResources/DevResources';
 import Newsletter from '../components/Newsletter/Newsletter';
 import PostLoop from '../components/PostLoop/PostLoop';
-import Contact from '../components/Contact/Contact';
-
-import BombEmoji from '../assets/img/emoji/bomb.png';
-import RyosukePortrait from '../assets/img/avatar-face-400px.png';
 
 const Highlight = styled.span`
   color:${(props) => props.theme.colors.primary};

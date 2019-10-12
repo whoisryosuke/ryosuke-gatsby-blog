@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
-import { Button, Box, Flex } from 'rebass/styled-components'
-
-import config from '../config'
+import { Box } from 'rebass/styled-components'
 
 import Layout from '../layouts/BaseLayout'
 import Link from '../components/Link/Link'
@@ -18,14 +16,12 @@ import Contact from '../components/Contact/Contact'
 export default class Frontpage extends Component {
   render() {
     let { data } = this.props
-    const skip = true
     const {
       blog,
       projects,
       PeaceEmoji,
       ThoughtCloudEmoji,
       CoffeeEmoji,
-      RyosukeAvatar,
     } = data
 
     return (
@@ -48,7 +44,7 @@ export default class Frontpage extends Component {
         </Featured>
 
         {/*------- Posts loop -------*/}
-        <PostLoop type="blog" loop={blog.edges} skip={skip} />
+        <PostLoop type="blog" loop={blog.edges} skip={true} />
         <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
           <Link to={'blog'}>
             <ButtonOutline>Find more reading material</ButtonOutline>
@@ -57,7 +53,7 @@ export default class Frontpage extends Component {
 
         {/*------- Projects loop -------*/}
         <SectionHeading emoji="🎨" heading="Latest projects" />
-        <PostLoop type="project" loop={projects.edges} skip={!skip} />
+        <PostLoop type="project" loop={projects.edges} skip={false} />
         <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
           <Link to={'projects'}>
             <ButtonOutline>See more eye candy</ButtonOutline>
