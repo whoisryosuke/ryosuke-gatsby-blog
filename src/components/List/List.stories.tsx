@@ -1,14 +1,17 @@
 import React from 'react';
 import List from "./List"
+import ListItem from "./ListItem"
 
 export default { title: 'List' };
 
 const items = [
-  'This',
-  'is',
-  'a',
-  'list',
+  'Tangie',
+  'Skywalker OG',
+  'Lemonade',
+  'Orange Creamsicle',
+  'Blueberry',
+  'Jack Herer',
 ]
 
-export const basic = () => <List items={items} />
-export const listItem = () => <ul><ListItem>Test item</ListItem></ul>
+export const list = () => <List items={items} />
+export const listItem = () => <ul>{items.map(item => <ListItem>{item}</ListItem>)}</ul>
