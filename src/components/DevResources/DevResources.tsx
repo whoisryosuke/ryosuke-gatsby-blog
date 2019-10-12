@@ -12,7 +12,6 @@ export const DevResources: React.FC<Props> = ({resources}) => {
   // Loop through GraphQL query and merge any edges of nodes together
   // Merges arrays and Filters out empty arrays
   const repos = resources.map(resource => resource.node.resources.development !== null && resource.node.resources.development).flat().filter(resource => resource !== false)
-  console.log('repos', repos)
   const columns = [
     {
       name: 'Name',
