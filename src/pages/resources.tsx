@@ -10,7 +10,7 @@ import SectionHeading from '../components/SectionHeading/SectionHeading';
 import DesignResources from '@components/DesignResources/DesignResources';
 import DevResources from '../components/DevResources/DevResources';
 import Newsletter from '../components/Newsletter/Newsletter';
-import PostLoop from '../components/PostLoop';
+import PostLoop from '../components/PostLoop/PostLoop';
 import Contact from '../components/Contact/Contact';
 
 import BombEmoji from '../assets/img/emoji/bomb.png';

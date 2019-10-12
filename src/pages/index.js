@@ -12,7 +12,7 @@ import SectionHeading from '../components/SectionHeading/SectionHeading'
 import BasicCard from '../components/Card/BasicCard'
 import Newsletter from '../components/Newsletter/Newsletter'
 import Featured from '../components/Featured/Featured'
-import PostLoop from '../components/PostLoop'
+import PostLoop from '../components/PostLoop/PostLoop'
 import Contact from '../components/Contact/Contact'
 
 export default class Frontpage extends Component {
