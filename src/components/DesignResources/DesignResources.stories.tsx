@@ -4,4 +4,4 @@ const mockData = [{ "node": { "resources": { "design": [{ "category": "Design Sy
 
 export default { title: 'Design Resources' };
 
-export const resources = () => <DesignResources resources={mockData} />
+export const withMockData = () => <DesignResources resources={mockData} />
