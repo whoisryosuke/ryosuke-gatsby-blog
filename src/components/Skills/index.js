@@ -4,7 +4,6 @@ import DataTable from 'react-data-table-component'
 
 import SectionHeading from '../SectionHeading/SectionHeading'
 
-
 const Skills = () => {
   const skills = [
     {
@@ -96,8 +95,18 @@ const Skills = () => {
       category: 'Backend',
     },
     { class: 'mysql', name: 'mySQL', type: 'Development', category: 'Backend' },
-    { class: 'sqlite', name: 'SQLite', type: 'Development', category: 'Backend' },
-    { class: 'mongo-db', name: 'NoSQL (Mongo DB)', type: 'Development', category: 'Backend' },
+    {
+      class: 'sqlite',
+      name: 'SQLite',
+      type: 'Development',
+      category: 'Backend',
+    },
+    {
+      class: 'mongo-db',
+      name: 'NoSQL (Mongo DB)',
+      type: 'Development',
+      category: 'Backend',
+    },
     { class: 'redis', name: 'Redis', type: 'Development', category: 'Backend' },
     {
       class: 'memcached',
@@ -134,9 +143,19 @@ const Skills = () => {
     },
     { class: 'git', name: 'Git', type: 'Development', category: 'Full-stack' },
     { class: 'figma', name: 'Figma', type: 'Design', category: 'Frontend' },
-    { class: 'invision', name: 'Invision', type: 'Design', category: 'Frontend' },
+    {
+      class: 'invision',
+      name: 'Invision',
+      type: 'Design',
+      category: 'Frontend',
+    },
     { class: 'kactus', name: 'Kactus', type: 'Design', category: 'Frontend' },
-    { class: 'zeppelin', name: 'Zeppelin', type: 'Design', category: 'Frontend' },
+    {
+      class: 'zeppelin',
+      name: 'Zeppelin',
+      type: 'Design',
+      category: 'Frontend',
+    },
     { class: 'marvel', name: 'Marvel', type: 'Design', category: 'Frontend' },
     { class: 'sketch', name: 'Sketch', type: 'Design', category: 'Frontend' },
     {

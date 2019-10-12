@@ -19,7 +19,11 @@ const Tags = ({ pathContext, data }) => {
 
   return (
     <Layout>
-      <SectionHeading emoji="#️⃣" heading={tag} subheader={`(${totalCount} post total)`} />
+      <SectionHeading
+        emoji="#️⃣"
+        heading={tag}
+        subheader={`(${totalCount} post total)`}
+      />
 
       <Box bg="muted">
         <PostLoop loop={edges} skip={skip} />
@@ -30,8 +34,11 @@ const Tags = ({ pathContext, data }) => {
       */}
       <nav className="centered">
         <Link to="/tags">
-          <ButtonOutline width="100%" sx={{borderTop:0, borderRight:0, borderLeft:0}}>
-          All tags
+          <ButtonOutline
+            width="100%"
+            sx={{ borderTop: 0, borderRight: 0, borderLeft: 0 }}
+          >
+            All tags
           </ButtonOutline>
         </Link>
       </nav>
