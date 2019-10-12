@@ -1,13 +1,9 @@
 import React, { Component } from 'react'
 import { graphql } from 'gatsby'
-import Link from 'gatsby-link'
 import styled from 'styled-components'
 import { Box, Flex, Text, Heading, Image } from 'rebass/styled-components'
 
-import config from '../config'
-
 import Layout from '../layouts/BaseLayout'
-import Masthead from '../components/Masthead/Masthead'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import Skills from '../components/Skills/Skills'
 import Newsletter from '../components/Newsletter/Newsletter'
@@ -15,9 +11,7 @@ import PostLoop from '../components/PostLoop/PostLoop'
 import Contact from '../components/Contact/Contact'
 
 import BombEmoji from '../assets/img/emoji/bomb.png'
-import TeachingEmoji from '../assets/img/emoji/teaching.png'
-import RyosukePortrait from '../assets/img/avatar-face-400px.png'
-import RyosukeAvatar from '../assets/img/ryosuke-avatar-128.png'
+import RyosukePortrait from '../assets/img/self-portrait-blue-w-text.jpg'
 
 const Highlight = styled.span`
   color: ${props => props.theme.colors.primary};
@@ -48,22 +42,14 @@ export default class Frontpage extends Component {
           </Heading>
         </Box>
         <Flex
-          px={3}
-          py={5}
           sx={{ borderBottom: '1px solid black' }}
           flexWrap="wrap"
         >
-          <Box as="figure" width={[1, 1, 1 / 3]} textAlign="center">
-            <Image
-              src={RyosukePortrait}
-              sx={{
-                width: ['100%', '50%'],
-                borderRadius: 8,
-              }}
-            />
-          </Box>
-
-          <Box width={[1, 1, 2 / 3]}>
+          <Box as="figure" width={[1, 1, 2 / 3]} minHeight={6} textAlign="center" sx={{backgroundImage:`url(${RyosukePortrait})`, backgroundPosition:'center', backgroundSize:'cover'}} />
+            
+          <Box width={[1, 1, 1 / 3]}
+            px={3}
+            py={5}>
             <Text variant="paragraph" px={5} mt={4} mb={4}>
               I've been working as a designer and developer for{' '}
               <strong>over 15 years now</strong>, with over a decade of
