@@ -10,9 +10,11 @@ module.exports = {
     `gatsby-transformer-json`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-twitter`,
-    {
-      resolve: `gatsby-plugin-feed`
-    },
+    // {
+    //   // Requires custom config for MDX
+    //   // see: https://www.gatsbyjs.org/packages/gatsby-plugin-feed/
+    //   resolve: `gatsby-plugin-feed`
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
