@@ -106,15 +106,23 @@ export default class BlogPost extends Component {
       </Heading>
     ))
 
-    let postImage = post.frontmatter.cover_image.publicURL
     let postDate = new Date(post.frontmatter.date)
 
-    if (post.frontmatter.cover_image.childImageSharp !== null) {
-      postImage =
-        post.frontmatter.cover_image.childImageSharp &&
-        post.frontmatter.cover_image.childImageSharp.sizes &&
-        post.frontmatter.cover_image.childImageSharp.sizes.src
+    // Check if post has thumbnail
+    let postImage
+    if(post.frontmatter.cover_image !== null) {
+      console.log('image found')
+
+      postImage = post.frontmatter.cover_image.publicURL
+
+      if (post.frontmatter.cover_image.childImageSharp !== null) {
+        postImage =
+          post.frontmatter.cover_image.childImageSharp &&
+          post.frontmatter.cover_image.childImageSharp.sizes &&
+          post.frontmatter.cover_image.childImageSharp.sizes.src
+      }
     }
+
 
     return (
       <Layout className="Blog">
