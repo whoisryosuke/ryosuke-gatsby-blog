@@ -29,7 +29,7 @@ export const resources: React.FC<Props> = ({data}) => {
       <DevResources resources={data.development.edges} />
 
       {/*------- Lastest posts tagged tutorial -------*/}
-      <SectionHeading emoji="🚀" heading="My recent work" tall />
+      <SectionHeading emoji="📚" heading="Tutorials" tall />
       <PostLoop loop={data.projects.edges} skip={false} />
 
       <Newsletter />
