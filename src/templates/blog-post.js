@@ -111,8 +111,6 @@ export default class BlogPost extends Component {
     // Check if post has thumbnail
     let postImage
     if(post.frontmatter.cover_image !== null) {
-      console.log('image found')
-
       postImage = post.frontmatter.cover_image.publicURL
 
       if (post.frontmatter.cover_image.childImageSharp !== null) {
