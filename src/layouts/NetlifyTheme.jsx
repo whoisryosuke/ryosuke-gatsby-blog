@@ -5,14 +5,10 @@
  */
 
 import React, { Fragment } from "react"
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
+import { ThemeProvider, createGlobalStyle } from "styled-components"
 import * as rebass from "rebass/styled-components"
 
 import theme from "../assets/theme"
-
-import List from '../components/List/List'
-import ListItem from '../components/List/ListItem'
-import { CodeBlock } from "../components/CodeBlock/CodeBlock"
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -42,21 +38,13 @@ const GlobalStyle = createGlobalStyle`
 
 export const NetlifyComponents = {
   ...rebass,
-  h1: props => <rebass.Heading variant="heading" {...props} />, 
-  h2: props => <rebass.Heading variant="subheader" {...props} />, 
-  h3: props => <rebass.Heading variant="h3" {...props} />, 
-  h4: props => <rebass.Heading variant="h4" {...props} />, 
-  p: props => <rebass.Text as="p" variant="paragraph" {...props} />, 
-  hr: props => <rebass.Box as="hr" variant="hr" {...props} />, 
+  h1: props => <rebass.Heading variant="heading" {...props} />,
+  h2: props => <rebass.Heading variant="subheader" {...props} />,
+  h3: props => <rebass.Heading variant="h3" {...props} />,
+  h4: props => <rebass.Heading variant="h4" {...props} />,
+  p: props => <rebass.Text as="p" variant="paragraph" {...props} />,
+  hr: props => <rebass.Box as="hr" variant="hr" {...props} />,
   pre: props => <div {...props} />,
-}
-
-export const UIComponents = {
-  ...NetlifyComponents,
-  ul: List,
-  li: ListItem,
-  pre: props => <div {...props} />,
-  code: CodeBlock,
 }
 
 export const Theme = ({ children }) => (

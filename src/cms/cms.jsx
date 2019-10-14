@@ -1,9 +1,9 @@
 import { MdxControl, MdxPreview } from "netlify-cms-widget-mdx"
 import React, { Component } from "react"
 import { StyleSheetManager } from "styled-components"
-import { Theme, UIComponents } from "../layouts/Theme"
-import { FileSystemBackend } from "netlify-cms-backend-fs"
-import CMS, { init } from "netlify-cms"
+import { Theme, NetlifyComponents } from "../layouts/NetlifyTheme"
+import FileSystemBackend from "netlify-cms-backend-fs"
+import CMS, { init } from "netlify-cms-app"
 
 const isClient = typeof window !== "undefined"
 const isDevelopment = process.env.NODE_ENV === "development"
@@ -47,7 +47,7 @@ const PreviewWindow = props => {
     // This key represents html elements used in markdown; h1, p, etc
     // components: LayoutComponents,
     // Pass components used in the editor (and shared throughout mdx) here:
-    scope: UIComponents,
+    scope: NetlifyComponents,
 
     mdPlugins: [],
   }

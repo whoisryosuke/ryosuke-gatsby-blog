@@ -8,7 +8,7 @@ localhost_development:
 backend:
   name: github
   repo: whoisryosuke/ryosuke-gatsby-blog
-  branch: redesign-2019
+  branch: master
 
 display_url: http://localhost:8000
 media_folder: static/assets/posts

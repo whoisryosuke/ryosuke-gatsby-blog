@@ -46,7 +46,7 @@
     "gatsby-transformer-remark": "^2.6.26",
     "gatsby-transformer-sharp": "^2.2.19",
     "gh-pages": "^2.1.1",
-    "netlify-cms": "^2.9.7",
+    "netlify-cms-app": "^2.9.7",
     "netlify-cms-backend-fs": "^0.4.4",
     "netlify-cms-widget-mdx": "^0.4.3",
     "prism-react-renderer": "^1.0.1",
