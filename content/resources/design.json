@@ -1,7 +1,7 @@
 {
   "resources": {
     "design": [{
-        "name": "Pure Styled Components",
+        "name": "Semantic UI for Sketch",
         "link": "https://github.com/stoneddesigner/semantic-ui-sketch",
         "description": "Sketch Prototyping Kit and Style Guide Generator for Semantic UI",
         "category": "Design System",
