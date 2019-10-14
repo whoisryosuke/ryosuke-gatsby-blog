@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import {Box, Flex, Image, Text} from 'rebass/styled-components'
 
+import Storybook from "@assets/svg/storybook.svg"
 import CodePen from "@assets/svg/social-codepen.svg"
 import Twitch from "@assets/svg/social-twitch.svg"
 import YouTube from "@assets/svg/social-youtube.svg"
@@ -80,6 +81,10 @@ export const Footer: React.FC<Props> = () => {
 
           <StyledLink href="https://github.com/whoisryosuke">
             <Image src={Github} />
+          </StyledLink>
+          
+          <StyledLink href="https://storybook.whoisryosuke.com">
+            <Image src={Storybook} />
           </StyledLink>
         </Box>
       </StyledFlex>
