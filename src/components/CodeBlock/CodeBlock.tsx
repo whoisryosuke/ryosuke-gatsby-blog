@@ -5,13 +5,15 @@ import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
 import { UIComponents } from '@layouts/Theme'
 import theme from "prism-react-renderer/themes/nightOwlLight"
 import { CopyToClipboard } from "react-copy-to-clipboard"
-import { Box } from 'rebass/styled-components'
+import { Box, Button, Flex, Heading } from 'rebass/styled-components'
+import ButtonOutline from "@components/Button/ButtonOutline"
 
 const CodeBlockBox = styled(Box)`
   border:1px solid ${(props) => props.theme.colors.black}; 
 
   & pre {
     margin:0;
+    padding:3em;
     overflow-x: auto;
   }
 `
@@ -35,42 +37,31 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
     return (
       <CodeBlockBox my={3}>
         <LiveProvider code={children} scope={UIComponents} theme={theme}>
-            <LivePreview />
-            <div class="ui top attached label">
-              Example{" "}
-              <button
+          <Box>
+            <Flex justifyContent="space-between">
+              <Heading width={[3/4]} variant="label" bg="muted" p={3} sx={{borderBottom:'1px solid black'}}>Example</Heading>
+              <ButtonOutline
+                width={[1 / 4]}
                 type="button"
                 onClick={showCode}
                 title={`${codeVisibility ? "Hide" : "Show"} code`}
+                sx={{borderTop:0, borderRight:0, fontSize:0}}
               >
-                {codeVisibility ? (
-                  <i
-                    data-content="Hide code"
-                    aria-label="Hide code"
-                    class="up icon"
-                  ></i>
-                ) : (
-                    <i
-                      data-content="Show code"
-                      aria-label="Show code"
-                      class="down icon"
-                    ></i>
-                  )}
-              </button>
-              <CopyToClipboard text={children} onCopy={copyCode}>
+                Copy Code
+              </ButtonOutline>
+              {/* <CopyToClipboard text={children} onCopy={copyCode}>
                 <i
                   data-content="Copy code"
                   aria-label="Copy code"
                   class="clipboard icon"
                 ></i>
-              </CopyToClipboard>
-            </div>
-          </div>
-          <div hidden={codeVisibility} animation="fade" duration={500}>
-            <div className="ui instructive bottom attached segment">
-              <LiveEditor />
-            </div>
-          </div>
+              </CopyToClipboard> */}
+            </Flex>
+            <LivePreview />
+          </Box>
+          <Box p={[3,3,4]} visible={codeVisibility} animation="fade" duration={500} sx={{ borderTop: '1px solid black', backgroundColor:'rgb(251, 251, 251)'}}>
+            <LiveEditor />
+          </Box>
           <LiveError />
         </LiveProvider>
       </CodeBlockBox>
