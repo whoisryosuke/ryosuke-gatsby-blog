@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Highlight, { defaultProps } from "prism-react-renderer"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
+import { UIComponents } from '@layouts/Theme'
 import theme from "prism-react-renderer/themes/nightOwlLight"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 import { Box } from 'rebass/styled-components'
@@ -33,11 +34,7 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
   if (live) {
     return (
       <CodeBlockBox my={3}>
-        <div hidden={copyStatus} animation="fade" duration={500}>
-          <div className="ui success message">Code successfully copied</div>
-        </div>
-        <LiveProvider code={children} theme={theme}>
-          <div class="html ui top attached segment">
+        <LiveProvider code={children} scope={UIComponents} theme={theme}>
             <LivePreview />
             <div class="ui top attached label">
               Example{" "}
