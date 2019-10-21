@@ -1,8 +1,19 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import Highlight, { defaultProps } from "prism-react-renderer"
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live"
-import theme from "prism-react-renderer/themes/github"
+import theme from "prism-react-renderer/themes/nightOwlLight"
 import { CopyToClipboard } from "react-copy-to-clipboard"
+import { Box } from 'rebass/styled-components'
+
+const CodeBlockBox = styled(Box)`
+  border:1px solid ${(props) => props.theme.colors.black}; 
+
+  & pre {
+    margin:0;
+    overflow-x: auto;
+  }
+`
 
 interface Props {
   
@@ -21,7 +32,7 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
   const language = className && className.replace(/language-/, "")
   if (live) {
     return (
-      <div style={{ marginTop: "40px" }}>
+      <CodeBlockBox my={3}>
         <div hidden={copyStatus} animation="fade" duration={500}>
           <div className="ui success message">Code successfully copied</div>
         </div>
@@ -65,28 +76,30 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
           </div>
           <LiveError />
         </LiveProvider>
-      </div>
+      </CodeBlockBox>
     )
   }
   return (
-    <Highlight
-      {...defaultProps}
-      code={children}
-      language={language}
-      theme={theme}
-    >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: "20px" }}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </pre>
-      )}
-    </Highlight>
+    <CodeBlockBox my={3}>
+      <Highlight
+        {...defaultProps}
+        code={children}
+        language={language}
+        theme={theme}
+      >
+        {({ className, style, tokens, getLineProps, getTokenProps }) => (
+          <pre className={className} style={{ ...style, padding: "20px" }}>
+            {tokens.map((line, i) => (
+              <div key={i} {...getLineProps({ line, key: i })}>
+                {line.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </pre>
+        )}
+      </Highlight>
+    </CodeBlockBox>
   )
 }
 
