@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Ryosuke · Change the world one app at a time',
+  title: 'Ryosuke · Design & Development',
   description: 'The portfolio and blog of Ryosuke',
   keywords:
     'web designer for hire, designer for hire, ryosuke design, oscar diaz, whoisryosuke, ryosuke hana',
