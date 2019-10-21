@@ -150,7 +150,7 @@ export default class BlogPost extends Component {
           <section className="container">
             {/*----- Post content -----*/}
             <section className="content">
-              <Heading variant="header">{post.frontmatter.title}</Heading>
+              <Heading variant="header" my={3}>{post.frontmatter.title}</Heading>
 
               <MDXRenderer>{post.body}</MDXRenderer>
             </section>
