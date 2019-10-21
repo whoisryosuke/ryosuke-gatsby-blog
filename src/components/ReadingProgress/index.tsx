@@ -94,8 +94,6 @@ export default class ReadingProgress extends React.Component<Props, {}> {
       :
       this.rootEl.scrollTop
 
-      console.log('window page Y offset', window.pageYOffset)
-
     this.setState({
       value,
     })
