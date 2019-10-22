@@ -78,32 +78,32 @@ const getSchemaOrgJSONLD = ({
     : schemaOrgJSONLD
 }
 
-const SEO = ({ postData, postImage, isBlogPost }) => {
-  const postMeta = postData.frontmatter || {}
+const SEO = ({ postData, postImage, isBlogPost, title, description, url }) => {
+  const postMeta = postData && 'frontmatter' in postData ? postData.frontmatter : {}
 
-  const title = postMeta.title || config.title
-  const description =
-    postMeta.description || postData.excerpt || config.description
+  const pageTitle = title || postMeta.title || config.title
+  const pageDescription =
+    description || postMeta.description || config.description
   const image = `${config.url}${postImage}` || config.image
-  const url = postMeta.slug
-    ? `${config.url}${path.sep}${postMeta.slug}`
+  const pageUrl = url || postMeta.slug
+    ? `${config.url}${path.sep}${url || postMeta.slug}`
     : config.url
   const datePublished = isBlogPost ? postMeta.datePublished : false
 
   const schemaOrgJSONLD = getSchemaOrgJSONLD({
     isBlogPost,
-    url,
-    title,
+    pageUrl,
+    pageTitle,
     image,
-    description,
+    pageDescription,
     datePublished,
   })
 
   return (
     <Helmet>
       {/* General tags */}
-      <title>{title ? title + ' - Ryosuke' : 'Ryosuke'}</title>
-      <meta name="description" content={description} />
+      <title>{pageTitle ? pageTitle + ' - Ryosuke' : 'Ryosuke'}</title>
+      <meta name="description" content={pageDescription} />
       <meta name="image" content={image} />
 
       {/* Schema.org tags */}
@@ -112,18 +112,18 @@ const SEO = ({ postData, postImage, isBlogPost }) => {
       </script>
 
       {/* OpenGraph tags */}
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={pageUrl} />
       {isBlogPost ? <meta property="og:type" content="article" /> : null}
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={pageDescription} />
       <meta property="og:image" content={image} />
       <meta property="fb:app_id" content={config.fbAppID} />
 
       {/* Twitter Card tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:creator" content={config.twitter} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={pageTitle} />
+      <meta name="twitter:description" content={pageDescription} />
       <meta name="twitter:image" content={image} />
     </Helmet>
   )
@@ -134,7 +134,7 @@ SEO.propTypes = {
   postData: PropTypes.shape({
     frontmatter: PropTypes.any,
     excerpt: PropTypes.any,
-  }).isRequired,
+  }),
   postImage: PropTypes.string,
 }
 

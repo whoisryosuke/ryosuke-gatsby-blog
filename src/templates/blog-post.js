@@ -11,7 +11,7 @@ import kebabCase from 'lodash/kebabCase'
 
 import Layout from '../layouts/BaseLayout'
 import ReadingProgress from '../components/ReadingProgress'
-import SEO from '../components/SEO'
+import SEO from '../components/SEO/SEO'
 import Cover from '../components/Cover'
 import Comments from '../components/Comments/Comments'
 import PostLoop from '../components/PostLoop/PostLoop'
