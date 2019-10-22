@@ -10,7 +10,6 @@ const ListItem = ({children, className}) => <li className={className}><Text vari
 
 const StyledListItem = styled(ListItem)`
     list-style:square;
-    margin-bottom:1em;
 `
 
 export default StyledListItem

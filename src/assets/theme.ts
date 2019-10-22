@@ -123,7 +123,7 @@ const theme = {
       fontFamily: fonts.body,
       lineHeight: '1.75',
       fontSize: [1,2],
-      marginBottom: 4,
+      marginBottom: 3,
     },
     display: {
       fontFamily: fonts.body,
