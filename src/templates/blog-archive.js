@@ -8,6 +8,7 @@ import capitalizeFirstLetter from '../helpers/uppercase'
 import MastheadSVG from '@assets/svg/masthead-circles.svg'
 
 import Layout from '../layouts/BaseLayout'
+import SEO from '@components/SEO/SEO';
 import ButtonOutline from '../components/Button/ButtonOutline'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import PostLoop from '../components/PostLoop/PostLoop'
@@ -65,13 +66,19 @@ const IndexPage = ({ data, pathContext }) => {
     projects: '🎨',
     blog: '📓',
   }
+  const sectionName = capitalizeFirstLetter(pathPrefix)
 
   return (
     <Layout className="BlogArchive">
+      <SEO
+        key="seo-resources"
+        title={`${sectionName} Archive - Page ${index}`}
+        url={pathPrefix}
+      />
       <StyledBackground>
         <SectionHeading
           emoji={emojis[pathPrefix]}
-          heading={`${capitalizeFirstLetter(pathPrefix)} archive`}
+          heading={`${sectionName} archive`}
           subheader={`Page ${index}`}
         />
 

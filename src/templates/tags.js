@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { Box } from 'rebass/styled-components'
 
 import Layout from '../layouts/BaseLayout'
+import SEO from '@components/SEO/SEO';
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import PostLoop from '../components/PostLoop/PostLoop'
 import Link from '../components/Link/Link'
@@ -19,6 +20,11 @@ const Tags = ({ pathContext, data }) => {
 
   return (
     <Layout>
+      <SEO
+        key={`seo-tag-${tag}`}
+        title={`Posts tagged #${tag}`}
+        url={`tags/${tag}`}
+      />
       <SectionHeading
         emoji="#️⃣"
         heading={tag}
@@ -28,10 +34,6 @@ const Tags = ({ pathContext, data }) => {
       <Box bg="muted">
         <PostLoop loop={edges} skip={skip} />
       </Box>
-      {/*
-        This links to a page that does not yet exist.
-        We'll come back to it!
-      */}
       <nav className="centered">
         <Link to="/tags">
           <ButtonOutline
