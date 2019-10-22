@@ -44,8 +44,9 @@ const StyledCard = styled(Box)`
     }
 
   `}
-  ${props => props.cols == 2 && `
-  ${props.theme.mediaQueries.mobile} {
+
+
+  ${(props) => props.theme.mediaQueries.mobile} {
     border-width:0 0 1px 0;
     
     &:last-child, &:nth-child(2n) {
@@ -57,50 +58,39 @@ const StyledCard = styled(Box)`
 
     }
   }
-  ${props.theme.mediaQueries.tablet} {
+  ${(props) => props.theme.mediaQueries.tablet} {
     border-width:0 0 1px 0;
 
-    &:last-child, &:nth-child(2n) {
-      border-width:0 0 1px 1px;
+    &:last-child, &:nth-child(2n-1) {
+      border-width:0 1px 1px 0;
       
       &:hover {
-        border-width:0 0 2px 1px;
+        border-width:0 1px 2px 0;
       }
     }
   }
-  `}
 
-  ${props => props.cols == 3 && `
-  ${props.theme.mediaQueries.mobile} {
+  ${(props) => props.theme.mediaQueries.desktop} {
     border-width:0 0 1px 0;
-    
-    &:last-child, &:nth-child(3n-1), &:nth-child(3n) {
+
+    &:last-child, &:nth-child(2n-1) {
       border-width:0 0 1px 0;
+    }
+    &:last-child, &:nth-child(3n + 1) {
+      border-width:0 0 1px 0;
+    }
+
+    &:last-child, &:nth-child(3n-1), &:nth-child(3n-2) {
+      border-width:0 1px 1px 0;
       
       &:hover {
-        border-width:0 0 2px 0;
-      }
-
-    }
-    &:not(:nth-child(3n)):last-child {
-      border-right:1px;
-    }
-  }
-  ${props.theme.mediaQueries.tablet} {
-    border-width:0 0 1px 0;
-
-    &:last-child, &:nth-child(3n-1), &:nth-child(3n) {
-      border-width:0 0 1px 1px;
-      
-      &:hover {
-        border-width:0 0 2px 1px;
+        border-width:0 1px 2px 0;
       }
     }
     &:not(:nth-child(3n)):last-child {
-      border-right:1px;
+      border-width:0 1px 1px 0;
     }
   }
-  `}
 
 `
 

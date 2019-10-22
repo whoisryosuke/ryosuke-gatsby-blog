@@ -24,12 +24,11 @@ export const DesignResources: React.FC<Props> = ({ resources }) => {
       <Flex flexWrap="wrap" bg="muted">
         {repos.map(resource => 
         <ImageCard 
-          width={[1,1/2,1/2,1/3]} 
+          width={[1,1,1/2,1/2,1/3]} 
           title={resource.name} 
           subheader={resource.category} 
           image={`/resources/img/${resource.image}`}
           href={resource.link}
-          cols={3}
         />
         )}
       </Flex>
