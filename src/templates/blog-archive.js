@@ -12,6 +12,7 @@ import SEO from '@components/SEO/SEO';
 import ButtonOutline from '../components/Button/ButtonOutline'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import PostLoop from '../components/PostLoop/PostLoop'
+import Link from '@components/Link/Link'
 
 const StyledLink = styled(GLink)`
   width: 100%;
@@ -24,7 +25,7 @@ const StyledLink = styled(GLink)`
   text-decoration: none;
   color: ${props => props.theme.colors.black};
 
-  &:hover {
+  &:hover, &:focus {
     color: ${props => props.theme.colors.white};
   }
 `
@@ -40,7 +41,7 @@ const NavLink = props => {
   if (!props.test) {
     return (
       <StyledLink to={props.url}>
-        <Text variant="label" p={3}>
+        <Text variant="label" px={3} py={5}>
           {props.text}
         </Text>
       </StyledLink>
@@ -88,26 +89,38 @@ const IndexPage = ({ data, pathContext }) => {
 
         <Flex as="nav" justifyContent="space-between">
           <ButtonOutline
-            test={first}
             textAlign="left"
-            p={3}
+            px={3} 
+            py={5}
             width={[1 / 2, 1 / 2, 1 / 2]}
             sx={{ borderTop: 0, borderLeft: 0, borderRight: 0 }}
             ariaLabel="prev"
+            height="3rem"
           >
             <NavLink test={first} url={previousUrl} text="Previous Page" />
           </ButtonOutline>
           <ButtonOutline
-            test={last}
             textAlign="right"
-            p={3}
+            px={3} 
+            py={5}
             width={[1 / 2, 1 / 2, 1 / 2]}
             sx={{ borderTop: 0, borderRight: 0 }}
             ariaLabel="next"
+            height="3rem"
           >
             <NavLink test={last} url={nextUrl} text="Next Page" />
           </ButtonOutline>
         </Flex>
+        <Flex>
+            <ButtonOutline width={[1]} height="3rem" p={3} sx={{borderRight:0, borderLeft:0, borderTop:0}}>
+              <StyledLink to="tags">
+                <Text variant="label" p={3}>
+                  Browse by tag
+                </Text>
+              </StyledLink>
+            </ButtonOutline>
+        </Flex>
+
       </StyledBackground>
     </Layout>
   )
