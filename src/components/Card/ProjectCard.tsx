@@ -24,7 +24,7 @@ const ProjectCard: React.FunctionComponent<IProjectCardProps> = ({ title, subhea
   }
   return(
     <BaseCard link={link} {...props}>
-      <Heading fontSize={[3,4,5]} mt="5" mb="2">{title}</Heading>
+      <Heading variant="h2" mt="5" mb="2">{title}</Heading>
       <Heading variant="label" mb="4">{subtitle}</Heading>
     </BaseCard>
   )

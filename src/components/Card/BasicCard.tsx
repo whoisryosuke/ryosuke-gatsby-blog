@@ -19,7 +19,7 @@ const BasicCard: React.FunctionComponent<IBasicCardProps> = ({title, subheader, 
   return(
     <BaseCard link={link} {...props}>
       <Heading variant="label" mb="4">{subtitle}</Heading>
-      <Heading variant="header" mb="4">{title}</Heading>
+      <Heading variant="h2" mb="4">{title}</Heading>
       <Text variant="paragraph">{description}</Text>
     </BaseCard>
   )

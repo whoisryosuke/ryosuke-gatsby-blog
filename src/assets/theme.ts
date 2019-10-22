@@ -85,19 +85,25 @@ const theme = {
     header: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
-      fontSize: [3, 3, 4, 5],
+      fontSize: [4, 4, 5, 6],
       marginBottom: 3,
     },
     subheader: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
-      fontSize: [2, 2, 3, 3],
+      fontSize: [3, 3, 4, 4],
+      marginBottom: 3,
+    },
+    h2: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [2, 3, 4, 5],
       marginBottom: 3,
     },
     h3: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
-      fontSize: [1, 1, 2, 2],
+      fontSize: [2, 2, 3, 3],
       marginBottom: 3,
     },
     h4: {
