@@ -1,13 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import PropTypes from 'prop-types'
-
-// Utilities
 import kebabCase from 'lodash/kebabCase'
+import DataTable from 'react-data-table-component';
+import { Box, Heading, Flex, Text } from 'rebass/styled-components'
 
-// Components
-import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
+import Layout from "@layouts/BaseLayout"
+import SEO from '@components/SEO/SEO';
+import Link from '@components/Link/Link';
+import SectionHeading from '@components/SectionHeading/SectionHeading';
 
 const TagsPage = ({
   data: {
@@ -16,25 +17,42 @@ const TagsPage = ({
       siteMetadata: { title },
     },
   },
-}) => (
-  <div>
-    <Helmet title={title} />
-    <section className="TagList">
-      <h1 className="container Title">Tags</h1>
-      <nav className="container TagCloud large">
-        <ul>
-          {group.map(tag => (
-            <li key={tag.fieldValue}>
-              <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-                {tag.fieldValue} ({tag.totalCount})
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </section>
-  </div>
-)
+}) => {
+  const columns = [
+    {
+      name: 'Tag',
+      selector: 'fieldValue',
+      sortable: true,
+      cell: row => <Heading variant="label" p={2}><Link to={`/tags/${kebabCase(row.fieldValue)}`}>#{row.fieldValue}</Link></Heading>,
+    },
+    {
+      name: 'Total Posts',
+      selector: 'totalCount',
+      sortable: true,
+    }
+  ];
+
+  return (
+    <Layout>
+        <SEO
+          key="seo-tags"
+          title="All tags"
+          url="tags"
+        />
+      <section className="TagList">
+        <SectionHeading emoji="🔖" heading="Tags" />
+        <Box py={4} sx={{ borderBottom: '1px solid black' }}>
+          <DataTable
+            columns={columns}
+            data={group}
+            defaultSortField="title"
+            noHeader
+          />
+        </Box>
+      </section>
+    </Layout>
+  )
+}
 
 TagsPage.propTypes = {
   data: PropTypes.shape({
