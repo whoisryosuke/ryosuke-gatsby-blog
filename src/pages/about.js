@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Box, Flex, Text, Heading, Image } from 'rebass/styled-components'
 
 import Layout from '../layouts/BaseLayout'
+import SEO from '@components/SEO/SEO';
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import Skills from '../components/Skills/Skills'
 import Newsletter from '../components/Newsletter/Newsletter'
@@ -18,20 +19,18 @@ const Highlight = styled.span`
 `
 
 export default class Frontpage extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      data: this.props.data,
-    }
-  }
 
   render() {
-    let { data } = this.state
+    let { data } = this.props
     const skip = false
 
     return (
       <Layout className="About pt2">
+        <SEO
+          key="seo-about"
+          title="About"
+          url="about"
+        />
         <Box px={3} py={5} sx={{ borderBottom: '1px solid black' }}>
           <Heading fontSize={[1, 2, 3]}>
             Ryosuke meaning <Highlight>clear</Highlight> mediation.
