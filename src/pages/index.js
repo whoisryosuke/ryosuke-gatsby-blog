@@ -34,7 +34,7 @@ export default class Frontpage extends Component {
         <SectionHeading emoji="📓" heading="Latest writings" />
         <Featured>
           <BasicCard
-            width={[1, 1, 2 / 3, 1 / 2, 1 / 3]}
+            width={[1, 1, 2 / 3, 1 / 2]}
             solid
             title={blog.edges[0].node.frontmatter.title}
             subheader={blog.edges[0].node.frontmatter.tags}
