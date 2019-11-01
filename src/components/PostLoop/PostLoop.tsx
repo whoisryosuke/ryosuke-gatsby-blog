@@ -60,5 +60,5 @@ export default props => {
         }
       })
   }
-  return <Flex flexWrap="wrap">{postLoop}</Flex>
+  return <Flex flexWrap="wrap" bg="muted">{postLoop}</Flex>
 }
