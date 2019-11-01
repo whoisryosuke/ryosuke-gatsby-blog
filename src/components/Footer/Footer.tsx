@@ -47,44 +47,44 @@ export const Footer: React.FC<Props> = () => {
           <Text variant="label">Copyright &copy; 2019, Oscar Diaz</Text>
         </Box>
         <Box width={[1, 1, 1, 2 / 3]} textAlign="right">
-          <StyledLink href="https://codepen.io/whoisryosuke">
-            <Image src={CodePen} />
+          <StyledLink href="https://codepen.io/whoisryosuke" title="See my code on CodePen">
+            <Image src={CodePen} alt="CodePen logo" />
           </StyledLink>
 
-          <StyledLink href="https://twitch.tv/whoisryosuke">
-            <Image src={Twitch} />
+          <StyledLink href="https://twitch.tv/whoisryosuke" title="Watch me live code or design on Twitch">
+            <Image src={Twitch} alt="Twitch logo" />
           </StyledLink>
 
           {/* <StyledLink href="#comingsoon">
             <Image src={YouTube} />
           </StyledLink> */}
 
-          <StyledLink href="https://instagram.com/whoisryosuke">
-            <Image src={Instagram} />
+          <StyledLink href="https://instagram.com/whoisryosuke" title="Follow me on Instagram">
+            <Image src={Instagram} alt="Instagram logo" />
           </StyledLink>
 
-          <StyledLink href="https://twitter.com/whoisryosuke">
-            <Image src={Twitter} />
+          <StyledLink href="https://twitter.com/whoisryosuke" title="Follow me on Twitter">
+            <Image src={Twitter} alt="Twitter logo" />
           </StyledLink>
 
-          <StyledLink href="https://linkedin.com/in/stoneddesigner">
-            <Image src={LinkedIn} />
+          <StyledLink href="https://linkedin.com/in/stoneddesigner" title="Join me on LinkedIn">
+            <Image src={LinkedIn} alt="LinkedIn logo" />
           </StyledLink>
 
-          <StyledLink href="https://dribbble.com/whoisryosuke">
-            <Image src={Dribbble} />
+          <StyledLink href="https://dribbble.com/whoisryosuke" title="See me designs on Dribbble">
+            <Image src={Dribbble} alt="Dribbble logo" />
           </StyledLink>
 
-          <StyledLink href="https://www.behance.net/whoisryosuke">
-            <Image src={Behance} />
+          <StyledLink href="https://www.behance.net/whoisryosuke" title="See my designs on Behance">
+            <Image src={Behance} alt="Behance logo" />
           </StyledLink>
 
-          <StyledLink href="https://github.com/whoisryosuke">
-            <Image src={Github} />
+          <StyledLink href="https://github.com/whoisryosuke" title="See my open source code contributions on Github">
+            <Image src={Github} alt="Github logo" />
           </StyledLink>
           
-          <StyledLink href="https://storybook.whoisryosuke.com">
-            <Image src={Storybook} />
+          <StyledLink href="https://storybook.whoisryosuke.com" title="Browse this site's Storybook component documentation">
+            <Image src={Storybook} alt="Storybook logo" />
           </StyledLink>
         </Box>
       </StyledFlex>
