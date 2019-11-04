@@ -1,5 +1,6 @@
 import React from 'react';
 import { configure, addDecorator, addParameters } from '@storybook/react';
+import { withKnobs } from '@storybook/addon-knobs';
 import { withA11y } from "@storybook/addon-a11y";
 import { ThemeProvider } from "styled-components"
 import theme from "../src/assets/theme"
@@ -32,6 +33,9 @@ addParameters({
     hierarchyRootSeparator: /\|/
   }
 });
+
+// Add knobs to all stories
+addDecorator(withKnobs);
 
 // Rebass / Styled Components theme provider wraps app
 addDecorator((story) => (
