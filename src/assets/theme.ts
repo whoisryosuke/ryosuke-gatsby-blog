@@ -1,3 +1,161 @@
+import * as CSS from 'csstype';
+
+export type ObjectOrArray<T> = T[] | { [K: string]: T | ObjectOrArray<T> };
+
+export interface ThemeTokens {
+  animation: AnimationTokens;
+  breakpoints: string[] | number[] | object;
+  mediaQueries: MediaQueryTokens;
+  colors: ColorTokens;
+  gradients: GradientTokens;
+  fonts: FontTokens;
+  fontSizes: ObjectOrArray<CSS.FontSizeProperty<number>>;
+  fontWeights: ObjectOrArray<CSS.FontWeightProperty>;
+  lineHeights: ObjectOrArray<CSS.LineHeightProperty<{}>>;
+  space: ObjectOrArray<number | string>;
+  sizes: ObjectOrArray<CSS.HeightProperty<{}> | CSS.WidthProperty<{}>>;
+  radii: ObjectOrArray<CSS.BorderRadiusProperty<{}>>;
+  shadows: {
+    card: {
+      light: '15px 15px 35px rgba(0, 127, 255, 0.5)',
+      dark: `7px 7px 15px ${colors.primary}`
+    },
+  },
+  // rebass variants
+  text: {
+    header: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [4, 4, 5, 6],
+      marginBottom: 3,
+    },
+    subheader: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [3, 3, 4, 4],
+      marginBottom: 3,
+    },
+    h2: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [2, 3, 4, 5],
+      marginBottom: 3,
+    },
+    h3: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [2, 2, 3, 3],
+      marginBottom: 3,
+    },
+    h4: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [1],
+      marginBottom: 3,
+    },
+    label: {
+      fontFamily: fonts.heading,
+      lineHeight: '1.25',
+      fontSize: [0],
+      letterSpacing: '0.1em',
+      textTransform: 'uppercase',
+    },
+    paragraph: {
+      fontFamily: fonts.body,
+      lineHeight: '1.75',
+      fontSize: [1,2],
+      marginBottom: 4,
+    },
+    list: {
+      fontFamily: fonts.body,
+      lineHeight: '1.75',
+      fontSize: [1,2],
+      marginBottom: 3,
+    },
+    display: {
+      fontFamily: fonts.body,
+      lineHeight: '1.5',
+      fontSize: [5, 6, 7],
+    },
+    caps: {
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+    },
+  },
+  variants: {
+    avatar: {
+      width: 'avatar',
+      height: 'avatar',
+      borderRadius: 'circle',
+    },
+    card: {
+      p: 2,
+      bg: 'background',
+      boxShadow: 'card',
+      avatar: {
+        width: 'avatar',
+        height: 'avatar',
+        backgroundSize: 'cover', 
+        backgroundPosition:'center',
+        marginBottom: "3rem"
+      }
+    },
+    link: {
+      color: 'primary',
+    },
+    nav: {
+      fontSize: 1,
+      fontWeight: 'bold',
+      display: 'inline-block',
+      p: 2,
+      color: 'inherit',
+      textDecoration: 'none',
+      ':hover,:focus,.active': {
+        color: 'primary',
+      }
+    },
+    hr: {
+      width:'100%',
+      borderTop:0,
+      borderBottom:'1px solid black',
+      my:4,
+    }
+  },
+  buttons: {
+    primary: {
+      fontSize: 2,
+      fontWeight: 'bold',
+      color: 'background',
+      bg: 'primary',
+      borderRadius: 'default',
+      padding: '1em 4em',
+    },
+    outline: {
+      variant: 'buttons.primary',
+      color: 'black',
+      bg: 'transparent',
+      border: '1px solid #000',
+      textTransform: 'uppercase',
+      letterSpacing: '0.1em',
+      fontSize: 1,
+    },
+    secondary: {
+      variant: 'buttons.primary',
+      color: 'background',
+      bg: 'secondary',
+    },
+  },
+  styles: {
+    root: {
+      fontFamily: fonts.body,
+      fontWeight: 'normal',
+      lineHeight: '1.5',
+    },
+  },  
+}
+
+export type AnimationTokens = 'default' | 'fast';
+
 const animation = {
   default: '400ms ease-in',
   fast: '300ms ease-in'

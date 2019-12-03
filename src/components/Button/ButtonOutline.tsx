@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import styled from 'styled-components'
 import {Button} from 'rebass/styled-components'
 
@@ -40,7 +40,7 @@ const StyledButton = styled.button`
 `
 
 interface Props {
-  children: React.node[]
+  children: JSX.Element[] | JSX.Element | string
 }
 
 export const ButtonOutline: React.FC<Props> = ({children, ...props}) => {

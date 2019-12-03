@@ -93,6 +93,7 @@ async function createMdxPagination(section, prefix, graphql, createPage, reporte
 
     if (result.errors) {
         reporter.panicOnBuild('🚨  ERROR: Loading "createPages" query')
+        console.log('🚨  ERROR: Section is', section)
         console.log('🚨  ERROR:',    result.errors)
     }
 

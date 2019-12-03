@@ -1,4 +1,5 @@
 import React from 'react';
+import requireContext from 'require-context.macro';
 import { configure, addDecorator, addParameters } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { withA11y } from "@storybook/addon-a11y";
@@ -44,4 +45,4 @@ addDecorator((story) => (
   </ThemeProvider>
 ))
 
-configure(require.context('../src', true, /\.stories$/), module);
+configure(requireContext('../src', true, /\.stories$/), module);
