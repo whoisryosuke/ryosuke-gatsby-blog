@@ -1,37 +1,37 @@
 const animation = {
   default: '400ms ease-in',
-  fast: '300ms ease-in'
+  fast: '300ms ease-in',
 }
 
 const breakpoints = [
   // mobile
-  "320px",
+  '320px',
   // tablet
-  "768px",
+  '768px',
   // computer
-  "992px",
+  '992px',
   // desktop
-  "1200px",
+  '1200px',
   // widescreen
-  "1920px"
+  '1920px',
 ]
 
 const colors = {
-  text: '#111212',
-  background: '#fff',
+  text: '#FFF',
+  background: '#000',
   primary: '#005CDD',
   secondary: '#6D59F0',
   muted: '#f6f6f9',
   gray: '#D3D7DA',
   highlight: 'hsla(205, 100%, 40%, 0.125)',
-  white: '#FFF',
-  black: '#111212',
+  white: '#000',
+  black: '#FFF',
 }
 
 const gradients = {
   subtle: `linear-gradient(180deg, ${colors.primary} 0%, ${colors.secondary} 100%)`,
   purple: `linear-gradient(180deg, ${colors.primary} 0%, #A000C4 100%)`,
-  blue: `linear-gradient(180deg, #00D2FF 0%, ${colors.secondary} 100%)`
+  blue: `linear-gradient(180deg, #00D2FF 0%, ${colors.secondary} 100%)`,
 }
 
 const fonts = {
@@ -53,9 +53,7 @@ const theme = {
   colors,
   gradients,
   fonts,
-  fontSizes: [
-    12, 14, 16, 20, 24, 32, 48, 64, 96
-  ],
+  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
   fontWeights: {
     body: 400,
     heading: 500,
@@ -77,7 +75,7 @@ const theme = {
   shadows: {
     card: {
       light: '15px 15px 35px rgba(0, 127, 255, 0.5)',
-      dark: `7px 7px 15px ${colors.primary}`
+      dark: `7px 7px 15px ${colors.primary}`,
     },
   },
   // rebass variants
@@ -122,13 +120,13 @@ const theme = {
     paragraph: {
       fontFamily: fonts.body,
       lineHeight: '1.75',
-      fontSize: [1,2],
+      fontSize: [1, 2],
       marginBottom: 4,
     },
     list: {
       fontFamily: fonts.body,
       lineHeight: '1.75',
-      fontSize: [1,2],
+      fontSize: [1, 2],
       marginBottom: 3,
     },
     display: {
@@ -154,10 +152,10 @@ const theme = {
       avatar: {
         width: 'avatar',
         height: 'avatar',
-        backgroundSize: 'cover', 
-        backgroundPosition:'center',
-        marginBottom: "3rem"
-      }
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        marginBottom: '3rem',
+      },
     },
     link: {
       color: 'primary',
@@ -171,14 +169,14 @@ const theme = {
       textDecoration: 'none',
       ':hover,:focus,.active': {
         color: 'primary',
-      }
+      },
     },
     hr: {
-      width:'100%',
-      borderTop:0,
-      borderBottom:'1px solid black',
-      my:4,
-    }
+      width: '100%',
+      borderTop: 0,
+      borderBottom: '1px solid black',
+      my: 4,
+    },
   },
   buttons: {
     primary: {
@@ -213,4 +211,4 @@ const theme = {
   },
 }
 
-export default theme;
+export default theme
