@@ -21,11 +21,11 @@ const colors = {
   background: '#000',
   primary: '#005CDD',
   secondary: '#6D59F0',
-  muted: '#f6f6f9',
+  muted: '#060609',
   gray: '#D3D7DA',
   highlight: 'hsla(205, 100%, 40%, 0.125)',
   white: '#000',
-  black: '#FFF',
+  black: '#EEE',
 }
 
 const gradients = {
@@ -85,30 +85,35 @@ const theme = {
       lineHeight: '1.25',
       fontSize: [4, 4, 5, 6],
       marginBottom: 3,
+      color: colors.black,
     },
     subheader: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
       fontSize: [3, 3, 4, 4],
       marginBottom: 3,
+      color: colors.black,
     },
     h2: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
       fontSize: [2, 3, 4, 5],
       marginBottom: 3,
+      color: colors.black,
     },
     h3: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
       fontSize: [2, 2, 3, 3],
       marginBottom: 3,
+      color: colors.black,
     },
     h4: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
       fontSize: [1],
       marginBottom: 3,
+      color: colors.black,
     },
     label: {
       fontFamily: fonts.heading,
@@ -122,6 +127,7 @@ const theme = {
       lineHeight: '1.75',
       fontSize: [1, 2],
       marginBottom: 4,
+      color: colors.black,
     },
     list: {
       fontFamily: fonts.body,

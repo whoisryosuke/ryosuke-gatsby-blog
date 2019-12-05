@@ -16,13 +16,7 @@ import Contact from '../components/Contact/Contact'
 export default class Frontpage extends Component {
   render() {
     let { data } = this.props
-    const {
-      blog,
-      projects,
-      PeaceEmoji,
-      ThoughtCloudEmoji,
-      CoffeeEmoji,
-    } = data
+    const { blog, projects, PeaceEmoji, ThoughtCloudEmoji, CoffeeEmoji } = data
 
     return (
       <Layout className="Frontpage pt2">
@@ -45,7 +39,11 @@ export default class Frontpage extends Component {
 
         {/*------- Posts loop -------*/}
         <PostLoop type="blog" loop={blog.edges} skip={true} />
-        <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
+        <Box
+          sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
+          textAlign="right"
+          p={3}
+        >
           <Link to={'blog'}>
             <ButtonOutline>Find more reading material</ButtonOutline>
           </Link>
@@ -54,7 +52,11 @@ export default class Frontpage extends Component {
         {/*------- Projects loop -------*/}
         <SectionHeading emoji="🎨" heading="Latest projects" />
         <PostLoop type="project" loop={projects.edges} skip={false} />
-        <Box sx={{ borderBottom: '1px solid black' }} textAlign="right" p={3}>
+        <Box
+          sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
+          textAlign="right"
+          p={3}
+        >
           <Link to={'projects'}>
             <ButtonOutline>See more eye candy</ButtonOutline>
           </Link>

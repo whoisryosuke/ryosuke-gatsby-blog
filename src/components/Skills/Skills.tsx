@@ -217,7 +217,7 @@ const Skills = () => {
       selector: 'type',
       sortable: true,
       cell: row => (
-        <Box p={2} sx={{ border: '1px solid black' }}>
+        <Box p={2} sx={{ border: '1px solid black', borderColor: 'black' }}>
           <Text variant="label">{row.type}</Text>
         </Box>
       ),
@@ -237,7 +237,10 @@ const Skills = () => {
   return (
     <section className="Skills">
       <SectionHeading emoji="💽" heading="Technology and software I use" />
-      <Box py={4} sx={{ borderBottom: '1px solid black' }}>
+      <Box
+        py={4}
+        sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
+      >
         <DataTable
           columns={columns}
           data={skills}

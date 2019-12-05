@@ -19,7 +19,7 @@ const CustomForm = ({ status, message, onValidated }) => {
     <Box
       px={3}
       py={5}
-      sx={{ borderBottom: '1px solid black' }}
+      sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
       className={status === 'success' ? 'success' : ''}
     >
       <Heading fontSize={[2, 3]} mb={3}>
