@@ -1,9 +1,3 @@
-// @ts-check
-
-/**
- * Since this file is shared with NetlifyCMS it must be .jsx
- */
-
 import React, { Fragment } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
@@ -42,6 +36,8 @@ const GlobalStyle = createGlobalStyle`
     margin-top:-1em;
   }
 `
+
+export type ThemeMode = 'dark' | 'light'
 
 export const THEME_OPTIONS = {
   DARK: 'dark',

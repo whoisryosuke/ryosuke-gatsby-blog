@@ -197,7 +197,7 @@ const theme = {
       variant: 'buttons.primary',
       color: 'black',
       bg: 'transparent',
-      border: '1px solid #000',
+      border: '1px solid #FFF',
       textTransform: 'uppercase',
       letterSpacing: '0.1em',
       fontSize: 1,

@@ -4,6 +4,7 @@ import Link from 'gatsby-link'
 import { Box, Flex, Text } from 'rebass/styled-components'
 import { useThemeValue } from '../../context/ThemeContext'
 import { THEME_OPTIONS } from '../../layouts/Theme'
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle'
 
 const StyledHeader = styled(Flex)`
   width: 100%;
@@ -208,10 +209,6 @@ const StyledHeaderNav = styled.nav`
 
 const Header = React.memo(({ mobile, visible, toggleVisibility }) => {
   const [{ theme, selectedTheme }, dispatch] = useThemeValue()
-  const toggleTheme =
-    selectedTheme == THEME_OPTIONS.DARK
-      ? THEME_OPTIONS.LIGHT
-      : THEME_OPTIONS.DARK
 
   return (
     <StyledHeader justifyContent="flex-end">
@@ -245,6 +242,9 @@ const Header = React.memo(({ mobile, visible, toggleVisibility }) => {
               </Text>
             </Link>
           </li>
+          <li>
+            <DarkModeToggle />
+          </li>
         </ul>
       </StyledHeaderNav>
 
@@ -266,17 +266,6 @@ const Header = React.memo(({ mobile, visible, toggleVisibility }) => {
           </svg>
         </Box>
       )}
-
-      <button
-        onClick={() =>
-          dispatch({
-            type: toggleTheme,
-          })
-        }
-      >
-        {selectedTheme == THEME_OPTIONS.DARK && `De-`}Activate Dark Mode (
-        {selectedTheme})
-      </button>
 
       <Link
         to={'/'}
