@@ -70,7 +70,7 @@ const StyledHeader = styled(Flex)`
       fill: none;
       transition: stroke-dasharray ${props => props.theme.animation.default},
         stroke-dashoffset ${props => props.theme.animation.default};
-      stroke: #000;
+      stroke: ${props => props.theme.colors.black};
       stroke-width: 5.5;
       stroke-linecap: round;
     }
@@ -175,6 +175,16 @@ const StyledHeaderNav = styled.nav`
       width:100%;
       display:block;
       border-bottom:1px solid ${props.theme.colors.black};
+      
+      &.toggle {
+        display: flex; 
+        justify-content: flex-end;
+        
+        & span {
+          padding:4em 1em;
+          text-align:right;
+        }
+      }
 
       & a {
         padding:4em 1em;
@@ -221,6 +231,7 @@ interface HeaderProps {
 
 const Header: React.SFC<HeaderProps> = React.memo(
   ({ mobile, visible, toggleVisibility }) => {
+    const [{ theme, selectedTheme }, dispatch] = useThemeValue()
     return (
       <StyledHeader justifyContent="flex-end">
         <StyledHeaderNav mobile={mobile} visible={visible}>
@@ -253,12 +264,17 @@ const Header: React.SFC<HeaderProps> = React.memo(
                 </Text>
               </Link>
             </li>
-            <li>
-              <DarkModeToggle />
-            </li>
           </ul>
         </StyledHeaderNav>
 
+        <Flex
+          mr={3}
+          justifyContent="center"
+          flexDirection="column"
+          className="toggle"
+        >
+          <DarkModeToggle />
+        </Flex>
         {mobile && (
           <Box
             type="button"
