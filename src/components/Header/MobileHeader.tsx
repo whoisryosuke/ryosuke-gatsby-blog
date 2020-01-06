@@ -7,7 +7,7 @@ const MobileHeader = () => {
   const [isVisible, setVisibility] = useState(false)
 
   const resize = () => {
-    let currentHideNav = window.innerWidth <= 600
+    let currentHideNav = window.innerWidth <= 650
     // Are we mobile?
     setMobile(currentHideNav)
   }
