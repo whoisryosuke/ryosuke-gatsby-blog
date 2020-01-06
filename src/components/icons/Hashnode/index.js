@@ -1,15 +1,9 @@
 import React from 'react'
+import StyledIcon from '@components/icons/StyledIcon'
 
 export default () => {
   return (
-    <svg
-      width="72px"
-      height="72px"
-      viewBox="0 0 72 72"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-    >
+    <StyledIcon width="72px" height="72px">
       <defs></defs>
       <g
         id="Page-1"
@@ -34,6 +28,6 @@ export default () => {
           </g>
         </g>
       </g>
-    </svg>
+    </StyledIcon>
   )
 }
