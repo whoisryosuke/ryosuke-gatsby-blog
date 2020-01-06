@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import Header from './Header'
 import debounce from '../../helpers/debounce'
 
 const MobileHeader = () => {
-
   const [isMobile, setMobile] = useState(false)
   const [isVisible, setVisibility] = useState(false)
 
@@ -17,15 +16,18 @@ const MobileHeader = () => {
     setVisibility(!isVisible)
   }
 
-  useEffect(() => {
-    window.addEventListener("resize", debounce(resize, 250))
+  useLayoutEffect(() => {
+    window.addEventListener('resize', debounce(resize, 250))
     resize()
   })
 
   return (
-    <Header mobile={isMobile} visible={isVisible} toggleVisibility={toggleVisibility} />
+    <Header
+      mobile={isMobile}
+      visible={isVisible}
+      toggleVisibility={toggleVisibility}
+    />
   )
-
 }
 
 export default MobileHeader
