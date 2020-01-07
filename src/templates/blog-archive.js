@@ -47,9 +47,9 @@ const NavLink = ({ test, text, type, url }) => {
 
   if (!test) {
     return (
-      <ButtonOutline
-        as={Link}
+      <Link
         to={url}
+        border
         textAlign={textAlign}
         px={3}
         py={5}
@@ -58,10 +58,8 @@ const NavLink = ({ test, text, type, url }) => {
         ariaLabel={label}
         height="3rem"
       >
-        <Text variant="label" px={3} py={5}>
-          {text}
-        </Text>
-      </ButtonOutline>
+        <Text variant="label">{text}</Text>
+      </Link>
     )
   } else {
     return (
@@ -125,18 +123,15 @@ const IndexPage = ({ data, pathContext }) => {
           <NavLink test={last} url={nextUrl} text="Next Page" />
         </Flex>
         <Flex>
-          <ButtonOutline
+          <Link
+            to="tags"
             width={[1]}
             height="3rem"
             p={3}
             sx={{ borderRight: 0, borderLeft: 0, borderTop: 0 }}
           >
-            <StyledLink to="tags">
-              <Text variant="label" p={3}>
-                Browse by tag
-              </Text>
-            </StyledLink>
-          </ButtonOutline>
+            <Text variant="label">Browse by tag</Text>
+          </Link>
         </Flex>
       </StyledBackground>
     </Layout>
