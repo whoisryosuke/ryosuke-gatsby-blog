@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from 'rebass/styled-components'
 
-const StyledButton = styled.button`
+const StyledButton = styled(Button)`
   position: relative;
   display: inline-block;
   transition: all 400ms ease-out;
@@ -48,11 +48,11 @@ interface Props {
   children: React.node[]
 }
 
-export const ButtonOutline: React.FC<Props> = ({ children, ...props }) => {
+export const ButtonOutline: React.FC<Props> = ({ as, children, ...props }) => {
   return (
-    <Button as={StyledButton} variant="outline" {...props}>
+    <StyledButton as={as} variant="outline" {...props}>
       <span>{children}</span>
-    </Button>
+    </StyledButton>
   )
 }
 

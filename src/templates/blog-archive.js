@@ -8,7 +8,7 @@ import capitalizeFirstLetter from '../helpers/uppercase'
 import MastheadSVG from '@assets/svg/masthead-circles.svg'
 
 import Layout from '../layouts/BaseLayout'
-import SEO from '@components/SEO/SEO';
+import SEO from '@components/SEO/SEO'
 import ButtonOutline from '../components/Button/ButtonOutline'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import PostLoop from '../components/PostLoop/PostLoop'
@@ -25,7 +25,8 @@ const StyledLink = styled(GLink)`
   text-decoration: none;
   color: ${props => props.theme.colors.black};
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: ${props => props.theme.colors.white};
   }
 `
@@ -37,20 +38,47 @@ const StyledBackground = styled.section`
   background-position: top right;
 `
 
-const NavLink = props => {
-  if (!props.test) {
+const NavLink = ({ test, text, type, url }) => {
+  const textAlign = type == 'previous' ? 'left' : 'right'
+  const label = type == 'previous' ? 'prev' : 'next'
+  const previousBorder = { borderTop: 0, borderLeft: 0, borderRight: 0 }
+  const nextBorder = { borderTop: 0, borderRight: 0 }
+  const sx = type == 'previous' ? previousBorder : nextBorder
+
+  if (!test) {
     return (
-      <StyledLink to={props.url}>
+      <ButtonOutline
+        as={Link}
+        to={url}
+        textAlign={textAlign}
+        px={3}
+        py={5}
+        width={[1 / 2, 1 / 2, 1 / 2]}
+        sx={sx}
+        ariaLabel={label}
+        height="3rem"
+      >
         <Text variant="label" px={3} py={5}>
-          {props.text}
+          {text}
         </Text>
-      </StyledLink>
+      </ButtonOutline>
     )
   } else {
     return (
-      <Text color="gray" variant="label">
-        {props.text}
-      </Text>
+      <ButtonOutline
+        textAlign={textAlign}
+        type="disabled"
+        px={3}
+        py={5}
+        width={[1 / 2, 1 / 2, 1 / 2]}
+        sx={sx}
+        ariaLabel={label}
+        height="3rem"
+      >
+        <Text color="gray" variant="label">
+          {text}
+        </Text>
+      </ButtonOutline>
     )
   }
 }
@@ -88,39 +116,28 @@ const IndexPage = ({ data, pathContext }) => {
         </Box>
 
         <Flex as="nav" justifyContent="space-between">
-          <ButtonOutline
-            textAlign="left"
-            px={3} 
-            py={5}
-            width={[1 / 2, 1 / 2, 1 / 2]}
-            sx={{ borderTop: 0, borderLeft: 0, borderRight: 0 }}
-            ariaLabel="prev"
-            height="3rem"
-          >
-            <NavLink test={first} url={previousUrl} text="Previous Page" />
-          </ButtonOutline>
-          <ButtonOutline
-            textAlign="right"
-            px={3} 
-            py={5}
-            width={[1 / 2, 1 / 2, 1 / 2]}
-            sx={{ borderTop: 0, borderRight: 0 }}
-            ariaLabel="next"
-            height="3rem"
-          >
-            <NavLink test={last} url={nextUrl} text="Next Page" />
-          </ButtonOutline>
+          <NavLink
+            test={first}
+            url={previousUrl}
+            type="previous"
+            text="Previous Page"
+          />
+          <NavLink test={last} url={nextUrl} text="Next Page" />
         </Flex>
         <Flex>
-            <ButtonOutline width={[1]} height="3rem" p={3} sx={{borderRight:0, borderLeft:0, borderTop:0}}>
-              <StyledLink to="tags">
-                <Text variant="label" p={3}>
-                  Browse by tag
-                </Text>
-              </StyledLink>
-            </ButtonOutline>
+          <ButtonOutline
+            width={[1]}
+            height="3rem"
+            p={3}
+            sx={{ borderRight: 0, borderLeft: 0, borderTop: 0 }}
+          >
+            <StyledLink to="tags">
+              <Text variant="label" p={3}>
+                Browse by tag
+              </Text>
+            </StyledLink>
+          </ButtonOutline>
         </Flex>
-
       </StyledBackground>
     </Layout>
   )
