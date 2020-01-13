@@ -1,0 +1,70 @@
+---
+title: Adding Typescript to Gatsby
+date: '2020-01-08'
+section: blog
+tags: ['typescript', 'gatsby', 'javascript', 'react']
+---
+
+I've been on a Typescript kick lately and integrating it into all of my projects and workflows. With Gatsby it's honestly as simple as installing a plugin, but I thought I'd document the minimal nuances there are in the process.
+
+1. Install Typescript, typings for React/Node, ESLint (and default config + prettier integration), and finally the Gatsby plugin for Typescript support:
+
+```shell
+npm i typescript gatsby-plugin-typescript
+npx install-peerdeps --dev eslint-config-airbnb
+npm install --save-dev @types/react @types/react-dom @types/node eslint eslint-config-prettier eslint-plugin-prettier
+```
+
+1. Add the following plugin to your `gatsby-config.js`:
+
+```js
+module.exports = {
+  // ...,
+  plugins: [...`gatsby-plugin-typescript`],
+}
+```
+
+1. Add linting and type checking scripts to your `package.json`:
+
+```js
+{
+  "scripts": {
+    "lint": "eslint . --ext ts --ext tsx'",
+    "test": "npm run type-check && npm run lint",
+    "type-check": "tsc --pretty --noEmit"
+  },
+}
+```
+
+1. Create a `tsconfig.json` in the root of your project. [I grabbed mine from here](https://github.com/damassi/gatsby-starter-typescript-rebass-netlifycms/blob/master/tsconfig.json), but [there are plenty on Github](https://github.com/search?utf8=%E2%9C%93&q=extension%3Ajson+filename%3Atsconfig.json&type=Code&ref=advsearch&l=&l=) to reference ([like this](https://github.com/resir014/gatsby-starter-typescript-plus/blob/master/tsconfig.json)):
+
+```js
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
+    "jsx": "react",
+    "lib": ["dom", "esnext", "es2015", "es2016", "es2017"],
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin"
+      }
+    ],
+    "target": "es2015"
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules/*", "public/*"]
+}
+```
+
+## References
+
+- [https://basarat.gitbooks.io/typescript/](https://basarat.gitbooks.io/typescript/)
+- [https://www.reactandtypescript.dev/installation/gatsby](https://www.reactandtypescript.dev/installation/gatsby)
+- [https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/](https://www.gatsbyjs.org/packages/gatsby-plugin-typescript/)
+- [https://github.com/resir014/gatsby-starter-typescript-plus/blob/master/package.json](https://github.com/resir014/gatsby-starter-typescript-plus/blob/master/package.json)

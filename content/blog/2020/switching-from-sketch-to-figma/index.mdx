@@ -1,0 +1,65 @@
+---
+title: Why I switched to Figma over Sketch (and why you shouldn't)
+date: '2020-01-07'
+cover_image: './Sketch to Figma@0.5x.jpg'
+section: blog
+tags: ['figma', 'sketch', 'app design', 'graphic design']
+---
+
+For a while I was in a "wait and see" approach with Figma, kicking back with Sketch until they were capable of implementing feature parity with it — or offer functionality or features Sketch didn't. More recently, they've really stepped up their game, and really refined their approach to UI design. From features like free unlimited designs, baked-in version control, and plugins! The platform is really shaping up to replace Sketch in a lot of people's workflow, including myself!
+
+## Platform agnostic
+
+Inevitably with any client, I come to a point where I have to collaborate with them or their design or development team, and someone along the line is a Windows user -- alienating them from any Sketch files or experience.
+
+Figma allows me to send anyone a link, and have them contribute to the design, see code snippets, or leave comments.
+
+It gets even better with things like resources, where I can open a link for an icon set in Figma, have it opened in the Figma web app, and then copy it into the my desktop app (or continue directly from the web app). It really reduces the friction for accruing design assets when the previous process involved downloading SVG icons, finding the appropriate icon, importing into the design app, etc.
+
+## Better components
+
+Want to create a button in Sketch with multiple backgrounds? You have to create a bunch of color symbols, then include that in your button, and create
+a mask using a "background" layer. This works fine, but creates double work when I have to add the same color to the Document Colors (to use in other places or text).
+
+Figma allows you to create Color Styles which apply to any shape. So you can create a "background" shape, fill it with a color style, and you're good to go! Those color styles are available across the entire file, without having to do any mask magic with nested symbols.
+
+## Quality of life improvements
+
+### Spacing elements
+
+You can select multiple elements that are strewn about the canvas, Tidy Up (Control + Shift + T), align the items to the same baseline, then adjust their spacing using the spacing adjuster (under the angle and border radius input).
+
+## Plugins!
+
+They have plugins now, which provide functionality for more niche and complex projects that require automation -- or simple tasks like placeholder text and images.
+
+I'm also incredibly interested in extending the application through plugins and integrating design system services. It'd be pretty cool to generate Figma files from React components ⚙️🔧
+
+## Autosaving
+
+I don't know how many times I've been had a successful 20 minute or so design sprint in Sketch and the app or my PC crashes randomly. It's a design flaw that's harkened back to the days of forgetting to CMD+S in Photoshop. The beauty of Figma is that every file is autosaved, even new files, so there's no chance you're "Untitled" mockup gets lost to the ether.
+
+# The problems
+
+- You can work offline if you start a file online and go offline while it's still open. But you cannot start a new file offline, even if you wanted to upload later. This made me keep Sketch on my laptop for designing in offline situations.
+- Styles don't get copied when you copy components over to new files. You have to duplicate the file, and go from there. Makes it tedious when you want to merge a couple files together and have to create styles for one or the other (or lean on the Team Library if you're pro).
+- Resizing frames without scaling content requires you to hold Command while resizing. This is cool, but it's hard to remember (since there's no hint in UI) and there's no UI equivalent (like Sketch) for enabling/disabling per Frame.
+- Can't directly open downloaded or exported Figma files. Requires importing, which takes time (and bandwidth if you're limited).
+- Can't create folders from sidebar, you have to edit a file and create from there. Little things.
+- Kinda slow to open. I used to use Photoshop to do quick text or photo transformations, but booting it up took forever, so I switched exclusively to Sketch since it loaded blazing fast (unless I needed PS-specific features). Now that I'm using Figma, I find that it takes quite a bit to boot up the desktop app. I'm not even using plugins yet!
+- The desktop app is pretty CPU intensive. Used up 20%+ of my RAM, right up there with Chrome. And that's with only a file or two open, neither incredibly complex.
+
+### Pro features
+
+- Unlimited "projects" and add editors as needed
+- Shared components and assets with Team Libraries
+- Unlimited version history
+
+There's really something to be said about Figma offering free unlimited designs. Even if it only lasts for a few years, the fact that they've made such a robust and powerful UI design tool available for anyone to use without any monetary commitment is an incredible asset to the design community. It allows artists to learn, create, and possibly even profit off this product — all while picking up vital skills in UI and UX design. It eliminates a lot of the gatekeeping in the design community that's already prohibitive as it is with expensive hardware buy-in.
+
+Even after writing this article, Figma released a "Smart Animate" feature that allows you to create responsive elements and dynamically animate between more complex states in prototypes. Sketch quickly followed up with a similar feature, but it's great to see how fast Figma is moving. Figma also released a "Smart Layout" feature that allows for dynamic scaling of elements, fairly similar to using Paddy in Sketch, but baked in natively and a bit more robust.
+
+I'm looking forward to seeing where Figma develops, and how the platform evolves, particularly with plugins! As much as I have my critiques, I feel like they could be tackled at the pace Figma is progressing when they shift focus back on UX and perf.
+
+Cheers,
+Ryo
