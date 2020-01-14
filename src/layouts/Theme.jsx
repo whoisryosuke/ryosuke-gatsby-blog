@@ -4,15 +4,15 @@
  * Since this file is shared with NetlifyCMS it must be .jsx
  */
 
-import React, { Fragment } from "react"
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import * as rebass from "rebass/styled-components"
+import React, { Fragment } from 'react'
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import * as rebass from 'rebass/styled-components'
 
-import theme from "../assets/theme"
+import theme from '../assets/theme'
 
 import List from '../components/List/List'
 import ListItem from '../components/List/ListItem'
-import { CodeBlock } from "../components/CodeBlock/CodeBlock"
+import { CodeBlock } from '../components/CodeBlock/CodeBlock'
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -38,20 +38,27 @@ const GlobalStyle = createGlobalStyle`
   p+ul {
     margin-top:-1em;
   }
+
+  code {
+    background-color: ${props => props.theme.colors.muted};
+    padding: ${props => `${props.theme.space[2]}px ${props.theme.space[3]}px`};
+    margin: 0 ${props => props.theme.space[1]}px;
+    color:${props => props.theme.colors.secondary};
+  }
 `
 
 export const UIComponents = {
-  h1: props => <rebass.Heading variant="heading" {...props} />, 
-  h2: props => <rebass.Heading variant="subheader" {...props} />, 
-  h3: props => <rebass.Heading variant="h3" {...props} />, 
-  h4: props => <rebass.Heading variant="h4" {...props} />, 
-  p: props => <rebass.Text as="p" variant="paragraph" {...props} />, 
-  hr: props => <rebass.Box as="hr" variant="hr" {...props} />, 
+  h1: props => <rebass.Heading variant="heading" {...props} />,
+  h2: props => <rebass.Heading variant="subheader" {...props} />,
+  h3: props => <rebass.Heading variant="h3" {...props} />,
+  h4: props => <rebass.Heading variant="h4" {...props} />,
+  p: props => <rebass.Text as="p" variant="paragraph" {...props} />,
+  hr: props => <rebass.Box as="hr" variant="hr" {...props} />,
   ul: List,
   li: ListItem,
   pre: props => <div {...props} />,
   code: CodeBlock,
-  ...rebass
+  ...rebass,
 }
 
 export const Theme = ({ children }) => (
