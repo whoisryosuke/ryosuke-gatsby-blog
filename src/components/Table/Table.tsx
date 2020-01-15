@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const StyledTable = styled.table`
   width: 100%;
-  background: #fff;
+  background: ${props => props.theme.colors.white};
   margin: 1em 0;
   border: 1px solid ${props => props.theme.colors.black};
   -webkit-box-shadow: none;
