@@ -2,12 +2,13 @@ import React, { Fragment } from 'react'
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
 
-import { DarkTheme, LightTheme } from '../assets/themes/'
+import { DarkTheme, LightTheme } from '@assets/themes/'
 import { useThemeValue } from '../context/ThemeContext'
 
-import List from '../components/List/List'
-import ListItem from '../components/List/ListItem'
-import { CodeBlock } from '../components/CodeBlock/CodeBlock'
+import List from '@components/List/List'
+import ListItem from '@components/List/ListItem'
+import { CodeBlock } from '@components/CodeBlock/CodeBlock'
+import { Table } from '@components/Table'
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -60,6 +61,7 @@ export const UIComponents = {
   li: ListItem,
   pre: props => <div {...props} />,
   code: CodeBlock,
+  table: Table,
   ...rebass,
 }
 
