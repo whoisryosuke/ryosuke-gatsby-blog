@@ -33,7 +33,9 @@ const CustomForm = ({ status, message, onValidated }) => {
           required
           sx={{ borderRight: 0 }}
         />
-        <ButtonOutline onClick={submit}>Subscribe</ButtonOutline>
+        <ButtonOutline py={3} px={5} onClick={submit}>
+          Subscribe
+        </ButtonOutline>
       </Flex>
       <aside className={'message ' + status}>
         {status === 'sending' && <div className="sending">sending...</div>}
