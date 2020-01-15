@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
 
 import { DarkTheme, LightTheme } from '@assets/themes/'

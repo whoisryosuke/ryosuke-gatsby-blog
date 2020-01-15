@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Link from 'gatsby-link'
 import { Box, Flex, Text } from 'rebass/styled-components'
 import { useThemeValue } from '../../context/ThemeContext'
-import { THEME_OPTIONS } from '../../layouts/Theme'
 import DarkModeToggle from '../DarkModeToggle/DarkModeToggle'
 
 const StyledHeader = styled(Flex)`
