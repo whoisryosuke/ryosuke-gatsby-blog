@@ -28,7 +28,7 @@ const Link = styled(GLink)(
 
 interface Props {
   border: boolean
-  children: React.Node[]
+  children: React.ReactNode
   to: string
 }
 

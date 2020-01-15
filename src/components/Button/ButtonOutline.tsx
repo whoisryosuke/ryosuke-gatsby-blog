@@ -68,7 +68,7 @@ const StyledButton = styled.button`
 `
 
 interface Props {
-  children: React.node[]
+  children: React.ReactNode
 }
 
 export const ButtonOutline: React.FC<Props> = ({ as, children, ...props }) => {

@@ -5,7 +5,7 @@ interface IIconProps {
   width?: string
   height?: string
   viewBox?: string
-  children: React.Node[]
+  children: React.ReactNode
   className?: string
 }
 

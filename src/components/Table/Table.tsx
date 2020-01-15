@@ -55,7 +55,7 @@ const StyledTable = styled.table`
 `
 
 interface Props {
-  children: React.Node[]
+  children: React.ReactNode
 }
 
 const Table: React.FC<Props> = ({ children }) => {
