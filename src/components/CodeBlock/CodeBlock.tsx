@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live'
-import { UIComponents } from '@layouts/Theme'
-import theme from 'prism-react-renderer/themes/nightOwlLight'
+import { useThemeValue } from '../../context/ThemeContext'
+import { UIComponents, THEME_OPTIONS } from '@layouts/Theme'
+import LightTheme from 'prism-react-renderer/themes/nightOwlLight'
+import DarkTheme from 'prism-react-renderer/themes/nightOwl'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { Box, Button, Flex, Heading } from 'rebass/styled-components'
 import ButtonOutline from '@components/Button/ButtonOutline'
@@ -25,6 +27,12 @@ interface Props {}
 export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
   const [copyStatus, setCopyStatus] = useState(false)
   const [codeVisibility, setCodeVisibility] = useState(false)
+  const [{ theme, selectedTheme }, dispatch] = useThemeValue()
+
+  const codeTheme = {
+    [THEME_OPTIONS.LIGHT]: LightTheme,
+    [THEME_OPTIONS.DARK]: DarkTheme,
+  }
   const copyCode = () => {
     setCopyStatus(true)
     setTimeout(() => setCopyStatus(false), 3000)
@@ -36,7 +44,11 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
   if (live) {
     return (
       <CodeBlockBox mb={3}>
-        <LiveProvider code={children} scope={UIComponents} theme={theme}>
+        <LiveProvider
+          code={children}
+          scope={UIComponents}
+          theme={codeTheme[selectedTheme]}
+        >
           <Box>
             <Flex justifyContent="space-between">
               <Heading
@@ -90,7 +102,7 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
         {...defaultProps}
         code={children}
         language={language}
-        theme={theme}
+        theme={codeTheme[selectedTheme]}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={{ ...style, padding: '20px' }}>
