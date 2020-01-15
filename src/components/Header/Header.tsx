@@ -268,7 +268,7 @@ const Header: React.SFC<HeaderProps> = React.memo(
         </StyledHeaderNav>
 
         <Flex
-          mr={3}
+          mr={4}
           justifyContent="center"
           flexDirection="column"
           className="toggle"
