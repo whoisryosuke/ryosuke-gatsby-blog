@@ -1,10 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from 'rebass/styled-components'
+import {
+  compose,
+  space,
+  layout,
+  typography,
+  color,
+  flexbox,
+} from 'styled-system'
+import css, { get } from '@styled-system/css'
 
-const StyledButton = styled(Button)`
+const sx = props => css(props.sx)(props.theme)
+
+const StyledButton = styled.button`
+  background: ${props => props.theme.colors.white};
+  color: ${props => props.theme.colors.black};
+  appearance: none;
+  text-align: center;
+  line-height: inherit;
+  text-decoration: none;
+  font-size: inherit;
+  border: 1px solid ${props => props.theme.colors.black};
   position: relative;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 400ms ease-out;
 
   & > span {
@@ -42,6 +62,9 @@ const StyledButton = styled(Button)`
     background: ${props => props.theme.colors.secondary};
     transform: scaleX(1);
   }
+
+  ${sx}
+  ${compose(space, layout, typography, color, flexbox)}
 `
 
 interface Props {
