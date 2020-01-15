@@ -1,7 +1,6 @@
 import * as React from 'react'
 import GLink from 'gatsby-link'
 import styled from 'styled-components'
-import { Box } from 'rebass/styled-components'
 import {
   compose,
   space,
