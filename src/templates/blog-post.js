@@ -110,7 +110,7 @@ export default class BlogPost extends Component {
 
     // Check if post has thumbnail
     let postImage
-    if(post.frontmatter.cover_image !== null) {
+    if (post.frontmatter.cover_image !== null) {
       postImage = post.frontmatter.cover_image.publicURL
 
       if (post.frontmatter.cover_image.childImageSharp !== null) {
@@ -120,7 +120,6 @@ export default class BlogPost extends Component {
           post.frontmatter.cover_image.childImageSharp.sizes.src
       }
     }
-
 
     return (
       <Layout className="Blog">
@@ -150,7 +149,9 @@ export default class BlogPost extends Component {
           <section className="container">
             {/*----- Post content -----*/}
             <section className="content">
-              <Heading variant="header" my={3}>{post.frontmatter.title}</Heading>
+              <Heading variant="header" my={3}>
+                {post.frontmatter.title}
+              </Heading>
 
               <MDXRenderer>{post.body}</MDXRenderer>
             </section>
@@ -160,19 +161,23 @@ export default class BlogPost extends Component {
         <SectionHeading
           emoji="🔗"
           heading="This post was filed under"
-          sx={{ borderTop: '1px solid black' }}
+          sx={{ borderTop: '1px solid black', borderColor: 'black' }}
         />
         <Flex
           width={1}
           p={3}
-          sx={{ borderBottom: '1px solid black' }}
+          sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
           flexWrap="wrap"
         >
           {tags}
         </Flex>
 
         {/*----- Author / Date meta data -----*/}
-        <Flex p={3} className="meta" sx={{ borderBottom: '1px solid black' }}>
+        <Flex
+          p={3}
+          className="meta"
+          sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
+        >
           <Image
             variant="avatar"
             src={ryosukeAvatar}
