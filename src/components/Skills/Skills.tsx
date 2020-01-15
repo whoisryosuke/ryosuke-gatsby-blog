@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { Box, Heading, Text } from 'rebass/styled-components'
 import DataTable from 'react-data-table-component'
+import { useThemeValue } from '../../context/ThemeContext'
 
 import SectionHeading from '../SectionHeading/SectionHeading'
 
 const Skills = () => {
+  const [{ theme, selectedTheme }, dispatch] = useThemeValue()
+
   const skills = [
     {
       class: 'react',
@@ -207,7 +210,7 @@ const Skills = () => {
       selector: 'name',
       sortable: true,
       cell: row => (
-        <Heading variant="label" p={2}>
+        <Heading variant="label" p={2} sx={{ color: 'black' }}>
           {row.name}
         </Heading>
       ),
@@ -217,7 +220,14 @@ const Skills = () => {
       selector: 'type',
       sortable: true,
       cell: row => (
-        <Box p={2} sx={{ border: '1px solid black', borderColor: 'black' }}>
+        <Box
+          p={2}
+          sx={{
+            border: '1px solid black',
+            borderColor: 'black',
+            color: 'black',
+          }}
+        >
           <Text variant="label">{row.type}</Text>
         </Box>
       ),
@@ -227,7 +237,7 @@ const Skills = () => {
       selector: 'category',
       sortable: true,
       cell: row => (
-        <Heading variant="label" p={2}>
+        <Heading variant="label" p={2} sx={{ color: 'black' }}>
           {row.category}
         </Heading>
       ),
@@ -245,6 +255,7 @@ const Skills = () => {
           columns={columns}
           data={skills}
           defaultSortField="title"
+          theme={selectedTheme}
           noHeader
         />
       </Box>

@@ -1,14 +1,15 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import { Box, Heading, Flex, Text } from 'rebass/styled-components'
-import { Input } from '@rebass/forms'
 import DataTable from 'react-data-table-component'
+import { useThemeValue } from '../../context/ThemeContext'
 
 interface Props {
   resources: any
 }
 
 export const DevResources: React.FC<Props> = ({ resources }) => {
+  const [{ theme, selectedTheme }, dispatch] = useThemeValue()
   // Loop through GraphQL query and merge any edges of nodes together
   // Merges arrays and Filters out empty arrays
   const repos = resources
@@ -41,7 +42,7 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
               p={2}
               mr={2}
               mb={2}
-              sx={{ border: '1px solid black', borderColor: 'black' }}
+              sx={{ border: '1px solid', borderColor: 'black' }}
             >
               <Link to={`/tags/${software}`}>
                 <Text variant="label">{software}</Text>
@@ -57,7 +58,7 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
       sortable: true,
       cell: row => (
         <Flex flexWrap="wrap" py={3} minWidth="100%">
-          {row.categories.map(software => (
+          {row.categories.map(category => (
             <Box
               minWidth="100%"
               p={2}
@@ -65,10 +66,11 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
               sx={{
                 border: '1px solid black',
                 borderColor: 'black',
+                color: 'black',
                 '&:not(:last-child)': { borderBottom: 0 },
               }}
             >
-              <Text variant="label">{software}</Text>
+              <Text variant="label">{category}</Text>
             </Box>
           ))}
         </Flex>
@@ -92,6 +94,7 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
           data={repos}
           defaultSortField="title"
           noHeader
+          theme={selectedTheme}
         />
       </Box>
     </section>
