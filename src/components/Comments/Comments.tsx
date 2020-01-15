@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Flex, Button } from 'rebass/styled-components'
+import { Flex } from 'rebass/styled-components'
 
 import ButtonOutline from '../Button/ButtonOutline'
 
@@ -8,32 +8,36 @@ interface Props {
     frontmatter: {
       title: string
       tags: string[]
-    },
+    }
     fields: {
       slug: string
     }
   }
 }
 
-export const Comments: React.FC<Props> = ({post}) => {
+export const Comments: React.FC<Props> = ({ post }) => {
   return (
     <Flex className="Comments container">
-      <Box
+      <ButtonOutline
         as="a"
         width={[1 / 2]}
+        height="3rem"
+        p={3}
         href={`http://twitter.com/share?text=${post.frontmatter.title}&url=http://whoisryosuke.com/${post.fields.slug}&hashtags=${post.frontmatter.tags}`}
+        sx={{ borderTop: 0, borderLeft: 0, borderRight: 0 }}
       >
-        <ButtonOutline width={1} sx={{ borderRight: 0 }}>
-          Discuss on Twitter
-        </ButtonOutline>
-      </Box>
-      <Box
+        🐦<sup>💬</sup> Discuss on Twitter
+      </ButtonOutline>
+      <ButtonOutline
         as="a"
         width={[1 / 2]}
+        height="3rem"
+        p={3}
         href={`http://www.tumblr.com/share/link?url=http://whoisryosuke.com${post.fields.slug}`}
+        sx={{ borderTop: 0, borderRight: 0 }}
       >
-        <ButtonOutline width={1}>Discuss on Tumblr</ButtonOutline>
-      </Box>
+        🌯<sup>💬</sup> Discuss on Tumblr
+      </ButtonOutline>
     </Flex>
   )
 }
