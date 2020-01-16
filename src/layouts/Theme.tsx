@@ -62,6 +62,9 @@ export const UIComponents = {
   pre: props => <div {...props} />,
   code: CodeBlock,
   table: Table,
+  flex: rebass.Flex,
+  box: rebass.Box,
+  heading: rebass.Heading,
   ...rebass,
 }
 
