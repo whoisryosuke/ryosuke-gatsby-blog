@@ -3,9 +3,16 @@ import { ThemeProvider } from './ThemeContext'
 import { ThemeOptions, THEME_OPTIONS } from '../layouts/Theme'
 
 export default ({ children }) => {
+  let initialTheme = 'light'
+  if (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
+    initialTheme = 'dark'
+  }
   const initialState = {
     theme: ThemeOptions.light,
-    selectedTheme: 'light',
+    selectedTheme: initialTheme,
   }
   const reducer = (state, action) => {
     switch (action.type) {
