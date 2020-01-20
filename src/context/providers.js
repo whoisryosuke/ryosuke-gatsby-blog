@@ -3,13 +3,13 @@ import { ThemeProvider } from './ThemeContext'
 import { ThemeOptions, THEME_OPTIONS } from '../layouts/Theme'
 
 export default ({ children }) => {
-  let initialTheme = 'light'
+  let initialTheme = THEME_OPTIONS.LIGHT
   if (
     typeof window !== 'undefined' &&
     window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches
   ) {
-    initialTheme = 'dark'
+    initialTheme = THEME_OPTIONS.DARK
   }
   const initialState = {
     theme: ThemeOptions.light,
