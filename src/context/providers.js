@@ -5,6 +5,7 @@ import { ThemeOptions, THEME_OPTIONS } from '../layouts/Theme'
 export default ({ children }) => {
   let initialTheme = 'light'
   if (
+    typeof window !== 'undefined' &&
     window.matchMedia &&
     window.matchMedia('(prefers-color-scheme: dark)').matches
   ) {
