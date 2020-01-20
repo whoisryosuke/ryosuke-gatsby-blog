@@ -85,7 +85,12 @@ export const DarkModeToggle: React.FC<Props> = React.memo(() => {
     })
   return (
     <StyledLabel for="checkbox" title="Change color scheme to dark mode">
-      <input type="checkbox" id="checkbox" onChange={changeTheme} />
+      <input
+        type="checkbox"
+        id="checkbox"
+        checked={selectedTheme === THEME_OPTIONS.DARK}
+        onChange={changeTheme}
+      />
       <div class="slider round"></div>
       <div class="toggle-moon">🌙</div>
       <div class="toggle-sun">☀️</div>
