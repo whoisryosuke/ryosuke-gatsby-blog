@@ -12,8 +12,7 @@ export default ({ children }) => {
     initialTheme = THEME_OPTIONS.DARK
   }
   const initialState = {
-    theme: ThemeOptions.light,
-    selectedTheme: initialTheme,
+    type: initialTheme,
   }
   const reducer = (state, action) => {
     switch (action.type) {
