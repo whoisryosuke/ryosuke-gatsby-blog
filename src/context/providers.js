@@ -12,7 +12,7 @@ export default ({ children }) => {
     initialTheme = THEME_OPTIONS.DARK
   }
   const initialState = {
-    theme: ThemeOptions.light,
+    theme: ThemeOptions[initialTheme],
     selectedTheme: initialTheme,
   }
   const reducer = (state, action) => {
