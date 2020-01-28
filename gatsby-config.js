@@ -43,8 +43,14 @@ module.exports = {
               tracedSVG: true,
             },
           },
+          {
+            resolve: `gatsby-remark-copy-linked-files`,
+            options: {
+              destinationDir: `blog`,
+              ignoreFileExtensions: [`png`, `jpg`, `jpeg`, `bmp`, `tiff`],
+            },
+          },
         ],
-        plugins: [`gatsby-remark-images`],
       },
     },
     {

@@ -36,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
   p+ul {
     margin-top:-1em;
   }
+  
+  p > img {
+    width:100%;
+  }
 `
 
 export type ThemeMode = 'dark' | 'light'
