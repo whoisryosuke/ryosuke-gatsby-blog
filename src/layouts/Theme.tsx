@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useLayoutEffect } from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
 
+import debounce from '../helpers/debounce'
+import { isDarkMode } from '../helpers/isDarkMode'
 import { DarkTheme, LightTheme } from '@assets/themes/'
 import { useThemeValue } from '../context/ThemeContext'
 
@@ -74,6 +76,24 @@ export const UIComponents = {
 
 export const Theme = ({ children }) => {
   const [{ theme, selectedTheme }, dispatch] = useThemeValue()
+
+  const toggleTheme =
+      selectedTheme == THEME_OPTIONS.DARK
+        ? THEME_OPTIONS.LIGHT
+        : THEME_OPTIONS.DARK
+
+  const checkDarkMode = () => {
+    if(isDarkMode() && selectedTheme !== THEME_OPTIONS.DARK) {
+      dispatch({
+        type: toggleTheme,
+      })
+    }
+  }
+
+  useLayoutEffect(() => {
+    window.addEventListener('focus', debounce(checkDarkMode, 250))
+  }) 
+  
   return (
     <ThemeProvider theme={theme}>
       <Fragment>
