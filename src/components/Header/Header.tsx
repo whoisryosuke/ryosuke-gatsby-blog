@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Link from 'gatsby-link'
 import { Box, Flex, Text } from 'rebass/styled-components'
-import { useThemeValue } from '../../context/ThemeContext'
+import { useTheme } from '../../context/ThemeContext'
 import DarkModeToggle from '../DarkModeToggle/DarkModeToggle'
 
 const StyledHeader = styled(Flex)`
@@ -230,7 +230,7 @@ interface HeaderProps {
 
 const Header: React.SFC<HeaderProps> = React.memo(
   ({ mobile, visible, toggleVisibility }) => {
-    const [{ theme, selectedTheme }, dispatch] = useThemeValue()
+    const theme = useTheme()
     return (
       <StyledHeader justifyContent="flex-end">
         <StyledHeaderNav mobile={mobile} visible={visible}>
