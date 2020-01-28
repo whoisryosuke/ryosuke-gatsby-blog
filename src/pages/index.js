@@ -45,9 +45,13 @@ const Frontpage = ({
         textAlign="right"
         p={3}
       >
-        <Link to={'blog'}>
-          <ButtonOutline>Find more reading material</ButtonOutline>
-        </Link>
+        <ButtonOutline
+          width={[1, 1, 1 / 3]}
+          as={Link}
+          to={'blog'}
+          p={2}
+          height="3rem"
+        >Find more reading material</ButtonOutline>
       </Box>
 
       {/*------- Projects loop -------*/}
