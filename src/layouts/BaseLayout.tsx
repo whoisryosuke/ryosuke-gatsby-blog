@@ -21,6 +21,7 @@ const BaseLayout = ({ children }) => (
       <link rel="icon" type="image/png" sizes="16x16" href={ favicon16 } />
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
+      <link href="https://fonts.googleapis.com/css?family=Fira+Code:500|Poppins:500|Roboto:400,400i,700,700i&display=swap" rel="stylesheet" />
     </Helmet>
     <MobileHeader />
 
