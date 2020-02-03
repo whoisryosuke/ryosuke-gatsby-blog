@@ -1,0 +1,60 @@
+---
+title: Linting Commits with Emoji
+date: '2020-02-03'
+section: blog
+tags:
+  [
+    'project management',
+    'devops',
+  ]
+---
+
+I'm a big fan of using emoji to quickly convey topics or ideas, it's helped me more quickly parse my commits visually. And since they're text based (:fire: = 🔥), I can also search logs for words to find particular types of commits. For a while, I've been using [this Git Commit Emoji table I found on Github's Gists](https://gist.github.com/whoisryosuke/d06bfd6d64e28a10fc26a0b9a8aff1b3). It helps organize my Git commits into topics, like `:bulb:` 💡 for documenting source code. Conforming to this convention has also ensured my commits stays more modular, allowing me to step forward or back easily.
+
+Recently I wanted to refine my practices a bit more and start to standardize my open source libraries. I've looked into things like [Semantic Release](https://github.com/semantic-release/semantic-release) before, but I'm not a huge fan of the style of commits that this process uses (`feat(pencil): remove graphiteWidth option`). They're simple enough, but it still requires a bit of parsing to look across a variety of commits and see what's going on.
+
+I've used [Husky](https://github.com/typicode/husky) in the past as an easy way to run pre-commit and post-commit Git hooks, like testing or linting my code, but I had never setup a linting process for my Git commits 🧐 Browsing the Husky docs, they recommended [commitlint](https://github.com/conventional-changelog/commitlint). The only issue was that commitlint used the same conventions as Semantic Release (ie: `fix(pencil):`). A little more research later and I found a [configuration for commitlint that uses a "gitmoji" convention](https://github.com/arvinxx/commitlint-config-gitmoji), which is identical (and more robust) than my current emoji table. 
+
+This was the (fairly quick!) process of setting up Git commits that use emojis:
+
+# **Install dependencies**
+
+`npm i -D husky @commitlint/cli @commitlint/config-conventional commitlint-config-gitmoji` 
+
+`yarn add -D husky @commitlint/cli @commitlint/config-conventional commitlint-config-gitmoji`
+
+# **Add Husky config to package.json**
+
+    {
+      "husky": {
+        "hooks": {
+          "pre-commit": "npm run lint && npm test",
+          "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+      }
+    }
+
+> Assumes you have a linting and testing environment setup. This may differ per project, so they've been skipped in this process. You can also remove that pre-commit hook to just use the commit linting.
+
+# **Create config for commitlint and gitmoji support**
+
+    echo "module.exports = {extends: ['./node_modules/commitlint-config-gitmoji']};" > commitlint.config.js
+
+# **Commit using emoji!**
+
+    git add .
+    git commit -m ":heavy_plus_sign: Husky + commitlint"
+
+# Semantic Versioning
+
+The only thing this process doesn't cover is automated semantic versioning, like Semantic Release. You commit with emojis, it's enforced with a lint, but there's no process for handling the incrementing of the library version in the `package.json`. 
+
+I looked into integrating Gitmoji with Semantic Release and [found a plugin that accomplishes it](https://github.com/momocow/semantic-release-gitmoji) to some extent. The way it handles conforming to the release process is bundling WIP commits based on Git issues. Then you release using a "release" commit with it's own emoji. This didn't conform to my personal workflow, which is a bit more loose, since I'm the only or one of the few maintainers. If I needed to scale a project, I would consider this (or just stick with the more standard, less snazzy [Conventional Commits format](https://www.conventionalcommits.org/en/v1.0.0/)).
+
+# **References**
+
+- [https://github.com/arvinxx/commitlint-config-gitmoji](https://github.com/arvinxx/commitlint-config-gitmoji)
+- [https://github.com/conventional-changelog/commitlint](https://github.com/conventional-changelog/commitlint)
+- [https://commitlint.js.org/#/reference-rules](https://commitlint.js.org/#/reference-rules)
+- [https://github.com/momocow/semantic-release-gitmoji](https://github.com/momocow/semantic-release-gitmoji)
+- [https://www.conventionalcommits.org/en/v1.0.0/](https://www.conventionalcommits.org/en/v1.0.0/)
