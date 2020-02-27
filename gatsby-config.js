@@ -32,7 +32,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        extensions: [".mdx", ".md"],
+        extensions: ['.mdx', '.md'],
 
         // Handle images inside posts
         gatsbyRemarkPlugins: [
@@ -40,7 +40,6 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1080,
-              tracedSVG: true,
             },
           },
           {
@@ -54,14 +53,20 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-remark-images`,
+      options: {
+        maxWidth: 1080,
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "Ryosuke - Designer, Developer, & Influencer",
-        short_name: "Ryosuke",
-        start_url: "/",
-        background_color: "#F5F5F5",
-        theme_color: "#005CDD",
-        display: "minimal-ui",
+        name: 'Ryosuke - Designer, Developer, & Influencer',
+        short_name: 'Ryosuke',
+        start_url: '/',
+        background_color: '#F5F5F5',
+        theme_color: '#005CDD',
+        display: 'minimal-ui',
         icon: `static/assets/favicon/android-chrome-512x512.png`, // This path is relative to the root of the site.
         // icons: [
         //   {
@@ -101,13 +106,13 @@ module.exports = {
               }
             }
           }
-      }`
-      }
+      }`,
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-116899380-1",
+        trackingId: 'UA-116899380-1',
         // Puts tracking script in the head instead of the body
         head: false,
         // Setting this parameter is optional
@@ -120,4 +125,4 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-typescript`,
   ],
-};
+}
