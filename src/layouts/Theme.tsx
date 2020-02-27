@@ -35,6 +35,10 @@ const GlobalStyle = createGlobalStyle`
     border-color: ${props => props.theme.colors.primary};
   }
 
+  .ArticlePage {
+    word-wrap: break-word;
+  }
+
   p+ul {
     margin-top:-1em;
   }
@@ -78,12 +82,12 @@ export const Theme = ({ children }) => {
   const [{ theme, selectedTheme }, dispatch] = useThemeValue()
 
   const toggleTheme =
-      selectedTheme == THEME_OPTIONS.DARK
-        ? THEME_OPTIONS.LIGHT
-        : THEME_OPTIONS.DARK
+    selectedTheme == THEME_OPTIONS.DARK
+      ? THEME_OPTIONS.LIGHT
+      : THEME_OPTIONS.DARK
 
   const checkDarkMode = () => {
-    if(isDarkMode() && selectedTheme !== THEME_OPTIONS.DARK) {
+    if (isDarkMode() && selectedTheme !== THEME_OPTIONS.DARK) {
       dispatch({
         type: toggleTheme,
       })
@@ -92,8 +96,8 @@ export const Theme = ({ children }) => {
 
   useLayoutEffect(() => {
     window.addEventListener('focus', debounce(checkDarkMode, 250))
-  }) 
-  
+  })
+
   return (
     <ThemeProvider theme={theme}>
       <Fragment>
