@@ -17,7 +17,7 @@ Markdown is my jam. I'm always looking for ways to integrate it into my workflow
 
 I looked into prerendering web components, and I found that StencilJS not only has a solution for it, they had [fantastic example](https://github.com/ionic-team/stencil-site) of an app built with web components and Markdown. The only issue? None of it was documented 😅 So I took the time to go through the repo, reverse engineer it, and write a guide on how to use it as a template for creating your own Markdown-based web component app.
 
-![web-component-markdown-starter.png](web-component-markdown-starter.png)
+![./web-component-markdown-starter.png](./web-component-markdown-starter.png)
 
 Check out [the source code here](https://github.com/whoisryosuke/stencil-markdown-starter), or read on to discover my process and learn how to use it!
 
@@ -31,7 +31,7 @@ The simplest issue you begin to encounter in this process is trying to use `fetc
 
 This issue arises with web components when the server (or NodeJS) tries to run web component code and breaks — because it doesn't have an actual DOM. You have to somehow polyfill the missing DOM methods and elements for NodeJS so it can parse the web components correctly.
 
-![gridsome-web-component-error.png](gridsome-web-component-error.png)
+![./gridsome-web-component-error.png](./gridsome-web-component-error.png)
 
 Here you can see an error from Gridsome's build process where it breaks because the web component's reference the `window` (which NodeJS doesn't have).
 
