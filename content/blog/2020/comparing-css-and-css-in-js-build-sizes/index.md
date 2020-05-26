@@ -19,7 +19,11 @@ So in total, we have 3 "components" that require CSS in some way.
 
 I created both apps fairly identically (beyond adapting the CSS slightly to remove most unnecessary class names -- 🤹‍♀️ props ftw) and then exported a static version using the [NextJS build and export process](https://nextjs.org/docs/#usage). To test the files in a "production" environment, I deployed both in seconds to Zeit's Now hosting service (`cd out && now`).
 
-[Untitled](https://www.notion.so/e4870a4848f544baa13565e5d15515fa)
+|                   | CSS        | Styled Components |
+| ----------------- | ---------- | ----------------- |
+| Bundle Size       | ✅ 5.8 MB  | ❌ 6.4 MB         |
+| Bytes Transferred | ✅ 55.2 KB | ❌ 71.4 KB        |
+| Load Time         | ✅ 1.18 s  | ❌ 1.31 s         |
 
 The clear winner by numbers is CSS (and it's unminified!), but let's take a closer look at the numbers for a minute:
 
