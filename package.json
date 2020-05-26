@@ -13,7 +13,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages",
     "clean": "rm -rf .cache && npm run develop",
     "develop": "nodemon --exec \"gatsby develop\"",
     "debug": "nodemon --exec \"node --inspect-brk --no-lazy node_modules/.bin/gatsby develop\"",
@@ -56,7 +56,7 @@
     "@types/rebass": "^4.0.1",
     "array-flat-polyfill": "^1.0.1",
     "babel-plugin-styled-components": "^1.10.6",
-    "gatsby": "^2.15.28",
+    "gatsby": "^2.22.11",
     "gatsby-image": "^2.2.23",
     "gatsby-link": "^2.2.17",
     "gatsby-paginate": "^1.1.1",
