@@ -2,7 +2,7 @@
 title: xStyled vs Styled System for Design Systems
 date: '2020-05-26'
 section: blog
-tags: ['design systems', 'css', 'react']
+tags: ['design systems', 'css', 'react', 'css in js']
 ---
 
 Lately I've been refining my process for developing new websites from scratch. In the past, I've reached for larger component libraries and CSS frameworks to scaffold my projects, from [Bootstrap](https://getbootstrap.com/) to [Semantic UI](https://semantic-ui.com/) to [Material](https://materializecss.com/). But when I work with small to mid sized projects, these libraries can often be overkill, and an immense barrier to overcome in terms of customization. Semantic UI and Bootstrap are great, but theming them are a sinkhole of time, lost to endless LESS/SASS variables. I'm also left with loads of unused CSS unless I setup a purge process, and even those are inaccurate.
