@@ -12,12 +12,16 @@ const ListItem = ({ children, className }) => (
 
 const StyledListItem = styled(ListItem)`
   list-style: square;
-  margin-bottom: ${(props) => props.theme.space[3]}px;
+  margin-bottom: ${(props) => props.theme.space[4]}px;
 
   & ul {
-    margin-top: ${(props) => props.theme.space[3]}px;
+    margin-top: ${(props) => props.theme.space[4]}px;
     margin-bottom: 0;
     padding-bottom: 0;
+  }
+
+  & p:last-child {
+    margin-bottom: 0;
   }
 `
 
