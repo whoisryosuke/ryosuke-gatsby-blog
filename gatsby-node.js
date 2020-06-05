@@ -135,7 +135,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     // We'll call `createPage` for each result
     posts.forEach(({ node }, index) => {
         // Grab random tag to do related posts
-        var tag = node.frontmatter.tags[Math.floor(Math.random() * node.frontmatter.tags.length)];
+        var tag = node.frontmatter.tags ? node.frontmatter.tags[Math.floor(Math.random() * node.frontmatter.tags.length)] : ""
         createPage({
             // This is the slug we created before
             // (or `node.frontmatter.slug`)
