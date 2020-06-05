@@ -147,9 +147,14 @@ export default class BlogPost extends Component {
           <section className="container">
             {/*----- Post content -----*/}
             <section className="content">
-              <Heading variant="header" px={[4, 4, 6]} my={3}>
-                {post.frontmatter.title}
-              </Heading>
+              <Box px={[4, 4, 6]}>
+                <Heading variant="header" mt={6} mb={3}>
+                  {post.frontmatter.title}
+                </Heading>
+                <Heading color="black" variant="label" mb={5}>
+                  {post.frontmatter.date}
+                </Heading>
+              </Box>
               <Box maxWidth="text" px={[4, 4, 6]}>
                 <MDXRenderer>{post.body}</MDXRenderer>
               </Box>
