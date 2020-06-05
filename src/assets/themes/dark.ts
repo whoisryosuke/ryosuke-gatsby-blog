@@ -135,7 +135,7 @@ const theme = {
         border: '1px solid',
         borderColor: 'black',
         backgroundColor: 'rgb(1, 22, 39)',
-        color: 'rgb(173, 219, 103)',
+        color: 'rgb(214, 222, 235)',
       },
     },
     list: {
