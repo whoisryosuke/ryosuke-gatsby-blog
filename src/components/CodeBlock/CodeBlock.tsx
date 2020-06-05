@@ -11,9 +11,9 @@ import { Box, Button, Flex, Heading } from 'rebass/styled-components'
 import ButtonOutline from '@components/Button/ButtonOutline'
 
 const CodeBlockBox = styled(Box)`
-  border: 1px solid ${props => props.theme.colors.black};
-  font-size: ${props => props.theme.fontSizes[1]}px;
-  line-height: ${props => props.theme.lineHeights.body}em;
+  border: 1px solid ${(props) => props.theme.colors.black};
+  font-size: ${(props) => props.theme.fontSizes[1]}px;
+  line-height: ${(props) => props.theme.lineHeights.body}em;
 
   & pre {
     margin: 0;
