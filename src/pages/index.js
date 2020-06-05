@@ -41,6 +41,7 @@ const Frontpage = ({
       {/*------- Posts loop -------*/}
       <PostLoop type="blog" loop={blog.edges} skip={true} />
       <Box
+        bg="white"
         sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
         textAlign="right"
         p={3}
@@ -51,13 +52,16 @@ const Frontpage = ({
           to={'blog'}
           p={2}
           height="3rem"
-        >Find more reading material</ButtonOutline>
+        >
+          Find more reading material
+        </ButtonOutline>
       </Box>
 
       {/*------- Projects loop -------*/}
       <SectionHeading emoji="🎨" heading="Latest projects" />
       <PostLoop type="project" loop={projects.edges} skip={false} />
       <Flex
+        bg="white"
         sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
         textAlign="right"
         justifyContent="flex-end"
@@ -73,8 +77,6 @@ const Frontpage = ({
           See more eye candy
         </ButtonOutline>
       </Flex>
-
-      <Newsletter />
 
       <Contact />
     </Layout>

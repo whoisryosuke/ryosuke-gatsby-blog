@@ -209,7 +209,7 @@ const Skills = () => {
       name: 'Name',
       selector: 'name',
       sortable: true,
-      cell: row => (
+      cell: (row) => (
         <Heading variant="label" p={2} sx={{ color: 'black' }}>
           {row.name}
         </Heading>
@@ -219,7 +219,7 @@ const Skills = () => {
       name: 'Type',
       selector: 'type',
       sortable: true,
-      cell: row => (
+      cell: (row) => (
         <Box
           p={2}
           sx={{
@@ -236,7 +236,7 @@ const Skills = () => {
       name: 'Category',
       selector: 'category',
       sortable: true,
-      cell: row => (
+      cell: (row) => (
         <Heading variant="label" p={2} sx={{ color: 'black' }}>
           {row.category}
         </Heading>
@@ -245,7 +245,7 @@ const Skills = () => {
   ]
 
   return (
-    <section className="Skills">
+    <Box bg="white" className="Skills">
       <SectionHeading emoji="💽" heading="Technology and software I use" />
       <Box
         py={4}
@@ -259,7 +259,7 @@ const Skills = () => {
           noHeader
         />
       </Box>
-    </section>
+    </Box>
   )
 }
 

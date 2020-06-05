@@ -3,32 +3,36 @@ import styled from 'styled-components'
 import throttle from './throttle'
 
 const Progress = styled.progress`
-    position: fixed;
-    display: block;
-    top: 5rem;
-    width: 100vw;
-    height: 0.4rem;
-    border: 0;
-    background-color: transparent;
-    color:#005CDD;
-    z-index: 810;
-    border:1px solid ${(props) => props.theme.colors.black};
+  /* Reset the default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+
+  position: fixed;
+  display: block;
+  top: 5rem;
+  width: 100vw;
+  height: 0.4rem;
+  border: 0;
+  color: #005cdd;
+  z-index: 810;
+  border-bottom: 1px solid ${(props) => props.theme.colors.black};
+  border-top: 1px solid ${(props) => props.theme.colors.black};
 
   &::-webkit-progress-bar {
-      background: #FFF;
+    background-color: ${(props) => props.theme.colors.white};
   }
   &::-webkit-progress-value {
-    background: #005CDD;
+    background: ${(props) => props.theme.colors.primary};
   }
   &::-moz-progress-bar {
-    background-color: #005CDD;
+    background: ${(props) => props.theme.colors.primary};
   }
 `
 
 interface Props {
-  targetEl: string,
-  className: string,
-  style: object,
+  targetEl: string
+  className: string
+  style: object
 }
 
 /**
@@ -36,7 +40,6 @@ interface Props {
  * via: https://github.com/makotot/react-reading-progress
  */
 export default class ReadingProgress extends React.Component<Props, {}> {
-
   constructor(props) {
     super(props)
 
@@ -54,7 +57,9 @@ export default class ReadingProgress extends React.Component<Props, {}> {
   componentDidMount() {
     const { props } = this
 
-    this.targetEl = props.targetEl ? document.querySelector(props.targetEl) : document.body
+    this.targetEl = props.targetEl
+      ? document.querySelector(props.targetEl)
+      : document.body
     this.rootEl = props.rootEl ? document.querySelector(props.rootEl) : window
 
     this.measure()
@@ -68,14 +73,13 @@ export default class ReadingProgress extends React.Component<Props, {}> {
   }
 
   measureViewportHeight() {
-    return !this.props.rootEl ?
-      Math.max(document.body.clientHeight, window.innerHeight || 0)
-      :
-      this.rootEl.clientHeight
+    return !this.props.rootEl
+      ? Math.max(document.body.clientHeight, window.innerHeight || 0)
+      : this.rootEl.clientHeight
   }
 
   measure() {
-    this.targetHeight = this.targetEl.clientHeight;
+    this.targetHeight = this.targetEl.clientHeight
     // this.viewportH = this.measureViewportHeight()
     this.max = this.targetHeight - this.targetEl.offsetTop
   }
@@ -89,10 +93,9 @@ export default class ReadingProgress extends React.Component<Props, {}> {
   }
 
   update = () => {
-    const value = !this.props.rootEl ?
-      window.pageYOffset || document.documentElement.scrollTop
-      :
-      this.rootEl.scrollTop
+    const value = !this.props.rootEl
+      ? window.pageYOffset || document.documentElement.scrollTop
+      : this.rootEl.scrollTop
 
     this.setState({
       value,
@@ -101,11 +104,11 @@ export default class ReadingProgress extends React.Component<Props, {}> {
 
   render() {
     return (
-        <Progress
-        value={ this.state.value }
-        max={ this.max }
-        className={ this.props.className }
-        style={ this.props.style }
+      <Progress
+        value={this.state.value}
+        max={this.max}
+        className={this.props.className}
+        style={this.props.style}
       />
     )
   }

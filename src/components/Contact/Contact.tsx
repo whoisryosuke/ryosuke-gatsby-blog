@@ -7,27 +7,29 @@ import ButtonOutline from '../Button/ButtonOutline'
 import ContactSVG from '../../assets/svg/contact-circles.svg'
 
 const StyledLabel = styled(Label)`
-  font-family: ${props => props.theme.fonts.heading};
+  font-family: ${(props) => props.theme.fonts.heading};
 `
 const StyledInput = styled(Input)`
   border: 0 !important;
-  border-bottom: 1px solid ${props => props.theme.colors.black} !important;
+  border-bottom: 1px solid ${(props) => props.theme.colors.black} !important;
   margin-bottom: 1rem !important;
 `
 
 const SectionBox = styled(Box)`
-  border-bottom: 1px solid ${props => props.theme.colors.black} !important;
+  background-color: ${(props) => props.theme.colors.white};
+  color: ${(props) => props.theme.colors.black};
+  border-bottom: 1px solid ${(props) => props.theme.colors.black} !important;
   padding: 3rem 0;
 
   background-image: url(${ContactSVG});
   background-repeat: no-repeat;
 
-  ${props => props.theme.mediaQueries.mobile} {
+  ${(props) => props.theme.mediaQueries.mobile} {
     background-size: 150%;
     background-position: -150% 30%;
   }
 
-  ${props => props.theme.mediaQueries.tablet} {
+  ${(props) => props.theme.mediaQueries.tablet} {
     background-size: 60%;
     background-position: center right;
   }
@@ -62,10 +64,10 @@ export const Contact: React.FC<Props> = () => {
       name: 'something cool',
     },
   ]
-  const updateContactData = e => {
+  const updateContactData = (e) => {
     setContactData({ ...contactData, [e.target.name]: e.target.value })
   }
-  const submitContactData = e => {
+  const submitContactData = (e) => {
     console.log('contactData', contactData)
   }
 

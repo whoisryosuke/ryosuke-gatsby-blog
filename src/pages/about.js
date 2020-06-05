@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { Box, Flex, Text, Heading, Image } from 'rebass/styled-components'
 
 import Layout from '../layouts/BaseLayout'
-import SEO from '@components/SEO/SEO';
+import SEO from '@components/SEO/SEO'
 import SectionHeading from '../components/SectionHeading/SectionHeading'
 import Skills from '../components/Skills/Skills'
 import Newsletter from '../components/Newsletter/Newsletter'
@@ -15,46 +15,61 @@ import BombEmoji from '../assets/img/emoji/bomb.png'
 import RyosukePortrait from '../assets/img/self-portrait-blue-w-text.jpg'
 
 const Highlight = styled.span`
-  color: ${props => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.primary};
 `
 
 export default class Frontpage extends Component {
-
   render() {
     let { data } = this.props
     const skip = false
 
     return (
       <Layout className="About pt2">
-        <SEO
-          key="seo-about"
-          title="About"
-          url="about"
-        />
-        <Box px={3} py={5} sx={{ borderBottom: '1px solid black' }}>
-          <Heading fontSize={[1, 2, 3]}>
+        <SEO key="seo-about" title="About" url="about" />
+        <Box
+          bg="white"
+          px={3}
+          py={5}
+          sx={{
+            borderBottom: '1px solid black',
+            borderColor: 'black',
+          }}
+        >
+          <Heading color="black" fontSize={[1, 2, 3]}>
             Ryosuke meaning <Highlight>clear</Highlight> mediation.
           </Heading>
-          <Heading fontSize={[4, 5, 6]}>
+          <Heading color="black" fontSize={[4, 5, 6]}>
             The artist formerly known as <Highlight>Oscar</Highlight>{' '}
             <Image src={BombEmoji} alt="Bomb emoji" width="40px" />
           </Heading>
         </Box>
         <Flex
-          sx={{ borderBottom: '1px solid black' }}
+          bg="white"
+          sx={{
+            borderBottom: '1px solid black',
+            borderColor: 'black',
+          }}
           flexWrap="wrap"
         >
-          <Box as="figure" width={[1, 1, 2 / 3]} minHeight={6} textAlign="center" sx={{backgroundImage:`url(${RyosukePortrait})`, backgroundPosition:'center', backgroundSize:'cover'}} />
-            
-          <Box width={[1, 1, 1 / 3]}
-            px={3}
-            py={5}>
-            <Text variant="paragraph" px={5} mt={4} mb={4}>
+          <Box
+            as="figure"
+            width={[1, 1, 2 / 3]}
+            minHeight={6}
+            textAlign="center"
+            sx={{
+              backgroundImage: `url(${RyosukePortrait})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+            }}
+          />
+
+          <Box width={[1, 1, 1 / 3]} px={3} py={5}>
+            <Text color="black" variant="paragraph" px={5} mt={4} mb={4}>
               I've been working as a designer and developer for{' '}
               <strong>over 15 years now</strong>, with over a decade of
               experience in the cannabis industry.
             </Text>
-            <Text variant="paragraph" px={5}>
+            <Text color="black" variant="paragraph" px={5}>
               From engineering <a href="http://kushy.net">web apps</a> and
               e-commerce solutions, to designing brands and products, to
               producing innovative digital media, and even creating{' '}
@@ -81,12 +96,13 @@ export default class Frontpage extends Component {
         <SectionHeading emoji="🎓" heading="Speaking and Workshops" tall />
         <Box
           as="section"
+          bg="white"
           px={3}
           py={5}
           className="Speaking"
-          sx={{ borderBottom: '1px solid black' }}
+          sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
         >
-          <Text px={5}>
+          <Text color="black" px={5}>
             I’m available for speaking gigs,{' '}
             <a href="mailto:ryosuke.san.hana@gmail.com">contact me anytime</a>.
             I love to speak about my experiences with full-stack development,
@@ -100,8 +116,6 @@ export default class Frontpage extends Component {
                     </ul> */}
           {/* <h3 className="Title text blue">Previous Speaking Engagements</h3> */}
         </Box>
-
-        <Newsletter />
 
         <Contact />
       </Layout>

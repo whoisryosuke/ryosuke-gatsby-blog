@@ -14,18 +14,18 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
   // Merges arrays and Filters out empty arrays
   const repos = resources
     .map(
-      resource =>
+      (resource) =>
         resource.node.resources.development !== null &&
         resource.node.resources.development
     )
     .flat()
-    .filter(resource => resource !== false)
+    .filter((resource) => resource !== false)
   const columns = [
     {
       name: 'Name',
       selector: 'name',
       sortable: true,
-      cell: row => (
+      cell: (row) => (
         <Heading variant="label" p={2}>
           <a href={row.link}>{row.name}</a>
         </Heading>
@@ -35,9 +35,9 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
       name: 'Software',
       selector: 'software',
       sortable: true,
-      cell: row => (
+      cell: (row) => (
         <Flex flexWrap="wrap" py={3}>
-          {row.software.map(software => (
+          {row.software.map((software) => (
             <Box
               p={2}
               mr={2}
@@ -56,9 +56,9 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
       name: 'Category',
       selector: 'categories',
       sortable: true,
-      cell: row => (
+      cell: (row) => (
         <Flex flexWrap="wrap" py={3} minWidth="100%">
-          {row.categories.map(category => (
+          {row.categories.map((category) => (
             <Box
               minWidth="100%"
               p={2}
@@ -84,7 +84,7 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
   ]
 
   return (
-    <section className="DevResources">
+    <Box bg="white" className="DevResources">
       <Box
         py={4}
         sx={{ borderBottom: '1px solid black', borderColor: 'black' }}
@@ -97,7 +97,7 @@ export const DevResources: React.FC<Props> = ({ resources }) => {
           theme={selectedTheme}
         />
       </Box>
-    </section>
+    </Box>
   )
 }
 

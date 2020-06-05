@@ -94,7 +94,7 @@ export default class BlogPost extends Component {
       : (related = null)
     const currentDate = new Date()
 
-    const tags = post.frontmatter.tags.map(tag => (
+    const tags = post.frontmatter.tags.map((tag) => (
       <Heading
         width={[1 / 2, 1 / 3, 1 / 4]}
         p={3}
@@ -134,9 +134,7 @@ export default class BlogPost extends Component {
           isBlogPost
         />
         <Box
-          maxWidth="text"
-          mx="auto"
-          px={[4, 4, 6]}
+          bg="white"
           py={[1, 2]}
           as="article"
           className={'ArticlePage ' + post.frontmatter.section}
@@ -149,11 +147,12 @@ export default class BlogPost extends Component {
           <section className="container">
             {/*----- Post content -----*/}
             <section className="content">
-              <Heading variant="header" my={3}>
+              <Heading variant="header" px={[4, 4, 6]} my={3}>
                 {post.frontmatter.title}
               </Heading>
-
-              <MDXRenderer>{post.body}</MDXRenderer>
+              <Box maxWidth="text" px={[4, 4, 6]}>
+                <MDXRenderer>{post.body}</MDXRenderer>
+              </Box>
             </section>
           </section>
         </Box>
@@ -183,7 +182,7 @@ export default class BlogPost extends Component {
             src={ryosukeAvatar}
             alt="Blue square avatar white centered hiragana text reading Ryosuke"
           />
-          <Heading p={3} variant="label">
+          <Heading color="black" p={3} variant="label">
             @Ryosuke
             <span className="date" style={{ marginLeft: '1em' }}>
               {nicetime(currentDate, postDate)}

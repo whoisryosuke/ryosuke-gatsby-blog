@@ -29,6 +29,7 @@ const BaseLayout = ({ children }) => (
     <MobileHeader />
 
     <Box
+      bg="white"
       as="section"
       pt="4.8rem"
       maxWidth="1920px"

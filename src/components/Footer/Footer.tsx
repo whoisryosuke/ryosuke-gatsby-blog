@@ -28,7 +28,7 @@ import TwitterIcon from '@components/icons/Twitter'
 const StyledFlex = styled(Flex)`
   padding: 3rem 4rem;
 
-  ${props => props.theme.mediaQueries.mobile} {
+  ${(props) => props.theme.mediaQueries.mobile} {
     text-align: center;
 
     & .icon-nav {
@@ -36,7 +36,7 @@ const StyledFlex = styled(Flex)`
       justify-content: center;
     }
   }
-  ${props => props.theme.mediaQueries.tablet} {
+  ${(props) => props.theme.mediaQueries.tablet} {
     text-align: left;
     & .icon-nav {
       justify-content: flex-end;
@@ -48,7 +48,7 @@ const StyledLink = styled.a`
   border-bottom: 0;
   margin-right: 1em;
   opacity: 0.5;
-  transition: opacity ${props => props.theme.animation.default};
+  transition: opacity ${(props) => props.theme.animation.default};
 
   &:hover {
     opacity: 1;
@@ -64,10 +64,12 @@ interface Props {}
 
 export const Footer: React.FC<Props> = () => {
   return (
-    <Box as="footer">
+    <Box as="footer" bg="white">
       <StyledFlex justifyContent="space-between" flexWrap="wrap">
         <Box width={[1, 1, 1, 1 / 3]} mb={3}>
-          <Text variant="label">Copyright &copy; 2019, Oscar Diaz</Text>
+          <Text variant="label" color="black">
+            Copyright &copy; 2019, Oscar Diaz
+          </Text>
         </Box>
         <Flex className="icon-nav" width={[1, 1, 1, 2 / 3]}>
           <StyledLink
