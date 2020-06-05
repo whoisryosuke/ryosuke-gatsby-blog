@@ -97,7 +97,7 @@ export const CodeBlock: React.FC<Props> = ({ children, className, live }) => {
     )
   }
   return (
-    <CodeBlockBox my={3}>
+    <CodeBlockBox mb={3}>
       <Highlight
         {...defaultProps}
         code={children}
