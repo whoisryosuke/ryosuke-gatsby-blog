@@ -1,6 +1,6 @@
 import path from 'path'
 import React from 'react'
-import Helmet from 'react-helmet'
+import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 import config from '../../config'
 
@@ -79,15 +79,17 @@ const getSchemaOrgJSONLD = ({
 }
 
 const SEO = ({ postData, postImage, isBlogPost, title, description, url }) => {
-  const postMeta = postData && 'frontmatter' in postData ? postData.frontmatter : {}
+  const postMeta =
+    postData && 'frontmatter' in postData ? postData.frontmatter : {}
 
   const pageTitle = title || postMeta.title || config.title
   const pageDescription =
     description || postMeta.description || config.description
   const image = `${config.url}${postImage}` || config.image
-  const pageUrl = url || postMeta.slug
-    ? `${config.url}${path.sep}${url || postMeta.slug}`
-    : config.url
+  const pageUrl =
+    url || postMeta.slug
+      ? `${config.url}${path.sep}${url || postMeta.slug}`
+      : config.url
   const datePublished = isBlogPost ? postMeta.datePublished : false
 
   const schemaOrgJSONLD = getSchemaOrgJSONLD({
