@@ -83,7 +83,7 @@ const theme = {
     header: {
       fontFamily: fonts.heading,
       lineHeight: '1.25',
-      fontSize: [4, 4, 5, 6],
+      fontSize: [6, 6, 6, 6],
       marginBottom: 3,
       color: colors.black,
     },
