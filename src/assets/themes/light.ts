@@ -122,6 +122,15 @@ const theme = {
       lineHeight: '1.75',
       fontSize: [1, 2],
       marginBottom: 4,
+      '& code': {
+        py: 1,
+        px: 2,
+        mx: 1,
+        border: '1px solid',
+        borderColor: 'black',
+        backgroundColor: 'muted',
+        color: 'primary',
+      },
     },
     list: {
       fontFamily: fonts.body,

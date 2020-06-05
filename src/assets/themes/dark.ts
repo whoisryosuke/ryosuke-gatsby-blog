@@ -128,6 +128,15 @@ const theme = {
       fontSize: [1, 2],
       marginBottom: 4,
       color: colors.black,
+      '& code': {
+        py: 1,
+        px: 2,
+        mx: 1,
+        border: '1px solid',
+        borderColor: 'black',
+        backgroundColor: 'rgb(1, 22, 39)',
+        color: 'rgb(173, 219, 103)',
+      },
     },
     list: {
       fontFamily: fonts.body,
