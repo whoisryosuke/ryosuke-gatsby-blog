@@ -10,6 +10,7 @@ const StyledBox = styled(Box)`
   background-image: url(${TriangleBG});
   background-color: ${(props) => props.theme.colors.white};
   background-size: 200px 200px;
+  background-attachment: fixed;
   position: relative;
   z-index: 10;
 
