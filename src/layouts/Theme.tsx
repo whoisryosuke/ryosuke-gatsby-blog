@@ -16,8 +16,8 @@ const GlobalStyle = createGlobalStyle`
   html, body {
     font-family: Arial, Helvetica, sans-serif;
     margin:0;
-    background: ${({ theme }) => theme.colors.background}
-    color: ${({ theme }) => theme.colors.text}
+    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   h1,h2,h3,h4,h5 {
