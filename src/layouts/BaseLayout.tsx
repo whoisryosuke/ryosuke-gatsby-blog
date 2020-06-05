@@ -22,7 +22,7 @@ const BaseLayout = ({ children }) => (
       <meta name="msapplication-TileColor" content="#da532c" />
       <meta name="theme-color" content="#ffffff" />
       <link
-        href="https://fonts.googleapis.com/css?family=Fira+Code:500|Poppins:500|Roboto:400,400i,700,700i&display=swap"
+        href="https://fonts.googleapis.com/css?family=Fira+Code:500|Archivo:700|Roboto:400,400i,700,700i&display=swap"
         rel="stylesheet"
       />
     </Helmet>
