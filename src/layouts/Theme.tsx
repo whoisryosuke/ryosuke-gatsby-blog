@@ -1,9 +1,10 @@
-import React, { Fragment, useLayoutEffect } from 'react'
+import React, { Fragment, useCallback } from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
 
 import debounce from '../helpers/debounce'
 import { isDarkMode } from '../helpers/isDarkMode'
+import useEventListener from '../helpers/hooks/useEventListener'
 import { DarkTheme, LightTheme } from '@assets/themes/'
 import { useThemeValue } from '../context/ThemeContext'
 
@@ -94,9 +95,11 @@ export const Theme = ({ children }) => {
     }
   }
 
-  useLayoutEffect(() => {
-    window.addEventListener('focus', debounce(checkDarkMode, 250))
-  })
+  // Event handler utilizing useCallback ...
+  // ... so that reference never changes.
+  const handler = useCallback(checkDarkMode, [theme])
+
+  useEventListener('onload', handler)
 
   return (
     <ThemeProvider theme={theme}>
