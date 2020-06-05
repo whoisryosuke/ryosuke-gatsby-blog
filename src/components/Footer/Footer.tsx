@@ -63,12 +63,13 @@ const StyledLink = styled.a`
 interface Props {}
 
 export const Footer: React.FC<Props> = () => {
+  const currentDate = new Date()
   return (
     <Box as="footer" bg="white">
       <StyledFlex justifyContent="space-between" flexWrap="wrap">
         <Box width={[1, 1, 1, 1 / 3]} mb={3}>
           <Text variant="label" color="black">
-            Copyright &copy; 2019, Oscar Diaz
+            Copyright &copy; 2019-{currentDate.getFullYear()}, Oscar Diaz
           </Text>
         </Box>
         <Flex className="icon-nav" width={[1, 1, 1, 2 / 3]}>
