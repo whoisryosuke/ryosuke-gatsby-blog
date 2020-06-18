@@ -17,8 +17,10 @@ const MobileHeader = () => {
   }
 
   useLayoutEffect(() => {
-    window.addEventListener('resize', debounce(resize, 250))
-    resize()
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', debounce(resize, 250))
+      resize()
+    }
   })
 
   return (
