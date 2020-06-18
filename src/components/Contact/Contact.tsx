@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled, { keyframes } from 'styled-components'
-import { Heading, Flex, Button, Box, Text } from 'rebass/styled-components'
+import { Heading, Flex, Box, Text } from 'rebass/styled-components'
 import { Label, Input, Select } from '@rebass/forms'
 import ButtonOutline from '../Button/ButtonOutline'
 
