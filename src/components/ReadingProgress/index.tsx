@@ -55,21 +55,25 @@ export default class ReadingProgress extends React.Component<Props, {}> {
   }
 
   componentDidMount() {
-    const { props } = this
+    if (typeof window !== 'undefined') {
+      const { props } = this
 
-    this.targetEl = props.targetEl
-      ? document.querySelector(props.targetEl)
-      : document.body
-    this.rootEl = props.rootEl ? document.querySelector(props.rootEl) : window
+      this.targetEl = props.targetEl
+        ? document.querySelector(props.targetEl)
+        : document.body
+      this.rootEl = props.rootEl ? document.querySelector(props.rootEl) : window
 
-    this.measure()
-    this.rootEl.addEventListener('scroll', this.handleScroll)
-    window.addEventListener('resize', this.handleResize)
+      this.measure()
+      this.rootEl.addEventListener('scroll', this.handleScroll)
+      window.addEventListener('resize', this.handleResize)
+    }
   }
 
   componentWillUnmount() {
-    this.rootEl.removeEventListener('scroll', this.handleScroll)
-    window.removeEventListener('resize', this.handleResize)
+    if (typeof window !== 'undefined') {
+      this.rootEl.removeEventListener('scroll', this.handleScroll)
+      window.removeEventListener('resize', this.handleResize)
+    }
   }
 
   measureViewportHeight() {
