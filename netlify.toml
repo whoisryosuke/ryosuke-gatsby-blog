@@ -1,5 +1,8 @@
 [build]
+  # This is the directory that you are publishing from (relative to root of your repo)
   publish = "public"
+  # This is where we will look for your lambda functions
+  functions = "functions/"
 
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"

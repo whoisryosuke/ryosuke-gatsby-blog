@@ -1,8 +1,20 @@
 import React, { useState } from 'react'
-import styled from 'styled-components'
-import { Heading, Flex, Button, Box } from 'rebass/styled-components'
+import styled, { keyframes } from 'styled-components'
+import { Heading, Flex, Button, Box, Text } from 'rebass/styled-components'
 import { Label, Input, Select } from '@rebass/forms'
 import ButtonOutline from '../Button/ButtonOutline'
+
+const fadeOut = keyframes`
+  from {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+
+  to {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+`
 
 import ContactSVG from '../../assets/svg/contact-circles.svg'
 
@@ -35,13 +47,25 @@ const SectionBox = styled(Box)`
   }
 `
 
+const StyledMessage = styled(Box)`
+  animation: ${fadeOut} 400ms linear;
+  animation-delay: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+`
+
 interface Props {}
 
 export const Contact: React.FC<Props> = () => {
   const [contactData, setContactData] = useState({
     name: '',
     email: '',
-    service: '',
+    service: 'design systems',
+  })
+  const [formStatus, setFormStatus] = useState({
+    loading: false,
+    status: null,
+    message: '',
   })
   const dropdownOptions = [
     // Looking for assistance with
@@ -67,18 +91,56 @@ export const Contact: React.FC<Props> = () => {
   const updateContactData = (e) => {
     setContactData({ ...contactData, [e.target.name]: e.target.value })
   }
-  const submitContactData = (e) => {
-    console.log('contactData', contactData)
+  const submitContactData = async (e) => {
+    e.preventDefault()
+    setFormStatus({ ...formStatus, loading: true })
+
+    const formSubmission = await fetch(
+      '/.netlify/functions/send-contact-email',
+      {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(contactData), // body data type must match "Content-Type" header
+      }
+    )
+    const formText = await formSubmission.text()
+    setFormStatus({
+      ...formStatus,
+      loading: false,
+      status: formSubmission.status,
+      message: formText,
+    })
+    setTimeout(() => {
+      if (!formStatus.loading)
+        setFormStatus({ ...formStatus, status: null, message: '' })
+    }, 3000)
   }
 
   return (
-    <SectionBox as="form">
+    <SectionBox as="form" method="POST" onSubmit={submitContactData}>
       <Heading fontSize={[2, 3, 4]} mx={3} mb={2}>
         Want to say hi? 👋
       </Heading>
-      <Heading fontSize={1} mx={3} mb={4}>
+      <Heading fontSize={1} mx={3} mb={4} fontWeight="400">
         Introduce yourself and I’ll do my best do get back to you timely
       </Heading>
+      {!formStatus.loading && formStatus.status && (
+        <StyledMessage
+          bg="muted"
+          p={3}
+          mx={3}
+          mb={4}
+          sx={{
+            border: '1px solid black',
+            borderColor: 'black',
+          }}
+        >
+          <Text>{formStatus.message}</Text>
+        </StyledMessage>
+      )}
       <Flex flexWrap="wrap" mx={3}>
         <Box width={[1, 3 / 4, 1 / 3]}>
           <StyledLabel htmlFor="name" px={2}>
@@ -120,7 +182,12 @@ export const Contact: React.FC<Props> = () => {
             onChange={updateContactData}
             mx={2}
           />
-          <ButtonOutline width={[1, 1, 1]} p={3} onSubmit={submitContactData}>
+          <ButtonOutline
+            width={[1, 1, 1]}
+            p={3}
+            onSubmit={submitContactData}
+            disabled={formStatus.loading}
+          >
             Reach out and touch
           </ButtonOutline>
         </Box>

@@ -1888,6 +1888,30 @@
   dependencies:
     reflexbox "^4.0.6"
 
+"@sendgrid/client@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@sendgrid/client/-/client-7.1.1.tgz#09a25e58ac7e5321d66807e7110ff0fb61bb534f"
+  integrity sha512-V2BmOO81wHNmbTDwTJ07Olb9dWrj1G19xK4crwds68b9R0w05aOWDddZTvpn9mZnHwIJYqcZcBJuhdHDejuSHg==
+  dependencies:
+    "@sendgrid/helpers" "^7.0.1"
+    axios "^0.19.2"
+
+"@sendgrid/helpers@^7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@sendgrid/helpers/-/helpers-7.0.1.tgz#b97debc793ed3f9f56102e12c2a6d2bbbf0ffb78"
+  integrity sha512-i/zsissq1upgdywtuJKysaplJJZC24GdtEKiJC1IRlXvBHzIjH4eU+rqUFO8h+hGji3UMURGgMFuLUXTUYvZ9w==
+  dependencies:
+    chalk "^2.0.1"
+    deepmerge "^4.2.2"
+
+"@sendgrid/mail@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@sendgrid/mail/-/mail-7.1.1.tgz#26191594722d5961de1b61cd9c48fa9a69fd197b"
+  integrity sha512-VXdJ9J6vBNMw+wMIGFRvms6EmV6pvoRHMWoLJGweHlsZDnvmK3rWUnnNaS3OdDQ3A8B5bMv2WKsEnHsMZ6iDUg==
+  dependencies:
+    "@sendgrid/client" "^7.1.1"
+    "@sendgrid/helpers" "^7.0.1"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
