@@ -99,7 +99,9 @@ export const Theme = ({ children }) => {
   // ... so that reference never changes.
   const handler = useCallback(checkDarkMode, [theme])
 
-  useEventListener('onload', handler)
+  if (typeof window !== 'undefined') {
+    useEventListener('onload', handler)
+  }
 
   return (
     <ThemeProvider theme={theme}>
