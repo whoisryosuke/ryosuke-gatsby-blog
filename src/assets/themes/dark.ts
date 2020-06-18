@@ -30,6 +30,7 @@ const theme = {
   },
   // rebass variants
   text: {
+    ...defaultTheme.text,
     paragraph: {
       fontFamily: fonts.body,
       lineHeight: '1.75',
