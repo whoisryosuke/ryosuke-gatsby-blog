@@ -7,10 +7,10 @@ import DarkModeToggle from '../DarkModeToggle/DarkModeToggle'
 
 const StyledHeader = styled(Flex)`
   width: 100%;
-  background-color: ${props => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.white};
   padding: 1rem;
   text-align: right;
-  border-bottom: 1px solid ${props => props.theme.colors.black};
+  border-bottom: 1px solid ${(props) => props.theme.colors.black};
   position: fixed;
   top: 0;
   left: 0;
@@ -22,12 +22,12 @@ const StyledHeader = styled(Flex)`
     position: relative;
 
     &:hover #ryosuke path {
-      transition: fill ${props => props.theme.animation.default};
+      transition: fill ${(props) => props.theme.animation.default};
     }
 
     &:hover #ryosuke path,
     &:focus #ryosuke path {
-      fill: ${props => props.theme.colors.primary};
+      fill: ${(props) => props.theme.colors.primary};
     }
 
     &:after {
@@ -39,8 +39,8 @@ const StyledHeader = styled(Flex)`
       position: absolute;
       top: 0;
       left: 0;
-      background: ${props => props.theme.colors.muted};
-      border: 1px solid ${props => props.theme.colors.black};
+      background: ${(props) => props.theme.colors.muted};
+      border: 1px solid ${(props) => props.theme.colors.black};
       transform-origin: 0 50%;
       transform: translate(-1.25em, -1.05em) scaleX(0);
       z-index: -1;
@@ -58,7 +58,7 @@ const StyledHeader = styled(Flex)`
     & svg {
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
-      transition: transform ${props => props.theme.animation.default};
+      transition: transform ${(props) => props.theme.animation.default};
       -moz-user-select: none;
       -webkit-user-select: none;
       -ms-user-select: none;
@@ -67,9 +67,9 @@ const StyledHeader = styled(Flex)`
 
     & .line {
       fill: none;
-      transition: stroke-dasharray ${props => props.theme.animation.default},
-        stroke-dashoffset ${props => props.theme.animation.default};
-      stroke: ${props => props.theme.colors.black};
+      transition: stroke-dasharray ${(props) => props.theme.animation.default},
+        stroke-dashoffset ${(props) => props.theme.animation.default};
+      stroke: ${(props) => props.theme.colors.black};
       stroke-width: 5.5;
       stroke-linecap: round;
     }
@@ -117,7 +117,7 @@ const StyledHeaderNav = styled.nav`
     margin-right: 2.25em;
 
     & a {
-      color: ${props => props.theme.colors.black};
+      color: ${(props) => props.theme.colors.black};
       text-decoration: none;
       border: 0;
       position: relative;
@@ -135,8 +135,8 @@ const StyledHeaderNav = styled.nav`
         position: absolute;
         top: 0;
         left: 0;
-        background: ${props => props.theme.colors.muted};
-        border: 1px solid ${props => props.theme.colors.black};
+        background: ${(props) => props.theme.colors.muted};
+        border: 1px solid ${(props) => props.theme.colors.black};
         transform-origin: 0 50%;
         transform: translate(-1.25em, -0.75em) scaleX(0);
         z-index: -1;
@@ -233,30 +233,39 @@ const Header: React.SFC<HeaderProps> = React.memo(
     const theme = useTheme()
     return (
       <StyledHeader justifyContent="flex-end">
-        <StyledHeaderNav mobile={mobile} visible={visible}>
-          <ul>
-            <li>
+        <StyledHeaderNav
+          mobile={mobile}
+          visible={visible}
+          role="navigation"
+          aria-labelledby="MobileButtonToggle"
+        >
+          <ul
+            role="menubar"
+            aria-orientation={mobile ? 'vertical' : 'horizontal'}
+            aria-hidden={mobile && visible}
+          >
+            <li role="menuitem" tabindex={mobile && !visible && '-1'}>
               <Link to={'/blog'}>
                 <Text variant="label">
                   Writing <span>📓</span>
                 </Text>
               </Link>
             </li>
-            <li>
+            <li role="menuitem" tabindex={mobile && !visible && '-1'}>
               <Link to={'/projects'}>
                 <Text variant="label">
                   Work <span>🚀</span>
                 </Text>
               </Link>
             </li>
-            <li>
+            <li role="menuitem" tabindex={mobile && !visible && '-1'}>
               <Link to={'/resources'}>
                 <Text variant="label">
                   Resources <span>💽</span>
                 </Text>
               </Link>
             </li>
-            <li>
+            <li role="menuitem" tabindex={mobile && !visible && '-1'}>
               <Link to={'/about'}>
                 <Text variant="label">
                   About <span>👨‍💻</span>
@@ -276,9 +285,13 @@ const Header: React.SFC<HeaderProps> = React.memo(
         </Flex>
         {mobile && (
           <Box
+            id="MobileButtonToggle"
             type="button"
             className="MobileButton"
             onClick={toggleVisibility}
+            aria-expanded={visible}
+            aria-pressed={visible}
+            aria-label="Navigation button"
           >
             <svg
               className={visible && 'active'}
