@@ -112,11 +112,14 @@ export default class BlogPost extends Component {
     if (post.frontmatter.cover_image !== null) {
       postImage = post.frontmatter.cover_image.publicURL
 
-      if (post.frontmatter.cover_image.childImageSharp !== null) {
-        postImage =
-          post.frontmatter.cover_image.childImageSharp &&
-          post.frontmatter.cover_image.childImageSharp.sizes &&
-          post.frontmatter.cover_image.childImageSharp.sizes.src
+      const { childImageSharp } = post.frontmatter.cover_image
+      if (
+        childImageSharp &&
+        'sizes' in childImageSharp &&
+        'src' in childImageSharp.sizes &&
+        childImageSharp.sizes.src !== null
+      ) {
+        postImage = childImageSharp.sizes.src
       }
     }
 
