@@ -3,7 +3,7 @@ module.exports = {
   description: 'The portfolio and blog of Ryosuke',
   keywords:
     'web designer for hire, designer for hire, ryosuke design, oscar diaz, whoisryosuke, ryosuke hana',
-  url: 'http://whoisryosuke.com/',
+  url: 'http://whoisryosuke.com',
   image: 'http://whoisryosuke.com/assets/favicon/android-chrome-512x512.png',
   logo: 'http://whoisryosuke.com/assets/favicon/android-chrome-512x512.png',
   twitter: '@whoisryosuke',
