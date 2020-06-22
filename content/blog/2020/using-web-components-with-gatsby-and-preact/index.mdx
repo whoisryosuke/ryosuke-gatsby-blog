@@ -1,0 +1,150 @@
+---
+title: Using Web Components with Gatsby and Preact
+date: '2020-06-22'
+section: blog
+tags: ['gatsby', 'react', 'preact', 'web components']
+cover_image: './web-components-with-gatsby-and-preact.png'
+---
+
+As I've been working with Web Components, I've been trying to find a compatible workflow that is easy to use and efficient. I'm primarily a React developer, which is [the only framework that hasn't fully integrated web components](https://custom-elements-everywhere.com/). This means my usual tools of the trade, such as [Gatsby](https://www.gatsbyjs.org/docs/quick-start/) or [NextJS](https://nextjs.org/), don't immediately work with web components well. And I wasn't too hyped about digging into another framework's docs, like [11ty](https://www.11ty.dev/), which is a more generic SSG that supports web components.
+
+Luckily, [Preact](https://preactjs.com/) supports web components fully, while mirroring React's functionality. And Gatsby has a plugin that swaps React with Preact. So I thought I'd give Gatsby another shot for web components, this time in Preact mode!
+
+If you're interested in the source code, [you can clone it off Github](https://github.com/whoisryosuke/gatsby-preact-web-component-test). Let's dig into the process!
+
+# Why Gatsby?
+
+Web Components are great, but it's just a web standard — they don't come with anything out of the box like app routing. Frameworks like Gatsby allow you to circumvent this process by leveraging the framework's routing. [In Gatsby's case](https://www.gatsbyjs.org/docs/routing/), we get to benefit from reach-router, combined with Gatsby's Webpack configuration. This allows us to create pages with Preact components `.js` files in the `pages` directory. Much better than manually setting up routing!
+
+Like I mentioned before, I prefer the Gatsby workflow and know the framework well. Rather than learn a new SSG, or one that doesn't come with all of Gatsby's features (like GraphQL), I'd like to leverage what I know. I also have plenty of Gatsby templates, components, and snippets that would probably work well with Preact.
+
+Gatsby also has an entire ecosystem of [plugins](https://www.gatsbyjs.org/plugins/), [templates](https://www.gatsbyjs.org/starters/?v=2), [documentation](http://gatsbyjs.org/docs/) that can be used once inside. Although many are React-based, others like image handling, offline caching, and PWA setup are universal and essential.
+
+# Why Preact?
+
+Preact has a smaller footprint than React, which means smaller overall build, and much faster on-load stats such as TTFB (time to first byte). Many developers have shown significant performance improvements by switching over their existing apps using `preact` and `preact-compat`.
+
+And like I mentioned at the start, it's an excellent way to incorporate web components into your workflow. You can even leverage JSX and it's ability to assign arrays and objects to properties:
+
+```jsx
+<Layout>
+  <wired-link elevation="3" href="/more.html" target="_blank">
+    Elevation
+  </wired-link>
+
+  <wired-input placeholder="Your name" ref={textInput} />
+
+  {/* Pass down functions into props */}
+  <wired-button onClick={handleClick}>Submit</wired-button>
+
+  {/* Can send array and user without any . or $ syntax */}
+  <x-card data={postArray} user={userObject} />
+</Layout>
+```
+
+This is much better than the React alternative of assigning props through the `ref`:
+
+```jsx
+import React, { Component } from 'react'
+// Utility that helps assign data using ref
+// @see: StencilJS React components
+import { wc } from './utils/webcomponent'
+
+class SomeComponent extends Component {
+  render() {
+    const postArray = []
+    const userObject = {}
+
+    return (
+      <div>
+        <x-card
+          ref={wc(
+            // Events
+            {},
+            // Props
+            {
+              data: postArray,
+              user: userObject,
+            }
+          )}
+        />
+      </div>
+    )
+  }
+}
+
+export default SomeComponent
+```
+
+# Process
+
+The process to make a Gatsby project with Preact was very simple:
+
+1. Create new Gatsby project using the CLI: `gatsby new gatsby-preact-web-component-test`
+2. Install Preact, the Gatsby plugin, and necessary deps: `yarn add gatsby-plugin-preact preact preact-render-to-string`
+3. Add the Preact plugin to Gatsby config: `plugins: [`gatsby-plugin-preact`]`
+
+This process requires you have NodeJS installed on your development machine. Yarn is optional and can be swapped out using NPM instead (`npm i` instead of `yarn add`).
+
+# Key Notes
+
+## Preact just works
+
+You can swap out Preact with React in the default Gatsby project with no problem. Even their Typescript page works fine. I need to stress test this (like adding it to my personal blog) but otherwise seems good!
+
+## No SSR for Web Components
+
+Gatsby will build out the Web Components as is. It doesn't parse the Web Components down and display any shadow DOM in the production build HTML.
+
+The Web Components JS file should initialize the web component on load (much like React/Vue/etc without SSR). This is why it's key to leave vital information inside slots, instead of props/attributes, to ensure non-JS spiders and bots can quickly find key data they need (or a user without JS enabled).
+
+Techniques like taking an array prop/attribute and mapping out elements inside the web component (`<your-list .list="[1,2,3]">`) lead content being unavailable unless parsed with JS. Instead, lean towards DOM mirroring implementation (`<your-list><list-item>`). This way the content still shows in the raw HTML, which is major improvement on things like SEO.
+
+## Using a Web Component
+
+Just import the web component library as a `<script>` in the app wrapper/layout using `react-helmet`. Or best practice, import inside `gatsby-browser`. Make sure to include [polyfills](https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-loader.js).
+
+Here's an example of using WiredJS web components inside a `<Layout>` wrapper (trimmed down for size):
+
+```jsx
+import React from 'react'
+import { Helmet } from 'react-helmet'
+
+const Layout = ({ children }) => {
+  return (
+    <>
+      {/** Use react-helmet to place <script> in <head> **/}
+      <Helmet>
+        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-loader.js"></script>
+        <script
+          async
+          src="https://unpkg.com/wired-elements@2.0.5/lib/wired-elements-bundled.js"
+        ></script>
+      </Helmet>
+
+      <main>{children}</main>
+    </>
+  )
+}
+
+export default Layout
+```
+
+Then just use the web components anywhere inside the app!
+
+# Blazing fast web component apps
+
+By using Gatsby, you can get near 100% Lighthouse scores with the base installation. And combined with Preact, you get even more performance benefits. It's a synergetic pairing that provides an excellent foundation for scalable, offline-friendly, static PWAs.
+
+The **only limitation** is honestly the **web components**, which **are not server-rendered** by Gatsby. It's a further reminder that you'd be better off creating an app completely with React/Vue/Angular/etc components instead of web components. However this flow would be ideal for someone creating a client-side app using web components as primitives and Preact for more complex behavior (state, routing, events, etc). Since client-side apps don't have to be server-rendered or as geared for SEO, web components actually work well.
+
+I've also [experimented with this process using Vue's Gridsome](https://github.com/whoisryosuke/gridsome-web-components-test), if you're looking for a Vue alternative to Gatsby that can support Web Components. And since Vue itself has better compatibility for web components out of the box, you don't need to swap to "Prue" or something 😂.
+
+# References
+
+- [https://github.com/whoisryosuke/gatsby-preact-web-component-test](https://github.com/whoisryosuke/gatsby-preact-web-component-test)
+- [https://codesandbox.io/s/github/whoisryosuke/gatsby-preact-web-component-test](https://codesandbox.io/s/github/whoisryosuke/gatsby-preact-web-component-test)
+- [https://www.gatsbyjs.org/docs/quick-start/](https://www.gatsbyjs.org/docs/quick-start/)
+- [https://www.gatsbyjs.org/packages/gatsby-plugin-preact/?=preact](https://www.gatsbyjs.org/packages/gatsby-plugin-preact/?=preact)
+- [Web Component Polyfills](https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-loader.js) (Shadow DOM?)
+- [https://github.com/whoisryosuke/gridsome-web-components-test](https://github.com/whoisryosuke/gridsome-web-components-test)
