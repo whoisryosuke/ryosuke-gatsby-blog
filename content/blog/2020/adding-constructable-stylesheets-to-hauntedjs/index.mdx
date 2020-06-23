@@ -1,0 +1,277 @@
+---
+title: Adding Constructable Stylesheets to HauntedJS
+date: '2020-06-23'
+section: blog
+tags: ['hauntedjs', 'react', 'js', 'web components']
+cover_image: './Adding-Constructable-Stylesheets-to-HauntedJS.png'
+---
+
+I've been experimenting with HauntedJS recently, a framework for creating Web Components. It allows you to write web components with functions and hooks that are very similar looking to React components. It's similar to other web component frameworks, like Polymer or Stencil, which make the process of creating web components much more streamlined.
+
+But unlike Polymer and Stencil, Haunted doesn't support constructable stylesheets out of the box. This means that styling in HauntedJS is handled in `<style>` that are nested inside the web component's shadow DOM scope. This works, but web components are now adopting constructable stylesheets as the default for styling, and usually polyfill the feature before even falling back to that option.
+
+So after some tinkering around, I was able to get constructable stylesheets integrated into the Haunted component architecture. And I was able to do it all inside of a hook — making it a single-line, plug and play feature.
+
+In this article I break down what constructable stylesheets are, how Haunted works, and how I integrated the two.
+
+# What are Constructable Stylesheets?
+
+It's a new way to use create resuable styles when using the shadow DOM. It uses a pre-existing browser API, `CSSStyleSheet`, and stores the stylesheet in the `adoptedStyleSheets` property.
+
+```jsx
+// Create our shared stylesheet:
+const sheet = new CSSStyleSheet()
+sheet.replaceSync('a { color: red; }')
+
+// Apply the stylesheet to a document:
+document.adoptedStyleSheets = [sheet]
+
+// Apply the stylesheet to a Shadow Root:
+const node = document.createElement('div')
+const shadow = node.attachShadow({ mode: 'open' })
+shadow.adoptedStyleSheets = [sheet]
+```
+
+You can check if the browser supports this feature (or it's polyfill, ShadyCSS) by using [this function](https://github.com/Polymer/lit-element/blob/master/src/lib/css-tag.ts#L14):
+
+```jsx
+/**
+ * Whether the current browser supports `adoptedStyleSheets`.
+ */
+export const supportsAdoptingStyleSheets =
+  window.ShadowRoot &&
+  (window.ShadyCSS === undefined || window.ShadyCSS.nativeShadow) &&
+  'adoptedStyleSheets' in Document.prototype &&
+  'replace' in CSSStyleSheet.prototype
+```
+
+# 👻 Integration with Haunted
+
+Haunted doesn't support constructable stylesheets out of the box, but it is fairly simple to add the functionality to your components using their hooks paradigm.
+
+By default, you style components by adding a `<style>` block somewhere inside your component, and that styles your component isolated inside the shadow DOM. It works, but your CSS is duplicated across the application and visible inside the shadow DOM.
+
+```jsx
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  return html`
+    <button type="button" @click=${() => setCount(count + 1)}>
+      Increment
+    </button>
+    <styles>
+      button { color: red; }
+    </styles>
+  `
+}
+```
+
+## Taking notes from LitElements book
+
+In LitElement, you create a property for your `styles` that's an array of `css()` blocks.
+
+The `css` function is a helper that takes CSS you write inside literal tags and puts it inside the `CSSStyleSheet` instance. This provides a helper class to access the underlying CSS string (`this.cssText`), and allows you to combine CSS by merging instances of the class:
+
+```tsx
+const baseStyles = css`
+  spooky-button {
+    background-color: var(--spky-colors-primary);
+    color: var(--spky-colors-text-inverted);
+  }
+`
+
+const hoverStyles = css`
+  spooky-button:hover {
+    background-color: var(--spky-colors-secondary);
+  }
+`
+
+// The css helper takes the two classes
+// and merges them into a single class
+const buttonStyles = css`
+  ${baseStyles}
+  ${hoverStyles}
+`
+```
+
+The `styles` you provide are used inside an `adoptStyles` method that applies the stylesheet to the shadow DOM's `adoptedStyleSheets` property (enabling constructable stylesheets). This `adoptStyles` method is in the LitElement base class that each web component is extended from.
+
+If the user's browser doesn't support this, they check if a polyfill is available (via ShadyCSS) and use that API to apply the stylesheet. And if all else fails, they just throw the stylesheet into a `<style>` block at the end/bottom of the shadow DOM (using `this.renderRoot`, which is basically
+
+I took that function, removed the Typescript (because my project didn't support it), and swapped any instance of `this.renderRoot` for `this.shadowRoot`. The property `renderRoot` is created by the LitElement class just in case the user wants to render the shadow DOM in a different root node — or it defaults to the shadow root.
+
+```jsx
+/**
+ * Applies styling to the element shadowRoot using the [[`styles`]]
+ * property. Styling will apply using `shadowRoot.adoptedStyleSheets` where
+ * available and will fallback otherwise. When Shadow DOM is polyfilled,
+ * ShadyCSS scopes styles and adds them to the document. When Shadow DOM
+ * is available but `adoptedStyleSheets` is not, styles are appended to the
+ * end of the `shadowRoot` to [mimic spec
+ * behavior](https://wicg.github.io/construct-stylesheets/#using-constructed-stylesheets).
+ */
+const adoptStyles = () => {
+  if (styles.length === 0) {
+    return
+  }
+  // There are three separate cases here based on Shadow DOM support.
+  // (1) shadowRoot polyfilled: use ShadyCSS
+  // (2) shadowRoot.adoptedStyleSheets available: use it
+  // (3) shadowRoot.adoptedStyleSheets polyfilled: append styles after
+  // rendering
+  if (window.ShadyCSS !== undefined && !window.ShadyCSS.nativeShadow) {
+    window.ShadyCSS.ScopingShim.prepareAdoptedCssText(
+      styles.map((s) => s.cssText),
+      this.localName
+    )
+  } else if (supportsAdoptingStyleSheets) {
+    this.shadowRoot.adoptedStyleSheets = styles.map((s) =>
+      s instanceof CSSStyleSheet ? s : s.styleSheet
+    )
+  } else {
+    styles.forEach((s) => {
+      const style = document.createElement('style')
+      style.textContent = s.cssText
+      this.shadowRoot.appendChild(style)
+    })
+  }
+}
+```
+
+But how would this run? In LitElement, since it's a class-based component, we can tap into the `initialize()` method that runs when the component mounts. But Haunted doesn't have any "lifecycles" or methods like that because it's components are just..._functions_.
+
+However, Haunted does have **hooks**!
+
+```jsx
+useLayoutEffect(() => {
+  adoptStyles()
+}, [styles])
+```
+
+We do this classic hook that you may see in React applications: `useLayoutEffect`. This hook runs before the component is rendered to the DOM. It's often used for animation, but we can use it to ensure our styles are applied before the DOM is in place.
+
+And what's great about this functionality, since it's a hook, we pull this functionality out into it's own file and use it in any component:
+
+```jsx
+import { useLayoutEffect } from 'haunted'
+import { supportsAdoptingStyleSheets } from 'lit-element'
+
+export function useConstructableStylesheets(el, styles) {
+  /**
+   * Applies styling to the element shadowRoot using the [[`styles`]]
+   * property. Styling will apply using `shadowRoot.adoptedStyleSheets` where
+   * available and will fallback otherwise. When Shadow DOM is polyfilled,
+   * ShadyCSS scopes styles and adds them to the document. When Shadow DOM
+   * is available but `adoptedStyleSheets` is not, styles are appended to the
+   * end of the `shadowRoot` to [mimic spec
+   * behavior](https://wicg.github.io/construct-stylesheets/#using-constructed-stylesheets).
+   */
+  const adoptStyles = (el) => {
+    if (styles.length === 0) {
+      return
+    }
+    // There are three separate cases here based on Shadow DOM support.
+    // (1) shadowRoot polyfilled: use ShadyCSS
+    // (2) shadowRoot.adoptedStyleSheets available: use it
+    // (3) shadowRoot.adoptedStyleSheets polyfilled: append styles after
+    // rendering
+    if (window.ShadyCSS !== undefined && !window.ShadyCSS.nativeShadow) {
+      window.ShadyCSS.ScopingShim.prepareAdoptedCssText(
+        styles.map((s) => s.cssText),
+        el.localName
+      )
+    } else if (supportsAdoptingStyleSheets) {
+      el.shadowRoot.adoptedStyleSheets = styles.map((s) =>
+        s instanceof CSSStyleSheet ? s : s.styleSheet
+      )
+    } else {
+      styles.forEach((s) => {
+        const style = document.createElement('style')
+        style.textContent = s.cssText
+        el.shadowRoot.appendChild(style)
+      })
+    }
+  }
+
+  useLayoutEffect(() => {
+    adoptStyles(el)
+  }, [styles])
+}
+```
+
+And this how how we'd use the hook in a Haunted component:
+
+```jsx
+import { html } from 'lit-html'
+import { css, unsafeCSS } from 'lit-element'
+import { component } from 'haunted'
+import { useConstructableStylesheets } from 'spooky-ui-hooks'
+
+export function Button({ type, color }) {
+  const styles = [
+    css`
+      button {
+        color: ${color ? unsafeCSS(color) : 'red'};
+      }
+    `,
+  ]
+
+  useConstructableStylesheets(this, styles)
+
+  return html`
+    <button type=${type ? type : 'button'}>
+      <slot></slot>
+    </button>
+  `
+}
+
+Button.observedAttributes = ['type', 'color']
+
+customElements.define('spooky-button', component(Button))
+```
+
+# Why do this?
+
+It makes stylesheets more efficient by leveraging a modern browser API that is built for it.
+
+LitElement has this functionality, but because the way their components are composed, they don't re-mount the CSS styles at any point, so you're not able to use your component properties or attributes inside the CSS. It's easy to use props inside styles using Haunted, but you can't leverage constructable stylesheets, so it feels less efficient.
+
+# Optimizations
+
+## Global shared stylesheets
+
+Right now the hook that I designed and LitElement both apply the stylesheet to the component's shadow DOM. This means that we didn't solve the issue of duplicate stylesheets, we just removed the visibility of stylesheets from the DOM. If you inspect each web component that uses constructable stylesheets, you'll notice that it's `shadowRoot` will have the stylesheet inside the `adoptedStylesheets` property.
+
+Instead, it'd be much better to apply the stylesheet to the document root. This way the styles can be unified. But it doesn't work that easy!
+
+```jsx
+const sheet = new CSSStyleSheet()
+sheet.replaceSync('a { color: red; }')
+
+// Combine existing sheets with our new one:
+document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
+```
+
+The stylesheet stored in the document root exists as a stylesheet. Meaning when you add to it, there's no way update the chunk you added.
+
+What you end up needing is some sort of "Styled Components"-style abstraction that does the job unifying all the styles across all components. This way there's something that has the authority and oversight to manage stylesheets between components. It's hard to say how it'd work.
+
+- When a style changes, grab all other component styles and compose new stylesheet to update document root. Issues?: Every small change makes
+- Keep a virtual tree of components and their styles. When a component changes, swap it in the virtual store (i.e. mutate an object), then use virtual tree as basis to update document root. Issues?: Still inefficient in that every small component change causes a large change.
+- Use unique identifiers in CSS comments to create CSS blocks and use a RegEx to find and replace the segments. Issues?: Enforces syntax. Subject to inevitable issues with RegEx.
+
+Almosts makes you wonder why you don't just use Styled Components functionality instead. Rather than using Constructable Stylesheets and storing everything in one property, you generate as many `<style>` tags as you need and append them to the DOM, then apply a unique class name to the component. This would be much easier to manage, hot-swap, and scale.
+
+I've seen people mention web components in the Styled Components repo issues before, but it was shot down due to "lack of interest". But I could really see the utility of extracting their core algorithm and integrate it with a web component lifecycle.
+
+# References
+
+- [useConstructableStylesheets hook on Github](https://github.com/whoisryosuke/spooky-ui/blob/master/packages/hooks/src/useConstructableStylesheets.js)
+- [https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet)
+- [https://wicg.github.io/construct-stylesheets/](https://wicg.github.io/construct-stylesheets/)
+- [http://tabatkins.github.io/specs/construct-stylesheets/](http://tabatkins.github.io/specs/construct-stylesheets/)
+  - Old draft of Constructable Stylesheets
+- [https://github.com/Polymer/lit-element/blob/master/src/lib/css-tag.ts](https://github.com/Polymer/lit-element/blob/master/src/lib/css-tag.ts)
+- [https://github.com/Polymer/lit-element/blob/master/src/lit-element.ts](https://github.com/Polymer/lit-element/blob/master/src/lit-element.ts)
+- [https://developers.google.com/web/updates/2019/02/constructable-stylesheets](https://developers.google.com/web/updates/2019/02/constructable-stylesheets)
+- [https://dev.to/westbrook/why-would-anyone-use-constructible-stylesheets-anyways-19ng](https://dev.to/westbrook/why-would-anyone-use-constructible-stylesheets-anyways-19ng)
