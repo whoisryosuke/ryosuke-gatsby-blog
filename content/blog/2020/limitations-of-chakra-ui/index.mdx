@@ -18,9 +18,7 @@ I used Chakra UI as the basis for the design system one of my side projects: [Se
 
 The design system itself is a bit _modern_ (inspired by [Memphis design](https://www.google.com/search?q=memphis+design)) and has a more stylized look and feel. This leads to some components being more _adventurously_ accomplished, such as **bordered shadows** with **patterned backgrounds**.
 
-![Organizer_Dashboard.png](Organizer_Dashboard.png)
-
-A hi-fi UI mockup created in Figma of a SeshSource page. It features Memphis inspired design elements such as shapes, squiggly patterns, and hard drop shadows.
+![A hi-fi UI mockup created in Figma of a SeshSource page. It features Memphis inspired design elements such as shapes, squiggly patterns, and hard drop shadows.](Organizer_Dashboard.png)
 
 This led to be a great stress test of Chakra UI and it's **customizability**. Here are some of my thoughts from the process and how Chakra can make more allowance for theming. I'll also share more opinion-based issues with functional decisions.
 
@@ -64,7 +62,7 @@ export default Tooltip
 
 If it were a nested child instead, you could possibly use a selector to grab the necessary object, but it'd be impossible in this case (because it's outside the component scope, and doesn't have a defined class name or ID to target). You can style it in a basic sense, like changing the background or text color. But I was looking to add a border, which ends up looking odd, as it doesn't style the underlying SVG properly:
 
-![Screen_Shot_2020-06-08_at_5.22.30_PM.png](Screen_Shot_2020-06-08_at_5.22.30_PM.png)
+![Screenshot of Storybook UI with customized Chakra UI checkboxes displaying the issue with adding a border](Screen_Shot_2020-06-08_at_5.22.30_PM.png)
 
 Seems like I would want something like Reakit or Material UI's recent approach to hook-based components that allow you to compose your own components with the design system's underlying logic and your styles/structure on top.
 
@@ -76,11 +74,11 @@ Currently Chakra recommends creating your own components using their `<PseudoBox
 
 I needed to create a default button that had a border, and was the "primary" color of the design system. Chakra by default [has a few button styles or "variants" available.](https://chakra-ui.com/button#button-variant) One of these is a borderless button and another is a bordered button with transparent background.
 
-![Screen_Shot_2020-06-08_at_5.26.45_PM.png](Screen_Shot_2020-06-08_at_5.26.45_PM.png)
+![Chakra UI default button variations](Screen_Shot_2020-06-08_at_5.26.45_PM.png)
 
 I created a new component (`<Button>`) that passed a `<ChakraButton>` with a few default props for the border and background color. I also passed the remaining props (`...props`), so they could be overridden, like the background color.
 
-![Screen_Shot_2020-06-08_at_5.23.53_PM.png](Screen_Shot_2020-06-08_at_5.23.53_PM.png)
+![Screenshot of my customized Chakra button in Storybook](Screen_Shot_2020-06-08_at_5.23.53_PM.png)
 
 ```jsx
 import React from 'react'
@@ -162,7 +160,7 @@ export default Select
 
 Chakra has an `<Alert>` component that basically is a "status message" element that you use above forms or other areas to notify the user of an error, success, etc. It has different `status` props you can pass to it (like `error`). I was able to roughly style the base component (just needed to add a border), but when it came to styling it based on the `status` prop, I couldn't find any documentation or method for it.
 
-![Screen_Shot_2020-06-08_at_5.35.47_PM.png](Screen_Shot_2020-06-08_at_5.35.47_PM.png)
+![Screenshot of the Chakra Alert component in Storybook](Screen_Shot_2020-06-08_at_5.35.47_PM.png)
 
 Screenshot of my customized Alert component featuring the default icon
 
