@@ -1,15 +1,10 @@
 import React from 'react'
 import { ThemeProvider } from './ThemeContext'
 import { ThemeOptions, THEME_OPTIONS } from '../layouts/Theme'
-import { isDarkMode } from "../helpers/isDarkMode"
+import { isDarkMode } from '../helpers/isDarkMode'
 
 export default ({ children }) => {
   let initialTheme = THEME_OPTIONS.LIGHT
-  if (
-    isDarkMode()
-  ) {
-    initialTheme = THEME_OPTIONS.DARK
-  }
   const initialState = {
     theme: ThemeOptions[initialTheme],
     selectedTheme: initialTheme,
