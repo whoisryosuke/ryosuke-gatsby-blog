@@ -1,8 +1,7 @@
-import React, { Fragment, useCallback } from 'react'
+import React, { Fragment, useCallback, useEffect } from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
 
-import debounce from '../helpers/debounce'
 import { isDarkMode } from '../helpers/isDarkMode'
 import useEventListener from '../helpers/hooks/useEventListener'
 import { DarkTheme, LightTheme } from '@assets/themes/'
@@ -97,11 +96,11 @@ export const Theme = ({ children }) => {
 
   // Event handler utilizing useCallback ...
   // ... so that reference never changes.
-  const handler = useCallback(checkDarkMode, [theme])
+  const darkModeHandler = useCallback(checkDarkMode, [theme])
 
-  if (typeof window !== 'undefined') {
-    useEventListener('onload', handler)
-  }
+  useEffect(() => {
+    darkModeHandler()
+  }, [])
 
   return (
     <ThemeProvider theme={theme}>
