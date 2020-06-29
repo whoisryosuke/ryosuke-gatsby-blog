@@ -1,4 +1,4 @@
-import React, { Fragment, useCallback, useLayoutEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
 
@@ -80,8 +80,10 @@ export const UIComponents = {
 export const Theme = ({ children }) => {
   const [{ theme, selectedTheme }, dispatch] = useThemeValue()
 
-  useLayoutEffect(() => {
+  console.log('loading component', selectedTheme)
+  useEffect(() => {
     if (isDarkMode()) {
+      console.log('changing to dark mode', selectedTheme)
       dispatch({
         type: THEME_OPTIONS.DARK,
       })
