@@ -1,0 +1,223 @@
+---
+title: Sharing Hooks Between React and Web Components
+date: '2020-06-24'
+section: blog
+tags: ['web components', 'react', 'js', 'design systems', 'hauntedjs']
+cover_image: './Sharing_Hooks_Between_React_and_Web_Components.png'
+---
+
+Hooks were a _huge_ movement for React that radically changed the way developers compose their components. They allow for [a lot of functionality](https://reactjs.org/docs/hooks-intro.html) to be dropped in as a single line function, like fetching data or [handling event listeners](https://usehooks.com/useEventListener/). This all accomplished using **React's built-in hooks** that **replicate features** you get **from class-based components** such as state with `useState()` or hooking into lifecycles with `useEffect()`.
+
+These hooks are framework specific to React, but libraries like [**HauntedJS**](https://github.com/matthewp/haunted) have brought them to **Web Components**. You can create web components using functions and add things like state with a simple one-line hook:
+
+```jsx
+// @see: Example from https://usehooks.com/useEventListener/
+import { html } from 'lit-html'
+import { component, useState } from 'haunted'
+
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  return html`
+    <div id="count">${count}</div>
+    <button type="button" @click=${() => setCount(count + 1)}>
+      Increment
+    </button>
+  `
+}
+```
+
+And then I read an article about HauntedJS that discussed sharing Haunted's hooks with React. With **a simple factory function**, you can decide when to use Haunted or React's hook API. I was really intrigued in the concept because I've been exploring ways to create more **universal tools** that span across multiple frameworks and platforms (like web components themselves).
+
+In this article I'll explore the process of creating a hook that works across Haunted and React.
+
+# Why hooks?
+
+Before we delve into the process of sharing hooks, let's briefly take a look at why you'd use hooks. The following is the same counter component I showed you above, but written using LitElement, a class-based framework for developing web components:
+
+```jsx
+// @see: Example from StackBlitz (see link in References)
+import { LitElement, html, property } from 'lit-element'
+
+class XCounter extends LitElement {
+  static get properties() {
+    return {
+      value: { type: Number },
+    }
+  }
+
+  // Alternative syntax, if using TypeScript or Babel experimental decorators and field assignments are available
+  // @property({type: Number})
+  // value = 0;
+
+  constructor() {
+    super()
+    this.value = 0
+  }
+
+  render() {
+    return html`
+      <div id="count">${this.value}</div>
+      <button type="button" @click=${() => this.increment()}>
+        Increment
+      </button>
+    `
+  }
+
+  increment() {
+    this.value++
+  }
+}
+```
+
+It's not terrible for simpler actions like state, but when you start to do things like attaching event handlers, you get caught up in a lot of lifecycle boilerplate. That's where the magic of hooks really shines, elegantly packaging your component's functionality into modular element that can be integrated into most other components (like creating a `useStorage()` hook to save something to localStorage).
+
+# So, can you share hooks?
+
+Before I dove too deep, I decided to create **2 simple tests** for Haunted and React **that used the same custom hook**. The hook I used was `useDisclosure` from [an older version of Chakra UI](https://github.com/chakra-ui/chakra-ui/blob/%40chakra-ui%2Fcore%400.8.0/packages/chakra-ui/src/useDisclosure/index.js), which basically adds "toggle"-like functionality to a component.
+
+```tsx
+// ES6 Version
+const useDisclosure = (useState, useCallback, defaultIsOpen) => {
+  const [isOpen, setIsOpen] = useState(Boolean(defaultIsOpen))
+  const onClose = useCallback(() => setIsOpen(false), [])
+  const onOpen = useCallback(() => setIsOpen(true), [])
+  const onToggle = useCallback(() => setIsOpen((prevIsOpen) => !prevIsOpen), [])
+  return { isOpen, onOpen, onClose, onToggle }
+}
+
+export default useDisclosure
+```
+
+```tsx
+// Functional version
+function useDisclosure(useState, useCallback, defaultIsOpen) {
+  const [isOpen, setIsOpen] = useState(Boolean(defaultIsOpen))
+  const onClose = useCallback(() => setIsOpen(false), [])
+  const onOpen = useCallback(() => setIsOpen(true), [])
+  const onToggle = useCallback(() => setIsOpen((prevIsOpen) => !prevIsOpen), [])
+  return { isOpen, onOpen, onClose, onToggle }
+}
+
+export default useDisclosure
+```
+
+Then I created **Haunted** and **React** components that used the `useDisclosure` hook to show/hide a `<div>`:
+
+### Haunted Version
+
+```jsx
+import {
+  html,
+  component,
+  useState,
+  useCallback,
+} from 'https://unpkg.com/haunted/haunted.js'
+import useDisclosure from './useDisclosure'
+
+function App() {
+  const { isOpen, onToggle } = useDisclosure(useState, useCallback, false)
+  return html`
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <div style=${{ display: isOpen ? 'block' : 'none' }}>Hidden content</div>
+      <button @onClick=${onToggle}>Toggle</button>
+    </div>
+  `
+}
+
+customElements.define('my-app', component(App))
+```
+
+[Haunted - React Hooks Example - Toggle](https://codesandbox.io/s/haunted-react-hooks-example-toggle-ex31h)
+
+### React Version
+
+```jsx
+import React, { useState, useCallback } from 'react'
+import './styles.css'
+import useDisclosure from './hooks/useDisclosure'
+
+export default function App() {
+  const { isOpen, onOpen, onClose, onToggle } = useDisclosure(
+    useState,
+    useCallback,
+    false
+  )
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <h2>Start editing to see some magic happen!</h2>
+      <div style={{ display: isOpen ? 'block' : 'none' }}>Hidden content</div>
+      <button onClick={onToggle}>Toggle</button>
+    </div>
+  )
+}
+```
+
+[Using Haunted Hooks in React Example - Toggle](https://codesandbox.io/s/using-haunted-hooks-in-react-example-toggle-ox9c9)
+
+If you check out both examples, you'll notice the hook works for both. Awesome!
+
+But how do you handle this on a library level? Do you create every custom hook with parameters for API methods (like `useState`)? Or is there another way...? Since there are a number of API parameters passed to hooks, and you don't want to include all of them (since you may not use all), you're forced with an explicit function call.
+
+# Creating easily shareable hooks
+
+You can create a hook that can be shared between libraries with a similar API by using **a factory function**. A factory function is a function that accepts "shared" parameters (like `useState`) and returns a new function. In this case, our new function should return our hook, and accept the only parameter that isn't framework dependent (`defaultValue`).
+
+```jsx
+// hooks/useDisclosure.js
+function createUseDiscloureHook(useState, useCallback) {
+  return (defaultValue) => useDisclosure(useState, useCallback, defaultValue)
+}
+
+function useDisclosure(useState, useCallback, defaultValue) {
+  // hook here
+}
+```
+
+This allows you to separate the hook logic from the API-separation logic. You could import it directly and pass through React's hook APIs — or create a file that creates these for you:
+
+```jsx
+// hooks/react.js
+import { useState, useCallback } from 'react'
+
+export const useDisclosure = createUseDiscloureHook(useState, useCallback)
+
+// components/react/Accordion.js
+import React from 'react'
+import { useDisclosure } from '../hooks/react'
+
+function Accordion() {
+  const { isOpen, onToggle } = useDisclosure(false)
+}
+```
+
+Then ideally you could create a hook for Haunted components by using:
+
+```jsx
+// hooks/haunted.js
+import { useState, useCallback } from 'haunted'
+
+export const useDisclosure = createUseDisclosureHook(useState, useCallback)
+```
+
+It's nothing huge, just more of a convenience thing. It does add a bit of extra sugar code that could be circumvented by just using the original hook. But the factory function also allows you to more easily swap out the hook with another (or your own custom) since it follows the [dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle).
+
+# Sharing is caring
+
+I look forward to being able to create a web component library that acts as the basis of the design system's UI. Then if needed, other projects using frameworks like React can import components or core functionality to recreate them as React components. It's the equivalent of creating the Bootstrap of web components — a myriad of projects incorporate Bootstrap in some form into their design systems, from the grid to the components to SASS mixins. It'd be cool to be able to do the same with web components, take what you need, and output at your desired target _(within reason — looking at you native)._
+
+But for now we can do cool stuff like sharing hooks between web components and React components because libraries like Haunted create bridges between the APIs. It got my brain racing with the potential of this kind of modularity in composition, and how Haunted allows you accomplish this more effectively with it's functional paradigm. For instance — you can [swap the renderer of your Haunted components](https://github.com/matthewp/haunted#lighterhtml-etc). Instead of `lit-html`, you could leverage `htm`, which [outputs JSX instead of HTML](https://github.com/matthewp/haunted/issues/147). Then this would allow you to more easily integrate Haunted components directly into JSX-based frameworks (like React, Preact, etc).
+
+We may not live in a world where we can easily and completely use web components in our React/Vue/Angular apps — but we can definitely encourage more accessible code by making it less framework dependent and leveraging identical APIs expressed in different ways.
+
+# References
+
+- [https://medium.com/ing-blog/web-components-react-hooks-haunted-688d8d92f6c5](https://medium.com/ing-blog/web-components-react-hooks-haunted-688d8d92f6c5)
+- [https://github.com/chakra-ui/chakra-ui/blob/%40chakra-ui%2Fcore%400.8.0/packages/chakra-ui/src/useDisclosure/index.js](https://github.com/chakra-ui/chakra-ui/blob/%40chakra-ui%2Fcore%400.8.0/packages/chakra-ui/src/useDisclosure/index.js)
+- [https://usehooks.com/useEventListener/](https://usehooks.com/useEventListener/)
+- [https://reactjs.org/docs/hooks-intro.html](https://reactjs.org/docs/hooks-intro.html)
+- [https://github.com/matthewp/haunted](https://github.com/matthewp/haunted)
+- [https://stackblitz.com/edit/lit-element-example-egdw5k?file=counter.js](https://stackblitz.com/edit/lit-element-example-egdw5k?file=counter.js)
