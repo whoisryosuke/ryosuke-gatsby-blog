@@ -87,9 +87,9 @@ export const Theme = ({ children }) => {
       : THEME_OPTIONS.DARK
 
   const checkDarkMode = () => {
-    if (isDarkMode() && selectedTheme !== THEME_OPTIONS.DARK) {
+    if (isDarkMode()) {
       dispatch({
-        type: toggleTheme,
+        type: THEME_OPTIONS.DARK,
       })
     }
   }
