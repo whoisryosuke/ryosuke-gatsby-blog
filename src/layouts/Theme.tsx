@@ -1,9 +1,8 @@
-import React, { Fragment, useCallback, useEffect } from 'react'
+import React, { Fragment, useCallback, useLayoutEffect } from 'react'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import * as rebass from 'rebass/styled-components'
 
 import { isDarkMode } from '../helpers/isDarkMode'
-import useEventListener from '../helpers/hooks/useEventListener'
 import { DarkTheme, LightTheme } from '@assets/themes/'
 import { useThemeValue } from '../context/ThemeContext'
 
@@ -81,25 +80,12 @@ export const UIComponents = {
 export const Theme = ({ children }) => {
   const [{ theme, selectedTheme }, dispatch] = useThemeValue()
 
-  const toggleTheme =
-    selectedTheme == THEME_OPTIONS.DARK
-      ? THEME_OPTIONS.LIGHT
-      : THEME_OPTIONS.DARK
-
-  const checkDarkMode = () => {
+  useLayoutEffect(() => {
     if (isDarkMode()) {
       dispatch({
         type: THEME_OPTIONS.DARK,
       })
     }
-  }
-
-  // Event handler utilizing useCallback ...
-  // ... so that reference never changes.
-  const darkModeHandler = useCallback(checkDarkMode, [theme])
-
-  useEffect(() => {
-    darkModeHandler()
   }, [])
 
   return (
