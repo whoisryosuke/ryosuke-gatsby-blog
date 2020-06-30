@@ -80,10 +80,8 @@ export const UIComponents = {
 export const Theme = ({ children }) => {
   const [{ theme, selectedTheme }, dispatch] = useThemeValue()
 
-  console.log('loading component', selectedTheme)
   useEffect(() => {
     if (isDarkMode()) {
-      console.log('changing to dark mode', selectedTheme)
       dispatch({
         type: THEME_OPTIONS.DARK,
       })
