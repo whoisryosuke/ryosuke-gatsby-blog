@@ -463,7 +463,7 @@ export { GamepadsProvider, GamepadsContext }
 
 [Here's an example app](https://codesandbox.io/s/react-gamepad-context-with-options-cuwdh) using this context provider to show each game controller and set actions based on button keys (like confirm = `button[4]`). You can also use the `useContext` hook to grab the gamepad input, instead of using the context consumer and render prop method.
 
-[react-gamepad-context-with-options](https://codesandbox.io/s/react-gamepad-context-with-options-cuwdh)
+[**Gamepad Context on CodeSandbox**](https://codesandbox.io/s/react-gamepad-context-with-options-cuwdh)
 
 ## Hook version
 
@@ -546,7 +546,7 @@ export default function useGamepads(callback) {
 
 Here's an working example in CodeSandbox:
 
-[react-gamepad-menu (w/ controller UI) (hook version - working)](https://codesandbox.io/s/react-gamepad-menu-w-controller-ui-hook-version-working-nktve?file=/src/App.js)
+[**Gamepad Hook on CodeSandbox**](https://codesandbox.io/s/react-gamepad-menu-w-controller-ui-hook-version-working-nktve?file=/src/App.js)
 
 Components will still be required to set their own state (or ref) based on gamepad data if they want to re-render accordingly:
 
@@ -690,6 +690,10 @@ if (!buttonPressed) {
 ```
 
 Basically, the take away here is that if you need the entire gamepad input (like displaying a controller), you can try doing checks for each button, but ultimately you might as well pass the gamepad input into state - or create a debounce to delay it to once per second or something if you don't want 1:1 visual feedback.
+
+You can see all these performance failures here in the `GamepadController.jsx` file, just comment them out to test:
+
+[**Horse game performance testing**](https://codesandbox.io/s/react-gamepad-menu-w-controller-ui-perf-testing-state-version-throttled-brlml?file=/src/components/GamepadController.jsx)
 
 ## Throttling input
 
