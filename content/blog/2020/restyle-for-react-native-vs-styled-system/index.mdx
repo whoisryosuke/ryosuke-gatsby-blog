@@ -136,7 +136,7 @@ A box component is basically a React Native `<View>` component (or `<div>` in we
 Since RN styles are so encapsulated, we don't set any typography values here (like font family or text color) because we have to use a `<Text>` component to contain text.
 
 <Box display="flex">
-<Box width={[1,1,1/2]}>
+<Box width={[1,1,1/2]} pr={1}>
 
 ```tsx
 import { createBox } from '@shopify/restyle'
@@ -148,7 +148,7 @@ export default Box
 ```
 
 </Box>
-<Box width={[1,1,1/2]}>
+<Box width={[1,1,1/2]} pl={1}>
 
 Comes with the props:
 
@@ -169,7 +169,7 @@ Comes with the props:
 A text component is basically a React Native `<Text>` component (or `<p>` in web) that can be used to display and style text. It's responsible for typography related properties, like the text color or font family.
 
 <Box display="flex">
-<Box width={[1,1,1/2]}>
+<Box width={[1,1,1/2]} pr={1}>
 
 ```tsx
 import { createText } from '@shopify/restyle'
@@ -181,7 +181,7 @@ export default Text
 ```
 
 </Box>
-<Box width={[1,1,1/2]}>
+<Box width={[1,1,1/2]} pl={1}>
 
 Comes with the props:
 
