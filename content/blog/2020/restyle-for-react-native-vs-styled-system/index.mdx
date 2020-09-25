@@ -1,0 +1,721 @@
+---
+title: Restyle for React Native (vs Styled System)
+date: '2020-09-25'
+section: blog
+tags: ['react native', 'react', 'design systems']
+cover_image: './Restyle_for_React_Native_(vs_Styled_System).png'
+---
+
+Recently Shopify open sourced **[Restyle](https://github.com/Shopify/restyle)**, their styling solution they created for React Native. Restyle takes cues from [**Styled System**](https://styled-system.com/) by offering theming (such as light and dark mode) and utility style props (`<Box marginTop="xl">`). But unlike Styled System, Restyle works off React Native's default styling paradigm ([the "Stylesheet"](https://reactnative.dev/docs/stylesheet)).
+
+I took Restyle for a test drive and compared it to Styled System, and share any thoughts and experiences I have from using both.
+
+# 📖 What is Restyle?
+
+From [the Restyle documentation](https://github.com/Shopify/restyle#shopifyrestyle):
+
+> The Restyle library provides a type-enforced system for building UI components in React Native with TypeScript. It's a library for building UI libraries, with themability as the core focus.
+
+It's a system for creating UI libraries in React Native with a focus on themeability. This means that your design language (or design tokens) live at the core of your app and most of your styling is tied to it. This allows you to do things like easily create light/dark mode swaps, but you can also create different themes for a company's sub-brands and use the same components (like multiple editorial blogs that share the same components — yet all look different).
+
+The theme is connected not only to your component's styles — but their props, allowing consumers of the UI library to alter the styles easily using these "utility style props". Need to add an extra margin to a component? Use the `marginTop` prop on the component (`<Button marginTop="30px">`). These props are tied to your theme values, allowing you to access them directly by just writing the token name (e.g. `<Button color="brandPrimary">` uses `theme.colors.brandPrimary`).
+
+```tsx
+<Button
+	marginTop="xl"
+	backgroundColor="contentBg"
+	color="brandPrimary"
+>
+```
+
+```tsx
+{
+	colors: {
+		brandPrimary: "#420710"
+		contentBg: "#FAFAFA",
+	},
+	spacing: {
+		xl: 48
+	}
+}
+```
+
+The props are also easy to make responsive according to breakpoints you set in your theme, so you can have a certain spacing for mobile vs desktop:
+
+```tsx
+<Box
+	marginTop={{ mobile: "sm", desktop: "xl" }}
+>
+```
+
+It empowers designers and developers on the team to use components as needed, while maintaining consistency and obeying the style guide. And it also allows designers to get more creative and break the theme where needed to override properties (like a custom landing page that needs specific spacing).
+
+# 🔰 Getting Started with Restyled
+
+The setup was very simple and non-invasive. You just install their library, wrap the app in a theme provider component, and use the components (or create them) as needed.
+
+Install into the RN project:
+
+```bash
+yarn add @shopify/restyle
+```
+
+Create a theme (`themes/default.ts`)
+
+```tsx
+import { createTheme } from '@shopify/restyle'
+
+const palette = {
+  purpleLight: '#8C6FF7',
+  purplePrimary: '#5A31F4',
+  purpleDark: '#3F22AB',
+
+  greenLight: '#56DCBA',
+  greenPrimary: '#0ECD9D',
+  greenDark: '#0A906E',
+
+  black: '#0B0B0B',
+  white: '#F0F2F3',
+}
+
+const theme = createTheme({
+  colors: {
+    mainBackground: palette.white,
+    cardPrimaryBackground: palette.purplePrimary,
+  },
+  spacing: {
+    s: 8,
+    m: 16,
+    l: 24,
+    xl: 40,
+  },
+  breakpoints: {
+    phone: 0,
+    tablet: 768,
+  },
+})
+
+export type Theme = typeof theme
+export default theme
+```
+
+If you don't use Typescript, you can remove the `export type` line and it should work in vanilla JS. But it's highly recommended you use Typescript with this library, as it's incredibly simple to setup (as you can see, basically one line here, a few in the component). And it offers great autocomplete support for your theme props, so you'll be able to see all the `spacing` values if your use a `margin` prop for example.
+
+Wrap the app in the Theme Provider component:
+
+```tsx
+import { ThemeProvider } from '@shopify/restyle'
+import theme from './theme'
+
+const App = () => (
+  <ThemeProvider theme={theme}>{/* Rest of the app */}</ThemeProvider>
+)
+```
+
+Or if you use Storybook, as a decorator:
+
+```tsx
+import { configure, addDecorator } from '@storybook/react'
+import { ThemeProvider } from '@shopify/restyle'
+import theme from '../themes/default'
+
+// Wrap all stories in Theme Provider
+addDecorator((story) => <ThemeProvider theme={theme}>{story()}</ThemeProvider>)
+```
+
+Now the app is setup and you should be able to create Restyle components from here.
+
+# 🎛 Restyle Components
+
+This package comes with a few components "out of the box" (as factory functions) that provide utility style prop functionality (similar to Styled System or Rebass' components).
+
+### Box component
+
+A box component is basically a React Native `<View>` component (or `<div>` in web) that can be used as a layout component. It's responsible for spacing (like margin and padding), and has more visual properties like background colors and shadows.
+
+Since RN styles are so encapsulated, we don't set any typography values here (like font family or text color) because we have to use a `<Text>` component to contain text.
+
+<Box display="flex">
+<Box width={[1,1,1/2]}>
+
+```tsx
+import { createBox } from '@shopify/restyle'
+import { Theme } from './theme'
+
+const Box = createBox<Theme>()
+
+export default Box
+```
+
+</Box>
+<Box width={[1,1,1/2]}>
+
+Comes with the props:
+
+- `backgroundColor`
+- `opacity`
+- `visible`
+- `layout`
+- `spacing`
+- `border`
+- `shadow`
+- `position`
+
+</Box>
+</Box>
+
+### Text component
+
+A text component is basically a React Native `<Text>` component (or `<p>` in web) that can be used to display and style text. It's responsible for typography related properties, like the text color or font family.
+
+<Box display="flex">
+<Box width={[1,1,1/2]}>
+
+```tsx
+import { createText } from '@shopify/restyle'
+import { Theme } from './theme'
+
+const Text = createText<Theme>()
+
+export default Text
+```
+
+</Box>
+<Box width={[1,1,1/2]}>
+
+Comes with the props:
+
+- `color`
+- `opacity`
+- `visible`
+- `typography`
+- `textShadow`
+- `spacing`
+- `textVariants`
+
+</Box>
+</Box>
+
+This component comes pre-configured with a `variant` prop. You can apply "variants" (kinda like CSS classes or sets of style properties) if it's present in the theme's `textVariants` property:
+
+```tsx
+// In your theme
+const theme = createTheme({
+  ...,
+  textVariants: {
+    header: {
+      fontFamily: 'ShopifySans-Bold',
+      fontWeight: 'bold',
+      fontSize: 34,
+      lineHeight: 42.5,
+      color: 'black',
+    },
+    body: {
+      fontFamily: 'ShopifySans',
+      fontSize: 16,
+      lineHeight: 24,
+      color: 'black',
+    },
+  },
+});
+```
+
+```tsx
+// In a component
+<Text variant="header">Header</Text>
+<Text variant="body">Header</Text>
+```
+
+Had an issue with the Text component where I created it, provided the default theme, and it crasheds the app when using the Text component. It displayed an error `Uncaught TypeError: Cannot read property 'defaults' of undefined` which didn't help. I tried adding the example text variants fixed the issue.
+
+### Custom components
+
+To create a custom card for instance, that uses `spacing` prop and uses `cardVariants` for variants, you can use the `createRestyleComponent` function:
+
+```tsx
+import {
+  createRestyleComponent,
+  createVariant,
+  spacing,
+  SpacingProps,
+  VariantProps,
+} from '@shopify/restyle'
+import { Theme } from './theme'
+
+type Props = SpacingProps<Theme> & VariantProps<Theme, 'cardVariants'>
+
+const Card = createRestyleComponent<Props>([
+  spacing,
+  createVariant({ themeKey: 'cardVariants' }),
+])
+
+export default Card
+```
+
+This creates a card that you can use across the app like so:
+
+```tsx
+<Card marginTop="xl" variant="video">
+```
+
+### Custom components using hooks
+
+This is great for components where you're styling nested elements, instead of applying them to the wrapper (like a button in this case):
+
+```tsx
+import { TouchableOpacity, View } from 'react-native'
+import {
+  useRestyle,
+  spacing,
+  border,
+  backgroundColor,
+  SpacingProps,
+  BorderProps,
+  BackgroundColorProps,
+} from '@shopify/restyle'
+
+import Text from './Text'
+import { Theme } from './theme'
+
+type Props = SpacingProps<Theme> &
+  BorderProps<Theme> &
+  BackgroundColorProps<Theme> & {
+    onPress: () => void
+  }
+
+const Button = ({ onPress, label, ...rest }: Props) => {
+  const props = useRestyle([spacing, border, backgroundColor], rest)
+
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <View {...props}>
+        <Text>{label}</Text>
+      </View>
+    </TouchableOpacity>
+  )
+}
+```
+
+This lets you create more complex components that don't require as much forced composition.
+
+# 🎨 Theming with Restyle
+
+Restyle's theming is setup very much like most CSS in JS libraries, like Styled Components, where you store your design tokens in an object. You pass that theme object into a `<ThemeProvider>` component, which acts as a React context provider, allowing components nested inside (ideally the whole app) to access design tokens.
+
+You can access the theme inside component by creating "connected" components (using the factory functions like `createBox`), or using hooks (`useTheme`). This is also very similar to the CSS in JS style for accessing the theme.
+
+What's great with Restyle is that all of this happens without a separate CSS in JS library, meaning you can cut out an additional dependency out of the mix. If you're someone who uses Styled System to solely create utility prop-based components — and don't use features like `styled` literals — you can cut your CSS in JS library out of the mix ✂️📦
+
+The one thing I haven't seen is being able to use the theme inside `Stylesheet.create` declarations, meaning any themed styling has to occur through utility props on the component. Otherwise, if you apply `Stylesheet` classes to a component, it won't benefit from theming (meaning styling properties are static, so colors won't swap from light to dark for example).
+
+Normally I'm not a fan of this, but because of the way React Native works, you don't have the benefit of CSS selectors. So the CSS is inherently scoped to each component, meaning I could easily fit all my CSS properties onto my component props. In the web world, this is a different story, because I can use CSS selectors to style children (or anything really).
+
+## **Accessing the Theme**
+
+If you need to manually access the theme outside of a component created with Restyle, use the `useTheme` hook:
+
+```tsx
+const Component = () => {
+  const theme = useTheme<Theme>()
+  const { cardPrimaryBackground } = theme.colors
+  // ...
+}
+```
+
+## Dark mode (or creating new themes)
+
+You define the base theme, then use it's interface to type your new theme, as well as spread it inside to create a base to override.
+
+```tsx
+const darkTheme: Theme = {
+  ...theme,
+  colors: {
+    ...theme.colors,
+    mainBackground: palette.black,
+    mainForeground: palette.white,
+
+    secondaryCardBackground: palette.darkGray,
+    secondaryCardText: palette.white,
+  },
+}
+```
+
+Then when you want to swap from light to dark, you pass a different theme to your `<ThemeProvider>` component.
+
+```tsx
+const App = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  return (
+    <ThemeProvider theme={darkMode ? darkTheme : theme}>
+```
+
+# 💭 "Does it work in Restyle?"
+
+## Can you use numbers for spacing?
+
+By default it looks like the spacing is derived by keys that are strings (like `sm` or `md`), and you'd use it like `<Box m="sm">`. Would you be able to use an integer based key? `<Box m={1}>`.
+
+**Github test branch**: [number-theme-test](https://github.com/whoisryosuke/react-native-restyle-test/tree/number-theme-test)
+
+**Yes it does work.**
+
+Here's an example of a component using string and integer based spacing props:
+
+```tsx
+<Box
+  width="300px"
+  height="300px"
+  mt="2"
+  p={2}
+  backgroundColor="cardPrimaryBackground"
+/>
+```
+
+And here's the theme:
+
+```tsx
+spacing: {
+  0: 8,
+  1: 16,
+  2: 24,
+  3: 40,
+},
+```
+
+Nice to see this works, makes it easier to migrate components from Styled System that use this paradigm.
+
+## Can you create multiple variants?
+
+Yep! The `createVariant` function takes a `property` property (say that 3 times fast), which lets you set the prop that will be used for the variant (like `size="your-variant"` instead of the default `variant="your-variant"`). You can [read more about that in the Restyle docs.](https://github.com/Shopify/restyle#variants)
+
+```tsx
+import {
+  createRestyleComponent,
+  createVariant,
+  spacing,
+  SpacingProps,
+  VariantProps
+} from '@shopify/restyle';
+import {Theme} from './theme'
+
+type Props = SpacingProps<Theme> & VariantProps<Theme, 'cardVariants'>
+const Card = createRestyleComponent<Props>([
+  spacing,
+  createVariant({themeKey: 'cardVariants'})
+  createVariant({property: 'size', themeKey: 'sizeVariants'})
+])
+
+export default Card
+```
+
+# ⚖️ Compared to Styled System
+
+I've used Styled System quite a few times in the past, either directly or inside UI libraries like Rebass or [Chakra UI](https://chakra-ui.com/). Overall they're pretty on par with each other in terms of features (beyond the limitations of the native platform - like the lack of grid). Even the API and theme structure are fairly similar.
+
+Just like above, I'll break down the way Styled System handles things (like a `<Box>` component) so you can see the difference (or lack thereof) between them. But first - let's take a look at the utility props offered by both libraries and see what they do and don't share.
+
+## Utility Props Available
+
+As Restyle is based on Styled System, they share a very similar API for "utility style props". I compared the two to see how many they shared — and what differed (all native vs web differences).
+
+[Here's a list of all Restyle "functions" (or "utility style props")](https://github.com/Shopify/restyle#predefined-restyle-functions).
+
+[Here's a list of all Styled System's API (or "utility style props").](https://styled-system.com/api)
+
+### Shared props
+
+These props are available in both Restyle and Styled System:
+
+- margin, m
+- marginTop, mt
+- marginRight, mr
+- marginBottom, mb
+- marginLeft, ml
+- marginX, mx
+- marginY, my
+- padding, p
+- paddingTop, pt
+- paddingRight, pr
+- paddingBottom, pb
+- paddingLeft, pl
+- paddingX, px
+- paddingY, py
+- color
+- backgroundColor
+- bg
+- fontFamily
+- fontSize
+- fontWeight
+- lineHeight
+- letterSpacing
+- textAlign
+- fontStyle
+- width
+- height
+- display
+- minWidth
+- minHeight
+- maxWidth
+- maxHeight
+- overflow
+- alignItems
+- alignContent
+- justifyItems
+- justifyContent
+- flexWrap
+- flexDirection
+- flex
+- flexGrow
+- flexShrink
+- flexBasis
+- justifySelf
+- alignSelf
+- border
+- borderWidth
+- borderStyle
+- borderColor
+- borderRadius
+- borderTop
+- borderTopWidth
+- borderTopStyle
+- borderTopColor
+- borderTopLeftRadius
+- borderTopRightRadius
+- borderRight
+- borderRightWidth
+- borderRightStyle
+- borderRightColor
+- borderBottom
+- borderBottomWidth
+- borderBottomStyle
+- borderBottomColor
+- borderBottomLeftRadius
+- borderBottomRightRadius
+- borderLeft
+- borderLeftWidth
+- borderLeftStyle
+- borderLeftColor
+- position
+- zIndex
+- top
+- right
+- bottom
+- left
+
+### Missing props from Styled System
+
+These are found in Restyle, but not Styled System:
+
+- paddingStart
+- paddingEnd
+- marginStart
+- marginEnd
+- start
+- end
+- shadowOpacity
+- shadowOffset
+- shadowRadius
+- elevation
+- shadowColor
+- textShadowOffset
+- textShadowRadius
+- textShadowColor
+- textDecorationLine
+- textDecorationStyle
+
+### Missing props from Restyle
+
+These props are available in Styled System, but not Restyle:
+
+- borderXborderY
+- gridGap
+- gridColumnGap
+- gridRowGap
+- gridColumn
+- gridRow
+- gridAutoFlow
+- gridAutoColumns
+- gridAutoRows
+- gridTemplateColumns
+- gridTemplateRows
+- gridTemplateAreas
+- gridArea
+- order
+- overflowX
+- overflowY
+- size
+- sx
+- verticalAlign
+
+It's cool to see how much of the API surface area they were able to replicate in native. Makes sharing application code (or migrating libraries) much easier.
+
+## Using the Box component
+
+Styled System has no `<Box>` component available, you have to use Rebass instead (which is created by the Styled System creator).
+
+Using Rebass' `<Box>` is the same as Restyled, except the Rebass version has way more utility props, and is web-based (so defaults to displaying as `block`, uses `px` for units, etc). Rebass also uses the `sx` prop for inline styling, while Restyle uses the `style` prop.
+
+```tsx
+<Box mt={3} pb={4} fontFamily="Roboto, sans-serif">
+```
+
+But if you were to take a Rebass `<Box>` out of an app, and bring it into a Restyled app, maybe 50% of the time you'd be fine.
+
+## Creating custom components
+
+If you ignore the Typescript, making custom components with Styled System is fairly easy. And if you're not a fan of this object syntax, you can use the Styled Component literal syntax as well.
+
+But it's good to note that the typing here for components is a little funky, but it's also because we're extending native web elements (like a `<div>` in this case).
+
+```tsx
+import React from 'react'
+import styled from 'styled-components'
+import {
+  compose,
+  typography,
+  space,
+  color,
+  layout,
+  SpaceProps,
+  ColorProps,
+} from 'styled-system'
+
+export type Assign<T, U> = {
+  [P in keyof (T & U)]: P extends keyof T
+    ? T[P]
+    : P extends keyof U
+    ? U[P]
+    : never
+}
+
+export interface BoxOwnProps extends SpaceProps, ColorProps {
+  as?: React.ElementType
+  variant?: string
+}
+export interface BoxProps
+  extends Assign<React.ComponentProps<'div'>, BoxOwnProps> {}
+
+export const Box = styled('div')<BoxProps>(
+  {
+    boxSizing: 'border-box',
+    margin: 0,
+    minWidth: 0,
+  },
+  compose(typography, space, color, layout)
+)
+```
+
+## Creating variants
+
+Creating [a variant](https://styled-system.com/variants/) in Styled System uses the `variant` function, and each variant is described as an object of styles with the key as the variant name:
+
+```tsx
+import { variant } from 'styled-system'
+
+export type SizeProp = 'xs' | 'small' | 'medium' | 'large' | 'xl'
+
+export const sizeVariants = variant({
+  prop: 'size',
+  variants: {
+    xs: {
+      fontSize: '0.75em',
+    },
+    small: {
+      fontSize: '0.9em',
+    },
+    medium: {
+      fontSize: '1em',
+    },
+    large: {
+      fontSize: '1.2em',
+    },
+    xl: {
+      fontSize: '1.5em',
+    },
+  },
+})
+```
+
+Using the variant in the component:
+
+```tsx
+import React from 'react'
+import styled from 'styled-components'
+import { Box, Assign, BoxOwnProps } from 'zenny-ui-box'
+import {
+  SizeProp,
+  sizeVariants,
+  AppearanceProp,
+  appearanceVariants,
+} from 'zenny-ui-variants'
+
+export interface ButtonProps
+  extends Assign<React.ComponentPropsWithRef<'button'>, BoxOwnProps> {
+  size?: SizeProp
+  appearance?: AppearanceProp
+}
+
+export const Button = styled(Box).attrs(() => ({
+  // Define props on top of Box
+  // Set underlying element as button
+  as: 'button',
+}))<ButtonProps>(
+  {
+    appearance: 'none',
+    fontFamily: 'inherit',
+    backgroundColor: 'teal',
+  },
+  sizeVariants, // Variants here
+  appearanceVariants
+)
+```
+
+It works well and it's modular. You can also define multiple variants for a component. And these can be overridden by the theme if we create a property named after our variant.
+
+But with Styled System it's important to note that the variant is stored with the component, not the theme, and the theme is only used for overriding. I'm not sure if you can create an empty variant and then provide the variant keys through the theme — that would be a more optimal way to provide them (and more similar to Restyled's method).
+
+## Responsive props
+
+In Styled System, responsive props are defined by an array (instead of an object like Restyle):
+
+```tsx
+<Box flexDirection={['column', 'row']}>
+```
+
+This would set the flexDirection to "column" on smaller viewports, and "row" in larger viewports. The breakpoints are defined in the theme, in an array of integers (`breakpoints: ['400px', '768px']`).
+
+This works great, until you need to target larget viewports, and need to "skip" other viewports. Say you wanted to target only the 3rd breakpoint, you'd have to pass `null` or empty value to the other preceding breakpoints:
+
+```tsx
+<Box flexDirection={[null, null, 'row']}>
+```
+
+This is one of the biggest differences between Styled System and Restyle. It's like I said earlier, Restyle took some cues from xStyled, which made overall better decisions on a responsive prop API.
+
+# 🥊 Restyle vs Styled System — who wins?
+
+I'll say what most developers inevitably say during consultation: _it depends._
+
+**If you want a more performant app,** I'd reach for Restyle. Styled Components by it's nature is less performant because it requires so much runtime style calculation — vs Restyle leveraging the native styling layer. Although I'd wonder if Restyle is worse on web, since it goes through react-native-web.
+
+**If you want first-class Typescript support,** go for Restyle. It's made the process much simpler (and actually documented) unlike Styled System. I had to backwards engineer Rebass, Theme UI, and the Gatsby UI library to figure out the right way to type Styled System.
+
+**If you want to be able to leverage web features** like non-flex layout options, Styled System would be a better bet. Or if you want to leverage Emotion or Styled Components literal style syntax (vs the object style syntax).
+
+If you're **considering a switch** over from Styled System to Restyle, **there's no huge reason** to switch over (unless you're seeing issues or focusing more on native).
+
+# ✨ Restyle is my new RN standard
+
+For creating libraries purely for React Native (and even a little on the web), I'm definitely reaching for Restyle in the future. I like how simple it was to setup, and it made working with the theme (or design tokens) effortless.
+
+Check out [the source code here on Github](https://github.com/whoisryosuke/react-native-restyle-test) testing the library out.
+
+What are your thoughts on Restyle? Have you used it in your applications yet? Let me know in the comments or [on my Twitter!](http://twitter.com/whoisryosuke)
+
+# 📚 References
+
+- [Shopify/restyle](https://github.com/Shopify/restyle)
+- [Styled System](https://styled-system.com/)
+- [Styles & Theming in React Native - a webinar by Haris Mahmood](https://www.youtube.com/watch?v=a6sNwOSAxoo)
+- [#3 Restyle - React Native Fashion](https://www.youtube.com/watch?v=rJcJ7jzQO0g&list=WL&index=2&t=0s)
+- [https://engineering.shopify.com/blogs/engineering/5-ways-to-improve-your-react-native-styling-workflow](https://engineering.shopify.com/blogs/engineering/5-ways-to-improve-your-react-native-styling-workflow)
