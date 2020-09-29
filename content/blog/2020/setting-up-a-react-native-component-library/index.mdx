@@ -1,0 +1,330 @@
+---
+title: Setting up a React Native Component Library
+date: '2020-09-29'
+section: blog
+tags:
+  [
+    'react native',
+    'react',
+    'design systems',
+    'devops',
+    'project management',
+    'storybook',
+    'typescript',
+    'expo',
+    'eslint',
+  ]
+cover_image: './Setting_up_a_React_Native_Component_Library.png'
+---
+
+Recently I created a small React Native component library using Restyle, Shopify's new native styling library. I thought I'd document the process of creating a React Native specific component library, and the _intricacies_ behind the going from **component code** to a **distribution build** with **automated versioning** using **a CI/CD.**
+
+We'll create a React Native component library with a build system, linting, types with Typescript, unit testing, integration tests and documentation with Storybook, and a release system using semantic-release. And we'll even setup a CI/CD (CircleCI in this case) to run our linting, testing, and builds.
+
+This won't cover the design process, or any differences between native and web components. But this will cover things like build process and documentation, as well as comparing the native process to web. I'd check out [the React Native documentation](https://reactnative.dev/docs) if you're not familiar with the library, it's a fantastic resource for getting started from a few different perspectives.
+
+If you're interested in the source code, [check it out here](https://github.com/whoisryosuke/react-native-component-library-template) and give it a test ride. Or keep reading to see how it's built from the ground up 👇🏼
+
+# Creating your package
+
+Normally you'd use `npm init` to get started, or if you follow the React Native docs, you'd use the bob CLI to spin up a project with a build system. But I wanted Storybook. And to have Storybook, you need Expo.
+
+And that is a whole article itself to show you how to setup, so I setup a template [**expo-storybook**](https://github.com/whoisryosuke/expo-storybook). This will be our starting point. This template comes with a bit setup out of the box, so let's break it down:
+
+- Storybook
+- Typescript
+- Expo
+- Testing using Jest and react-test-renderer
+- Linting using ESLint
+
+## Storybook
+
+This is basically a standard React Storybook setup, but it get's weird quick. The build system is run through the Expo Webpack configuration, which helps do things like take `react-native` references and make them `react-native-web`. If you run `yarn storybook`, you'll use the Storybook CLI to create a local web instance.
+
+Then there's native Storybook. The "Storybook app" itself is run through Expo, meaning the root `App.tsx` file renders Storybook (not the same `yarn storybook`, this is running it natively in Expo). This allows you to test your components natively on your device using the Expo CLI and the Storybook mobile UI.
+
+Currently the Storybook config (`.storybook/config.js`) grabs stories from `/stories/` in the root of the repo, but you can set it up to grab from the component folder instead:
+
+```tsx
+configure(require.context('../components', true, /\.stories\.[tj]sx$/), module)
+```
+
+## Typescript
+
+This one is the most standard setup. It's Typescript that's configured lightly by Expo, which [you can read about in their docs](https://docs.expo.io/guides/typescript/#configuring-the-typescript-compiler). I had one issue with the default config, which I'll discuss below.
+
+## Expo
+
+Expo is a set of utilities for working more easily with React Native. I used the Expo CLI to create a new project and used the managed Typescript template. This set up linting and testing, as well as Typescript support.
+
+## Testing
+
+Jest and react-test-renderer are setup by Expo. Expo even provides an example test, which I believe I left in the repo for reference. Running `yarn test` runs any `.test.[tj]sx` files through Jest, which ideally is using react-test-renderer to render the components in isolation.
+
+## Linting / Formatting
+
+ESLint is setup using [the React Native community ESLint configuration.](https://www.npmjs.com/package/@react-native-community/eslint-config) There's nothing too different about setting up ESLint with RN if you do it manually. Running `yarn lint` runs the ESLint check, and if you use an IDE like VSCode, you can benefit from built-in error checking.
+
+Prettier is also setup to make sure files are formatted similarly. Running `yarn format` will go through all source files in repo and write over them.
+
+Now that all this is setup, let's add a build system!
+
+# Build system
+
+The React Native docs recommend using bob, a build system built for React Native modules (like Bob the Builder — yes we have a CLI!). Normally you'd [use the bob CLI to bootstrap](https://github.com/react-native-community/bob#creating-a-new-project) your React Native package, but since we have a project setup using Expo, we have to do it manually.
+
+Run the following in the root of the package:
+
+```tsx
+yarn add --dev @react-native-community/bob
+```
+
+Add an `index.ts` file that export all of your components (so bob can pick it up during the next CLI process). If you don't have a component, just create a quick sample one using `<Text>` component and export it from the `index.ts`.
+
+Then run the initialization process:
+
+```tsx
+yarn bob init
+```
+
+This will walk you through some questions, like selecting a build output. I recommend using CommonJS, ESModules, and Typescript. Afterwards, the CLI will add the necessary configurations to the `package.json`
+
+I tried running `yarn prepare` to run the build but it failed due to a couple errors. First I had to remove the `noEmit` from the Typescript config, since Expo set's it to `true` [by default to allow for Metro bundler to handle things](https://docs.expo.io/guides/typescript/#configuring-the-typescript-compiler) — but since we're using bob for production builds, which needs to use Typescripts `tsc` to compile code, we remove it. Also the `App.test.tsx` used by Expo getting picked up and throwing errors about missing types. I added it to the `exclude` property of the `tsconfig.json` to ensure they didn't get picked up:
+
+```tsx
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-native",
+    "lib": ["dom", "esnext"],
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "lib",
+    "**/*.spec.ts",
+    "**/*.stories.[tj]sx",
+    "**/*.test.[tj]sx",
+    "App.test.tsx",
+    "App.tsx"
+  ]
+}
+```
+
+After this, running `yarn prepare` works:
+
+```bash
+Ryos-MacBook-Pro:restyle-ui ryo$ yarn prepare
+yarn run v1.22.4
+warning package.json: No license field
+$ bob build
+ℹ Building target commonjs
+ℹ Cleaning up previous build at dist/commonjs
+ℹ Compiling 4 files in components with babel
+✓ Wrote files to dist/commonjs
+ℹ Building target module
+ℹ Cleaning up previous build at dist/module
+ℹ Compiling 4 files in components with babel
+✓ Wrote files to dist/module
+ℹ Building target typescript
+ℹ Cleaning up previous build at dist/typescript
+ℹ Generating type definitions with tsc
+✓ Wrote definition files to dist/typescript
+✨  Done in 4.92s.
+```
+
+If you look at the Typescript folder in your preferred build directory, you can see all the types necessary for components and even the theme.
+
+# Semantic Release
+
+1. Add commitizen as a dev dependency to your project (or monorepo):
+
+   ```bash
+   npm i -D commitizen
+   yarn add --dev commitizen -W
+   ```
+
+   The `-W` flag is for Yarn Workspaces to install it on the root workspace.
+
+2. Then run the setup to use the conventional-changelog:
+
+   ```bash
+   npx commitizen init cz-conventional-changelog -D -E
+   ```
+
+3. Add a script to your `package.json` to run the conventional commit CLI when you have staged files to commit:
+
+   ```json
+   "scripts": {
+     "commit": "git-cz"
+   },
+   ```
+
+You should be good to go! Stage some files in Git (`git add .`) and run `yarn commit` to start the CLI. The CLI will walk you through the commit process.
+
+## Enforcing commits with hooks
+
+1. Install husky, a tool that simplifies the process of creating git hooks:
+
+   ```bash
+   npm i -D husky
+   yarn add --dev husky
+   ```
+
+2. Install a linter for the commit messages:
+
+   ```bash
+   npm i -D @commitlint/{config-conventional,cli}
+   yarn add --dev @commitlint/{config-conventional,cli}
+   ```
+
+3. Create a configuration file for the commit linter in the project root as `commitlint.config.js`:
+
+   ```jsx
+   module.exports = { extends: ['@commitlint/config-conventional'] }
+   ```
+
+   Instead of creating a new file, you can add this to your `package.json`:
+
+   ```yaml
+   'commitlint': { 'extends': ['@commitlint/config-conventional'] }
+   ```
+
+4. Add the husky hook to your `package.json`:
+
+   ```json
+   "husky": {
+     "hooks": {
+       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+     }
+   }
+   ```
+
+   Check the manual method to see a CI/CD override using `cross-env`. Since the CI/CD needs to version the software, it won't follow the commit conventions, so you need to configure the hook to deal with that.
+
+## Semantic Release
+
+If you aren't using a utility like Lerna for managing your project, you'll need to setup a release process that increases the version of your package.
+
+1. Install semantic-release:
+
+   ```bash
+   npm i -D semantic-release
+   yarn add --dev semantic-release
+   ```
+
+2. Add a script to your `package.json` to run it:
+
+   ```bash
+   "scripts": {
+     "semantic-release": "semantic-release"
+   },
+   ```
+
+3. Add your Github (`GITHUB_TOKEN`) and NPM tokens (`NPM_TOKEN`) to your CI service of choice.
+
+   - Here's a sample CircleCI config `.circleci/config.yml`:
+   - Here's a version for Github Actions:
+
+   Everything is ready now! If CI sees a commit message that should trigger a release (like those starting with feat or fix), all will happen automatically.
+
+## Changelog and Release
+
+This generates creates a new commit in your git with a `[CHANGELOG.md](http://changelog.md)` file and any other files you specify (like a `package.json` that bumps the new version, of `dist` folder with JS and CSS production files).
+
+1. Install the packages:
+
+   ```bash
+   npm i -D @semantic-release/changelog @semantic-release/git
+   ```
+
+2. Add this to your `package.json`:
+
+   ```json
+   "release": {
+   	"prepare": [
+   	   "@semantic-release/changelog",
+   	   "@semantic-release/npm",
+   	   {
+   	    "path": "@semantic-release/git",
+   	     "assets": [
+   				// Add any distribution files here
+   				"dist/**/*.{js,ts}",
+   	      "package.json",
+   	      "package-lock.json",
+   	      "CHANGELOG.md"
+   	    ],
+   	    "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
+   	  }
+   	]
+   }
+   ```
+
+## So what did we just do?
+
+First we setup a "**commit CLI**" to help use write "**[conventional commits](https://www.conventionalcommits.org/en/v1.0.0/)**" that are used to automated version control. Stage some changes to Git (`git add .`) and then use `yarn commit` to run the CLI. It'll walk you through crafting the correct commit, and then actually commit your code.
+
+Then we setup [husky](https://github.com/typicode/husky), a library used to more easily use git hooks. This allowed us to setup "commit linting", which checks every commit and makes sure it matches the "conventional commit" standard.
+
+Third we setup [semantic-release](https://github.com/semantic-release/semantic-release), which is the actual library we'll use to automate version control. Running `yarn semantic-release` will check all commits since the last version, and use the commits and their structure to increment the version as necessary (like a minor version push for a bug, or major for breaking change).
+
+Finally we setup a couple plugins for semantic-release that make life easier. The **changelog** plugin generates a `[CHANGELOG.md](http://changelog.md)` file that contains relevant changes you made in commits. The **git** plugin creates a new commit with your distribution files when a new version is created (labeled with your version number). And the NPM version uses your NPM auth token from your CI/CD to publish for you.
+
+## How does it all come together?
+
+1. Create a component (or changes, like a bug fix).
+2. Stage your code using Git (`git add`)
+3. Commit your code using the CLI (`yarn commit`) or if you're confident, use `git commit` and write a conventional commit by hand (the commit linter will verify it for you).
+4. When you want to push a new version, run `yarn semantic-release`, or for better practice — use Github PR's, merge them into master, and trigger the CI/CD (which handles the entire release process for you).
+
+## Stepping up your branches
+
+You can merge everything to `master` in the beginning, but what happens when you want to test new features and create a build for it? This is where a `next` and `beta` branches come in.
+
+The `next` branch is used to push all new code into it. This should be where all bug fixes, upgrades, etc happen. Then when you feel confident to release, you push this to `beta`, which can trigger a beta build of the software for testing.
+
+Then after the software is properly tested (and bug fixed), you can release this to the public by merging the `beta` and `master` branches. You should have no conflicts, since the `beta` changes are all upstream from the `master` branch (meaning it's all fresh code coming in — you shouldn't have any other commits to `master` conflicting).
+
+### Contributor "beta" workflow
+
+1. Create a branch to work (`git checkout -b feat/new-component`)
+2. Submit branch to repo. This should trigger testing.
+3. If tests pass, it can be merged into `next` branch.
+4. When release time is nearly ready (product is tested, enough features to justify) you merge `next` with `beta`. You can do this through Github pull requests.
+5. This will create a `beta` build you can provide to testers using CircleCI.
+6. Merge any bug fixes to `beta`, then merge with `master` when ready for major release.
+7. This creates a release for the `master` branch using CircleCI.
+
+# Start making components!
+
+I hope this simplifies the process for starting a new React Native component library for you! It helps you get immediate feedback using Storybook, sanity checks using linting, and all the bells and whistles when it's time to push code to the public.
+
+If you want to give it a shot without the setup, or have issues along the way, [you can grab the template from Github here](https://github.com/whoisryosuke/react-native-component-library-template) and compare to your work.
+
+Let me know what you think, or if you have any suggestions or issues, in the comments or [on my Twitter](http://twitter.com/whoisryosuke).
+
+# References
+
+- [https://reactnative.dev/docs/native-modules-setup](https://reactnative.dev/docs/native-modules-setup)
+- [https://www.npmjs.com/package/@react-native-community/eslint-config](https://www.npmjs.com/package/@react-native-community/eslint-config)
+
+## Tools
+
+- [https://github.com/callstack/react-native-testing-library](https://github.com/callstack/react-native-testing-library)
+  - Uses react-test-renderer under the hood and provides utilities and best practices for testing.
+- [https://github.com/callstack/haul](https://github.com/callstack/haul)
+  - Alternative to Expo and bob. Creates a dev server and bundles your app using Webpack.
+
+## Templates
+
+- [https://github.com/brodybits/create-react-native-module#readme](https://github.com/brodybits/create-react-native-module#readme)
+- [https://github.com/WrathChaos/react-native-typescript-library-starter](https://github.com/WrathChaos/react-native-typescript-library-starter)
+- [https://github.com/styleguidist/react-styleguidist/tree/master/examples/react-native](https://github.com/styleguidist/react-styleguidist/tree/master/examples/react-native)
+
+## Semantic Release
+
+- [How to control your deployments and versioning with semantic-release & friends - LogRocket Blog](https://blog.logrocket.com/never-guess-about-project-history-again-31f65091f668/)
+- [Introduction to Semantic Release](https://semantic-release.gitbook.io/semantic-release/)
