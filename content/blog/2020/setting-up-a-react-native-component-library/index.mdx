@@ -227,7 +227,95 @@ If you aren't using a utility like Lerna for managing your project, you'll need 
 3. Add your Github (`GITHUB_TOKEN`) and NPM tokens (`NPM_TOKEN`) to your CI service of choice.
 
    - Here's a sample CircleCI config `.circleci/config.yml`:
+
+     ```yaml
+     version: 2
+     jobs:
+       test_node_10:
+         docker:
+           - image: circleci/node:10
+         steps:
+           - checkout
+           - run: yarn install --frozen-lockfile
+           - run: yarn run test:unit -u
+
+       release:
+         docker:
+           - image: circleci/node:10
+         steps:
+           - checkout
+           - run: yarn install --frozen-lockfile
+           # Run optional required steps before releasing
+           # - run: npm run build-script
+           - run: npx semantic-release
+
+     workflows:
+       version: 2
+       test_and_release:
+         # Run the test jobs first, then the release only when all the test jobs are successful
+         jobs:
+           - test_node_10
+           - release:
+               filters:
+                 branches:
+                   only:
+                     - master
+                     - beta
+               requires:
+                 - test_node_10
+     ```
+
    - Here's a version for Github Actions:
+
+     ```jsx
+     name: CI
+     on: [push]
+     jobs:
+       build:
+         runs-on: ubuntu-latest
+
+         steps:
+           - name: Begin CI...
+             uses: actions/checkout@v2
+
+           - name: Use Node 12
+             uses: actions/setup-node@v1
+             with:
+               node-version: 12.x
+
+           - name: Use cached node_modules
+             uses: actions/cache@v1
+             with:
+               path: node_modules
+               key: nodeModules-${{ hashFiles('**/yarn.lock') }}
+               restore-keys: |
+                 nodeModules-
+
+           - name: Install dependencies
+             run: yarn install --frozen-lockfile
+             env:
+               CI: true
+
+           - name: Lint
+             run: yarn lint
+             env:
+               CI: true
+
+           - name: Test
+             run: yarn test --ci --coverage --maxWorkers=2
+             env:
+               CI: true
+
+           - name: Build
+             run: yarn build
+             env:
+               CI: true
+
+           - name: Semantic Release
+             run: yarn semantic-release
+             env:
+               CI: true
+     ```
 
    Everything is ready now! If CI sees a commit message that should trigger a release (like those starting with feat or fix), all will happen automatically.
 
