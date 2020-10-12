@@ -1,0 +1,460 @@
+---
+title: Handling Scroll Based Animation in React (2-ways)
+date: '2020-10-12'
+section: blog
+tags: ['react', 'animation', 'motion design', 'interactivity', 'javascript']
+cover_image: './Handling_Scroll_Based_Animation_in_React.png'
+---
+
+As I've been [looking for inspiration](https://guglieri.com/work/) recently, one of the design patterns that seems to be most prevalent across ["award-winning" websites](https://www.awwwards.com/) is scroll based animation. 80-90% of the sites that feel "high end" or "interactive" feature some sort of animation that is dependent on the user's scroll position — whether it's elements fading in and out as you scroll, or creating a "parallax" effect where items move at different rates.
+
+It got me thinking, how would I recreate these effects with React? I did a bit of research on pre-existing libraries, and put together some examples from scratch.
+
+# Libraries for React
+
+## [**react-animate-on-scroll**](https://www.npmjs.com/package/react-animate-on-scroll)
+
+This library uses animate.css under the hood to power the animations. Under the hood, the library is a single React component that uses a scroll event listener. You use a `<ScrollAnimation>` component, pass it a CSS animation name as a prop, and it just works.
+
+```tsx
+import ScrollAnimation from 'react-animate-on-scroll'
+
+const Animation = () => (
+  <ScrollAnimation animateIn="fadeIn">Some Text</ScrollAnimation>
+)
+```
+
+The primary issue I had with this was that it relied on CSS animations, meaning that there was no easy and direct control over it using JavaScript. Once the animation is running, it's running, and it's hard to change it dynamically (like more physics based animations that can be tedious or impossible to hand-code in CSS).
+
+## [react-reveal](https://github.com/rnosov/react-reveal)
+
+This library is a bit more robust and uses more browser APIs to more properly detect user scroll position, like the Intersection Observer, and screen orientation event listener. It uses CSS based animations, but uses React's inline `style` prop to [apply animation properties.](https://github.com/rnosov/react-reveal/blob/master/src/RevealBase.js#L354-L358)
+
+Each animation is separated into it's own component, and can be imported and used without any props.
+
+```tsx
+import Zoom from 'react-reveal/Zoom'
+
+;<Zoom>
+  <p>Markup that will be revealed on scroll</p>
+</Zoom>
+```
+
+# The Basics
+
+So how do these libraries achieve that core functionality — trigger animation based on scroll and element position?
+
+I found [an article on The Practical Dev by @chriseickemeyergh](https://dev.to/chriseickemeyergh/building-custom-scroll-animations-using-react-hooks-4h6f) that goes over the basics of wiring a React component up to the scroll event. They go over the basics in more detail there. Basically here's everything we need to do:
+
+1. Create a "ref" in React to keep track of our element (the HTML wrapper, like a `<div>`)
+
+   ```tsx
+   const ourRef = useRef(null)
+
+   return <div ref={ourRef} />
+   ```
+
+2. We use React's `useLayoutEffect` to run code before the component mounts. Here is where we'll attach the scroll event listener, as well as the function that should run when the user scrolls.
+
+   ```tsx
+   useLayoutEffect(() => {
+     window.addEventListener('scroll', onScroll)
+     return () => window.removeEventListener('scroll', onScroll)
+   }, [])
+   ```
+
+3. In the scroll function (`onScroll`), we can check the user's scroll position by adding their Y coordinate on the page (or `window.scrollY`) to the height of the page (or `window.innerHeight`). Then we can also grab the ref of the animated element and use the `getBoundingClientRect()` API to get the Y coordinate of the top of the element. Then we can check if the user's scroll position is greater than the top of the element, every time the user scrolls up or down.
+
+   ```tsx
+   const topPosition = ourRef.current.getBoundingClientRect().top
+   const onScroll = () => {
+     const scrollPosition = window.scrollY + window.innerHeight
+     if (topPosition < scrollPosition) {
+       // trigger animation
+     }
+   }
+   ```
+
+This allows us to create something like a simple "fade in" animation that changes an elements opacity from invisible to visible. We can set this up using React's inline styles, or Styled Components in this case:
+
+```tsx
+const [show, doShow] = useState({
+  itemOne: false,
+  itemTwo: false,
+  itemThree: false,
+})
+const ourRef = useRef(null)
+
+// useLayoutEffect here
+
+return (
+  <>
+    <Div animate={show.itemOne} ref={ourRef} />
+  </>
+)
+
+// component we are animating
+const Div = styled.div`
+  transform: translateX(${({ animate }) => (animate ? '0' : '-100vw')});
+  transition: transform 1s;
+  height: 900px;
+  width: 300px;
+  background-color: red;
+`
+```
+
+You can see [the full example live on CodeSandbox.](https://codesandbox.io/s/react-scroll-animation-utzzz)
+
+## The Better Way
+
+Ideally, if we don't have to support IE as a target platform, we can use the [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API). This offers a built in way to calculate the scroll position relative to an element (rather than doing the math ourselves with `window.scrollY` and `window.innerHeight`).
+
+This is a great example from the MDN docs that uses the `threshold` to achieve a more loose or finite position (like our script above that sets percent based on element position — except optimized like we needed).
+
+```tsx
+const ref = useRef(null);
+
+const callback = entry => {
+	// Get intersection data here
+	// Like entry.intersectionRatio
+
+	// Here we can set state or update ref
+	// based on entry data
+};
+
+const observer = new IntersectionObserver(callback, {
+      root: this.ref.current,
+			// Creates a threshold of with increments of 0.01
+      threshold: new Array(101).fill(0).map((v, i) => i * 0.01),
+    });
+  }
+
+useEffect(() => {
+    observer.observe(ref.current)
+})
+
+return <div ref={ref} />
+```
+
+### Using a library
+
+I found a library called [react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer) that offers a hook with drop-in support for Intersection Observer. You use the hook, it generates a "ref" for you, and you get a `inView` boolean that lets you know if the element has been scrolled to or not.
+
+```tsx
+import React from 'react'
+import { useInView } from 'react-intersection-observer'
+
+const Component = () => {
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  })
+
+  return (
+    <div ref={ref}>
+      <h2>{`Header inside viewport ${inView}.`}</h2>
+    </div>
+  )
+}
+```
+
+# Examples
+
+Now we understand how to trigger an animation based on scroll position, and even how to determine the animated element's position on the page. There's a lot we can do with this data, as well as the "ref" to the animated element.
+
+## Percent based animation
+
+The first thing I wanted to do was make the scroll animation more interactive with the scroll, instead of just being a simple trigger for one-time animation. For this example, I set up the scroll function to change the React state to a number from 0 to 100, based on the element position on screen.
+
+Just like above, once you reach the top of the element, that's the 0% point. Then when the user reaches the bottom of the element (touching the bottom of their screen), it changes to 100%.
+
+This also handles when the user scrolls back up (animating in and out), unlike the animation above, which will only fade in once.
+
+```tsx
+import React, { useLayoutEffect, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
+import styled from 'styled-components'
+
+const App = () => {
+  const [show, doShow] = useState({
+    itemThree: false,
+  })
+  const [percentShown, setPercentShow] = useState({
+    itemThree: 0,
+  })
+  const refThree = useRef(null)
+
+  useLayoutEffect(() => {
+    const topPos = (element) => element.getBoundingClientRect().top
+    const getHeight = (element) => element.offsetHeight
+    const div3Pos = topPos(refThree.current)
+
+    const div3Height = getHeight(refThree.current)
+
+    const onScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight
+
+      if (div3Pos < scrollPos) {
+        // Element scrolled to
+        doShow((state) => ({ ...state, itemThree: true }))
+
+        let itemThreePercent = ((scrollPos - div3Pos) * 100) / div3Height
+        if (itemThreePercent > 100) itemThreePercent = 100
+        if (itemThreePercent < 0) itemThreePercent = 0
+
+        setPercentShow((prevState) => ({
+          ...prevState,
+          itemThree: itemThreePercent,
+        }))
+      } else if (div3Pos > scrollPos) {
+        // Element scrolled away (up)
+        doShow((state) => ({ ...state, itemThree: false }))
+      }
+    }
+
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+  return (
+    <>
+      <p>scroll down</p>
+      <Wrapper>
+        <Div
+          animate={show.itemThree}
+          animatePercent={percentShown.itemThree}
+          ref={refThree}
+        >
+          <p>tag here</p>
+          <p>tag here</p>
+          <p>tag here</p>
+          <p>tag here</p>
+        </Div>
+      </Wrapper>
+    </>
+  )
+}
+
+const Div = styled.div.attrs({
+  style: ({ animatePercent }) => ({
+    opacity: animatePercent ? animatePercent / 100 : 1,
+  }),
+})`
+  height: 900px;
+  width: 300px;
+  background-color: red;
+  transform: translateX(${({ animate }) => (animate ? '0' : '-100vw')});
+  transition: transform 1s;
+  margin: 20px;
+  opacity: ${({ animatePercent }) =>
+    animatePercent ? `${animatePercent / 100}` : `1`};
+`
+
+const Wrapper = styled.div`
+  margin-top: 100vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+`
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
+```
+
+You can see [the full example on CodeSandbox.](https://codesandbox.io/s/react-scroll-animation-forked-lrhtt?file=/src/index.js)
+
+### Optimizing Styled Components
+
+I had some issues here when I tried to scroll fast, I started to get errors in the console from Styled Components:
+
+```tsx
+Over 200 classes were generated for component styled.div.
+Consider using the attrs method, together with a style object for frequently changed styles.
+Example:
+  const Component = styled.div.attrs({
+    style: ({ background }) => ({
+      background,
+    }),
+  })`width: 100%;`
+
+  <Component />
+```
+
+Changing the Styled Component to object style helped:
+
+```tsx
+const Div = styled.div.attrs({
+  style: ({ animatePercent }) => ({
+    opacity: animatePercent ? animatePercent / 100 : 1,
+  }),
+})`
+  height: 900px;
+  width: 300px;
+  background-color: red;
+  transform: translateX(${({ animate }) => (animate ? '0' : '-100vw')});
+  transition: transform 1s;
+  margin: 20px;
+`
+```
+
+You can see [this optimized example on CodeSandbox.](https://codesandbox.io/s/react-scroll-percent-animation-optimized-oin1m?file=/src/index.js:2426-2824)
+
+I still received the error about performance. So I added a debounce to the function to help alleviate the number of executions.
+
+## "Sticky" scrolling
+
+Two elements, container and a "caption" nested inside. The container is usually larger than height of screen, and requires scrolling. The caption should move "sticky" on the bottom.
+
+You can accomplish this using pure CSS, but the effect is ruined by the caption's own height, which adds to the container. And the `sticky` property doesn't support working inside an `absolute` element, or an `overflow` element.
+
+You can see [an example of this CSS on CodePen.](https://codepen.io/whoisryosuke/pen/JjXZmOr)
+
+In React, ideally we want the element to be `absolutely` or `fixed` position, and have the `bottom` property set to the current window position (scrollY + screen height). Unless we've scrolled past the component, and then it should lock at the element's bottom.
+
+```tsx
+import React, { useLayoutEffect, useRef, useState } from 'react'
+import ReactDOM from 'react-dom'
+import styled from 'styled-components'
+
+const App = () => {
+  const [show, doShow] = useState({
+    itemOne: false,
+    itemTwo: false,
+    itemThree: false,
+  })
+  const [percentShown, setPercentShow] = useState({
+    itemOne: 0,
+    itemTwo: 0,
+    itemThree: 0,
+  })
+  const ourRef = useRef(null),
+    anotherRef = useRef(null),
+    refThree = useRef(null),
+    refThreeCaption = useRef(null)
+
+  useLayoutEffect(() => {
+    const topPos = (element) => element.getBoundingClientRect().top
+    const getHeight = (element) => element.offsetHeight
+    const div1Pos = topPos(ourRef.current),
+      div2Pos = topPos(anotherRef.current),
+      div3Pos = topPos(refThree.current)
+
+    const div3Height = getHeight(refThree.current)
+    const div3CaptionHeight = getHeight(refThreeCaption.current)
+
+    const onScroll = () => {
+      const scrollPos = window.scrollY + window.innerHeight
+
+      if (div3Pos < scrollPos) {
+        // Element scrolled to
+        doShow((state) => ({ ...state, itemThree: true }))
+
+        // bottom should be screen, or element bottom if bigger
+        const realHeight = div3Height - div3CaptionHeight
+        const itemThreePercent =
+          window.scrollY > realHeight ? realHeight : window.scrollY
+        setPercentShow((prevState) => ({
+          ...prevState,
+          itemThree: itemThreePercent,
+        }))
+      } else if (div3Pos > scrollPos) {
+        // Element scrolled away (up)
+        doShow((state) => ({ ...state, itemThree: false }))
+      }
+    }
+
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [refThree, refThreeCaption])
+  return (
+    <>
+      <p>scroll down</p>
+      <Figure id="card">
+        <img
+          ref={refThree}
+          src="https://images.unsplash.com/photo-1600089769887-f0890642eac5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"
+          alt=""
+        />
+        <FigCaption
+          ref={refThreeCaption}
+          animatePercent={percentShown.itemThree}
+        >
+          <h3>Title</h3>
+          <h5>Subtitle</h5>
+        </FigCaption>
+      </Figure>
+      <Wrapper>
+        <Div animate={show.itemThree}>
+          <p>tag here</p>
+          <p>tag here</p>
+          <p>tag here</p>
+          <p>tag here</p>
+        </Div>
+        <Div animate={show.itemTwo} ref={anotherRef} />
+        <Div animate={show.itemOne} ref={ourRef} />
+      </Wrapper>
+    </>
+  )
+}
+
+const Div = styled.div.attrs({
+  style: ({ animatePercent }) => ({
+    opacity: animatePercent ? animatePercent / 100 : 1,
+  }),
+})`
+  height: 900px;
+  width: 300px;
+  background-color: red;
+  transform: translateX(${({ animate }) => (animate ? '0' : '-100vw')});
+  transition: transform 1s;
+  margin: 20px;
+  opacity: ${({ animatePercent }) =>
+    animatePercent ? `${animatePercent / 100}` : `1`};
+`
+
+const Figure = styled.figure`
+  position: relative;
+`
+
+const FigCaption = styled.figcaption.attrs({
+  style: ({ animatePercent }) => ({
+    top: `${animatePercent}px`,
+  }),
+})`
+  width: 25%;
+  position: absolute;
+  left: 0;
+  padding: 2em;
+  background: #fff;
+`
+
+const Wrapper = styled.div`
+  margin-top: 100vh;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+`
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
+```
+
+You can see [the full example on CodeSandbox.](https://codesandbox.io/s/react-scroll-sticky-element-fbgu9?file=/src/index.js)
+
+## "Slide up" content
+
+You scroll, reach the bottom of a section, and as it scrolls up, it reveals the next part (locked into place until you completely reveal it, then it allows you to scroll). Like a piece of paper that slides up and reveals something else.
+
+A little tricky. It looks like the way [this person does it](https://guglieri.com/work/) is to create a container with a fixed height (dynamically set from the page heights), have all the "pages" inside the container as `absolute` position, and then as the user scrolls past a page, the page animates using `transform: translateY`
+
+The trick part is making everything absolutely positioned and dynamically setting the height of the container, as well as managing the position of child elements (like sliding them up [the negative height of the page] as you get to the next part to hide them).
+
+You can see [the full example on CodeSandbox.](https://codesandbox.io/s/react-scroll-reveal-element-forked-spupf?file=/src/index.js)
+
+# References
+
+- [https://guglieri.com/work/](https://guglieri.com/work/)
+- [https://www.npmjs.com/package/react-animate-on-scroll](https://www.npmjs.com/package/react-animate-on-scroll)
+- [https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
+- [https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
+- [https://www.npmjs.com/package/react-intersection-observer](https://www.npmjs.com/package/react-intersection-observer)
+- [https://www.robinwieruch.de/react-intersection-observer-api](https://www.robinwieruch.de/react-intersection-observer-api)
