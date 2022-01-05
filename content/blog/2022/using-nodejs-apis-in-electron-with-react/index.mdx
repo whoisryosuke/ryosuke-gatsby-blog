@@ -1,0 +1,170 @@
+---
+title: Using NodeJS APIs in Electron with React
+date: '2022-01-04'
+section: blog
+tags: ['nodejs', 'react', 'javascript', 'electron']
+cover_image: './using-nodejs-apis-in-electron-with-react.png'
+---
+
+Looking how to use NodeJS modules (like `exec` to execute CLI commands) or Electron APIs (like `dialog` to open the native PC’s file dialog to select files)?
+
+**The short answer?** use the IPC Renderer to create a “pub/sub” event channel between the “main” and “renderer”.
+
+This seems simple enough (if you know Electron buzz words), but there’s not a lot of great examples out there that explicitly show how to do this kind of stuff unless you dig. I had to go through the Electron Discord to find a secret gist that finally had a proper example that worked for me.
+
+> ℹ️ I’ll be using **[electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)** throughout this article as the basis for any code. You can clone this project and follow along - all files I reference will be relative to that project.
+>
+> Also note - I tried using **[Electron Forge](https://www.electronforge.io/)** and it didn’t work out of the box - requiring [a lot of configuration](https://www.electronforge.io/config/plugins/webpack#node-integration) to get it on par with **electron-react-boilerplate**.
+
+# My Journey through Webpack Hell
+
+As someone who has built Electron apps before, I thought I knew how to use NodeJS. I literally built an app that the user can input CLI commands and run them (using the `exec` method in the `child_process` module). **[You can see in my project,](https://github.com/whoisryosuke/entourage/blob/main/app/components/BlockContent/CommandBlock.tsx#L2-L25)** I use NodeJS directly inside my React component. **_Normally_** this wouldn’t be possible - even in NextJS-land you’re forced to use [special methods to fetch data from the server-side](https://nextjs.org/docs/basic-features/data-fetching).
+
+> I figured Electron was different from frameworks like NextJS. **I was wrong.**
+
+When I cloned the latest version of **[electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)**, I tried doing this again only to get an error about `child_process` being missing. This led me down a hole of incorrect StackOverflow answers that kept insisting that I do things like add `nodeIntegrations: true` to my Forge config, changing `import` to `require`, or update my Webpack config to `null` out when importing Node modules in the frontend. None of these worked, and the module would not import, despite any configuration.
+
+This simply emphasized the “**renderer**” process (or “_frontend_”) with React didn’t have access to the same modules as the “**main**” (or “_backend_”) process. But what does that mean?
+
+# How Electron Works
+
+Electron has 2 main processes: **Main** and **Renderer**.
+
+A “**main**” process that runs “**server-side**” - on the NodeJS platform. This process is responsible for the “backend” of the app, such as rendering the actual app window and piping the HTML inside — or speaking to native platform APIs (like making the actually close using Electron’s `app.quit()`). Here we can use dependencies such as NodeJS APIs and Electron APIs, as well as any library that requires it to be server-side (like a SQLite adapter to read from a DB — `const sqlite = require('sqlite')`).
+
+A “**renderer**” process runs the “**frontend**” of your app. This includes an HTML page to render, as well as any CSS or JS required inside of it. We can also use libraries like React or Angular, since they’re also JS and render in an HTML page. Here we can use any frontend dependencies that we install in our `package.json`, like Yup for validating form input (e.g. `import yup from 'yup`).
+
+Both of these processes are often bundles separately, usually through a library like Webpack or Parcel. The `main.js` file will run first, then run the `renderer.js`.
+
+Understanding the distinction between these two will help understand how to create a secure Electron app, similar to working with apps on the web, to avoid exploits like XSS.
+
+# How to use Node inside React?
+
+So if you want to do something like query a DB, or open the native file system dialog — how does React run these commands on demand?
+
+The answer is to use [IPC in Electron](https://www.electronjs.org/docs/latest/api/ipc-main). This is a system that uses pub/sub events to transmit data to and from the “main” (or backend) to the “renderer” (or frontend).
+
+Inside the **main** process (or `main.js`), we add a `handle()` method from IPC Main to “listen” for events (in this case `blender:version`):
+
+```jsx
+// src/main/main.ts
+ipcMain.handle('blender:version', async (_, args) => {
+  console.log('running cli', _, args)
+  let result
+  if (args) {
+    const blenderExecutable = checkMacBlender(args)
+    // If MacOS, we need to change path to make executable
+    const checkVersionCommand = `${blenderExecutable} -v`
+
+    result = execSync(checkVersionCommand).toString()
+  }
+  return result
+})
+```
+
+Also inside the **main** process, we pass in a `preload.js` script to load alongside the **renderer** process. This is included with **electron-react-boilerplate**:
+
+```jsx
+// src/main/main.ts
+webPreferences: {
+  preload: path.join(__dirname, 'preload.js'),
+},
+```
+
+The code inside our preload script will be available to our React code:
+
+```jsx
+// src/main/preload.js
+const { contextBridge, ipcRenderer } = require('electron');
+
+contextBridge.exposeInMainWorld('electron', {
+  blenderVersion: async (blenderPath) =>
+    ipcRenderer.invoke('blender:version', blenderPath),
+  },
+});
+```
+
+What this does is “expose” our object (in this case, methods like `blenderVersion()`) to the global `window` under the `electron` property. This allows us to call `window.electron` **anywhere inside our app’s frontend** and find any property/method from the preload script. For example, we’d call `window.electron.blenderVersion()`.
+
+```jsx
+// Inside any React file
+const getVersion = async (blenderFile: string): Promise<VersionData> => {
+  // Use IPC API to query Electron's main thread and run this method
+  const result = await window.electron.blenderVersion(blenderFile)
+}
+```
+
+When we call that method, the IPC Renderer inside the preload script runs (or `invoke()`) the function we put in the main process. So the frontend uses the “API” you define in `preload.js` - and the backend uses the event names in `preload.js` (aka `blender:version`) to run the right function for the event.
+
+Using this architecture, you can essentially create an API of sorts (similar to [API routes in NextJS](https://nextjs.org/docs/api-routes/introduction)) to create a secure communication channel between the **frontend** (renderer aka React) and **backend** (main process aka Electron/Node).
+
+[You can see a full working version of this example in this commit.](https://github.com/whoisryosuke/blender-hub2/commit/86cb4f7b62c05fe831a50462679cc115d7f6e41a)
+
+# Why do all this work?
+
+For **_security_**! That’s why.
+
+The problem with frontend code is that the user can edit it and change it.
+
+For example, if we have a shopping cart with products, we’d normally store the product prices in the React state. This is ok, but what if the user changes the price to **\$0**? Ideally, the request should get handled by a “server” (or separate computer/process the user has no control over) — then the results get passed back to the frontend. This way, we can do things **on the server** like check the product price and confirm it matches the source of truth (usually a DB).
+
+In Electron, this is similar. **We do** need to use NodeJS APIs to do actions like accessing the filesystem using `fs` — but **we don’t** want the user to be able to access these APIs directly. Dangerous things could happen, like the app could be **hijacked** and **exploited** by a 3rd party script. If that malicious script is allowed to run any command, it could **delete files on user’s computer** (or worse).
+
+[You can learn more about **security in Electron** her**e.**](https://www.electronjs.org/docs/latest/tutorial/security)
+
+# Examples
+
+## Open File Dialog
+
+This method when run, opens the native “**Open File...**” dialog. You’d assign this to a button, then use the `filePaths` returned as needed.
+
+```jsx
+ipcMain.handle('dialog:open', async (_, args) => {
+  const result = await dialog.showOpenDialog({ properties: ['openFile'] })
+  return result
+})
+```
+
+Inside the `preload.js`:
+
+```tsx
+contextBridge.exposeInMainWorld('electron', {
+  showDialog: async () => ipcRenderer.invoke('dialog:open'),
+})
+```
+
+Inside React you access the method we exposed using `window.electron`:
+
+```tsx
+/**
+ * Returned from the Electron Dialog API `showOpenDialog`
+ * @see: https://www.electronjs.org/docs/latest/api/dialog
+ */
+export type DialogFileData = {
+  /**
+   * Did user cancel dialog?
+   */
+  cancelled: boolean
+  /**
+   * Array of file paths that user selected
+   */
+  filePaths: string[]
+}
+
+const files: DialogFileData = await window.electron.showDialog()
+console.log('user files', files)
+```
+
+# References
+
+- [ipcMain | Electron](https://www.electronjs.org/docs/latest/api/ipc-main)
+- [dialog | Electron](https://www.electronjs.org/docs/latest/api/dialog)
+  - Official docs - not really helpful...
+- [Dialog Invoke Example](https://gist.github.com/whoisryosuke/ab0ee89e878c48947fe7fd8eedb8431f)
+  - Great example
+  - Shoutout to Electron Discord, found it there
+- [GitHub - whoisryosuke/blender-hub2 at dialog-example](https://github.com/whoisryosuke/blender-hub2/tree/dialog-example)
+  - Integrated into React
+- [Build a Todo App with Electron](https://codeburst.io/build-a-todo-app-with-electron-d6c61f58b55a)
+  - Good breakdown of options for local storage (electron-store vs Node’s `fs` filesystem)
+  - Also shows app folder for each platform (Mac/Win/Linux)
