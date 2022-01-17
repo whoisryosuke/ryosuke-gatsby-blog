@@ -155,6 +155,112 @@ const files: DialogFileData = await window.electron.showDialog()
 console.log('user files', files)
 ```
 
+## Create an extra window
+
+One common thing you might encounter when creating an Electron app is the need to create another window, usually something different than the main app (like a setting screen).
+
+Creating a window in Electron is pretty easy. You use the `BrowserWindow` class to define a new window (like the size or icon), load the HTML file, then have it show using the callback. The beauty of this, we can call it anytime — like on demand when our frontend asks (via IPC):
+
+```jsx
+// src/main/main.ts
+// Add this near top of file
+const createSecondWindow = (windowUrl = 'index.html') => {
+  const newWindow = new BrowserWindow({
+    show: false,
+    width: 1024,
+    height: 728,
+    // icon: getAssetPath('icon.png'),
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+    },
+  })
+
+  newWindow.loadURL(resolveHtmlPath(windowUrl))
+
+  newWindow.on('ready-to-show', () => {
+    newWindow.show()
+  })
+}
+
+// Place this where your IPC handles/connects are
+ipcMain.handle('new:window', async (_, windowUrl: string) => {
+  createSecondWindow(windowUrl)
+})
+```
+
+Then we create a method on the IPC bridge to connect the frontend (React) to backend (Electron main renderer):
+
+```jsx
+// src/main/preload.js
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld('electron', {
+  newWindow: async (windowUrl) => ipcRenderer.invoke('new:window', windowUrl),
+})
+```
+
+And then in React, we can just use:
+
+```jsx
+window.electron.newWindow('second.html')
+```
+
+There’s one problem with this: unless we edit the Webpack config of the project, we only generate 1 HTML file - `index.html`.
+
+### But how do I make another HTML file / React app?
+
+It’s a long process of editing the Webpack configuration for both the production and development renderer, adding new `.ts` and `.ejs` entrypoints for the window, and maybe a little extra minor configuration.
+
+We can work around this by passing query parameters instead of a whole new file. At the top level of the React app: we’ll grab the query parameters, parse them, then render a window based on what gets passed. It’ll work kind of like a “router”, with a big switch statement changing between React components that represent each window and it’s content.
+
+So rather than call to a new HTML file, we add a query parameter to `index.html` file:
+
+```jsx
+window.electron.newWindow('index.html?window=settings')
+```
+
+Then inside our React app, we check for the query parameter [using a global variable Electron exposes to browser:](https://stackoverflow.com/a/38401579)
+
+```jsx
+console.log(global.location.search)
+// Returns:
+// ?window=settings
+```
+
+Then we can parse this using a library like [query-string](npmjs.com/package/query-string):
+
+```jsx
+import queryString from 'query-string'
+
+const parsed = queryString.parse(global.location.search)
+console.log('Window Name', parsed.window)
+```
+
+Using this, inside our `App.tsx`, we can render different windows:
+
+```jsx
+import queryString from 'query-string'
+import React from 'react'
+import SettingsWindow from './settings'
+import MainWindow from './settings'
+
+const App = () => {
+  const parsed = queryString.parse(global.location.search)
+  let route
+  switch (parsed.window) {
+    case 'settings':
+      route = <Settings />
+      break
+    default:
+      route = <MainWindow />
+      break
+  }
+  return route
+}
+```
+
+And with the magic of React, you can put a real router (like React Router) inside each window, and each would have it’s own navigation.
+
 # References
 
 - [ipcMain | Electron](https://www.electronjs.org/docs/latest/api/ipc-main)
@@ -168,3 +274,4 @@ console.log('user files', files)
 - [Build a Todo App with Electron](https://codeburst.io/build-a-todo-app-with-electron-d6c61f58b55a)
   - Good breakdown of options for local storage (electron-store vs Node’s `fs` filesystem)
   - Also shows app folder for each platform (Mac/Win/Linux)
+- [How to get Query Parameters in Electron](https://stackoverflow.com/a/38401579)
