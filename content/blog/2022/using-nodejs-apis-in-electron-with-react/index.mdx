@@ -112,6 +112,37 @@ In Electron, this is similar. **We do** need to use NodeJS APIs to do actions li
 
 [You can learn more about **security in Electron** her**e.**](https://www.electronjs.org/docs/latest/tutorial/security)
 
+# Adding Typescript support
+
+The only issue with this IPC bridge is that our APIs aren’t explicit to Typescript. They’re passed to the `window` under the hood by the context bridge, so TS isn’t able to know that `window.electron` exists.
+
+We can work around this by creating a global Typescript definition file. We can place this anywhere in the frontend project and anytime we add new methods/parameters to IPC bridge (aka `window.electron`) — we also add the proper types to that file:
+
+```jsx
+import { DialogFileData } from './types';
+
+declare global {
+  /**
+   * We define all IPC APIs here to give devs auto-complete
+   * use window.electron anywhere in app
+   * Also note the capital "Window" here
+   */
+  interface Window {
+    electron: {
+      showDialog: () => Promise<DialogFileData>;
+      blenderVersion: (blenderFile: string) => Promise<string>;
+
+			// Add any additional "APIs" here
+
+    };
+  }
+}
+
+// window.electron = window.electron || {};
+```
+
+You can see [an example of this file here](https://github.com/whoisryosuke/blender-hub2/blob/main/src/renderer/common/global.d.ts) on Github.
+
 # Examples
 
 ## Open File Dialog
