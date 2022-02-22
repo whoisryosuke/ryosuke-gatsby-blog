@@ -1,0 +1,166 @@
+---
+title: Using Nx for React and Typescript Monorepos
+date: '2022-02-21'
+section: blog
+tags: ['nodejs', 'react', 'typescript', 'monorepo']
+cover_image: './using-nx-for-react-and-typescript-monorepos.png'
+---
+
+Since [the acquisition](https://vercel.com/blog/vercel-acquires-turborepo) of [Turborepo](https://turborepo.org/) by Vercel dropped recently, the talk of monorepos has been at a peak on social media. I decided to explore a Turborepo competitor, [Nx](https://nx.dev/), and see if how it worked compared my standard workflow ([Yarn](https://classic.yarnpkg.com/lang/en/docs/workspaces/) or [Lerna](https://lerna.js.org/) workspaces). I was incredibly trepidatious going in, and I ended up being impressed with how fast and solid it was.
+
+With just a few CLI commands I was able to scaffold out an entire monorepo, a React app, a publishable component library, Storybook, and E2E testing for everything with Cypress. The sentence was probably longer than the commands I ran (_not really but still_).
+
+I go over the process I went through, and my thoughts on the benefits and negatives of Nx.
+
+# Process
+
+Scaffolded new project using `npx` command. Selected a React project.
+
+```bash
+npx create-nx-workspace --preset=react
+```
+
+This created a new project with a React app with standard splash screen, and an accompanying Cypress E2E test for the app.
+
+![Sample Nx React app](using-nx-for-react-and-typescript-monorepos.png)
+
+The React app was stored in `apps/react-gamepads` and the Cypress tests were stored in `apps/react-gamepads-e2e`.
+
+I wanted components to use in the app, so I scaffolded a new library using the `nx` CLI for UI components:
+
+```bash
+nx g @nrwl/react:lib ui
+```
+
+This created a React component library project configured with Typescript, Jest, ESLint, and Babel.
+
+The library has a single `<Ui />` component inside (presumably based on name we passed). It also updated the root `tsconfig.json` with a path alias to the lib, so I could import the components anywhere across the monorepo using the project name as a workspace and library name as the package (e.g. _`import_ { Button } _from_ '@react-gamepads/ui';`).
+
+Next I made a component inside that UI library with:
+
+```bash
+nx g @nrwl/react:component button --project=ui --export
+```
+
+This created a Button component in `libs/ui/src/lib/button/button.tsx`. As well as a Jest test. And it exported the button from the library’s `index.ts`.
+
+I was able to import the Button into the app and see it (without pre-building library or anything — just `yarn serve`).
+
+## Building
+
+Ran `yarn build`. Only the React app built — not the library...
+
+Deleted the UI library, re-generated it with the `--publishable` flag and `--importPath="@react-gamepads/ui"` (basically the name of NPM module - in this case scoped to the “org” or monorepo project).
+
+```bash
+nx g @nrwl/react:lib ui --publishable --importPath="@react-gamepads/ui"
+```
+
+Re-ran `yarn build` and saw the library generated in the `/dist` folder! 🎉
+
+## Setting up Storybook
+
+This was incredibly simple thanks to all the install scripts/macros they have in place that automatically update configuration files, generate test files, and even create a Cypress E2E testing environment.
+
+Install the primary Storybook dependency:
+
+```bash
+yarn add -D @nrwl/storybook
+```
+
+Then add a Storybook configuration to any React library, in this case, our `ui`:
+
+```bash
+nx g @nrwl/react:storybook-configuration --name=ui
+```
+
+This will also generate a Storybook `.story` test for any components you currently have in your library. When you create more components, you can run this command to generate corresponding tests:
+
+```bash
+nx g @nrwl/react:stories --project=ui
+```
+
+Now you can run or build Storybook:
+
+```bash
+# Notice we preface with `ui` - name of our lib
+nx run ui:storybook
+nx run ui:build-storybook
+```
+
+It’s a pretty nifty setup overall, they have Cypress access Storybook for testing, so your E2E tests literally run off the embedded preview from Storybook.
+
+# Why Nx
+
+- Easy to quickly scaffold new monorepos
+- Easy to setup complex projects with many internal and external dependencies
+- Faster to create boilerplate code like libraries, workspaces, or even components and tests.
+- Comes with a suite of tools powered off the platform (like a dependency graph)
+- Can use Yarn or Lerna workspaces format and opt-in to Nx config as needed (for better performance)
+
+## Why not Nx
+
+- A lot of platform specific configuration. Monorepos are handled in special config files.
+- Confusing up-front to developers new to the monorepo style. For example, in some cases the `package.json` doesn’t contain scripts — and they’re in a `project.json` file.
+- More to learn. Setup is simplified, but things can be difficult to maintain or extend because it’s all contained in custom platform configurations and APIs. You’re still adding a Webpack build to a “package” or app, but it’s now piped through the `project.json` build pipeline.
+  - This is similar to Turborepo, so it’s hard to hate. Although Turborepo seems to take methods from `package.json` and run them — all of the configuration in Nx is custom stuff that can be confusing even to devs experienced with monorepos (although probably familiar to those devops engineers making YML pipelines).
+- Different style of monorepo? All dependencies seem to be stored in root `package.json` - not individual `package.json`. This means you couldn’t have multiple versions of things like React in the same monorepo. It kinda makes sense if everything is talking to each other, but if I have one module that supports a legacy version of React (or any of it’s dependencies), I’d have to pull it out into a separate project.
+  - [You can see an issue on Github about it](https://github.com/nrwl/nx/issues/1777) where it’s emphasized you’re supposed to use the same version of dependencies across all modules. The poster raises a good point about using Docker.
+  - Apparently in v13+ you can add a [generatePackageJson](https://nx.dev/l/r/node/build#generatepackagejson) flag to the build process. [See here on Github](https://github.com/nrwl/nx/issues/1777#issuecomment-985960743).
+  - `package.json` are supported in libraries and apps for defining publishable modules and development scripts. [You can learn more about that here.](https://nx.dev/l/r/configuration/packagejson) It doesn’t touch on dependencies though - only Nx specific magic involving them.
+
+### Example of negatives
+
+To stress test Nx monorepos I decided to try creating a design system. I opted to use @vanilla-extract/css, which immediately proved to be an issue.
+
+When creating new libraries in Nx, they’re Typescript based and compile using the `tsconfig.json`. @vanilla-extract/css uses actual build pipelines (like Webpack, esbuild, or Vite).
+
+I could use Nx generators to create a React app with Webpack bundling, but only libraries are “publishable” out of the box.
+
+If I wanted to add `esbuild` to my project, I’d suddenly have to a lot of Nx-specific things. To run the build process, I needs to [create a custom executor](https://nx.dev/executors/creating-custom-builders). This involves [defining a schema](https://nx.dev/executors/creating-custom-builders#schemajson), and [a task runner](https://nx.dev/executors/creating-custom-builders#implts) in NodeJS. In a normal Lerna or Yarn style monorepo, I’d just add the build script to a `package.json`...done. It’d take 2 seconds, versus the time it takes to research the Nx API and match their spec.
+
+I was able to [find a plugin](https://github.com/LinbuduLab/nx-plugins/tree/main/packages/nx-plugin-esbuild) to generate projects with `esbuild` setup — but it only worked for Node apps (not React component libraries).
+
+After about an hour of research and digging, I was ready to hop off the Nx train and spin up a simple Yarn workspace.
+
+## Takeways
+
+- Unique monorepo setup where dependencies seem to be kept in root level `package.json`. Each “package” in the monorepo has a `project.json` file that defines it - but mostly things like lint or test. Builds seem to be done through `tsconfig.json` files.
+- Generators are really handy. You can quickly generate “libraries” (like utility modules, or UI components), or apps (React, Angular, even Next or Gatsby). It can also generate things like React components, and scaffold out the Jest and E2E tests.
+- Also has Storybook integration. Can generate stories for React components.
+- Libraries are linked using Typescript path aliasing (see root `tsconfig.base.json`). When you create a new library, it’ll be under the monorepo name + library name (e.g. `@react-gamepads/ui`)
+- Still need to manually setup npm and Github publishing
+  - Can add **`-publishable`** flag when creating a library
+- Can generate
+  - React
+    - Library
+    - Component
+    - Web app
+    - NextJS / Gatsby
+    - Hook
+    - Redux Slice
+    - Storybook story
+    - Cypress test
+  - Web apps in general
+  - New workspace
+  - New npm package
+- Removing generated things isn’t simple?
+  - Had to manually go in and find where things were added
+  - Would be smarter to only generate on separate branches/commits
+
+# Nx or Turborepo or Lerna?
+
+After trying out each option, I’d say that each are almost different products, and offer overlapping features in some cases.
+
+- Need better monorepo support and you’re ok with learning a little API and overhead? Go for Turborepo or Lerna.
+- Need to improve performance of a waterfall of build scripts? Go for Turborepo or Nx.
+- Want a lot of boilerplate support? Go Nx or Yeoman.
+
+# What do you think?
+
+I’m curious to hear if I missed the mark on anything, or if you disagree with any of my negatives. You can [reach out on Twitter](https://twitter.com/whoisryosuke) and let me know your thoughts.
+
+# References
+
+- [Nx and TypeScript](https://nx.dev/l/r/getting-started/nx-and-typescript)
+- [Build your design system with Storybook + Nx](https://blog.nrwl.io/build-your-design-system-with-storybook-nx-e3bde4087ad8?gi=ee04ddc908ed)
