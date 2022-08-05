@@ -1,0 +1,308 @@
+---
+title: Ditch the DOM with SolidJS and Skia CanvasKit
+date: '2022-08-05'
+section: blog
+tags: ['solidjs', 'skia', 'wasm', 'javascript', 'graphics']
+cover_image: './Ditch_the_DOM_with_SolidJS_and_Skia_CanvasKit.png'
+---
+
+Recently I’ve become fascinated with cross-platform rendering of UI and approaching the problem from a lower level layer (usually some graphics API, ideally speaking to a GPU). I discovered [Skia’s CanvasKit](https://skia.org/docs/user/modules/canvaskit/), which is a [WASM](https://webassembly.org/) module for using their Skia API on the web.
+
+If you haven’t heard of [Skia](https://skia.org/), it’s used in Chrome and Android for rendering graphics (like SVGs). It’s a C++ library that you can use to “draw” shapes, text, and other elements to a “canvas” (like the DOM’s `<canvas>` or even a virtual canvas for rendering server-side in Node).
+
+I’d become more interested in Skia when Shopify created a React Native integration for it - [React Native Skia](https://shopify.github.io/react-native-skia/). It was cool to see you could take a C++ library like that and create bindings for different platforms like Android or iOS based on their graphic engines - like OpenGL vs Vulkan.
+
+It got me thinking — what if you could create a library that uses Skia under the hood to render directly to the canvas? Depending on the render target/platform, you could use different “bridges” to the Skia API. On native, you’d use React Native Skia (or a similar implementation). And on web, you’d use Skia’s CanvasKit WASM module.
+
+My goal was to have an library that the developer can write in a JSX syntax and instead of rendering to the DOM (like React for web), we’d render to a `<canvas>` element.
+
+![A screenshot of the SolidJS app rendering to gradient text to the canvas using the CanvasKit API](Untitled.png)
+
+**Want to see the code or try the demo?** Check out the Github repo for the final code here: [solid-canvaskit-renderer](https://github.com/whoisryosuke/solid-canvaskit-renderer).
+
+# Beat to it
+
+After a little research, I found that someone has already beat me to it for React — [**react-canvaskit**](https://github.com/udevbe/react-canvaskit). This implementation used [react-reconciler](https://www.npmjs.com/package/react-reconciler) to create a custom renderer for React. This is the same process used by [\*\*react-three-fiber](https://github.com/pmndrs/react-three-fiber/)** (aka **R3F**) to bring [**ThreeJS\*\*](https://threejs.org/) elements to the React VDOM/lifecycle (e.g. when you use `<mesh>`).
+
+Basically what react-reconciler does is let you create custom elements that are lowerCamelCase (like `<ambientLight>` or `<skParagraph>`). When these components render, they call a function or class you specify. In **react-canvaskit**, they essentially call the CanvasKit APIs.
+
+The author of **react-canvaskit** did a great job of knocking most of the core architecture down (and even major components). There didn’t feel like much to contribute there. But I still wanted to get my hands dirty and glean something from digging, so I pivoted my research a bit.
+
+# SolidJS universal renderer
+
+I had some time to dive into [**SolidJS**](https://www.solidjs.com/) a couple weeks ago, and it seems like a great and [even much faster](https://krausest.github.io/js-framework-benchmark/current.html) alternative to React. It’s basically the same as React — it uses JSX and hooks, with [a couple minor differences.](https://www.solidjs.com/guides/comparison)
+
+What really attracted me to **SolidJS** was [the Universal renderer](https://github.com/solidjs/solid/tree/main/packages/solid/universal). It’s like being able to create your own version of React DOM.
+
+By default, **SolidJS** will target the web, and use the DOM API to render your app. So when you write a `<div>` - it knows to actually say `document.createElement('div')`. This is similar to React if you’ve ever looked at the compiled version of a React app.
+
+Instead of using the DOM, with the universal renderer you can target anything! You could create a “virtual” DOM that you can parse through with a testing framework or server-side render. Or in this case, you could target the `<canvas>` directly.
+
+We’re still technically using the DOM, since we’re writing HTML and JavaScript (and ultimately rendering that code in a browser). But we cut out the overhead of the DOM, and any time it took the browser to create those new DOM elements (as well as mutate them as we change update our Solid component props).
+
+When I first was looking into the universal renderer, I found [\*\*solid-three](https://github.com/nksaraf/solid-three/),\*\* which is a universal renderer for ThreeJS. It’s actually based on react-three-fiber and features a similar architecture and API (using [Zustand](https://github.com/pmndrs/zustand) to store Scene context, or even a `useFrame`). This would prove as an excellent resource to help craft my own renderer that ditched the DOM.
+
+# Initial experiments
+
+I started by doing some initial prototypes that verified that certain processes worked. These were just quick sanity checks, like going through the **CanvasKit** getting started guide and trying to use the library on my own.
+
+To do this, I spun up a quick **[NextJS](https://nextjs.org/)** app, installed the **CanvasKit** WASM module from NPM, and tried using the API inside some components. [Here’s the commit with that initial attempt.](https://github.com/whoisryosuke/skia-canvaskit-wasm-nextjs/commit/ac83ef0f76ef31814eb55dfb7790cfcab0ca6ecd) This worked great — after I figured out some issues with NextJS and WASM modules (I basically tapped out at some point and just used a CDN version of the WASM module).
+
+Once it was working, I abstracted the initialization process to a React Context provider and hook (`useCanvasKit`). This let me grab the context in any component and “draw” to it.
+
+[You can find the complete code for this initial prototype here.](https://github.com/whoisryosuke/skia-canvaskit-wasm-nextjs)
+
+# Solid implementation
+
+I had previously done some explorations into **SolidJS** and universal rendering where I tried to create a **ThreeJS** version (before I realized one existed). [That project](https://github.com/whoisryosuke/solid-three-renderer) was basically a monorepo with a package for the universal renderer, and a “demo” Vite app to test the renderer. I basically just created a new [**Vite**](https://vitejs.dev/) app using their **SolidJS** template. And for the monorepo — I just copied from [my mountain of previous monorepo code.](https://github.com/whoisryosuke?tab=repositories&q=monorepo&type=&language=&sort=)
+
+With this basis in place, I started to create the renderer. It was honestly a very simple process with the API they expose:
+
+```jsx
+// example custom dom renderer
+import { createRenderer } from 'solid-js/universal'
+
+const PROPERTIES = new Set(['className', 'textContent'])
+
+export const {
+  render,
+  effect,
+  memo,
+  createComponent,
+  createElement,
+  createTextNode,
+  insertNode,
+  insert,
+  spread,
+  setProp,
+  mergeProps,
+} = createRenderer({
+  createElement(string) {
+    return document.createElement(string)
+  },
+  createTextNode(value) {
+    return document.createTextNode(value)
+  },
+  replaceText(textNode, value) {
+    textNode.data = value
+  },
+  setProperty(node, name, value) {
+    if (name === 'style') Object.assign(node.style, value)
+    else if (name.startsWith('on')) node[name.toLowerCase()] = value
+    else if (PROPERTIES.has(name)) node[name] = value
+    else node.setAttribute(name, value)
+  },
+  insertNode(parent, node, anchor) {
+    parent.insertBefore(node, anchor)
+  },
+  isTextNode(node) {
+    return node.type === 3
+  },
+  removeNode(parent, node) {
+    parent.removeChild(node)
+  },
+  getParentNode(node) {
+    return node.parentNode
+  },
+  getFirstChild(node) {
+    return node.firstChild
+  },
+  getNextSibling(node) {
+    return node.nextSibling
+  },
+})
+```
+
+My first order of action was to take each method and `console.log` out the parameters. It’d give me an idea of when things ran, and what was needed when.
+
+```jsx
+createElement(string) {
+	console.log(string);
+},
+```
+
+I quickly discovered my monorepo wasn’t configured appropriately, and I needed to [define a custom Babel config](https://github.com/whoisryosuke/solid-canvaskit-renderer/blob/e6d43313d1723096f599eb6d6e5e391124eeeeeb/packages/demo/vite.config.js#L8-L17) that pointed Solid to my custom renderer. Shoutout to the [**SolidJS** Discord community](https://discord.com/invite/solidjs) for the protip:
+
+```jsx
+import { defineConfig } from 'vite'
+import solidPlugin from 'vite-plugin-solid'
+
+export default defineConfig({
+  plugins: [
+    solidPlugin({
+      solid: {
+        generate: 'universal',
+
+        renderers: [
+          {
+            name: 'universal',
+            moduleName: 'solid-canvaskit-renderer',
+            elements: [],
+          },
+        ],
+      },
+    }),
+  ],
+})
+```
+
+Without this config, **SolidJS** kept using the DOM, so when I created `<testelement>` - the DOM actually made one (instead of calling my `createElement` method in my custom renderer).
+
+Once that was resolved, I was quickly able to wire up the **CanvasKit** API to the `createElement` process. I created a `<skCanvas>` and `<skGradient>` component. The Canvas class went through the **CanvasKit** initialization process (aka running `init()` on **CanvasKit**, wiring it up to a `<canvas>` element, picking a backend like [**OpenGL**](https://www.opengl.org/), etc). The Gradient class rendered a gradient from [the documentation samples](https://skia.org/docs/user/modules/canvaskit/#samples).
+
+I created [a component that used these new custom elements:](https://github.com/whoisryosuke/solid-canvaskit-renderer/blob/523af3bcaee12ee69e3d51b89f30e6f13fd53f39/packages/demo/src/index.tsx#L31-L33)
+
+```jsx
+function App() {
+  return (
+    <skCanvas>
+      <skGradient />
+    </skCanvas>
+  )
+}
+```
+
+This process **didn’t work**…**_but kinda did_**? When the app initially renders, nothing happens (no errors, only a blank canvas). But when you update a component, the app rendered the components to canvas correctly.
+
+After inspecting the logs, I found that **SolidJS** creates elements (`createElement`), then inserts them into your “tree” (`insertBefore`). I had the canvas initialize and each component render during the `createElement` stage. I moved the component rendering to `insertBefore` to try and give the canvas time to initialize — but this didn’t work either.
+
+The problem lies in the **CanvasKit** `init()` method. It’s a `Promise` - meaning it needs to be `await`-ed in order for the app to run sequentially.
+
+I tried to move out the initialization as a separate method so the user could call it before rendering — but this felt wrong? It didn’t seem like a good practice to hold rendering up for initialization? Ideally the tree should form and wait to render until the canvas is ready (that way things don’t “pause” and do a few things concurrently - like initializing their elements).
+
+To solve the issue, I had to take my brain out of the renderer and back into Solid-land for a bit. I kept trying to find a way to get the renderer to acknowledge the canvas initialization — but there weren’t any methods that made it easy. Instead, I created a `<Canvas>` **SolidJS** component that handles the initialization (instead of a custom element like `<skCanvas>`). This way, I could leverage **Solid’s** `children` prop, and [suspend rendering](https://github.com/whoisryosuke/solid-canvaskit-renderer/blob/main/packages/solid-canvaskit-renderer/src/components/Canvas.tsx#L72-L79) until the initialization was complete.
+
+```jsx
+export const Canvas = ({children}: Props) => {
+  const [initialized, setInitialized] = createSignal(false);
+
+    console.log('[CANVAS] children', children);
+
+    /**
+     * If there's only 1 child, make it an array so we can loop over it
+     * @param childrenCheck
+     * @returns
+     */
+    const checkChildren = (childrenCheck: ResolvedChildren) => {
+      if(!Array.isArray(childrenCheck)) return [childrenCheck];
+      return childrenCheck;
+    }
+
+    /**
+     * Initialize CanvasKit and connect `<canvas>` element
+     */
+    createEffect(async () => {
+      if(!initialized()) {
+				// This is the "await" I mentioned earlier
+        await initializeCanvas()
+        setInitialized(true);
+      }
+    })
+
+    /**
+     * Run the render method on all children (aka "drawing" all child elements)
+     */
+    const memo = solidChildren(() => children);
+    createEffect(() => {
+      // We should only be rendering when the canvas is initialized!
+      // Otherwise nothing renders unless props change
+      if(initialized()) {
+        console.log('[CANVAS-C] RENDERING CHILDREN!');
+        const realChildren = memo();
+        // @ts-ignore Not sure where to wire this up...but this does return SkNode, not JSXElement
+        let childrenMap = checkChildren(realChildren) as SkNode[];
+
+        childrenMap?.forEach((c: SkNode) => c.render())
+      }
+    })
+  return (
+    <></>
+  )
+}
+
+export default Canvas;
+```
+
+This solution worked great, and allowed the app initialize appropriately.
+
+# Wiring up props
+
+The one thing I didn’t understand about **Solid’s** renderer — how do props get passed to elements? I noticed the renderer had a `setProperty` method that used the DOM’s `setAttribute` API to assign the property to the DOM element (very **Vue** or **Web Component**-like). I assumed the DOM element would have access to it’s own attributes (aka “props”).
+
+I didn’t mention earlier, the way my custom renderer works, it uses a special “Node” class I created. This acts as a placeholder for the DOM’s `Element` API. But in my case, I only need to keep initialize and render instances of **CanvasKit** classes I’ve created (like a `SkText`). So my `SkNode` base class only had `initialize()` and `render()`.
+
+In order to keep track of props, I created a `props` property on the `SkNode` class:
+
+```jsx
+export class SkNode implements SkBase {
+  initialize() {}
+  render() {}
+
+  // Component props (aka React/Solid props)
+  props: Map<string, any> = new Map()
+  setProp(name: string, value: any) {
+    this.props.set(name, value)
+  }
+  getProp(name: string) {
+    this.props.get(name)
+  }
+}
+```
+
+Very simple getter/setter methods using a `Map` to store the props. And with that, I was able to set properties with the renderer `setProperty` method, and then access them in the component class using `this.props.get(propName)`:
+
+```jsx
+import store from '../store'
+import { SkNode } from './SkNode'
+
+export default class SkGradient extends SkNode {
+  render() {
+    // ...code cut out...
+
+    const colors = this.props.get('color') ?? ['RED', 'GREEN', 'BLUE']
+
+    // ...code cut out...
+  }
+}
+```
+
+And the magic that helped it work — I also call the component’s render method after changing a property. So ideally, only the changed component re-draws.
+
+```jsx
+setProperty(node: SkNode, name: string, value: any) {
+  log('Setting prop', node, name, value);
+  node.setProp(name, value);
+
+  // Re-render component
+  node.render();
+},
+```
+
+# What’s next?
+
+This was a POC to explore the possibility of this kind of “stack”. I’d like to run some performance benchmarks to see if this is truly more performant than classic DOM. And I’d also like to try writing an entire application using this system to understand the kind of app and component architecture it’d take to organize everything.
+
+# Tips and tricks
+
+- You don't need to implement all the renderer methods! Most are kinda optional, especially if you don't have things like parent/child relationships between components or component props.
+- Similarly, you don't necessarily need a (virtual or not) DOM/node tree. If your graphics API is a flat scene graph, you don't need to worry about all the "parent"/"child" methods. If you do need a virtual DOM, I have a `VNode` class in my template that has most methods you'll need.
+- **SolidJS** goes through the component tree as a giant call stack of functions, first starting with `createElement`, then `insertBefore`, etc.
+- Apparently browsers are missing some features that force the CanvasKit to use some JS-based APIs (instead of the WASM code) - which inevitably can contribute to a bottleneck.
+
+# Universal everything!
+
+Interested in making your own SolidJS universal renderer? [I created a template](https://github.com/whoisryosuke/solid-universal-renderer-template) based off an early iteration of my CanvasKit renderer (basically at the beginning `console.log` phase). This should be a clean*-ish* slate to get you started to plug in any API you’d like! [Clone and try the code here on Github.](https://github.com/whoisryosuke/solid-universal-renderer-template)
+
+Kanpai,
+Ryo
+
+# References
+
+- [solid-canvaskit-renderer](https://github.com/whoisryosuke/solid-canvaskit-renderer)
+- [solid-universal-renderer-template](https://github.com/whoisryosuke/solid-universal-renderer-template)
+- [CanvasKit - Skia + WebAssembly](https://skia.org/docs/user/modules/canvaskit/)
+- [CanvasKit example on JSFiddle](https://jsfiddle.skia.org/canvaskit/ac0574825f9e517f2dfa8e822126ee75b005e8156c3de4a95d4ffd17ab6ca57b)
+- [canvaskit-wasm on NPM](https://www.npmjs.com/package/canvaskit-wasm)
+- [Skia C++ Examples](https://github.com/google/skia/blob/1f193df9b393d50da39570dab77a0bb5d28ec8ef/modules/canvaskit/npm_build/example.html)
+- [SolidJS](https://www.solidjs.com/)
+- [Webpack 5 breaks dynamic wasm i
